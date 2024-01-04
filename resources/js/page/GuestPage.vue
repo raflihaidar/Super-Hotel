@@ -36,7 +36,7 @@
             </template>
 
             <template #body>
-                <tr v-for="(item, index) in guests" :key="index" class="odd:bg-white even:bg-green-100 ">
+                <tr v-for="(item, index) in guest" :key="index" class="odd:bg-white even:bg-green-100 ">
                     <td class="w-4 p-4">
                         <div class="flex items-center">
                             <input id="checkbox-table-search-1" type="checkbox"
@@ -50,7 +50,6 @@
                     <td>{{ item.email }}</td>
                     <td>
                         <a class="font-medium text-green-500 dark:text-green-500 hover:underline cursor-pointer mr-4"
-                            data-modal-target="form-guest" data-modal-toggle="form-guest"
                             @click="getSingleData(item.id)">Edit</a>
                         <a class="font-medium text-red-600 dark:text-green-500 hover:underline cursor-pointer"
                             @click="deleteData(item.id)">delete</a>
@@ -59,15 +58,14 @@
             </template>
         </TableUserComponent>
         <PaginationComponent :pagination="pagination" @getPagination="getPagination" />
-        <ModalComponent>
+        <ModalComponent :isOpen="isOpen" id_modal="form-guest">
             <template #header>
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                         Guest Form
                     </h3>
                     <button type="button" @click="resetSingleData"
-                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-modal-hide="form-guest">
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -78,7 +76,7 @@
                 </div>
             </template>
             <template #body>
-                <inputFormGuest />
+                <inputFormGuest @closeModal="isOpen = false" />
             </template>
         </ModalComponent>
     </div>
@@ -87,21 +85,31 @@
 <script setup>
 import ModalComponent from '../components/ModalComponent.vue';
 import PaginationComponent from '../components/PaginationComponent.vue';
-import TableUserComponent from '../components/TableUserComponent.vue';
+import TableUserComponent from '../components/TableComponent.vue';
 import inputFormGuest from '../components/InputFormGuest.vue'
-import { useGuestStore } from '../../store/guest/store';
-import { onMounted, watch } from 'vue';
+import { useGuestStore } from '../store/guest';
+import { useGlobalStore } from '../store/global';
+import { ref, watch, onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
 
 const guestStore = useGuestStore()
-const { guests, singleGuest, pagination } = storeToRefs(guestStore)
+const store = useGlobalStore()
+const isOpen = ref(false)
+const { guest, singleData, pagination } = storeToRefs(guestStore)
+
+const handleClose = () => {
+    isOpen.value = false
+}
 
 const resetSingleData = () => {
-    guestStore.resetSingleData()
+    isOpen.value = false;
+    store.resetSingleData()
 }
 
 const getSingleData = (id) => {
-    guestStore.getSingeData(id);
+    isOpen.value = true;
+    console.log(isOpen)
+    guestStore.getSingleData(id);
 };
 
 const deleteData = (id) => {
@@ -109,11 +117,11 @@ const deleteData = (id) => {
 };
 
 const fetchData = () => {
-    guestStore.getData("25");
+    store.setGuest("25");
 };
 
 const getPagination = (url) => {
-    guestStore.getPagination(url)
+    store.getPagination(url)
 }
 
 const searchData = (search) => {
@@ -124,7 +132,7 @@ onMounted(() => {
     fetchData();
 });
 
-watch(() => guestStore.$state.singleGuest, () => {
+watch(() => store.$state.singleData, () => {
     fetchData();
 })
 

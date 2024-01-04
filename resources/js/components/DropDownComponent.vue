@@ -25,7 +25,7 @@ import { ref } from 'vue';
 const currentValue = ref(25)
 const option = [5, 25, 50, 100]
 
-import { useGuestStore } from '../../store/guest/store';
+import { useGuestStore } from '../store/guest';
 const guestStore = useGuestStore()
 
 const changeOption = (item) => {

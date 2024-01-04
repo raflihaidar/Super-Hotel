@@ -21358,7 +21358,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function render(_ctx, _cache) {
   var _component_router_view = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-view");
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view)]);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_view);
 }
 
 /***/ }),
@@ -25131,11 +25131,15 @@ __webpack_require__.r(__webpack_exports__);
 var routes = [{
   path: "/",
   name: "home",
-  component: __webpack_require__.e(/*! import() */ "resources_js_page_ExampleComponent_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./page/ExampleComponent.vue */ "./resources/js/page/ExampleComponent.vue"))
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_page_ExampleComponent_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./page/ExampleComponent.vue */ "./resources/js/page/ExampleComponent.vue"));
+  }
 }, {
   path: "/admin",
   name: "admin",
-  component: __webpack_require__.e(/*! import() */ "resources_js_page_AdminPage_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./page/AdminPage.vue */ "./resources/js/page/AdminPage.vue")),
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_page_AdminPage_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./page/AdminPage.vue */ "./resources/js/page/AdminPage.vue"));
+  },
   children: [{
     path: "",
     name: "dashboard",
@@ -25143,16 +25147,16 @@ var routes = [{
       return __webpack_require__.e(/*! import() */ "resources_js_page_DashboardPage_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./page/DashboardPage.vue */ "./resources/js/page/DashboardPage.vue"));
     }
   }, {
-    path: "guest",
-    name: "guest",
-    component: function component() {
-      return __webpack_require__.e(/*! import() */ "resources_js_page_GuestPage_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./page/GuestPage.vue */ "./resources/js/page/GuestPage.vue"));
-    }
-  }, {
     path: "staff",
     name: "staff",
     component: function component() {
       return __webpack_require__.e(/*! import() */ "resources_js_page_StaffPage_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./page/StaffPage.vue */ "./resources/js/page/StaffPage.vue"));
+    }
+  }, {
+    path: "guest",
+    name: "guest",
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_page_GuestPage_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./page/GuestPage.vue */ "./resources/js/page/GuestPage.vue"));
     }
   }, {
     path: "shift",
@@ -31328,7 +31332,7 @@ function useRoute() {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_page_ExampleComponent_vue":1,"resources_js_page_AdminPage_vue":1,"resources_js_page_DashboardPage_vue":1,"resources_js_page_GuestPage_vue":1,"resources_js_page_StaffPage_vue":1,"resources_js_page_ShiftPage_vue":1,"resources_js_page_DivisionPage_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_page_ExampleComponent_vue":1,"resources_js_page_AdminPage_vue":1,"resources_js_page_DashboardPage_vue":1,"resources_js_page_StaffPage_vue":1,"resources_js_page_GuestPage_vue":1,"resources_js_page_ShiftPage_vue":1,"resources_js_page_DivisionPage_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

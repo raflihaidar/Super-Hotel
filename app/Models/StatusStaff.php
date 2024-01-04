@@ -5,18 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Divisi extends Model
+class StatusStaff extends Model
 {
     use HasFactory;
 
     protected $connection = 'mysql';
 
-    protected $table = "divisi";
-
-    public $timestamps = false;
+    protected $table = "status_staff";
 
     protected $fillable = [
         'nama',
     ];
-
 }

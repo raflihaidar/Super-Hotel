@@ -4,12 +4,12 @@ const routes = [
     {
         path: "/",
         name: "home",
-        component: import("./page/ExampleComponent.vue"),
+        component: () => import("./page/ExampleComponent.vue"),
     },
     {
         path: "/admin",
         name: "admin",
-        component: import("./page/AdminPage.vue"),
+        component: () => import("./page/AdminPage.vue"),
         children: [
             {
                 path: "",
@@ -17,14 +17,14 @@ const routes = [
                 component: () => import("./page/DashboardPage.vue"),
             },
             {
-                path: "guest",
-                name: "guest",
-                component: () => import("./page/GuestPage.vue"),
-            },
-            {
                 path: "staff",
                 name: "staff",
                 component: () => import("./page/StaffPage.vue"),
+            },
+            {
+                path: "guest",
+                name: "guest",
+                component: () => import("./page/GuestPage.vue"),
             },
             {
                 path: "shift",

@@ -7,9 +7,20 @@ use App\Models\Staff;
 
 class StaffController extends Controller
 {
-    public function index()
+    public function index($index)
     {
-        $staff = Staff::all();
+        $page = $index;
+        $staff = \DB::table("staff")
+        ->join('divisi', 'staff.id_divisi', '=', 'divisi.id')
+        ->join('shift', 'staff.id_shift', '=', 'shift.id')
+        ->join('status_staff', 'staff.id_status', '=', 'status_staff.id')
+        ->select(
+            'staff.*',
+            'divisi.nama as nama_divisi',
+            'shift.nama as nama_shift',
+            'status_staff.nama as nama_status'
+        )
+        ->simplePaginate($page);
         return response()->json($staff);
     }
     public function store(Request $request)
@@ -28,8 +39,19 @@ class StaffController extends Controller
     }
     public function show($id)
     {
-        $staff = Staff::find($id);
-        return response()->json($staff);
+        $staff = \DB::table("staff")
+        ->join('divisi', 'staff.id_divisi', '=', 'divisi.id')
+        ->join('shift', 'staff.id_shift', '=', 'shift.id')
+        ->join('status_staff', 'staff.id_status', '=', 'status_staff.id')
+        ->select(
+            'staff.*',
+            'divisi.nama as nama_divisi',
+            'shift.nama as nama_shift',
+            'status_staff.nama as nama_status'
+        )
+        ->where('staff.id', $id)
+        ->first();
+    return response()->json($staff);
     }
    public function update($id, Request $request)
     {

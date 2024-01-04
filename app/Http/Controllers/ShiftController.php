@@ -7,9 +7,10 @@ use App\Models\Shift;
 
 class ShiftController extends Controller
 {
-    public function index()
+    public function index($index)
     {
-        $shift = Shift::all();
+        $page = $index;
+        $shift = Shift::simplePaginate($page);
         return response()->json($shift);
     }
     public function store(Request $request)

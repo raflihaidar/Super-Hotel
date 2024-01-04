@@ -7,9 +7,10 @@ use App\Models\Divisi;
 
 class DivisiController extends Controller
 {
-    public function index()
+    public function index($index)
     {
-        $divisi = Divisi::all();
+        $page = $index;
+        $divisi = Divisi::simplePaginate($page);
         return response()->json($divisi);
     }
     public function store(Request $request)
@@ -36,5 +37,16 @@ class DivisiController extends Controller
          $divisi  = Divisi::find($id);
          $divisi ->delete();
         return response()->json('Divisi deleted!');
+    }
+    public function search(Request $request){
+        $search_query = Divisi::query();
+        $search_param = $request->query('query');
+
+        if($search_param) {
+            $search_query = Divisi::search( $search_param);
+        }
+
+        $divisi = $search_query->get();
+        return response()->json($divisi);
     }
 }

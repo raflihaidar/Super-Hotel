@@ -15,21 +15,27 @@
                     required>
             </div>
             <div>
-                <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
-                <input type="text" id="last_name" v-model="singleData.username"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
-                    required>
+                <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Divisi</label>
+                <div class="flex justify-between">
+                    <input type="text" id="last_name" v-model="singleData.nama_divisi"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                        required>
+                    <MenuComponent />
+                </div>
+
             </div>
             <div>
-                <label for="company" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
-                <input type="text" id="company" v-model="singleData.alamat"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
-                    required>
+                <label for="company" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Shift</label>
+                <div class="flex justify-between">
+                    <input type="text" id="company" v-model="singleData.nama_shift"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                        required>
+                    <MenuComponent />
+                </div>
             </div>
             <div>
-                <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone
-                    number</label>
-                <input type="text" id="phone" v-model="singleData.telephone"
+                <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
+                <input type="text" id="phone" v-model="singleData.nama_status"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
                     required>
             </div>
@@ -50,16 +56,17 @@
 
 <script setup>
 import { storeToRefs } from 'pinia';
+import MenuComponent from '../components/MenuComponent.vue'
+import { useStaffStore } from '../store/staff';
 import SpinnerComponent from './SpinnerComponent.vue';
-import { useGuestStore } from '../store/guest';
 
-const guestStore = useGuestStore()
+const staffStore = useStaffStore()
 const emits = defineEmits(['closeModal'])
-const { singleData } = storeToRefs(guestStore)
+const { singleData } = storeToRefs(staffStore)
 
 const updateData = (payload) => {
     emits('closeModal')
-    guestStore.updateData(payload)
+    staffStore.updateData(payload)
 }
 
 </script>

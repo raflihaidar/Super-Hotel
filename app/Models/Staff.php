@@ -15,6 +15,8 @@ class Staff extends Model
 
     protected $table = "staff";
 
+    public $timestamps = false;
+
     protected $fillable = [
         'id_divisi',
         'id_shift',

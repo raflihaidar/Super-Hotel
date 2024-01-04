@@ -34,7 +34,6 @@ const props = defineProps({
 })
 const { pagination } = toRefs(props)
 
-
 const nextPage = () => {
     emits('getPagination', pagination.value.nextPage)
 }
