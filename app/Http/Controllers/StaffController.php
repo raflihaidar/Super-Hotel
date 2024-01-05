@@ -65,4 +65,17 @@ class StaffController extends Controller
          $staff ->delete();
         return response()->json('Staff deleted!');
     }
+    public function search(Request $request)
+    {
+        $staff = Staff::search(trim($request->get('query')) ?? '')
+            ->query(function ($query) {
+                $query->join('divisi', 'staff.id_divisi', 'divisi.id')
+                    ->join('shift', 'staff.id_shift', 'shift.id')
+                    ->select('staff.*', 'divisi.nama as divisi', 'shift.nama as shift')
+                    ->orderBy('staff.id', 'DESC');
+            })
+            ->get();
+
+        return response()->json(data: $staff, status: 200);
+    }
 }

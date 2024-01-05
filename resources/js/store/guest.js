@@ -28,7 +28,7 @@ export const useGuestStore = defineStore(
         const updateData = async (payload) => {
             try {
                 await axios.patch(
-                    `http://127.0.0.1:8000/api/tamu/update/${payload.id}`,
+                    `http://127.0.0.1:8000/api/tamu/${payload.id}`,
                     payload
                 );
                 singleData.value = [];
@@ -68,7 +68,7 @@ export const useGuestStore = defineStore(
                         );
                         if (deletedItem) {
                             await axios.delete(
-                                `http://127.0.0.1:8000/api/tamu/delete/${id}`
+                                `http://127.0.0.1:8000/api/tamu/${id}`
                             );
                             const index = guest.value.indexOf(deletedItem);
                             guest.value.splice(index, 1);

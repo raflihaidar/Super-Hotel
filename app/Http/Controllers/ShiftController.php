@@ -32,12 +32,23 @@ class ShiftController extends Controller
     {
          $shift  = Shift::find($id);
          $shift ->update($request->all());
-        return response()->json('Shift updated!');
+         return response()->json('Shift updated!');
     }
     public function destroy($id)
     {
          $shift  = Shift::find($id);
          $shift ->delete();
         return response()->json('Shift deleted!');
+    }
+    public function search(Request $request){
+        $search_query = Shift::query();
+        $search_param = $request->query('query');
+
+        if($search_param) {
+            $search_query = Shift::search( $search_param);
+        }
+
+        $tamu = $search_query->get();
+        return response()->json($tamu);
     }
 }

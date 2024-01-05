@@ -38,8 +38,8 @@
                     <td>{{ item.nama }}</td>
                     <td>
                         <a class="font-medium text-green-500 dark:text-green-500 hover:underline cursor-pointer mr-4"
-                            data-modal-target="form-staff" data-modal-toggle="form-staff"
-                            @click="getSingleData(item.id)">Edit</a>
+                            @click="getSingleData(item.id)" data-modal-target="form-attribute"
+                            data-modal-toggle="form-attribute">Edit</a>
                         <a class="font-medium text-red-600 dark:text-green-500 hover:underline cursor-pointer"
                             @click="deleteData(item.id)">delete</a>
                     </td>
@@ -47,7 +47,7 @@
             </template>
         </TableComponent>
         <PaginationComponent :pagination="pagination" @getPagination="getPagination" />
-        <ModalComponent id_modal="form-divisi">
+        <ModalComponent id_modal="form-attribute">
             <template #header>
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
@@ -55,7 +55,7 @@
                     </h3>
                     <button type="button" @click="resetSingleData"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-modal-hide="form-staff">
+                        data-modal-hide="form-attribute">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -66,7 +66,7 @@
                 </div>
             </template>
             <template #body>
-                <InputFormStaff />
+                <InputAtributeStaff formName="divisi" />
             </template>
         </ModalComponent>
     </div>
@@ -74,26 +74,23 @@
 
 <script setup>
 import TableComponent from '../components/TableComponent.vue';
-import InputFormStaff from '../components/InputFormStaff.vue';
+import InputAtributeStaff from '../components/InputAtributeStaff.vue';
 import ModalComponent from '../components/ModalComponent.vue';
 import PaginationComponent from '../components/PaginationComponent.vue';
 import { useDivisiStore } from '../store/divisi';
 import { useGlobalStore } from '../store/global';
 import { storeToRefs } from 'pinia';
-import { watch, onMounted } from 'vue';
+import { watch, onMounted, ref } from 'vue';
 
 const divisiStore = useDivisiStore()
 const store = useGlobalStore()
 const { divisi, singleData, pagination } = storeToRefs(divisiStore)
 
 const resetSingleData = () => {
-    isOpen.value = false;
     store.resetSingleData()
 }
 
 const getSingleData = (id) => {
-    isOpen.value = true;
-    console.log(isOpen)
     divisiStore.getSingleData(id);
 };
 

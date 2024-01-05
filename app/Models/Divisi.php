@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Laravel\Scout\Searchable;
 class Divisi extends Model
 {
-    use HasFactory;
+    use HasFactory, Searchable;
 
     protected $connection = 'mysql';
 
@@ -18,5 +18,15 @@ class Divisi extends Model
     protected $fillable = [
         'nama',
     ];
+
+    public function toSearchableArray()
+    {
+        $array = [
+            'id' =>  $this->id,
+            'nama' =>  $this->nama,
+        ];
+
+        return $array;
+    }
 
 }

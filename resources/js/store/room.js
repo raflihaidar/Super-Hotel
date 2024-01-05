@@ -1,25 +1,25 @@
+import { ref } from "vue";
 import { defineStore, storeToRefs } from "pinia";
 import { useGlobalStore } from "./global.js";
 import Swal from "sweetalert2";
 import axios from "axios";
 
-export const useDivisiStore = defineStore(
-    "divisi",
+export const useRoomStore = defineStore(
+    "room",
     () => {
-        //state
         const store = useGlobalStore();
-        const { divisi, singleData, pagination } = storeToRefs(store);
+        const { room, singleData, pagination } = storeToRefs(store);
 
         const getSingleData = (id) => {
-            store.getSingleData("http://127.0.0.1:8000/api/divisi", id);
+            store.getSingleData("http://127.0.0.1:8000/api/kamar", id);
         };
 
         const searchData = async (search) => {
             try {
                 const res = await axios.get(
-                    `http://127.0.0.1:8000/api/divisi/search?query=${search}`
+                    `http://127.0.0.1:8000/api/kamar/search?query=${search}`
                 );
-                divisi.value = res.data;
+                room.value = res.data;
             } catch {
                 console.log(err);
             }
@@ -28,7 +28,7 @@ export const useDivisiStore = defineStore(
         const updateData = async (payload) => {
             try {
                 await axios.patch(
-                    `http://127.0.0.1:8000/api/divisi/${payload.id}`,
+                    `http://127.0.0.1:8000/api/kamar/${payload.id}`,
                     payload
                 );
                 singleData.value = [];
@@ -63,15 +63,15 @@ export const useDivisiStore = defineStore(
                     confirmButtonText: "delete",
                 }).then(async (result) => {
                     if (result.isConfirmed) {
-                        let deletedItem = divisi.value.find(
+                        let deletedItem = room.value.find(
                             (item) => item.id === id
                         );
                         if (deletedItem) {
                             await axios.delete(
-                                `http://127.0.0.1:8000/api/divisi/${id}`
+                                `http://127.0.0.1:8000/api/kamar/${id}`
                             );
-                            const index = divisi.value.indexOf(deletedItem);
-                            divisi.value.splice(index, 1);
+                            const index = room.value.indexOf(deletedItem);
+                            room.value.splice(index, 1);
                         }
                     }
                 });
@@ -85,7 +85,7 @@ export const useDivisiStore = defineStore(
         };
 
         return {
-            divisi,
+            room,
             singleData,
             pagination,
             getSingleData,

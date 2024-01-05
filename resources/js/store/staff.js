@@ -26,7 +26,7 @@ export const useStaffStore = defineStore(
         const updateData = async (payload) => {
             try {
                 await axios.patch(
-                    `http://127.0.0.1:8000/api/staff/update/${payload.id}`,
+                    `http://127.0.0.1:8000/api/staff/${payload.id}`,
                     payload
                 );
                 singleData.value = [];
@@ -66,7 +66,7 @@ export const useStaffStore = defineStore(
                         );
                         if (deletedItem) {
                             await axios.delete(
-                                `http://127.0.0.1:8000/api/staf/delete/${id}`
+                                `http://127.0.0.1:8000/api/staff/${id}`
                             );
                             const index = staff.value.indexOf(deletedItem);
                             staff.value.splice(index, 1);

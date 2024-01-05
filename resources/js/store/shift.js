@@ -47,7 +47,7 @@ export const useShiftStore = defineStore(
                     icon: "success",
                     title: "Update successfully",
                 });
-            } catch {
+            } catch (err) {
                 console.log(err);
             }
         };

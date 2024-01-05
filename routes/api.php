@@ -17,35 +17,40 @@ use App\Http\Controllers\TamuController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\DivisiController;
+use App\Http\Controllers\InfoKamarController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\BookingController;
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::delete('tamu/delete/{id}', [TamuController::class, 'destroy']);
 Route::get('tamu/search', [TamuController::class, 'search']);
-Route::get('tamu/id={id}', [TamuController::class, 'show']);
-Route::post('tamu', [TamuController::class, 'store']);
-Route::patch('tamu/update/{id}', [TamuController::class, 'update']);
-Route::get('tamu/{page}', [TamuController::class, 'index']);
+Route::get('tamu/page/{page}', [TamuController::class, 'index']);
+Route::resource('tamu', TamuController::class)->except('index');
 
-Route::delete('staff/delete/{id}', [StaffController::class, 'destroy']);
-Route::get('staff/id={id}', [StaffController::class, 'show']);
-Route::post('staff', [StaffController::class, 'store']);
-Route::patch('staff/update/{id}', [StaffController::class, 'update']);
-Route::get('staff/{page}', [StaffController::class, 'index']);
+Route::get('staff/search', [StaffController::class, 'search']);
+Route::get('staff/page/{page}', [StaffController::class, 'index']);
+Route::resource('staff', StaffController::class)->except('index');
 
-Route::delete('shift/delete/{id}', [ShiftController::class, 'destroy']);
-Route::get('shift/id={id}', [ShiftController::class, 'show']);
-Route::post('shift', [ShiftController::class, 'store']);
-Route::patch('shift/update/{id}', [ShiftController::class, 'update']);
-Route::get('shift/{page}', [ShiftController::class, 'index']);
+Route::get('shift/search', [ShiftController::class, 'search']);
+Route::get('shift/page/{page}', [ShiftController::class, 'index']);
+Route::resource('shift', ShiftController::class)->except('index');
 
-Route::delete('divisi/delete/{id}', [DivisiController::class, 'destroy']);
-Route::get('divisi/id={id}', [DivisiController::class, 'show']);
-Route::post('divisi', [DivisiController::class, 'store']);
-Route::patch('divisi/update/{id}', [DivisiController::class, 'update']);
-Route::get('divisi/{page}', [DivisiController::class, 'index']);
+Route::get('divisi/search', [DivisiController::class, 'search']);
+Route::get('divisi/page/{page}', [DivisiController::class, 'index']);
+Route::resource('divisi', DivisiController::class)->except('index');
 
+Route::get('kamar/search', [InfoKamarController::class, 'search']);
+Route::get('kamar/page/{page}', [InfoKamarController::class, 'index']);
+Route::resource('kamar', InfoKamarController::class)->except('index');
+
+Route::get('kategori/search', [KategoriController::class, 'search']);
+Route::get('kategori/page/{page}', [KategoriController::class, 'index']);
+Route::resource('kategori', KategoriController::class)->except('index');
+
+Route::get('booking/search', [BookingController::class, 'search']);
+Route::get('booking/page/{page}', [BookingController::class, 'index']);
+Route::resource('booking', BookingController::class)->except('index');
 

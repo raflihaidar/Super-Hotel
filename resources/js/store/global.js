@@ -6,15 +6,22 @@ export const useGlobalStore = defineStore(
     "global",
     () => {
         //state
-        const STAFF_URL = "http://127.0.0.1:8000/api/staff";
-        const GUEST_URL = "http://127.0.0.1:8000/api/tamu";
-        const DIVISI_URL = "http://127.0.0.1:8000/api/divisi";
-        const SHIFT_URL = "http://127.0.0.1:8000/api/shift";
+        const STAFF_URL = "http://127.0.0.1:8000/api/staff/page";
+        const GUEST_URL = "http://127.0.0.1:8000/api/tamu/page";
+        const DIVISI_URL = "http://127.0.0.1:8000/api/divisi/page";
+        const SHIFT_URL = "http://127.0.0.1:8000/api/shift/page";
+        const ROOM_URL = "http://127.0.0.1:8000/api/kamar/page";
+        const CATEGORY_URL = "http://127.0.0.1:8000/api/kategori/page";
+        const BOOKING_URL = "http://127.0.0.1:8000/api/booking/page";
 
         const staff = ref([]);
         const guest = ref([]);
         const divisi = ref([]);
         const shift = ref([]);
+        const room = ref();
+        const category = ref();
+        const booking = ref();
+        const detailBooking = ref();
         const singleData = ref([]);
         const pagination = ref({
             currentPage: 0,
@@ -32,16 +39,41 @@ export const useGlobalStore = defineStore(
 
         const getSingleData = async (url, id) => {
             try {
-                const res = await axios.get(`${url}/id=${id}`);
+                const res = await axios.get(`${url}/${id}`);
                 singleData.value = res.data;
             } catch {
                 console.log(err);
             }
         };
 
-        const getPagination = async (url) => {
+        const getPagination = async (url, index) => {
             try {
-                const res = await axios.get(url);
+                const res = await axios.get(
+                    `http://127.0.0.1:8000/api/${url}/${index}`
+                );
+                switch (url) {
+                    case "tamu":
+                        guest.value = res.data.data;
+                        break;
+                    case "staff":
+                        staff.value = res.data.data;
+                        break;
+                    case "shift":
+                        shift.value = res.data.data;
+                        break;
+                    case "divisi":
+                        divisi.value = res.data.data;
+                        break;
+                    case "room":
+                        room.value = res.data.data;
+                        break;
+                    case "booking":
+                        booking.value = res.data.data;
+                        break;
+                    case "detail-booking":
+                        detailBooking.value = res.data.data;
+                        break;
+                }
                 pagination.value = {
                     currentPage: res.data.current_page,
                     from: res.data.from,
@@ -50,12 +82,50 @@ export const useGlobalStore = defineStore(
                     prevPage: res.data.prev_page_url,
                     perPage: res.data.per_page,
                 };
-
-                return res.data.data;
             } catch (err) {
                 console.log(err);
             }
         };
+
+        const nextOrPrev = async (name, url) => {
+            try {
+                const res = await axios.get(`${url}`);
+                switch (name) {
+                    case "tamu":
+                        guest.value = res.data.data;
+                        break;
+                    case "staff":
+                        staff.value = res.data.data;
+                        break;
+                    case "shift":
+                        shift.value = res.data.data;
+                        break;
+                    case "divisi":
+                        divisi.value = res.data.data;
+                        break;
+                    case "room":
+                        room.value = res.data.data;
+                        break;
+                    case "booking":
+                        booking.value = res.data.data;
+                        break;
+                    case "detail-booking":
+                        detailBooking.value = res.data.data;
+                        break;
+                }
+                pagination.value = {
+                    currentPage: res.data.current_page,
+                    from: res.data.from,
+                    to: res.data.to,
+                    nextPage: res.data.next_page_url,
+                    prevPage: res.data.prev_page_url,
+                    perPage: res.data.per_page,
+                };
+            } catch (err) {
+                console.log(err);
+            }
+        };
+
         const setStaff = async (index) => {
             try {
                 const res = await axios.get(`${STAFF_URL}/${index}`);
@@ -72,9 +142,11 @@ export const useGlobalStore = defineStore(
                 console.log(err);
             }
         };
+
         const setGuest = async (index) => {
             try {
                 const res = await axios.get(`${GUEST_URL}/${index}`);
+                console.log(`${GUEST_URL}/${index}`);
                 guest.value = res.data.data;
                 pagination.value = {
                     currentPage: res.data.current_page,
@@ -86,6 +158,7 @@ export const useGlobalStore = defineStore(
                 };
             } catch (err) {
                 console.log(err);
+                console.log(`${GUEST_URL}/${index}`);
             }
         };
 
@@ -121,20 +194,75 @@ export const useGlobalStore = defineStore(
                 console.log(err);
             }
         };
+        const setBooking = async (index) => {
+            try {
+                const res = await axios.get(`${BOOKING_URL}/${index}`);
+                booking.value = res.data.data;
+                pagination.value = {
+                    currentPage: res.data.current_page,
+                    from: res.data.from,
+                    to: res.data.to,
+                    nextPage: res.data.next_page_url,
+                    prevPage: res.data.prev_page_url,
+                    perPage: res.data.per_page,
+                };
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        const setRoom = async (index) => {
+            try {
+                const res = await axios.get(`${ROOM_URL}/${index}`);
+                room.value = res.data.data;
+                pagination.value = {
+                    currentPage: res.data.current_page,
+                    from: res.data.from,
+                    to: res.data.to,
+                    nextPage: res.data.next_page_url,
+                    prevPage: res.data.prev_page_url,
+                    perPage: res.data.per_page,
+                };
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        const setCategory = async (index) => {
+            try {
+                const res = await axios.get(`${CATEGORY_URL}/${index}`);
+                category.value = res.data.data;
+                pagination.value = {
+                    currentPage: res.data.current_page,
+                    from: res.data.from,
+                    to: res.data.to,
+                    nextPage: res.data.next_page_url,
+                    prevPage: res.data.prev_page_url,
+                    perPage: res.data.per_page,
+                };
+            } catch (err) {
+                console.log(err);
+            }
+        };
 
         return {
             staff,
             guest,
             divisi,
             shift,
+            room,
+            booking,
+            category,
             singleData,
             pagination,
+            nextOrPrev,
             resetSingleData,
             getSingleData,
             setGuest,
             setStaff,
             setShift,
             setDivisi,
+            setBooking,
+            setRoom,
+            setCategory,
             getPagination,
         };
     },

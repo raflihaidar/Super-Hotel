@@ -15,10 +15,10 @@
                             </path>
                         </svg>
                     </button>
-                    <a href="https://flowbite.com" class="flex ms-2 md:me-24">
-                        <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 me-3" alt="FlowBite Logo" />
-                        <span
-                            class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Flowbite</span>
+                    <a href="#" class="flex ms-2 md:me-24">
+                        <img src="../../assets/logo.png" class="h-8 me-3 text-right" alt="Super Hotel Logo" />
+                        <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Super
+                            Hotel</span>
                     </a>
                 </div>
                 <div class="flex items-center">
@@ -103,18 +103,18 @@
                         </svg>
                     </button>
                     <ul id="dropdown-example" class="hidden py-2 space-y-2">
-                        <li
+                        <router-link :to="{ name: 'room' }"
                             class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                            Products
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Billing</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Invoice</a>
-                        </li>
+                            Room
+                        </router-link>
+                        <router-link :to="{ name: 'category' }"
+                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                            Category
+                        </router-link>
+                        <router-link :to="{ name: 'booking' }"
+                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                            Booking
+                        </router-link>
                     </ul>
                 </li>
                 <li>

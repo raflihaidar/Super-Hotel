@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 
 class Staff extends Model
 {
-    use HasFactory;
-    use HasUuids;
+    use HasFactory, HasUuids, Searchable;
 
     protected $connection = 'mysql';
 
@@ -26,5 +26,17 @@ class Staff extends Model
         'alamat',
         'foto'
     ];
+
+    public function toSearchableArray()
+    {
+        $array = [
+            'id' => '',
+            'nama' => '',
+            'divisi.nama' => '',
+            'shift.nama' => '',
+        ];
+
+        return $array;
+    }
 
 }

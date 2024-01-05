@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full">
+    <div class="w-full" v-if="staff.length != 0">
         <TableComponent>
             <template #btn-delete>
                 <button type="button"
@@ -65,7 +65,7 @@
             </template>
         </TableComponent>
         <paginationcomponent :pagination="pagination" @getPagination="getPagination" />
-        <ModalComponent :isOpen="isOpen">
+        <ModalComponent id_modal="form-staff">
             <template #header>
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
