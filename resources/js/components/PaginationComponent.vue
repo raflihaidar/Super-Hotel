@@ -7,7 +7,7 @@
                     class="font-semibold text-gray-900 dark:text-white">100</span> Entries
             </span>
             <div>
-                <DropDownComponent :name="name" />
+                <DropDownComponent />
                 <div class="inline-flex mt-2 xs:mt-0 w-[30%]">
                     <button @click="prevPage"
                         class="flex items-center justify-center px-3 h-8 text-sm font-medium text-white bg-green-600 rounded-s hover:bg-green-800 dark:bg-green-600 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
@@ -24,8 +24,9 @@
 </template>
 
 <script setup>
+import { initFlowbite } from 'flowbite';
 import { storeToRefs } from 'pinia';
-import { toRefs } from 'vue';
+import { onMounted, toRefs } from 'vue';
 import { useGlobalStore } from '../store/global';
 import DropDownComponent from './DropDownComponent.vue';
 
@@ -48,4 +49,8 @@ const prevPage = () => {
         store.nextOrPrev(name.value, pagination.value.prevPage)
     }
 }
+
+onMounted(() => {
+    initFlowbite()
+})
 </script>

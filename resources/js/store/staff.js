@@ -16,7 +16,9 @@ export const useStaffStore = defineStore(
 
         const searchData = async (search) => {
             try {
-                const res = await axios.get(`search?query=${search}`);
+                const res = await axios.get(
+                    `http://127.0.0.1:8000/api/staff/search?query=${search}`
+                );
                 staff.value = res.data;
             } catch {
                 console.log(err);

@@ -18,8 +18,20 @@ const routes = [
             },
             {
                 path: "room",
-                name: "room",
+                name: "room-parent",
                 component: () => import("./page/RoomPage.vue"),
+                children: [
+                    {
+                        path: "",
+                        name: "room",
+                        component: () => import("./page/RoomViewPage.vue"),
+                    },
+                    {
+                        path: "add-room",
+                        name: "add-room",
+                        component: () => import("./page/FormRoomPage.vue"),
+                    },
+                ],
             },
             {
                 path: "category",
@@ -40,8 +52,20 @@ const routes = [
             },
             {
                 path: "staff",
-                name: "staff",
+                name: "staff-parent",
                 component: () => import("./page/StaffPage.vue"),
+                children: [
+                    {
+                        path: "",
+                        name: "staff",
+                        component: () => import("./page/StaffViewPage.vue"),
+                    },
+                    {
+                        path: "add-staff",
+                        name: "add-staff",
+                        component: () => import("./page/FormStaffPage.vue"),
+                    },
+                ],
             },
             {
                 path: "guest",

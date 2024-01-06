@@ -1,25 +1,24 @@
-import { ref } from "vue";
 import { defineStore, storeToRefs } from "pinia";
 import { useGlobalStore } from "./global.js";
 import Swal from "sweetalert2";
 import axios from "axios";
 
-export const useRoomStore = defineStore(
-    "room",
+export const useCategoryStore = defineStore(
+    "category",
     () => {
         const store = useGlobalStore();
-        const { room, singleData, pagination } = storeToRefs(store);
+        const { category, singleData, pagination } = storeToRefs(store);
 
         const getSingleData = (id) => {
-            store.getSingleData("http://127.0.0.1:8000/api/kamar", id);
+            store.getSingleData("http://127.0.0.1:8000/api/kategori", id);
         };
 
         const searchData = async (search) => {
             try {
                 const res = await axios.get(
-                    `http://127.0.0.1:8000/api/kamar/search?query=${search}`
+                    `http://127.0.0.1:8000/api/kategori/search?query=${search}`
                 );
-                room.value = res.data;
+                category.value = res.data;
             } catch {
                 console.log(err);
             }
@@ -28,7 +27,7 @@ export const useRoomStore = defineStore(
         const updateData = async (payload) => {
             try {
                 await axios.patch(
-                    `http://127.0.0.1:8000/api/kamar/${payload.id}`,
+                    `http://127.0.0.1:8000/api/kategori/${payload.id}`,
                     payload
                 );
                 singleData.value = [];
@@ -63,15 +62,15 @@ export const useRoomStore = defineStore(
                     confirmButtonText: "delete",
                 }).then(async (result) => {
                     if (result.isConfirmed) {
-                        let deletedItem = room.value.find(
+                        let deletedItem = category.value.find(
                             (item) => item.id === id
                         );
                         if (deletedItem) {
                             await axios.delete(
-                                `http://127.0.0.1:8000/api/kamar/${id}`
+                                `http://127.0.0.1:8000/api/kategori/${id}`
                             );
-                            const index = room.value.indexOf(deletedItem);
-                            room.value.splice(index, 1);
+                            const index = category.value.indexOf(deletedItem);
+                            category.value.splice(index, 1);
                         }
                     }
                 });
@@ -87,17 +86,17 @@ export const useRoomStore = defineStore(
         const addData = async (payload) => {
             try {
                 const res = await axios.post(
-                    "http://127.0.0.1:8000/api/kamar",
+                    "http://127.0.0.1:8000/api/kategori",
                     payload
                 );
-                room.value.push(res.data.data);
+                category.value.push(res.data.data);
             } catch (error) {
                 console.log(error);
             }
         };
 
         return {
-            room,
+            category,
             singleData,
             pagination,
             getSingleData,

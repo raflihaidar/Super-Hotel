@@ -21,25 +21,21 @@
 
 
 <script setup>
-import { onMounted, ref, toRefs } from 'vue';
+import { onMounted, ref, inject } from 'vue';
 import { initFlowbite } from 'flowbite';
 import { useGlobalStore } from '../store/global';
 
-const id = ref("dropdownTop")
 const isOpen = ref(false)
 const store = useGlobalStore()
-const props = defineProps({
-    name: String
-})
-const { name } = toRefs(props)
+
+const path = inject('path')
 const currentValue = ref(25)
 const option = [5, 25, 50, 100]
 
 const changeOption = (item) => {
     currentValue.value = item
     isOpen.value = false
-    console.log(name.value)
-    store.getPagination(name.value, item)
+    store.getPagination(path, item)
 }
 
 onMounted(() => {

@@ -14,6 +14,8 @@ class InformasiKamar extends Model
 
     protected $table = "informasi_kamar";
 
+    public $timestamps = false;
+
     protected $fillable = [
         'id_kategori',
         'id_status_kamar',

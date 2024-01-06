@@ -1,53 +1,13 @@
 <template>
     <div class="w-full py-5 px-5">
-        <TableUserComponent @searchData="searchData">
-            <template #btn-delete>
-                <button type="button"
-                    class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Red</button>
-            </template>
-            <template #header>
-                <th scope="col" class="p-4">
-                    <div class="flex items-center">
-                        <input id="checkbox-all-search" type="checkbox"
-                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="checkbox-all-search" class="sr-only">checkbox</label>
-                    </div>
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    ID
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    <div class="flex items-center">
-                        Nama
-                    </div>
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    <div class="flex items-center">
-                        Username
-                    </div>
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    <div class="flex items-center">
-                        Email
-                    </div>
-                </th>
-                <th scope="col" class="px-6 py-3">
-                </th>
-            </template>
-
+        <TableProductComponent :header="header" @handleSearch="searchData" :pagination="pagination" tableName="Tamu">
             <template #body v-if="guest.length != 0">
-                <tr v-for="(item, index) in guest" :key="index" class="odd:bg-white even:bg-green-100">
-                    <td class="w-4 p-4">
-                        <div class="flex items-center">
-                            <input id="checkbox-table-search-1" type="checkbox"
-                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
-                        </div>
-                    </td>
-                    <td>{{ item.id }}</td>
-                    <td>{{ item.nama }}</td>
-                    <td>{{ item.username }}</td>
-                    <td>{{ item.email }}</td>
+                <tr class="border-b dark:border-gray-700" v-for="(item, index) in guest" :key="index">
+                    <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{
+                        item.id }}</th>
+                    <td class="px-4 py-3">{{ item.nama }}</td>
+                    <td class="px-4 py-3">{{ item.username }}</td>
+                    <td class="px-4 py-3">{{ item.email }}</td>
                     <td>
                         <a class="font-medium text-green-500 dark:text-green-500 hover:underline cursor-pointer mr-4"
                             @click="getSingleData(item.id)" data-modal-target="form-guest"
@@ -64,8 +24,7 @@
                     </td>
                 </tr>
             </template>
-        </TableUserComponent>
-        <PaginationComponent :pagination="pagination" name="tamu" />
+        </TableProductComponent>
         <ModalComponent id_modal="form-guest">
             <template #header>
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
@@ -92,19 +51,20 @@
 
 <script setup>
 import ModalComponent from '../components/ModalComponent.vue';
-import PaginationComponent from '../components/PaginationComponent.vue';
-import TableUserComponent from '../components/TableComponent.vue';
+import TableProductComponent from '../components/TableProductComponent.vue';
 import inputFormGuest from '../components/InputFormGuest.vue'
 import { useGuestStore } from '../store/guest';
 import { useGlobalStore } from '../store/global';
-import { ref, watch, onMounted } from 'vue';
+import { ref, watch, onMounted, provide } from 'vue';
 import { storeToRefs } from 'pinia';
 
+provide('path', 'tamu')
 const guestStore = useGuestStore()
 const store = useGlobalStore()
+const header = ref(['ID', 'NAMA', 'USERNAME', 'EMAIL'])
 const { guest, singleData, pagination } = storeToRefs(guestStore)
 
-const resetSingleData = () => {
+const resetSingleData = (modalId) => {
     store.resetSingleData()
 }
 

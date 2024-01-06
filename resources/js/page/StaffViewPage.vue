@@ -1,17 +1,18 @@
 <template>
-    <div class="w-full">
-        <TableProductComponent :header="header" tableName="Shift" @handleSearch="searchData" :pagination="pagination">
-            <template #body v-if="shift.length != 0">
-                <tr class="border-b dark:border-gray-700" v-for="(item, index) in shift" :key="index">
+    <div class="w-full py-5 px-5">
+        <TableProductComponent :header="header" tableName="Staff" @handleSearch="searchData" :pagination="pagination">
+            <template #body v-if="staff.length != 0">
+                <tr class="border-b dark:border-gray-700" v-for="(item, index) in staff" :key="index">
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{
                         item.id }}</th>
                     <td class="px-4 py-3">{{ item.nama }}</td>
-                    <td class="px-4 py-3">{{ item.jam_masuk }}</td>
-                    <td class="px-4 py-3">{{ item.jam_keluar }}</td>
+                    <td class="px-4 py-3">{{ item.nama_divisi }}</td>
+                    <td class="px-4 py-3">{{ item.nama_shift }}</td>
+                    <td class="px-4 py-3">{{ item.nama_status }}</td>
                     <td>
                         <a class="font-medium text-green-500 dark:text-green-500 hover:underline cursor-pointer mr-4"
-                            @click="getSingleData(item.id)" data-modal-target="form-shift"
-                            data-modal-toggle="form-shift">Edit</a>
+                            @click="getSingleData(item.id)" data-modal-target="form-staff"
+                            data-modal-toggle="form-staff">Edit</a>
                         <a class="font-medium text-red-600 dark:text-green-500 hover:underline cursor-pointer"
                             @click="deleteData(item.id)">delete</a>
                     </td>
@@ -25,15 +26,15 @@
                 </tr>
             </template>
         </TableProductComponent>
-        <ModalComponent id_modal="form-shift">
+        <ModalComponent id_modal="form-staff">
             <template #header>
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        shift Form
+                        Staff Detail
                     </h3>
                     <button type="button" @click="resetSingleData"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-modal-hide="form-shift">
+                        data-modal-hide="form-staff">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -44,7 +45,7 @@
                 </div>
             </template>
             <template #body>
-                <InputAtributeStaff formName="shift" />
+                <InputFormStaff />
             </template>
         </ModalComponent>
     </div>
@@ -52,34 +53,36 @@
 
 <script setup>
 import TableProductComponent from '../components/TableProductComponent.vue';
-import InputAtributeStaff from '../components/DetailAtributeStaff.vue'
+import InputFormStaff from '../components/InputFormStaff.vue';
 import ModalComponent from '../components/ModalComponent.vue';
-import PaginationComponent from '../components/PaginationComponent.vue';
-import { useShiftStore } from '../store/shift';
+import { useStaffStore } from '../store/staff.js';
 import { useGlobalStore } from '../store/global';
 import { storeToRefs } from 'pinia';
-import { watch, onMounted, provide, ref } from 'vue';
+import { ref, watch, watchEffect, provide } from 'vue';
 
-provide('path', 'shift')
-const header = ref(['ID', 'SHIFT', 'JAM MASUK', 'JAM KELUAR'])
-const shiftStore = useShiftStore()
+provide('path', 'staff')
+const header = ref(['ID', 'NAMA', 'DIVISI', 'SHIFT', 'STATUS'])
+const staffStore = useStaffStore()
 const store = useGlobalStore()
-const { shift, singleData, pagination } = storeToRefs(shiftStore)
+const { staff, singleData, pagination } = storeToRefs(staffStore)
+const isOpen = ref(false)
 
 const resetSingleData = () => {
+    isOpen.value = false
     store.resetSingleData()
 }
 
 const getSingleData = (id) => {
-    shiftStore.getSingleData(id);
+    isOpen.value = true
+    staffStore.getSingleData(id);
 };
 
 const deleteData = (id) => {
-    shiftStore.deleteData(id);
+    staffStore.deleteData(id);
 };
 
 const fetchData = () => {
-    store.setShift("25");
+    store.setStaff("25");
 };
 
 const getPagination = (url) => {
@@ -87,14 +90,16 @@ const getPagination = (url) => {
 }
 
 const searchData = (search) => {
-    shiftStore.searchData(search)
+    staffStore.searchData(search)
 }
 
-onMounted(() => {
+watchEffect(() => {
     fetchData();
+    store.setShift("25")
+    store.setDivisi("25")
 });
 
-watch(() => store.$state.singleData, () => {
+watch(() => staffStore.$state.singleData, () => {
     fetchData();
 })
 </script>

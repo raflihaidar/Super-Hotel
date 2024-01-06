@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div class="w-full py-5 px-5">
         <TableUserComponent @searchData="searchData">
             <template #btn-delete>
@@ -50,8 +50,8 @@
                     <td>{{ item.email }}</td>
                     <td>
                         <a class="font-medium text-green-500 dark:text-green-500 hover:underline cursor-pointer mr-4"
-                            @click="getSingleData(item.id)" data-modal-target="form-guest"
-                            data-modal-toggle="form-guest">Edit</a>
+                            @click="getSingleData(item.id)" data-modal-target="form-booking"
+                            data-modal-toggle="form-booking">Edit</a>
                         <a class="font-medium text-red-600 dark:text-green-500 hover:underline cursor-pointer"
                             @click="deleteData(item.id)">delete</a>
                     </td>
@@ -65,14 +65,13 @@
                 </tr>
             </template>
         </TableUserComponent>
-        <PaginationComponent :pagination="pagination" name="tamu" />
-        <ModalComponent id_modal="form-guest">
+        <ModalComponent id_modal="form-booking">
             <template #header>
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                         Guest Form
                     </h3>
-                    <button type="button" @click="resetSingleData" data-modal-hide="form-guest"
+                    <button type="button" @click="resetSingleData" data-modal-hide="form-booking"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
@@ -133,4 +132,4 @@ watch(() => store.$state.singleData, () => {
     fetchData();
 })
 
-</script>
+</script> -->

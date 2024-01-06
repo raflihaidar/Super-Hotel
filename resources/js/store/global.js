@@ -49,8 +49,9 @@ export const useGlobalStore = defineStore(
         const getPagination = async (url, index) => {
             try {
                 const res = await axios.get(
-                    `http://127.0.0.1:8000/api/${url}/${index}`
+                    `http://127.0.0.1:8000/api/${url}/page/${index}`
                 );
+                console.log(url);
                 switch (url) {
                     case "tamu":
                         guest.value = res.data.data;

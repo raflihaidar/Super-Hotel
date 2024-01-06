@@ -1,57 +1,15 @@
 <template>
     <div class="w-full py-5 px-5">
-        <TableUserComponent @searchData="searchData">
-            <template #btn-delete>
-                <button type="button"
-                    class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Red</button>
-            </template>
-            <template #header>
-                <th scope="col" class="p-4">
-                    <div class="flex items-center">
-                        <input id="checkbox-all-search" type="checkbox"
-                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="checkbox-all-search" class="sr-only">checkbox</label>
-                    </div>
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    ID
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    <div class="flex items-center">
-                        Nama
-                    </div>
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    <div class="flex items-center">
-                        Username
-                    </div>
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    <div class="flex items-center">
-                        Email
-                    </div>
-                </th>
-                <th scope="col" class="px-6 py-3">
-                </th>
-            </template>
-
-            <template #body v-if="guest.length != 0">
-                <tr v-for="(item, index) in guest" :key="index" class="odd:bg-white even:bg-green-100">
-                    <td class="w-4 p-4">
-                        <div class="flex items-center">
-                            <input id="checkbox-table-search-1" type="checkbox"
-                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
-                        </div>
-                    </td>
-                    <td>{{ item.id }}</td>
-                    <td>{{ item.nama }}</td>
-                    <td>{{ item.username }}</td>
-                    <td>{{ item.email }}</td>
+        <TableProductComponent :header="header" tableName="Category" @handleSearch="searchData" :pagination="pagination">
+            <template #body v-if="category.length != 0">
+                <tr class="border-b dark:border-gray-700" v-for="(item, index) in category" :key="index">
+                    <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{
+                        item.id }}</th>
+                    <td class="px-4 py-3">{{ item.kategori }}</td>
                     <td>
                         <a class="font-medium text-green-500 dark:text-green-500 hover:underline cursor-pointer mr-4"
-                            @click="getSingleData(item.id)" data-modal-target="form-guest"
-                            data-modal-toggle="form-guest">Edit</a>
+                            @click="getSingleData(item.id)" data-modal-target="form-category"
+                            data-modal-toggle="form-category">Edit</a>
                         <a class="font-medium text-red-600 dark:text-green-500 hover:underline cursor-pointer"
                             @click="deleteData(item.id)">delete</a>
                     </td>
@@ -64,15 +22,14 @@
                     </td>
                 </tr>
             </template>
-        </TableUserComponent>
-        <PaginationComponent :pagination="pagination" name="tamu" />
-        <ModalComponent id_modal="form-guest">
+        </TableProductComponent>
+        <ModalComponent id_modal="form-category">
             <template #header>
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                         Guest Form
                     </h3>
-                    <button type="button" @click="resetSingleData" data-modal-hide="form-guest"
+                    <button type="button" @click="resetSingleData" data-modal-hide="form-category"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
@@ -84,7 +41,7 @@
                 </div>
             </template>
             <template #body>
-                <inputFormGuest @closeModal="isOpen = false" />
+                <!-- <inputFormGuest @closeModal="isOpen = false" /> -->
             </template>
         </ModalComponent>
     </div>
@@ -92,37 +49,38 @@
 
 <script setup>
 import ModalComponent from '../components/ModalComponent.vue';
-import PaginationComponent from '../components/PaginationComponent.vue';
-import TableUserComponent from '../components/TableComponent.vue';
-import inputFormGuest from '../components/InputFormGuest.vue'
-import { useGuestStore } from '../store/guest';
+import TableProductComponent from '../components/TableProductComponent.vue';
 import { useGlobalStore } from '../store/global';
-import { ref, watch, onMounted } from 'vue';
+import { ref, watch, onMounted, provide } from 'vue';
 import { storeToRefs } from 'pinia';
+import { useCategoryStore } from '../store/category';
 
-const guestStore = useGuestStore()
+
+provide('path', 'kategori')
+const header = ref(['ID', 'KATEGORI'])
+const categoryStore = useCategoryStore()
 const store = useGlobalStore()
-const { guest, singleData, pagination } = storeToRefs(guestStore)
+const { category, singleData, pagination } = storeToRefs(categoryStore)
 
 const resetSingleData = () => {
     store.resetSingleData()
 }
 
 const getSingleData = (id) => {
-    guestStore.getSingleData(id);
+    categoryStore.getSingleData(id);
 };
 
 const deleteData = (id) => {
-    guestStore.deleteData(id);
+    categoryStore.deleteData(id);
 };
 
 
 const fetchData = () => {
-    store.setGuest("25");
+    store.setCategory("25");
 };
 
 const searchData = (search) => {
-    guestStore.searchData(search)
+    categoryStore.searchData(search)
 }
 
 onMounted(() => {

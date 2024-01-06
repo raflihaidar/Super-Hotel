@@ -71,7 +71,13 @@ class StaffController extends Controller
             ->query(function ($query) {
                 $query->join('divisi', 'staff.id_divisi', 'divisi.id')
                     ->join('shift', 'staff.id_shift', 'shift.id')
-                    ->select('staff.*', 'divisi.nama as divisi', 'shift.nama as shift')
+                    ->join('status_staff', 'staff.id_status', 'status_staff.id')
+                    ->select(
+                        'staff.*',
+                        'divisi.nama as nama_divisi',
+                        'shift.nama as nama_shift',
+                        'status_staff.nama as nama_status'
+                    )
                     ->orderBy('staff.id', 'DESC');
             })
             ->get();

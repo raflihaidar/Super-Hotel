@@ -1,41 +1,11 @@
 <template>
     <div class="w-full">
-        <TableComponent>
-            <template #btn-delete>
-                <button type="button"
-                    class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Red</button>
-            </template>
-            <template #header>
-                <th scope="col" class="p-4">
-                    <div class="flex items-center">
-                        <input id="checkbox-all-search" type="checkbox"
-                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="checkbox-all-search" class="sr-only">checkbox</label>
-                    </div>
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    ID
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    <div class="flex items-center">
-                        NAMA DIVISI
-                    </div>
-                </th>
-                <th scope="col" class="px-6 py-3">
-                </th>
-            </template>
-
-            <template #body>
-                <tr v-for="(item, index) in divisi" :key="index" class="odd:bg-white even:bg-green-100 ">
-                    <td class="w-4 p-4">
-                        <div class="flex items-center">
-                            <input id="checkbox-table-search-1" type="checkbox"
-                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
-                        </div>
-                    </td>
-                    <td>{{ item.id }}</td>
-                    <td>{{ item.nama }}</td>
+        <TableProductComponent :header="header" tableName="Divisi" @handleSearch="searchData" :pagination="pagination">
+            <template #body v-if="divisi.length != 0">
+                <tr class="border-b dark:border-gray-700" v-for="(item, index) in divisi" :key="index">
+                    <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{
+                        item.id }}</th>
+                    <td class="px-4 py-3">{{ item.nama }}</td>
                     <td>
                         <a class="font-medium text-green-500 dark:text-green-500 hover:underline cursor-pointer mr-4"
                             @click="getSingleData(item.id)" data-modal-target="form-attribute"
@@ -45,8 +15,14 @@
                     </td>
                 </tr>
             </template>
-        </TableComponent>
-        <PaginationComponent :pagination="pagination" @getPagination="getPagination" />
+            <template #body v-else>
+                <tr class="odd:bg-white even:bg-green-100">
+                    <td class="w-full p-4 text-center">
+                        <p>Tidak Ada Data</p>
+                    </td>
+                </tr>
+            </template>
+        </TableProductComponent>
         <ModalComponent id_modal="form-attribute">
             <template #header>
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
@@ -73,15 +49,16 @@
 </template>
 
 <script setup>
-import TableComponent from '../components/TableComponent.vue';
-import InputAtributeStaff from '../components/InputAtributeStaff.vue';
+import TableProductComponent from '../components/TableProductComponent.vue';
+import InputAtributeStaff from '../components/DetailAtributeStaff.vue';
 import ModalComponent from '../components/ModalComponent.vue';
-import PaginationComponent from '../components/PaginationComponent.vue';
 import { useDivisiStore } from '../store/divisi';
 import { useGlobalStore } from '../store/global';
 import { storeToRefs } from 'pinia';
-import { watch, onMounted, ref } from 'vue';
+import { watch, onMounted, ref, provide } from 'vue';
 
+provide('path', 'divisi')
+const header = ref(['ID', 'DIVISI'])
 const divisiStore = useDivisiStore()
 const store = useGlobalStore()
 const { divisi, singleData, pagination } = storeToRefs(divisiStore)

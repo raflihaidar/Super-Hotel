@@ -22,7 +22,6 @@
                     <input type="text" id="last_name" v-model="singleData.jam_masuk"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
                         required>
-                    <MenuComponent />
                 </div>
             </div>
             <div v-if="formName === 'shift'">
@@ -32,26 +31,25 @@
                     <input type="text" id="company" v-model="singleData.jam_keluar"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
                         required>
-                    <MenuComponent />
                 </div>
             </div>
         </div>
         <div v-else>
             <SpinnerComponent />
         </div>
-        <button type="submit" data-modal-hide="form-attribute"
+        <button type="submit" :data-modal-hide="formName === 'shift' ? 'form-shift' : 'form-attribute'"
             class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update</button>
     </form>
 </template>
 
 <script setup>
 import { storeToRefs } from 'pinia';
-import { toRefs } from 'vue';
-import MenuComponent from '../components/MenuComponent.vue'
+import { onMounted, toRefs } from 'vue';
 import { useShiftStore } from '../store/shift';
 import { useDivisiStore } from '../store/divisi';
 import SpinnerComponent from './SpinnerComponent.vue';
 import { useGlobalStore } from '../store/global';
+import { initFlowbite } from 'flowbite';
 
 const shiftStore = useShiftStore()
 const divisiStore = useDivisiStore()
@@ -72,5 +70,9 @@ const updateDataDivisi = (payload) => {
     emits('closeModal')
     divisiStore.updateData(payload)
 }
+
+onMounted(() => {
+    initFlowbite()
+})
 
 </script>
