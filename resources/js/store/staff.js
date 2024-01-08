@@ -1,5 +1,6 @@
 import { defineStore, storeToRefs } from "pinia";
 import { useGlobalStore } from "./global.js";
+import { ref } from "vue";
 import Swal from "sweetalert2";
 import axios from "axios";
 
@@ -86,6 +87,7 @@ export const useStaffStore = defineStore(
         };
 
         const addData = async (payload) => {
+            const status = ref(false);
             try {
                 const res = await axios.post(
                     "http://127.0.0.1:8000/api/staff",
@@ -111,6 +113,9 @@ export const useStaffStore = defineStore(
                     icon: "success",
                     title: "Update successfully",
                 });
+                staff.value.push(res.data.data);
+                status.value = res.data.success;
+                console.log(res.data.success);
             } catch (error) {
                 Swal.fire({
                     icon: "error",
@@ -118,6 +123,8 @@ export const useStaffStore = defineStore(
                     text: "Something went wrong!",
                 });
                 console.log(error);
+            } finally {
+                return status.value;
             }
         };
 

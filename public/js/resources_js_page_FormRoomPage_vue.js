@@ -11476,27 +11476,52 @@ var useCategoryStore = (0,pinia__WEBPACK_IMPORTED_MODULE_2__.defineStore)("categ
   }();
   var addData = /*#__PURE__*/function () {
     var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(payload) {
-      var res;
+      var status, res, Toast;
       return _regeneratorRuntime().wrap(function _callee5$(_context5) {
         while (1) switch (_context5.prev = _context5.next) {
           case 0:
-            _context5.prev = 0;
-            _context5.next = 3;
+            status = ref(false);
+            _context5.prev = 1;
+            _context5.next = 4;
             return axios__WEBPACK_IMPORTED_MODULE_3__["default"].post("http://127.0.0.1:8000/api/kategori", payload);
-          case 3:
+          case 4:
             res = _context5.sent;
-            category.value.push(res.data.data);
-            _context5.next = 10;
+            Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_1__.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 1000,
+              timerProgressBar: true,
+              didOpen: function didOpen(toast) {
+                toast.onmouseenter = sweetalert2__WEBPACK_IMPORTED_MODULE_1__.stopTimer;
+                toast.onmouseleave = sweetalert2__WEBPACK_IMPORTED_MODULE_1__.resumeTimer;
+              }
+            });
+            Toast.fire({
+              icon: "success",
+              title: "Update successfully"
+            });
+            status.value = res.data.status;
+            category.value = res.data.data;
+            _context5.next = 15;
             break;
-          case 7:
-            _context5.prev = 7;
-            _context5.t0 = _context5["catch"](0);
+          case 11:
+            _context5.prev = 11;
+            _context5.t0 = _context5["catch"](1);
+            sweetalert2__WEBPACK_IMPORTED_MODULE_1__.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Something went wrong!"
+            });
             console.log(_context5.t0);
-          case 10:
+          case 15:
+            _context5.prev = 15;
+            return _context5.abrupt("return", status.value);
+          case 18:
           case "end":
             return _context5.stop();
         }
-      }, _callee5, null, [[0, 7]]);
+      }, _callee5, null, [[1, 11, 15, 18]]);
     }));
     return function addData(_x5) {
       return _ref5.apply(this, arguments);
@@ -11913,6 +11938,7 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
           case 3:
             res = _context9.sent;
             room.value = res.data.data;
+            console.log(res.data.data);
             pagination.value = {
               currentPage: res.data.current_page,
               from: res.data.from,
@@ -11921,17 +11947,17 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
               prevPage: res.data.prev_page_url,
               perPage: res.data.per_page
             };
-            _context9.next = 11;
+            _context9.next = 12;
             break;
-          case 8:
-            _context9.prev = 8;
+          case 9:
+            _context9.prev = 9;
             _context9.t0 = _context9["catch"](0);
-            console.log(_context9.t0);
-          case 11:
+            console.log("error", _context9.t0);
+          case 12:
           case "end":
             return _context9.stop();
         }
-      }, _callee9, null, [[0, 8]]);
+      }, _callee9, null, [[0, 9]]);
     }));
     return function setRoom(_x12) {
       return _ref9.apply(this, arguments);
@@ -12185,18 +12211,19 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_3__.defineStore)("room", fu
   }();
   var addData = /*#__PURE__*/function () {
     var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(payload) {
-      var res, Toast;
+      var status, res, Toast;
       return _regeneratorRuntime().wrap(function _callee5$(_context5) {
         while (1) switch (_context5.prev = _context5.next) {
           case 0:
-            _context5.prev = 0;
-            _context5.next = 3;
+            status = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
+            _context5.prev = 1;
+            _context5.next = 4;
             return axios__WEBPACK_IMPORTED_MODULE_4__["default"].post("http://127.0.0.1:8000/api/kamar", payload, {
               headers: {
                 "Content-Type": "multipart/form-data"
               }
             });
-          case 3:
+          case 4:
             res = _context5.sent;
             Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_2__.mixin({
               toast: true,
@@ -12213,21 +12240,26 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_3__.defineStore)("room", fu
               icon: "success",
               title: "Update successfully"
             });
-            _context5.next = 11;
+            room.value.push(res.data.data);
+            status.value(res.data.status);
+            _context5.next = 14;
             break;
-          case 8:
-            _context5.prev = 8;
-            _context5.t0 = _context5["catch"](0);
+          case 11:
+            _context5.prev = 11;
+            _context5.t0 = _context5["catch"](1);
             sweetalert2__WEBPACK_IMPORTED_MODULE_2__.fire({
               icon: "error",
               title: "Oops...",
               text: "Something went wrong!"
             });
-          case 11:
+          case 14:
+            _context5.prev = 14;
+            return _context5.abrupt("return", status.value);
+          case 17:
           case "end":
             return _context5.stop();
         }
-      }, _callee5, null, [[0, 8]]);
+      }, _callee5, null, [[1, 11, 14, 17]]);
     }));
     return function addData(_x5) {
       return _ref5.apply(this, arguments);

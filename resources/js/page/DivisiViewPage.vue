@@ -1,19 +1,17 @@
 <template>
-    <div class="w-full py-5 px-5">
-        <TableComponent :header="header" @handleSearch="searchData" :pagination="pagination" tableName="Tamu"
-            v-if="guest.length != 0">
+    <div class="w-full">
+        <TableComponent :header="header" :addData="true" tableName="Divisi" @handleSearch="searchData"
+            v-if="divisi.length != 0" :pagination="pagination" route="add-divisi">
             <template #body>
                 <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
-                    v-for="(item, index) in guest" :key="index">
+                    v-for="(item, index) in divisi" :key="index">
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{
                         item.id }}</th>
                     <td class="px-4 py-3">{{ item.nama }}</td>
-                    <td class="px-4 py-3">{{ item.username }}</td>
-                    <td class="px-4 py-3">{{ item.email }}</td>
                     <td>
                         <a class="font-medium text-green-500 dark:text-green-500 hover:underline cursor-pointer mr-4"
-                            @click="getSingleData(item.id)" data-modal-target="form-guest"
-                            data-modal-toggle="form-guest">Edit</a>
+                            @click="getSingleData(item.id)" data-modal-target="form-attribute"
+                            data-modal-toggle="form-attribute">Edit</a>
                         <a class="font-medium text-red-600 dark:text-green-500 hover:underline cursor-pointer"
                             @click="deleteData(item.id)">delete</a>
                     </td>
@@ -29,14 +27,15 @@
                 </tr>
             </template>
         </TableComponent>
-        <ModalComponent id_modal="form-guest">
+        <ModalComponent id_modal="form-attribute">
             <template #header>
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        Guest Form
+                        Divisi Form
                     </h3>
-                    <button type="button" @click="resetSingleData" data-modal-hide="form-guest"
-                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                    <button type="button" @click="resetSingleData"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-hide="form-attribute">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -47,46 +46,49 @@
                 </div>
             </template>
             <template #body>
-                <inputFormGuest @closeModal="isOpen = false" />
+                <InputAtributeStaff formName="divisi" />
             </template>
         </ModalComponent>
     </div>
 </template>
 
 <script setup>
-import ModalComponent from '../components/ModalComponent.vue';
 import TableComponent from '../components/TableComponent.vue';
-import inputFormGuest from '../components/DetailGuestComponent.vue'
-import { useGuestStore } from '../store/guest';
+import InputAtributeStaff from '../components/DetailAtributeStaff.vue';
+import ModalComponent from '../components/ModalComponent.vue';
+import { useDivisiStore } from '../store/divisi';
 import { useGlobalStore } from '../store/global';
-import { ref, watch, onMounted, provide } from 'vue';
 import { storeToRefs } from 'pinia';
+import { watch, onMounted, ref, provide } from 'vue';
 
-provide('path', 'tamu')
-const guestStore = useGuestStore()
+provide('path', 'divisi')
+const header = ref(['ID', 'DIVISI'])
+const divisiStore = useDivisiStore()
 const store = useGlobalStore()
-const header = ref(['ID', 'NAMA', 'USERNAME', 'EMAIL'])
-const { guest, singleData, pagination } = storeToRefs(guestStore)
+const { divisi, singleData, pagination } = storeToRefs(divisiStore)
 
-const resetSingleData = (modalId) => {
+const resetSingleData = () => {
     store.resetSingleData()
 }
 
 const getSingleData = (id) => {
-    guestStore.getSingleData(id);
+    divisiStore.getSingleData(id);
 };
 
 const deleteData = (id) => {
-    guestStore.deleteData(id);
+    divisiStore.deleteData(id);
 };
-
 
 const fetchData = () => {
-    store.setGuest("25");
+    store.setDivisi("25");
 };
 
+const getPagination = (url) => {
+    store.getPagination(url)
+}
+
 const searchData = (search) => {
-    guestStore.searchData(search)
+    divisiStore.searchData(search)
 }
 
 onMounted(() => {
@@ -96,5 +98,4 @@ onMounted(() => {
 watch(() => store.$state.singleData, () => {
     fetchData();
 })
-
 </script>

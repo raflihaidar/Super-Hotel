@@ -84,14 +84,38 @@ export const useCategoryStore = defineStore(
         };
 
         const addData = async (payload) => {
+            const status = ref(false);
             try {
                 const res = await axios.post(
                     "http://127.0.0.1:8000/api/kategori",
                     payload
                 );
-                category.value.push(res.data.data);
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 1000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    },
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: "Update successfully",
+                });
+                status.value = res.data.success;
+                category.value = res.data.data;
             } catch (error) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!",
+                });
                 console.log(error);
+            } finally {
+                return status.value;
             }
         };
 

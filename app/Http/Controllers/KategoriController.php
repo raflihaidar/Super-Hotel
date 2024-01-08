@@ -23,7 +23,11 @@ class KategoriController extends Controller
             'jumlah_kamar' => $request->input('jumlah_kamar'),
         ]);
         $kategori->save();
-        return response()->json('Category created!');
+        return response()->json([
+            'success' => true,
+            'message' => 'Category added successfully',
+            'data' => $kategori,
+        ]);
     }
     public function show($id)
     {

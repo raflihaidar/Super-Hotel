@@ -140,9 +140,9 @@
             </div>
             <div>
                 <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-                <input type="text" id="status" v-model="singleData.nama_status"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
-                    required>
+                <input type="text" id="status" v-model="singleData.nama_status" @click="changeStatus"
+                    class="bg-gray-50 border cursor-pointer border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                    disabled>
             </div>
             <div>
                 <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
@@ -192,6 +192,12 @@ const changeShift = (item) => {
 const changeDivisi = (item) => {
     singleData.value.nama_divisi = item.nama
     singleData.value.id_divisi = item.id
+}
+
+const changeStatus = () => {
+    singleData.value.id_status = 1;
+    singleData.value.nama_divisi = "Nonaktif"
+    console.log(singleData.value.id_status)
 }
 
 onMounted(() => {

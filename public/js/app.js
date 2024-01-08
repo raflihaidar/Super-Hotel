@@ -25167,10 +25167,23 @@ var routes = [{
     }]
   }, {
     path: "category",
-    name: "category",
+    name: "category-parent",
     component: function component() {
       return __webpack_require__.e(/*! import() */ "resources_js_page_CategoryPage_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./page/CategoryPage.vue */ "./resources/js/page/CategoryPage.vue"));
-    }
+    },
+    children: [{
+      path: "",
+      name: "category",
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ "resources_js_page_CategoryViewPage_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./page/CategoryViewPage.vue */ "./resources/js/page/CategoryViewPage.vue"));
+      }
+    }, {
+      path: "add-category",
+      name: "add-category",
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ "resources_js_page_FormCategoryPage_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./page/FormCategoryPage.vue */ "./resources/js/page/FormCategoryPage.vue"));
+      }
+    }]
   }, {
     path: "booking",
     name: "booking",
@@ -25211,16 +25224,42 @@ var routes = [{
     }
   }, {
     path: "shift",
-    name: "shift",
+    name: "shift-parent",
     component: function component() {
       return __webpack_require__.e(/*! import() */ "resources_js_page_ShiftPage_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./page/ShiftPage.vue */ "./resources/js/page/ShiftPage.vue"));
-    }
+    },
+    children: [{
+      path: "",
+      name: "shift",
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ "resources_js_page_ShiftViewPage_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./page/ShiftViewPage.vue */ "./resources/js/page/ShiftViewPage.vue"));
+      }
+    }, {
+      path: "add-shift",
+      name: "add-shift",
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ "resources_js_page_FormShiftPage_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./page/FormShiftPage.vue */ "./resources/js/page/FormShiftPage.vue"));
+      }
+    }]
   }, {
     path: "divisi",
-    name: "divisi",
+    name: "divisi-parent",
     component: function component() {
       return __webpack_require__.e(/*! import() */ "resources_js_page_DivisionPage_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./page/DivisionPage.vue */ "./resources/js/page/DivisionPage.vue"));
-    }
+    },
+    children: [{
+      path: "",
+      name: "divisi",
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ "resources_js_page_DivisiViewPage_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./page/DivisiViewPage.vue */ "./resources/js/page/DivisiViewPage.vue"));
+      }
+    }, {
+      path: "add-divisi",
+      name: "add-divisi",
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ "resources_js_page_FormDivisiPage_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./page/FormDivisiPage.vue */ "./resources/js/page/FormDivisiPage.vue"));
+      }
+    }]
   }]
 }];
 var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_0__.createRouter)({
@@ -31383,7 +31422,7 @@ function useRoute() {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_page_ExampleComponent_vue":1,"resources_js_page_AdminPage_vue":1,"resources_js_page_DashboardPage_vue":1,"resources_js_page_RoomPage_vue":1,"resources_js_page_RoomViewPage_vue":1,"resources_js_page_FormRoomPage_vue":1,"resources_js_page_CategoryPage_vue":1,"resources_js_page_BookingPage_vue":1,"resources_js_page_DetailBookingPage_vue":1,"resources_js_page_StaffPage_vue":1,"resources_js_page_StaffViewPage_vue":1,"resources_js_page_FormStaffPage_vue":1,"resources_js_page_GuestPage_vue":1,"resources_js_page_ShiftPage_vue":1,"resources_js_page_DivisionPage_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_page_ExampleComponent_vue":1,"resources_js_page_AdminPage_vue":1,"resources_js_page_DashboardPage_vue":1,"resources_js_page_RoomPage_vue":1,"resources_js_page_RoomViewPage_vue":1,"resources_js_page_FormRoomPage_vue":1,"resources_js_page_CategoryPage_vue":1,"resources_js_page_CategoryViewPage_vue":1,"resources_js_page_FormCategoryPage_vue":1,"resources_js_page_BookingPage_vue":1,"resources_js_page_DetailBookingPage_vue":1,"resources_js_page_StaffPage_vue":1,"resources_js_page_StaffViewPage_vue":1,"resources_js_page_FormStaffPage_vue":1,"resources_js_page_GuestPage_vue":1,"resources_js_page_ShiftPage_vue":1,"resources_js_page_ShiftViewPage_vue":1,"resources_js_page_FormShiftPage_vue":1,"resources_js_page_DivisionPage_vue":1,"resources_js_page_DivisiViewPage_vue":1,"resources_js_page_FormDivisiPage_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

@@ -37,7 +37,11 @@ class InfoKamarController extends Controller
             'foto_kamar' => $validatedData['image']
         ]);
         $kamar->save();
-        return response()->json('Shift created!');
+        return response()->json([
+            'success' => true,
+            'message' => 'Room added successfully',
+            'data' => $kamar,
+        ]);
     }
     public function show($id)
     {

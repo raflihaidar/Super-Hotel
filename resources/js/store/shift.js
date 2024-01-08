@@ -1,5 +1,6 @@
 import { defineStore, storeToRefs } from "pinia";
 import { useGlobalStore } from "./global.js";
+import { ref } from "vue";
 import Swal from "sweetalert2";
 import axios from "axios";
 
@@ -84,6 +85,44 @@ export const useShiftStore = defineStore(
             }
         };
 
+        const addData = async (payload) => {
+            const status = ref(false);
+            try {
+                const res = await axios.post(
+                    "http://127.0.0.1:8000/api/shift",
+                    payload
+                );
+
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 1000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    },
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: "Update successfully",
+                });
+                shift.value.push(res.data.data);
+                console.log(shift.value);
+                status.value = true;
+            } catch (error) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!",
+                });
+                status.value = false;
+            } finally {
+                return status.value;
+            }
+        };
+
         return {
             shift,
             singleData,
@@ -92,6 +131,7 @@ export const useShiftStore = defineStore(
             searchData,
             updateData,
             deleteData,
+            addData,
         };
     },
     {

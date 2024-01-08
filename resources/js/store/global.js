@@ -215,6 +215,7 @@ export const useGlobalStore = defineStore(
             try {
                 const res = await axios.get(`${ROOM_URL}/${index}`);
                 room.value = res.data.data;
+                console.log(res.data.data);
                 pagination.value = {
                     currentPage: res.data.current_page,
                     from: res.data.from,
@@ -223,8 +224,8 @@ export const useGlobalStore = defineStore(
                     prevPage: res.data.prev_page_url,
                     perPage: res.data.per_page,
                 };
-            } catch (err) {
-                console.log(err);
+            } catch (error) {
+                console.log("error", error);
             }
         };
         const setCategory = async (index) => {

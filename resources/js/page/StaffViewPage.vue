@@ -1,12 +1,19 @@
 <template>
     <div class="w-full py-5 px-5">
         <TableComponent :header="header" tableName="Staff" :addData="true" route="add-staff" @handleSearch="searchData"
-            :pagination="pagination">
-            <template #body v-if="staff.length != 0">
-                <tr class="border-b dark:border-gray-700" v-for="(item, index) in staff" :key="index">
+            :pagination="pagination" v-if="staff.length != 0">
+            <template #body>
+                <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
+                    v-for="(item, index) in staff" :key="index">
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{
                         item.id }}</th>
-                    <td class="px-4 py-3">{{ item.nama }}</td>
+                    <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                        <img class="w-10 h-10 rounded-full" :src="'/storage/' + item.foto" alt="Jese image">
+                        <div class="ps-3">
+                            <div class="text-base font-semibold">{{ item.nama }}</div>
+                            <div class="font-normal text-gray-500">{{ item.email }}</div>
+                        </div>
+                    </th>
                     <td class="px-4 py-3">{{ item.nama_divisi }}</td>
                     <td class="px-4 py-3">{{ item.nama_shift }}</td>
                     <td class="px-4 py-3">{{ item.nama_status }}</td>
@@ -19,10 +26,12 @@
                     </td>
                 </tr>
             </template>
-            <template #body v-else>
+        </TableComponent>
+        <TableComponent v-else>
+            <template #body>
                 <tr class="odd:bg-white even:bg-green-100">
-                    <td class="w-full p-4 text-center">
-                        <p>Tidak Ada Data</p>
+                    <td class="w-full p-4 text-center text-red-500 font-bold text-2xl">
+                        Tidak Ada Data
                     </td>
                 </tr>
             </template>

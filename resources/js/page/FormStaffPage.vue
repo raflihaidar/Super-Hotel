@@ -1,5 +1,8 @@
 <template>
     <div class="w-[80%] mx-auto">
+        <div v-if="statusInput">
+            <AlertSuccesComponent />
+        </div>
         <form action="" class="grid grid-cols-1 gap-y-3" @submit.prevent="addData" enctype="multipart/form-data">
             <p class="text-3xl font-bold mb-5">Input New Staff</p>
             <div class="mb-5">
@@ -70,20 +73,21 @@
 
 <script setup>
 import { storeToRefs } from 'pinia';
-import { initFlowbite } from 'flowbite';
 import { onMounted, ref } from 'vue';
 import DropSearchComponent from '../components/DropSearchComponent.vue';
+import AlertSuccesComponent from '../components/AlertSuccesComponent.vue';
 import { useGlobalStore } from '../store/global';
 import { useStaffStore } from '../store/staff';
 
 const staffStore = useStaffStore()
+const statusInput = ref(false)
 const store = useGlobalStore()
 const dropDownDivisi = ref(null)
 const dropDownShift = ref(null)
 const payload = ref({
-    nama: null,
-    email: null,
-    alamat: null,
+    nama: "",
+    email: "",
+    alamat: "",
     image: null,
     id_divisi: null,
     id_shift: null,
@@ -107,13 +111,12 @@ const addShiftId = (item) => {
     payload.value.id_shift = item.id
 }
 
-const addData = () => {
-    staffStore.addData(payload.value)
-    console.log(payload.value)
+const addData = async () => {
+    statusInput.value = await staffStore.addData(payload.value)
 }
+
 onMounted(() => {
     store.setDivisi(25)
     store.setShift(25)
-    initFlowbite()
 })
 </script>

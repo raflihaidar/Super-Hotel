@@ -21,7 +21,11 @@ class ShiftController extends Controller
             'jam_keluar' => $request->input('jam_keluar'),
         ]);
         $shift->save();
-        return response()->json('Shift created!');
+        return response()->json([
+            'success' => true,
+            'message' => 'Shift added successfully',
+            'data' => $shift,
+        ]);
     }
     public function show($id)
     {

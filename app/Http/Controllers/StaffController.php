@@ -39,7 +39,11 @@ class StaffController extends Controller
             'foto' => $validatedData['image']
         ]);
         $staff->save();
-        return response()->json('Staff created!');
+        return response()->json([
+            'success' => true,
+            'message' => 'Staff added successfully',
+            'data' => $staff,
+        ]);
     }
     public function show($id)
     {

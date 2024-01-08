@@ -1094,10 +1094,15 @@ var _hoisted_5 = {
 };
 var _hoisted_6 = ["onClick"];
 var _hoisted_7 = ["onClick"];
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", {
+  "class": "odd:bg-white even:bg-green-100"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
+  "class": "w-full p-4 text-center text-red-500 font-bold text-2xl"
+}, " Tidak Ada Data ")], -1 /* HOISTED */);
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
   "class": "text-xl font-semibold text-gray-900 dark:text-white"
 }, " Room Form ", -1 /* HOISTED */);
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   "class": "w-3 h-3",
   "aria-hidden": "true",
   xmlns: "http://www.w3.org/2000/svg",
@@ -1110,12 +1115,13 @@ var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   "stroke-width": "2",
   d: "m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
 })], -1 /* HOISTED */);
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "sr-only"
 }, "Close modal", -1 /* HOISTED */);
-var _hoisted_11 = [_hoisted_9, _hoisted_10];
+var _hoisted_12 = [_hoisted_10, _hoisted_11];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["TableComponent"], {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [$setup.room.length != 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["TableComponent"], {
+    key: 0,
     header: $setup.header,
     tableName: "Room",
     addData: true,
@@ -1142,18 +1148,25 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }), 128 /* KEYED_FRAGMENT */))];
     }),
     _: 1 /* STABLE */
-  }, 8 /* PROPS */, ["header"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["ModalComponent"], {
+  }, 8 /* PROPS */, ["header"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["TableComponent"], {
+    key: 1
+  }, {
+    body: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_8];
+    }),
+    _: 1 /* STABLE */
+  })), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["ModalComponent"], {
     id_modal: "form-room"
   }, {
     header: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
         "class": "flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600"
-      }, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+      }, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
         type: "button",
         onClick: $setup.resetSingleData,
         "data-modal-hide": "form-room",
         "class": "text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-      }, [].concat(_hoisted_11))])];
+      }, [].concat(_hoisted_12))])];
     }),
     body: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DetailRoomCompoonent"])];
@@ -12890,6 +12903,7 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
           case 3:
             res = _context9.sent;
             room.value = res.data.data;
+            console.log(res.data.data);
             pagination.value = {
               currentPage: res.data.current_page,
               from: res.data.from,
@@ -12898,17 +12912,17 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
               prevPage: res.data.prev_page_url,
               perPage: res.data.per_page
             };
-            _context9.next = 11;
+            _context9.next = 12;
             break;
-          case 8:
-            _context9.prev = 8;
+          case 9:
+            _context9.prev = 9;
             _context9.t0 = _context9["catch"](0);
-            console.log(_context9.t0);
-          case 11:
+            console.log("error", _context9.t0);
+          case 12:
           case "end":
             return _context9.stop();
         }
-      }, _callee9, null, [[0, 8]]);
+      }, _callee9, null, [[0, 9]]);
     }));
     return function setRoom(_x12) {
       return _ref9.apply(this, arguments);
@@ -13162,18 +13176,19 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_3__.defineStore)("room", fu
   }();
   var addData = /*#__PURE__*/function () {
     var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(payload) {
-      var res, Toast;
+      var status, res, Toast;
       return _regeneratorRuntime().wrap(function _callee5$(_context5) {
         while (1) switch (_context5.prev = _context5.next) {
           case 0:
-            _context5.prev = 0;
-            _context5.next = 3;
+            status = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
+            _context5.prev = 1;
+            _context5.next = 4;
             return axios__WEBPACK_IMPORTED_MODULE_4__["default"].post("http://127.0.0.1:8000/api/kamar", payload, {
               headers: {
                 "Content-Type": "multipart/form-data"
               }
             });
-          case 3:
+          case 4:
             res = _context5.sent;
             Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_2__.mixin({
               toast: true,
@@ -13190,21 +13205,26 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_3__.defineStore)("room", fu
               icon: "success",
               title: "Update successfully"
             });
-            _context5.next = 11;
+            room.value.push(res.data.data);
+            status.value(res.data.status);
+            _context5.next = 14;
             break;
-          case 8:
-            _context5.prev = 8;
-            _context5.t0 = _context5["catch"](0);
+          case 11:
+            _context5.prev = 11;
+            _context5.t0 = _context5["catch"](1);
             sweetalert2__WEBPACK_IMPORTED_MODULE_2__.fire({
               icon: "error",
               title: "Oops...",
               text: "Something went wrong!"
             });
-          case 11:
+          case 14:
+            _context5.prev = 14;
+            return _context5.abrupt("return", status.value);
+          case 17:
           case "end":
             return _context5.stop();
         }
-      }, _callee5, null, [[0, 8]]);
+      }, _callee5, null, [[1, 11, 14, 17]]);
     }));
     return function addData(_x5) {
       return _ref5.apply(this, arguments);

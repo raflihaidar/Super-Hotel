@@ -19,7 +19,11 @@ class DivisiController extends Controller
             'nama' => $request->input('nama'),
         ]);
         $divisi->save();
-        return response()->json('Divisi created!');
+        return response()->json([
+            'success' => true,
+            'message' => 'Division added successfully',
+            'data' => $divisi,
+        ]);
     }
     public function show($id)
     {

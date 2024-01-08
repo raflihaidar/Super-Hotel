@@ -101,6 +101,7 @@ export const useRoomStore = defineStore(
         };
 
         const addData = async (payload) => {
+            const status = ref(false);
             try {
                 const res = await axios.post(
                     "http://127.0.0.1:8000/api/kamar",
@@ -126,12 +127,16 @@ export const useRoomStore = defineStore(
                     icon: "success",
                     title: "Update successfully",
                 });
+                room.value.push(res.data.data);
+                status.value(res.data.success);
             } catch (error) {
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
                     text: "Something went wrong!",
                 });
+            } finally {
+                return status.value;
             }
         };
 

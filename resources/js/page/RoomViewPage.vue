@@ -1,5 +1,5 @@
 <template>
-    <TableComponent :header="header" tableName="Room" :addData="true" route="add-room">
+    <TableComponent :header="header" tableName="Room" :addData="true" route="add-room" v-if="room.length != 0">
         <template #body>
             <tr class="border-b dark:border-gray-700" v-for="(item, index) in room" :key="index">
                 <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{
@@ -13,6 +13,15 @@
                         @click="getSingleData(item.id)" data-modal-target="form-room" data-modal-toggle="form-room">Edit</a>
                     <a class="font-medium text-red-600 dark:text-green-500 hover:underline cursor-pointer"
                         @click="deleteData(item.id)">delete</a>
+                </td>
+            </tr>
+        </template>
+    </TableComponent>
+    <TableComponent v-else>
+        <template #body>
+            <tr class="odd:bg-white even:bg-green-100">
+                <td class="w-full p-4 text-center text-red-500 font-bold text-2xl">
+                    Tidak Ada Data
                 </td>
             </tr>
         </template>

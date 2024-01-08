@@ -35,8 +35,20 @@ const routes = [
             },
             {
                 path: "category",
-                name: "category",
+                name: "category-parent",
                 component: () => import("./page/CategoryPage.vue"),
+                children: [
+                    {
+                        path: "",
+                        name: "category",
+                        component: () => import("./page/CategoryViewPage.vue"),
+                    },
+                    {
+                        path: "add-category",
+                        name: "add-category",
+                        component: () => import("./page/FormCategoryPage.vue"),
+                    },
+                ],
             },
             {
                 path: "booking",
@@ -74,13 +86,37 @@ const routes = [
             },
             {
                 path: "shift",
-                name: "shift",
+                name: "shift-parent",
                 component: () => import("./page/ShiftPage.vue"),
+                children: [
+                    {
+                        path: "",
+                        name: "shift",
+                        component: () => import("./page/ShiftViewPage.vue"),
+                    },
+                    {
+                        path: "add-shift",
+                        name: "add-shift",
+                        component: () => import("./page/FormShiftPage.vue"),
+                    },
+                ],
             },
             {
                 path: "divisi",
-                name: "divisi",
+                name: "divisi-parent",
                 component: () => import("./page/DivisionPage.vue"),
+                children: [
+                    {
+                        path: "",
+                        name: "divisi",
+                        component: () => import("./page/DivisiViewPage.vue"),
+                    },
+                    {
+                        path: "add-divisi",
+                        name: "add-divisi",
+                        component: () => import("./page/FormDivisiPage.vue"),
+                    },
+                ],
             },
         ],
     },
