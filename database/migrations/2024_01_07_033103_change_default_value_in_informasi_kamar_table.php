@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('fasilitas', function (Blueprint $table) {
-            $table->increments();
-            $table->nama();
-            $table->timestamps();
+        Schema::table('informasi_kamar', function (Blueprint $table) {
+            $table->decimal('rating')->nullable()->default(0)->change();
         });
     }
 
@@ -23,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('fasilitas');
+        Schema::table('informasi_kamar', function (Blueprint $table) {
+            $table->decimal('rating')->nullable()->change();
+        });
     }
 };

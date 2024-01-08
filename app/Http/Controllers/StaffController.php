@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ImageStoreRequest;
 use App\Models\Staff;
+use File;
 
 class StaffController extends Controller
 {
@@ -23,8 +25,10 @@ class StaffController extends Controller
         ->simplePaginate($page);
         return response()->json($staff);
     }
-    public function store(Request $request)
+    public function store(ImageStoreRequest $request)
     {
+        $validatedData = $request->validated();
+        $validatedData['image'] = $request->file('image')->store('staff/image', 'public');
         $staff = new Staff([
             'id_divisi' => $request->input('id_divisi'),
             'id_shift' => $request->input('id_shift'),
@@ -32,7 +36,7 @@ class StaffController extends Controller
             'nama' => $request->input('nama'),
             'email' => $request->input('email'),
             'alamat' => $request->input('alamat'),
-            'foto' => $request->input('foto'),
+            'foto' => $validatedData['image']
         ]);
         $staff->save();
         return response()->json('Staff created!');
@@ -62,6 +66,10 @@ class StaffController extends Controller
     public function destroy($id)
     {
          $staff  = Staff::find($id);
+         $imagepath = \public_path('/storage/'.$staff->foto);
+         if(File::exists($imagepath)){
+             File::delete($imagepath);
+         }
          $staff ->delete();
         return response()->json('Staff deleted!');
     }

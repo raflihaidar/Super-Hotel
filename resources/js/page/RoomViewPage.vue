@@ -1,9 +1,9 @@
 <template>
-    <TableProductComponent :header="header" tableName="Product">
+    <TableComponent :header="header" tableName="Room" :addData="true" route="add-room">
         <template #body>
             <tr class="border-b dark:border-gray-700" v-for="(item, index) in room" :key="index">
                 <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{
-                    item.id }}</th>
+                    item.room_name }}</th>
                 <td class="px-4 py-3">{{ item.kategori }}</td>
                 <td class="px-4 py-3">{{ item.fasilitas }}</td>
                 <td class="px-4 py-3">{{ item.harga }}</td>
@@ -16,7 +16,7 @@
                 </td>
             </tr>
         </template>
-    </TableProductComponent>
+    </TableComponent>
     <ModalComponent id_modal="form-room">
         <template #header>
             <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
@@ -42,7 +42,7 @@
 
 <script setup>
 import ModalComponent from '../components/ModalComponent.vue';
-import TableProductComponent from '../components/TableProductComponent.vue';
+import TableComponent from '../components/TableComponent.vue';
 import DetailRoomCompoonent from '../components/DetailRoomComponent.vue'
 import { useRoomStore } from '../store/room'
 import { useGlobalStore } from '../store/global';

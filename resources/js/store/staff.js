@@ -75,12 +75,49 @@ export const useStaffStore = defineStore(
                         }
                     }
                 });
-            } catch {
+            } catch (error) {
                 Swal.fire({
                     title: "Delete Error!",
                     icon: "Error",
                     confirmButtonText: "Ok",
                 });
+                console.log(error);
+            }
+        };
+
+        const addData = async (payload) => {
+            try {
+                const res = await axios.post(
+                    "http://127.0.0.1:8000/api/staff",
+                    payload,
+                    {
+                        headers: {
+                            "Content-Type": "multipart/form-data",
+                        },
+                    }
+                );
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 1000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    },
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: "Update successfully",
+                });
+            } catch (error) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!",
+                });
+                console.log(error);
             }
         };
 
@@ -92,6 +129,7 @@ export const useStaffStore = defineStore(
             searchData,
             updateData,
             deleteData,
+            addData,
         };
     },
     {

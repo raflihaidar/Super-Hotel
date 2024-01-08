@@ -1,6 +1,7 @@
 <template>
     <div class="w-full py-5 px-5">
-        <TableProductComponent :header="header" tableName="Staff" @handleSearch="searchData" :pagination="pagination">
+        <TableComponent :header="header" tableName="Staff" :addData="true" route="add-staff" @handleSearch="searchData"
+            :pagination="pagination">
             <template #body v-if="staff.length != 0">
                 <tr class="border-b dark:border-gray-700" v-for="(item, index) in staff" :key="index">
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{
@@ -25,7 +26,7 @@
                     </td>
                 </tr>
             </template>
-        </TableProductComponent>
+        </TableComponent>
         <ModalComponent id_modal="form-staff">
             <template #header>
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
@@ -52,8 +53,8 @@
 </template>
 
 <script setup>
-import TableProductComponent from '../components/TableProductComponent.vue';
-import InputFormStaff from '../components/InputFormStaff.vue';
+import TableComponent from '../components/TableComponent.vue';
+import InputFormStaff from '../components/DetailStaffComponent.vue';
 import ModalComponent from '../components/ModalComponent.vue';
 import { useStaffStore } from '../store/staff.js';
 import { useGlobalStore } from '../store/global';

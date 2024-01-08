@@ -1,45 +1,51 @@
 <template>
-    <form class="p-10" @submit.prevent="">
-        <div v-if="singleData.length != 0" class="grid gap-6 mb-6 md:grid-cols-2">
+    <form class="p-10" @submit.prevent="updateData(singleData)">
+        <div v-if="singleData.length != 0" class="grid gap-6 mb-6 md:grid-cols-2 items-center">
             <div>
-                <img :src="'/storage/' + singleData.foto_kamar" class="w-16 md:w-32 max-w-full max-h-full"
-                    alt="Apple Watch">
+                <img :src="'/storage/' + singleData.foto_kamar" alt="Image Room">
             </div>
             <div>
-                <label for="visitors" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Room Number
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="image">Upload
+                    file</label>
+                <input @change="onChange" name="image"
+                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                    id="image" type="file">
+            </div>
+            <div>
+                <label for="room-name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Room Number
                 </label>
-                <input type="text" id="visitors" v-model="singleData.id"
+                <input type="text" id="room-name" v-model="singleData.room_name"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
                     required>
             </div>
             <div>
-                <label for="first_name"
+                <label for="id_kategori"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
-                <input type="text" id="first_name" v-model="singleData.kategori"
+                <input type="text" id="id_kategori" v-model="singleData.kategori"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
                     required disabled>
             </div>
 
             <div>
-                <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fasility</label>
+                <label for="fasilitas" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fasility</label>
                 <div class="flex justify-between">
-                    <input type="text" id="last_name" v-model="singleData.fasilitas"
+                    <input type="text" id="fasilitas" v-model="singleData.fasilitas"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
                         required disabled>
                 </div>
             </div>
             <div>
-                <label for="company" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
+                <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
                 <div class="flex justify-between">
-                    <input type="text" id="company" v-model="singleData.harga"
+                    <input type="text" id="price" v-model="singleData.harga"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
                         required disabled>
                 </div>
             </div>
             <div>
-                <label for="company" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
+                <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
                 <div class="flex justify-between">
-                    <input type="text" id="company" v-model="singleData.status"
+                    <input type="text" id="status" v-model="singleData.status"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
                         required disabled>
                 </div>
@@ -54,14 +60,24 @@
 </template>
 <script setup>
 import { storeToRefs } from 'pinia';
-import { onMounted, toRefs } from 'vue';
+import { onMounted } from 'vue';
 import SpinnerComponent from './SpinnerComponent.vue';
 import { useGlobalStore } from '../store/global';
 import { initFlowbite } from 'flowbite';
+import { useRoomStore } from '../store/room';
 
 const globalStore = useGlobalStore()
+const roomStore = useRoomStore()
 const emits = defineEmits(['closeModal'])
 const { singleData } = storeToRefs(globalStore)
+
+const onChange = (e) => {
+    singleData.value.foto_kamar = e.target.files[0]
+}
+
+const updateData = (payload) => {
+    roomStore.updateData(payload)
+}
 
 onMounted(() => {
     initFlowbite()

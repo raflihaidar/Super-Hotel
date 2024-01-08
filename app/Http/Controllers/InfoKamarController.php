@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ImageStoreRequest;
 use App\Models\InformasiKamar;
 use Symfony\Component\HttpFoundation\Response;
+use File;
 
 class InfoKamarController extends Controller
 {
@@ -30,7 +31,7 @@ class InfoKamarController extends Controller
         $validatedData = $request->validated();
         $validatedData['image'] = $request->file('image')->store('image', 'public');
         $kamar = new InformasiKamar([
-            'id' => $request->input('id'),
+            'room_name' => $request->input('room_name'),
             'id_kategori' => $request->input('id_kategori'),
             'id_status_kamar' => $request->input('id_status_kamar'),
             'foto_kamar' => $validatedData['image']
@@ -54,15 +55,21 @@ class InfoKamarController extends Controller
         ->first();
         return response()->json($kamar);
     }
-   public function update($id, Request $request)
+    public function update(Request $request, $id)
     {
-         $kamar  =InformasiKamar::find($id);
-         $kamar ->update($request->all());
-         return response()->json('Shift updated!');
+        $kamar = InformasiKamar::find($id);
+        $kamar ->update($request->all());
+        return response()->json('Room updated!');
     }
+
+
     public function destroy($id)
     {
          $kamar  =InformasiKamar::find($id);
+         $imagepath = \public_path('/storage/'.$kamar->foto_kamar);
+         if(File::exists($imagepath)){
+             File::delete($imagepath);
+         }
          $kamar ->delete();
         return response()->json('Shift deleted!');
     }

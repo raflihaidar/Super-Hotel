@@ -3,7 +3,7 @@
         <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ label }}</label>
         <div id="id" :data-dropdown-toggle="id" data-dropdown-placement="bottom"
             class="flex items-center justify-between bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            <input type=" text" class="w-full outline-none border-none" :value="dropDown">
+            <input type=" text" class="w-full outline-none border-none" :value="value">
             <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                 viewBox="0 0 10 6">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -31,15 +31,9 @@
         </div>
         <ul class="h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200"
             aria-labelledby="dropdownSearchButton">
-            <li v-for="(item, index) in data" :key="index" @click="handleClick(item.kategori)">
-                <div class="flex items-center ps-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                    <label for="checkbox-item-11"
-                        class="w-full py-2 ms-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">
-                        {{ item.kategori }}</label>
-                </div>
-            </li>
+            <slot name="data"></slot>
         </ul>
-        <a href="#"
+        <router-link :to="{ name: label }"
             class="flex items-center p-3 text-sm font-medium text-blue-600 border-t border-gray-200 rounded-b-lg bg-gray-50 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-red-500 hover:underline">
             <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                 viewBox="0 0 20 18">
@@ -47,7 +41,7 @@
                     d="M6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Zm11-3h-2V5a1 1 0 0 0-2 0v2h-2a1 1 0 1 0 0 2h2v2a1 1 0 0 0 2 0V9h2a1 1 0 1 0 0-2Z" />
             </svg>
             Add {{ label }}
-        </a>
+        </router-link>
     </div>
 </template>
 
@@ -55,18 +49,13 @@
 import { initFlowbite } from "flowbite";
 import { onMounted, ref, toRefs } from "vue";
 
-const dropDown = ref(null)
 const props = defineProps({
     label: String,
     id: String,
-    data: Array
+    value: String
 })
-
-const { id, label, data } = toRefs(props)
-
-const handleClick = (item) => {
-    dropDown.value = item
-}
+const emits = defineEmits(['addCategoryId'])
+const { id, label, value } = toRefs(props)
 
 onMounted(() => {
     initFlowbite()

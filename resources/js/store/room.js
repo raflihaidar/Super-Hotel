@@ -11,7 +11,15 @@ export const useRoomStore = defineStore(
         const { room, singleData, pagination } = storeToRefs(store);
 
         const getSingleData = (id) => {
-            store.getSingleData("http://127.0.0.1:8000/api/kamar", id);
+            try {
+                store.getSingleData("http://127.0.0.1:8000/api/kamar", id);
+            } catch (err) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!",
+                });
+            }
         };
 
         const searchData = async (search) => {
@@ -21,7 +29,11 @@ export const useRoomStore = defineStore(
                 );
                 room.value = res.data;
             } catch {
-                console.log(err);
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!",
+                });
             }
         };
 
@@ -48,7 +60,11 @@ export const useRoomStore = defineStore(
                     title: "Update successfully",
                 });
             } catch (err) {
-                console.log(err);
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!",
+                });
             }
         };
 
@@ -88,11 +104,34 @@ export const useRoomStore = defineStore(
             try {
                 const res = await axios.post(
                     "http://127.0.0.1:8000/api/kamar",
-                    payload
+                    payload,
+                    {
+                        headers: {
+                            "Content-Type": "multipart/form-data",
+                        },
+                    }
                 );
-                room.value.push(res.data.data);
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 1000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    },
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: "Update successfully",
+                });
             } catch (error) {
-                console.log(error);
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!",
+                });
             }
         };
 

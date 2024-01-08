@@ -1,6 +1,7 @@
 <template>
     <div class="w-full">
-        <TableProductComponent :header="header" tableName="Shift" @handleSearch="searchData" :pagination="pagination">
+        <TableComponent :header="header" tableName="Shift" @handleSearch="searchData" :pagination="pagination"
+            addData="true">
             <template #body v-if="shift.length != 0">
                 <tr class="border-b dark:border-gray-700" v-for="(item, index) in shift" :key="index">
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{
@@ -24,7 +25,7 @@
                     </td>
                 </tr>
             </template>
-        </TableProductComponent>
+        </TableComponent>
         <ModalComponent id_modal="form-shift">
             <template #header>
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
@@ -51,7 +52,7 @@
 </template>
 
 <script setup>
-import TableProductComponent from '../components/TableProductComponent.vue';
+import TableComponent from '../components/TableComponent.vue';
 import InputAtributeStaff from '../components/DetailAtributeStaff.vue'
 import ModalComponent from '../components/ModalComponent.vue';
 import PaginationComponent from '../components/PaginationComponent.vue';

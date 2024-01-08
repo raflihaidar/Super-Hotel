@@ -78,8 +78,8 @@ const routes = [
                 component: () => import("./page/ShiftPage.vue"),
             },
             {
-                path: "division",
-                name: "division",
+                path: "divisi",
+                name: "divisi",
                 component: () => import("./page/DivisionPage.vue"),
             },
         ],

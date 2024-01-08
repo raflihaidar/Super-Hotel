@@ -1,6 +1,7 @@
 <template>
     <div class="w-full py-5 px-5">
-        <TableProductComponent :header="header" tableName="Category" @handleSearch="searchData" :pagination="pagination">
+        <TableComponent :header="header" tableName="Category" @handleSearch="searchData" :pagination="pagination"
+            addData="true">
             <template #body v-if="category.length != 0">
                 <tr class="border-b dark:border-gray-700" v-for="(item, index) in category" :key="index">
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{
@@ -22,7 +23,7 @@
                     </td>
                 </tr>
             </template>
-        </TableProductComponent>
+        </TableComponent>
         <ModalComponent id_modal="form-category">
             <template #header>
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
@@ -49,7 +50,7 @@
 
 <script setup>
 import ModalComponent from '../components/ModalComponent.vue';
-import TableProductComponent from '../components/TableProductComponent.vue';
+import TableComponent from '../components/TableComponent.vue';
 import { useGlobalStore } from '../store/global';
 import { ref, watch, onMounted, provide } from 'vue';
 import { storeToRefs } from 'pinia';

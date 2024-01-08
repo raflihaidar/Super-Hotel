@@ -17,9 +17,11 @@ class InformasiKamar extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'room_name',
         'id_kategori',
         'id_status_kamar',
-        'foto_kamar'
+        'foto_kamar',
+        'rating'
     ];
 
     public function toSearchableArray()

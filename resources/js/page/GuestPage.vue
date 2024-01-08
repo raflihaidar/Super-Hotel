@@ -1,6 +1,6 @@
 <template>
     <div class="w-full py-5 px-5">
-        <TableProductComponent :header="header" @handleSearch="searchData" :pagination="pagination" tableName="Tamu">
+        <TableComponent :header="header" @handleSearch="searchData" :pagination="pagination" tableName="Tamu">
             <template #body v-if="guest.length != 0">
                 <tr class="border-b dark:border-gray-700" v-for="(item, index) in guest" :key="index">
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{
@@ -24,7 +24,7 @@
                     </td>
                 </tr>
             </template>
-        </TableProductComponent>
+        </TableComponent>
         <ModalComponent id_modal="form-guest">
             <template #header>
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
@@ -51,8 +51,8 @@
 
 <script setup>
 import ModalComponent from '../components/ModalComponent.vue';
-import TableProductComponent from '../components/TableProductComponent.vue';
-import inputFormGuest from '../components/InputFormGuest.vue'
+import TableComponent from '../components/TableComponent.vue';
+import inputFormGuest from '../components/DetailGuestComponent.vue'
 import { useGuestStore } from '../store/guest';
 import { useGlobalStore } from '../store/global';
 import { ref, watch, onMounted, provide } from 'vue';

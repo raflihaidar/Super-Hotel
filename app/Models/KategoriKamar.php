@@ -13,6 +13,8 @@ class KategoriKamar extends Model
 
     protected $table = "kategori_kamar";
 
+    public $timestamps = false;
+
     protected $fillable = [
         'kategori',
         'fasilitas',
