@@ -110,7 +110,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       shift = _storeToRefs.shift;
     var onUpload = function onUpload(e) {
       payload.value.image = e.target.files[0];
-      console.log(payload.value.image);
     };
     var addDivisiId = function addDivisiId(item) {
       dropDownDivisi.value = item.nama;
@@ -368,7 +367,7 @@ var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   "class": "block mb-2 text-sm font-medium text-gray-900 dark:text-white"
 }, "Your message", -1 /* HOISTED */);
 var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "gap-x-10"
+  "class": "flex justify-end mt-10"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "button",
   "class": "focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
@@ -11521,6 +11520,7 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
   var detailBooking = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)();
   var singleData = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
   var pagination = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({
+    total: 0,
     currentPage: 0,
     from: 0,
     to: 0,
@@ -11574,31 +11574,35 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
             res = _context2.sent;
             console.log(url);
             _context2.t0 = url;
-            _context2.next = _context2.t0 === "tamu" ? 8 : _context2.t0 === "staff" ? 10 : _context2.t0 === "shift" ? 12 : _context2.t0 === "divisi" ? 14 : _context2.t0 === "room" ? 16 : _context2.t0 === "booking" ? 18 : _context2.t0 === "detail-booking" ? 20 : 22;
+            _context2.next = _context2.t0 === "tamu" ? 8 : _context2.t0 === "staff" ? 10 : _context2.t0 === "shift" ? 12 : _context2.t0 === "divisi" ? 14 : _context2.t0 === "kamar" ? 16 : _context2.t0 === "booking" ? 18 : _context2.t0 === "detail-booking" ? 20 : _context2.t0 === "kategori" ? 22 : 24;
             break;
           case 8:
             guest.value = res.data.data;
-            return _context2.abrupt("break", 22);
+            return _context2.abrupt("break", 24);
           case 10:
             staff.value = res.data.data;
-            return _context2.abrupt("break", 22);
+            return _context2.abrupt("break", 24);
           case 12:
             shift.value = res.data.data;
-            return _context2.abrupt("break", 22);
+            return _context2.abrupt("break", 24);
           case 14:
             divisi.value = res.data.data;
-            return _context2.abrupt("break", 22);
+            return _context2.abrupt("break", 24);
           case 16:
             room.value = res.data.data;
-            return _context2.abrupt("break", 22);
+            return _context2.abrupt("break", 24);
           case 18:
             booking.value = res.data.data;
-            return _context2.abrupt("break", 22);
+            return _context2.abrupt("break", 24);
           case 20:
             detailBooking.value = res.data.data;
-            return _context2.abrupt("break", 22);
+            return _context2.abrupt("break", 24);
           case 22:
+            category.value = res.data.data;
+            return _context2.abrupt("break", 24);
+          case 24:
             pagination.value = {
+              total: res.data.total,
               currentPage: res.data.current_page,
               from: res.data.from,
               to: res.data.to,
@@ -11606,17 +11610,17 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
               prevPage: res.data.prev_page_url,
               perPage: res.data.per_page
             };
-            _context2.next = 28;
+            _context2.next = 30;
             break;
-          case 25:
-            _context2.prev = 25;
+          case 27:
+            _context2.prev = 27;
             _context2.t1 = _context2["catch"](0);
             console.log(_context2.t1);
-          case 28:
+          case 30:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[0, 25]]);
+      }, _callee2, null, [[0, 27]]);
     }));
     return function getPagination(_x3, _x4) {
       return _ref2.apply(this, arguments);
@@ -11634,31 +11638,35 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
           case 3:
             res = _context3.sent;
             _context3.t0 = name;
-            _context3.next = _context3.t0 === "tamu" ? 7 : _context3.t0 === "staff" ? 9 : _context3.t0 === "shift" ? 11 : _context3.t0 === "divisi" ? 13 : _context3.t0 === "room" ? 15 : _context3.t0 === "booking" ? 17 : _context3.t0 === "detail-booking" ? 19 : 21;
+            _context3.next = _context3.t0 === "tamu" ? 7 : _context3.t0 === "staff" ? 9 : _context3.t0 === "shift" ? 11 : _context3.t0 === "divisi" ? 13 : _context3.t0 === "kamar" ? 15 : _context3.t0 === "booking" ? 17 : _context3.t0 === "detail-booking" ? 19 : _context3.t0 === "kategori" ? 21 : 23;
             break;
           case 7:
             guest.value = res.data.data;
-            return _context3.abrupt("break", 21);
+            return _context3.abrupt("break", 23);
           case 9:
             staff.value = res.data.data;
-            return _context3.abrupt("break", 21);
+            return _context3.abrupt("break", 23);
           case 11:
             shift.value = res.data.data;
-            return _context3.abrupt("break", 21);
+            return _context3.abrupt("break", 23);
           case 13:
             divisi.value = res.data.data;
-            return _context3.abrupt("break", 21);
+            return _context3.abrupt("break", 23);
           case 15:
             room.value = res.data.data;
-            return _context3.abrupt("break", 21);
+            return _context3.abrupt("break", 23);
           case 17:
             booking.value = res.data.data;
-            return _context3.abrupt("break", 21);
+            return _context3.abrupt("break", 23);
           case 19:
             detailBooking.value = res.data.data;
-            return _context3.abrupt("break", 21);
+            return _context3.abrupt("break", 23);
           case 21:
+            category.value = res.data.data;
+            return _context3.abrupt("break", 23);
+          case 23:
             pagination.value = {
+              total: res.data.total,
               currentPage: res.data.current_page,
               from: res.data.from,
               to: res.data.to,
@@ -11666,17 +11674,17 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
               prevPage: res.data.prev_page_url,
               perPage: res.data.per_page
             };
-            _context3.next = 27;
+            _context3.next = 29;
             break;
-          case 24:
-            _context3.prev = 24;
+          case 26:
+            _context3.prev = 26;
             _context3.t1 = _context3["catch"](0);
             console.log(_context3.t1);
-          case 27:
+          case 29:
           case "end":
             return _context3.stop();
         }
-      }, _callee3, null, [[0, 24]]);
+      }, _callee3, null, [[0, 26]]);
     }));
     return function nextOrPrev(_x5, _x6) {
       return _ref3.apply(this, arguments);
@@ -11695,6 +11703,7 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
             res = _context4.sent;
             staff.value = res.data.data;
             pagination.value = {
+              total: res.data.total,
               currentPage: res.data.current_page,
               from: res.data.from,
               to: res.data.to,
@@ -11732,6 +11741,7 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
             console.log("".concat(GUEST_URL, "/").concat(index));
             guest.value = res.data.data;
             pagination.value = {
+              total: res.data.total,
               currentPage: res.data.current_page,
               from: res.data.from,
               to: res.data.to,
@@ -11769,6 +11779,7 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
             res = _context6.sent;
             shift.value = res.data.data;
             pagination.value = {
+              total: res.data.total,
               currentPage: res.data.current_page,
               from: res.data.from,
               to: res.data.to,
@@ -11805,6 +11816,7 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
             res = _context7.sent;
             divisi.value = res.data.data;
             pagination.value = {
+              total: res.data.total,
               currentPage: res.data.current_page,
               from: res.data.from,
               to: res.data.to,
@@ -11841,6 +11853,7 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
             res = _context8.sent;
             booking.value = res.data.data;
             pagination.value = {
+              total: res.data.total,
               currentPage: res.data.current_page,
               from: res.data.from,
               to: res.data.to,
@@ -11878,6 +11891,7 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
             room.value = res.data.data;
             console.log(res.data.data);
             pagination.value = {
+              total: res.data.total,
               currentPage: res.data.current_page,
               from: res.data.from,
               to: res.data.to,
@@ -11914,6 +11928,7 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
             res = _context10.sent;
             category.value = res.data.data;
             pagination.value = {
+              total: res.data.total,
               currentPage: res.data.current_page,
               from: res.data.from,
               to: res.data.to,
@@ -12012,17 +12027,18 @@ var useStaffStore = (0,pinia__WEBPACK_IMPORTED_MODULE_3__.defineStore)("staff", 
           case 3:
             res = _context.sent;
             staff.value = res.data;
-            _context.next = 10;
+            console.log(res.data);
+            _context.next = 11;
             break;
-          case 7:
-            _context.prev = 7;
+          case 8:
+            _context.prev = 8;
             _context.t0 = _context["catch"](0);
             console.log(err);
-          case 10:
+          case 11:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[0, 7]]);
+      }, _callee, null, [[0, 8]]);
     }));
     return function searchData(_x) {
       return _ref.apply(this, arguments);
@@ -12039,6 +12055,7 @@ var useStaffStore = (0,pinia__WEBPACK_IMPORTED_MODULE_3__.defineStore)("staff", 
             return axios__WEBPACK_IMPORTED_MODULE_4__["default"].patch("http://127.0.0.1:8000/api/staff/".concat(payload.id), payload);
           case 3:
             singleData.value = [];
+            console.log("payload from store" + payload.nama);
             Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_2__.mixin({
               toast: true,
               position: "top-end",
@@ -12054,17 +12071,18 @@ var useStaffStore = (0,pinia__WEBPACK_IMPORTED_MODULE_3__.defineStore)("staff", 
               icon: "success",
               title: "Update successfully"
             });
-            _context2.next = 11;
+            _context2.next = 13;
             break;
-          case 8:
-            _context2.prev = 8;
+          case 9:
+            _context2.prev = 9;
             _context2.t0 = _context2["catch"](0);
-            console.log(err);
-          case 11:
+            console.log("payload from store " + payload);
+            console.log(_context2.t0);
+          case 13:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[0, 8]]);
+      }, _callee2, null, [[0, 9]]);
     }));
     return function updateData(_x2) {
       return _ref2.apply(this, arguments);
@@ -12166,11 +12184,10 @@ var useStaffStore = (0,pinia__WEBPACK_IMPORTED_MODULE_3__.defineStore)("staff", 
             });
             staff.value.push(res.data.data);
             status.value = res.data.success;
-            console.log(res.data.success);
-            _context5.next = 16;
+            _context5.next = 15;
             break;
-          case 12:
-            _context5.prev = 12;
+          case 11:
+            _context5.prev = 11;
             _context5.t0 = _context5["catch"](1);
             sweetalert2__WEBPACK_IMPORTED_MODULE_2__.fire({
               icon: "error",
@@ -12178,14 +12195,14 @@ var useStaffStore = (0,pinia__WEBPACK_IMPORTED_MODULE_3__.defineStore)("staff", 
               text: "Something went wrong!"
             });
             console.log(_context5.t0);
-          case 16:
-            _context5.prev = 16;
+          case 15:
+            _context5.prev = 15;
             return _context5.abrupt("return", status.value);
-          case 19:
+          case 18:
           case "end":
             return _context5.stop();
         }
-      }, _callee5, null, [[1, 12, 16, 19]]);
+      }, _callee5, null, [[1, 11, 15, 18]]);
     }));
     return function addData(_x5) {
       return _ref5.apply(this, arguments);

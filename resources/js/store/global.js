@@ -24,6 +24,7 @@ export const useGlobalStore = defineStore(
         const detailBooking = ref();
         const singleData = ref([]);
         const pagination = ref({
+            total: 0,
             currentPage: 0,
             from: 0,
             to: 0,
@@ -65,7 +66,7 @@ export const useGlobalStore = defineStore(
                     case "divisi":
                         divisi.value = res.data.data;
                         break;
-                    case "room":
+                    case "kamar":
                         room.value = res.data.data;
                         break;
                     case "booking":
@@ -74,8 +75,12 @@ export const useGlobalStore = defineStore(
                     case "detail-booking":
                         detailBooking.value = res.data.data;
                         break;
+                    case "kategori":
+                        category.value = res.data.data;
+                        break;
                 }
                 pagination.value = {
+                    total: res.data.total,
                     currentPage: res.data.current_page,
                     from: res.data.from,
                     to: res.data.to,
@@ -104,7 +109,7 @@ export const useGlobalStore = defineStore(
                     case "divisi":
                         divisi.value = res.data.data;
                         break;
-                    case "room":
+                    case "kamar":
                         room.value = res.data.data;
                         break;
                     case "booking":
@@ -113,8 +118,12 @@ export const useGlobalStore = defineStore(
                     case "detail-booking":
                         detailBooking.value = res.data.data;
                         break;
+                    case "kategori":
+                        category.value = res.data.data;
+                        break;
                 }
                 pagination.value = {
+                    total: res.data.total,
                     currentPage: res.data.current_page,
                     from: res.data.from,
                     to: res.data.to,
@@ -132,6 +141,7 @@ export const useGlobalStore = defineStore(
                 const res = await axios.get(`${STAFF_URL}/${index}`);
                 staff.value = res.data.data;
                 pagination.value = {
+                    total: res.data.total,
                     currentPage: res.data.current_page,
                     from: res.data.from,
                     to: res.data.to,
@@ -150,6 +160,7 @@ export const useGlobalStore = defineStore(
                 console.log(`${GUEST_URL}/${index}`);
                 guest.value = res.data.data;
                 pagination.value = {
+                    total: res.data.total,
                     currentPage: res.data.current_page,
                     from: res.data.from,
                     to: res.data.to,
@@ -168,6 +179,7 @@ export const useGlobalStore = defineStore(
                 const res = await axios.get(`${SHIFT_URL}/${index}`);
                 shift.value = res.data.data;
                 pagination.value = {
+                    total: res.data.total,
                     currentPage: res.data.current_page,
                     from: res.data.from,
                     to: res.data.to,
@@ -184,6 +196,7 @@ export const useGlobalStore = defineStore(
                 const res = await axios.get(`${DIVISI_URL}/${index}`);
                 divisi.value = res.data.data;
                 pagination.value = {
+                    total: res.data.total,
                     currentPage: res.data.current_page,
                     from: res.data.from,
                     to: res.data.to,
@@ -200,6 +213,7 @@ export const useGlobalStore = defineStore(
                 const res = await axios.get(`${BOOKING_URL}/${index}`);
                 booking.value = res.data.data;
                 pagination.value = {
+                    total: res.data.total,
                     currentPage: res.data.current_page,
                     from: res.data.from,
                     to: res.data.to,
@@ -217,6 +231,7 @@ export const useGlobalStore = defineStore(
                 room.value = res.data.data;
                 console.log(res.data.data);
                 pagination.value = {
+                    total: res.data.total,
                     currentPage: res.data.current_page,
                     from: res.data.from,
                     to: res.data.to,
@@ -233,6 +248,7 @@ export const useGlobalStore = defineStore(
                 const res = await axios.get(`${CATEGORY_URL}/${index}`);
                 category.value = res.data.data;
                 pagination.value = {
+                    total: res.data.total,
                     currentPage: res.data.current_page,
                     from: res.data.from,
                     to: res.data.to,

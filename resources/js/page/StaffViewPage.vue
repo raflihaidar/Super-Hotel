@@ -27,7 +27,7 @@
                 </tr>
             </template>
         </TableComponent>
-        <TableComponent v-else>
+        <TableComponent v-else :pagination="pagination" :addData="true" route="add-staff" @handleSearch="searchData">
             <template #body>
                 <tr class="odd:bg-white even:bg-green-100">
                     <td class="w-full p-4 text-center text-red-500 font-bold text-2xl">

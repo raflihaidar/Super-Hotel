@@ -106,7 +106,8 @@
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <thead class="text-xs text-white uppercase  dark:text-gray-400"
+                            :class="header ? 'bg-green-700 dark:bg-gray-700' : ''">
                             <tr>
                                 <th scope="col" class="px-4 py-3" v-for="(item, index) in header" :key="index">{{ item }}
                                 </th>

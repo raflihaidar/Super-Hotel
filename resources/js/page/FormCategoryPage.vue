@@ -1,5 +1,8 @@
 <template>
     <div class="w-[80%] mx-auto">
+        <div v-if="statusInput">
+            <AlertSuccesComponent />
+        </div>
         <form action="" class="grid grid-cols-1 gap-y-3" @submit.prevent="addData" enctype="multipart/form-data">
             <p class="text-3xl font-bold mb-5">Input New Category</p>
             <div class="mb-5">
@@ -36,7 +39,7 @@
                     placeholder="Add Description here"></textarea>
             </div>
 
-            <div class="gap-x-10">
+            <div class="flex justify-end mt-10">
                 <button type="button"
                     class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Cancel</button>
                 <button type="submit"
@@ -49,7 +52,9 @@
 <script setup>
 import { ref } from 'vue';
 import { useCategoryStore } from '../store/category';
+import AlertSuccesComponent from '../components/AlertSuccesComponent.vue';
 
+const statusInput = ref(null)
 const categoryStore = useCategoryStore()
 const payload = ref({
     kategori: "",
@@ -58,8 +63,8 @@ const payload = ref({
     harga: null,
     jumlah_kamar: null
 })
-const addData = () => {
-    categoryStore.addData(payload.value)
+const addData = async () => {
+    statusInput.value = await categoryStore.addData(payload.value)
 }
 
 </script>

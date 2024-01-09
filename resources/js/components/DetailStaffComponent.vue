@@ -140,9 +140,17 @@
             </div>
             <div>
                 <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-                <input type="text" id="status" v-model="singleData.nama_status" @click="changeStatus"
-                    class="bg-gray-50 border cursor-pointer border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
-                    disabled>
+                <div class="flex justify-between gap-x-2">
+                    <input type="text" id="status" v-model="singleData.nama_status" @click="changeStatus" disabled
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+                    <span class="p-2 bg-red-600 cursor-pointer text-white rounded-lg" @click="changeStatus"
+                        v-if="singleData.id_status == 1">
+                        <BlockIcon />
+                    </span>
+                    <span v-else class="p-2 bg-green-400 cursor-pointer text-white rounded-lg" @click="changeStatus">
+                        <CheckIcon />
+                    </span>
+                </div>
             </div>
             <div>
                 <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
@@ -165,6 +173,8 @@ import { storeToRefs } from 'pinia';
 import { onMounted, ref } from 'vue';
 import { useStaffStore } from '../store/staff';
 import SpinnerComponent from './SpinnerComponent.vue';
+import BlockIcon from '../icons/BlockIcon.vue';
+import CheckIcon from '../icons/CheckIcon.vue';
 import { useShiftStore } from '../store/shift';
 import { useDivisiStore } from '../store/divisi';
 
@@ -182,6 +192,7 @@ const { divisi } = storeToRefs(divisiStore)
 const updateData = (payload) => {
     emits('closeModal')
     staffStore.updateData(payload)
+    console.log(singleData.value)
 }
 
 const changeShift = (item) => {
@@ -195,9 +206,13 @@ const changeDivisi = (item) => {
 }
 
 const changeStatus = () => {
-    singleData.value.id_status = 1;
-    singleData.value.nama_divisi = "Nonaktif"
-    console.log(singleData.value.id_status)
+    if (singleData.value.id_status == 1) {
+        singleData.value.id_status = 2;
+        singleData.value.nama_status = "Inactive"
+    } else {
+        singleData.value.id_status = 1;
+        singleData.value.nama_status = "Active"
+    }
 }
 
 onMounted(() => {

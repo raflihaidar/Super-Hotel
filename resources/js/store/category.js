@@ -2,6 +2,7 @@ import { defineStore, storeToRefs } from "pinia";
 import { useGlobalStore } from "./global.js";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { ref } from "vue";
 
 export const useCategoryStore = defineStore(
     "category",
@@ -19,8 +20,8 @@ export const useCategoryStore = defineStore(
                     `http://127.0.0.1:8000/api/kategori/search?query=${search}`
                 );
                 category.value = res.data;
-            } catch {
-                console.log(err);
+            } catch (error) {
+                console.log(error);
             }
         };
 
@@ -106,7 +107,7 @@ export const useCategoryStore = defineStore(
                     title: "Update successfully",
                 });
                 status.value = res.data.success;
-                category.value = res.data.data;
+                category.value.push(res.data.data);
             } catch (error) {
                 Swal.fire({
                     icon: "error",

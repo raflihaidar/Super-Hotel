@@ -4,7 +4,7 @@
             <span class="text-xs text-gray-700 dark:text-gray-400">
                 Showing <span class="font-semibold text-gray-900 dark:text-white">{{ pagination.from }}</span> to <span
                     class="font-semibold text-gray-900 dark:text-white">{{ pagination.to }}</span> of <span
-                    class="font-semibold text-gray-900 dark:text-white">100</span> Entries
+                    class="font-semibold text-gray-900 dark:text-white">{{ pagination.total }}</span> Entries
             </span>
             <div>
                 <DropDownComponent />
@@ -26,27 +26,26 @@
 <script setup>
 import { initFlowbite } from 'flowbite';
 import { storeToRefs } from 'pinia';
-import { onMounted, toRefs } from 'vue';
+import { inject, onMounted } from 'vue';
 import { useGlobalStore } from '../store/global';
 import DropDownComponent from './DropDownComponent.vue';
 
-const props = defineProps({
-    name: String
-})
 
+const path = inject('path')
 const store = useGlobalStore()
 const { pagination } = storeToRefs(store)
-const { name } = toRefs(props)
+
 
 const nextPage = () => {
     if (pagination.value.nextPage != null) {
-        store.nextOrPrev(name.value, pagination.value.nextPage)
+        store.nextOrPrev(path, pagination.value.nextPage)
+        console.log(path)
     }
 }
 
 const prevPage = () => {
     if (pagination.value.prevPage != null) {
-        store.nextOrPrev(name.value, pagination.value.prevPage)
+        store.nextOrPrev(path, pagination.value.prevPage)
     }
 }
 

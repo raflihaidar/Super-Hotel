@@ -27,6 +27,7 @@ export const useRoomStore = defineStore(
                 const res = await axios.get(
                     `http://127.0.0.1:8000/api/kamar/search?query=${search}`
                 );
+                console.log("response : ", res.data);
                 room.value = res.data;
             } catch {
                 Swal.fire({
@@ -128,13 +129,14 @@ export const useRoomStore = defineStore(
                     title: "Update successfully",
                 });
                 room.value.push(res.data.data);
-                status.value(res.data.success);
+                status.value = res.data.success;
             } catch (error) {
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
                     text: "Something went wrong!",
                 });
+                console.log(error);
             } finally {
                 return status.value;
             }

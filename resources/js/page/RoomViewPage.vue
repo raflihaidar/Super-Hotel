@@ -1,12 +1,14 @@
 <template>
-    <TableComponent :header="header" tableName="Room" :addData="true" route="add-room" v-if="room.length != 0">
+    <TableComponent :header="header" tableName="Room" :pagination="pagination" :addData="true" route="add-room"
+        @handleSearch="searchData" v-if="room.length != 0">
         <template #body>
-            <tr class="border-b dark:border-gray-700" v-for="(item, index) in room" :key="index">
+            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
+                v-for="(item, index) in room" :key="index">
                 <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{
                     item.room_name }}</th>
                 <td class="px-4 py-3">{{ item.kategori }}</td>
                 <td class="px-4 py-3">{{ item.fasilitas }}</td>
-                <td class="px-4 py-3">{{ item.harga }}</td>
+                <td class="px-4 py-3">Rp {{ item.harga }}</td>
                 <td class="px-4 py-3">{{ item.status }}</td>
                 <td>
                     <a class="font-medium text-green-500 dark:text-green-500 hover:underline cursor-pointer mr-4"
@@ -17,7 +19,7 @@
             </tr>
         </template>
     </TableComponent>
-    <TableComponent v-else>
+    <TableComponent v-else :pagination="pagination" :addData="true" route="add-room" @handleSearch="searchData">
         <template #body>
             <tr class="odd:bg-white even:bg-green-100">
                 <td class="w-full p-4 text-center text-red-500 font-bold text-2xl">
@@ -55,9 +57,10 @@ import TableComponent from '../components/TableComponent.vue';
 import DetailRoomCompoonent from '../components/DetailRoomComponent.vue'
 import { useRoomStore } from '../store/room'
 import { useGlobalStore } from '../store/global';
-import { ref, watch, onMounted } from 'vue';
+import { ref, watch, onMounted, provide } from 'vue';
 import { storeToRefs } from 'pinia';
 
+provide('path', 'kamar')
 const roomStore = useRoomStore()
 const store = useGlobalStore()
 const header = ref(['NOMOR KAMAR', 'KATEGORI', 'FASILITAS', 'HARGA', 'STATUS'])
@@ -82,6 +85,7 @@ const fetchData = () => {
 
 const searchData = (search) => {
     roomStore.searchData(search)
+    console.log("hello")
 }
 
 onMounted(() => {

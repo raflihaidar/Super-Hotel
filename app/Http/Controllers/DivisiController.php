@@ -10,7 +10,7 @@ class DivisiController extends Controller
     public function index($index)
     {
         $page = $index;
-        $divisi = Divisi::simplePaginate($page);
+        $divisi = Divisi::paginate($page);
         return response()->json($divisi);
     }
     public function store(Request $request)

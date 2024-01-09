@@ -22,7 +22,7 @@ class StaffController extends Controller
             'shift.nama as nama_shift',
             'status_staff.nama as nama_status'
         )
-        ->simplePaginate($page);
+        ->paginate($page);
         return response()->json($staff);
     }
     public function store(ImageStoreRequest $request)

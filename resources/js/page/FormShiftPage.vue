@@ -25,7 +25,7 @@
                     required>
             </div>
 
-            <div class="gap-x-10">
+            <div class="flex justify-end mt-10">
                 <button type="button"
                     class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Cancel</button>
                 <button type="submit"
@@ -39,7 +39,6 @@
 import { ref } from 'vue';
 import { useShiftStore } from '../store/shift';
 import AlertSuccesComponent from '../components/AlertSuccesComponent.vue';
-import AlertErrorComponent from '../components/AlertErrorComponent.vue'
 
 const shiftStore = useShiftStore()
 const statusInput = ref(null)

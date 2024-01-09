@@ -26,7 +26,6 @@ const emits = defineEmits(['handleSearch'])
 
 const handleSearch = (search) => {
     emits('handleSearch', search)
-    console.log('connect', search)
 }
 
 const deleteValue = () => {

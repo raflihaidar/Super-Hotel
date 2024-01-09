@@ -10,7 +10,7 @@ class ShiftController extends Controller
     public function index($index)
     {
         $page = $index;
-        $shift = Shift::simplePaginate($page);
+        $shift = Shift::paginate($page);
         return response()->json($shift);
     }
     public function store(Request $request)

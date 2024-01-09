@@ -5,9 +5,11 @@
             <template #body>
                 <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
                     v-for="(item, index) in category" :key="index">
-                    <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{
-                        item.id }}</th>
-                    <td class="px-4 py-3">{{ item.kategori }}</td>
+                    <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {{ item.kategori }}</th>
+                    <td class="px-4 py-3">{{ item.fasilitas }}</td>
+                    <td class="px-4 py-3">{{ item.deskripsi }}</td>
+                    <td class="px-4 py-3">{{ item.harga }}</td>
                     <td>
                         <a class="font-medium text-green-500 dark:text-green-500 hover:underline cursor-pointer mr-4"
                             @click="getSingleData(item.id)" data-modal-target="form-category"
@@ -18,7 +20,7 @@
                 </tr>
             </template>
         </TableComponent>
-        <TableComponent v-else>
+        <TableComponent v-else :pagination="pagination" :addData="true" route="add-category" @handleSearch="searchData">
             <template #body>
                 <tr class="odd:bg-white even:bg-green-100">
                     <td class="w-full p-4 text-center text-red-500 font-bold text-2xl">
@@ -61,7 +63,7 @@ import { useCategoryStore } from '../store/category';
 
 
 provide('path', 'kategori')
-const header = ref(['ID', 'KATEGORI'])
+const header = ref(['KATEGORI', 'FASILITAS', 'DESKRIPSI', 'HARGA'])
 const categoryStore = useCategoryStore()
 const store = useGlobalStore()
 const { category, singleData, pagination } = storeToRefs(categoryStore)

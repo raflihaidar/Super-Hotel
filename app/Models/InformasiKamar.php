@@ -27,7 +27,7 @@ class InformasiKamar extends Model
     public function toSearchableArray()
     {
         $array = [
-            'id' => '',
+            'room_name' => '',
             'kategori_kamar.kategori' => '',
             'status_kamar.nama' => '',
         ];

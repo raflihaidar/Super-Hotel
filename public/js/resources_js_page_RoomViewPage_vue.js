@@ -209,36 +209,31 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   __name: 'PaginationComponent',
-  props: {
-    name: String
-  },
   setup: function setup(__props, _ref) {
     var __expose = _ref.expose;
     __expose();
-    var props = __props;
+    var path = (0,vue__WEBPACK_IMPORTED_MODULE_1__.inject)('path');
     var store = (0,_store_global__WEBPACK_IMPORTED_MODULE_2__.useGlobalStore)();
     var _storeToRefs = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.storeToRefs)(store),
       pagination = _storeToRefs.pagination;
-    var _toRefs = (0,vue__WEBPACK_IMPORTED_MODULE_1__.toRefs)(props),
-      name = _toRefs.name;
     var nextPage = function nextPage() {
       if (pagination.value.nextPage != null) {
-        store.nextOrPrev(name.value, pagination.value.nextPage);
+        store.nextOrPrev(path, pagination.value.nextPage);
+        console.log(path);
       }
     };
     var prevPage = function prevPage() {
       if (pagination.value.prevPage != null) {
-        store.nextOrPrev(name.value, pagination.value.prevPage);
+        store.nextOrPrev(path, pagination.value.prevPage);
       }
     };
     (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)(function () {
       (0,flowbite__WEBPACK_IMPORTED_MODULE_0__.initFlowbite)();
     });
     var __returned__ = {
-      props: props,
+      path: path,
       store: store,
       pagination: pagination,
-      name: name,
       nextPage: nextPage,
       prevPage: prevPage,
       get initFlowbite() {
@@ -247,8 +242,8 @@ __webpack_require__.r(__webpack_exports__);
       get storeToRefs() {
         return pinia__WEBPACK_IMPORTED_MODULE_4__.storeToRefs;
       },
+      inject: vue__WEBPACK_IMPORTED_MODULE_1__.inject,
       onMounted: vue__WEBPACK_IMPORTED_MODULE_1__.onMounted,
-      toRefs: vue__WEBPACK_IMPORTED_MODULE_1__.toRefs,
       get useGlobalStore() {
         return _store_global__WEBPACK_IMPORTED_MODULE_2__.useGlobalStore;
       },
@@ -290,7 +285,6 @@ __webpack_require__.r(__webpack_exports__);
     var emits = __emit;
     var handleSearch = function handleSearch(search) {
       emits('handleSearch', search);
-      console.log('connect', search);
     };
     var deleteValue = function deleteValue() {
       valueSearchInput.value = '';
@@ -439,6 +433,7 @@ __webpack_require__.r(__webpack_exports__);
   setup: function setup(__props, _ref) {
     var __expose = _ref.expose;
     __expose();
+    (0,vue__WEBPACK_IMPORTED_MODULE_5__.provide)('path', 'kamar');
     var roomStore = (0,_store_room__WEBPACK_IMPORTED_MODULE_3__.useRoomStore)();
     var store = (0,_store_global__WEBPACK_IMPORTED_MODULE_4__.useGlobalStore)();
     var header = (0,vue__WEBPACK_IMPORTED_MODULE_5__.ref)(['NOMOR KAMAR', 'KATEGORI', 'FASILITAS', 'HARGA', 'STATUS']);
@@ -460,6 +455,7 @@ __webpack_require__.r(__webpack_exports__);
     };
     var searchData = function searchData(search) {
       roomStore.searchData(search);
+      console.log("hello");
     };
     (0,vue__WEBPACK_IMPORTED_MODULE_5__.onMounted)(function () {
       fetchData();
@@ -493,6 +489,7 @@ __webpack_require__.r(__webpack_exports__);
       ref: vue__WEBPACK_IMPORTED_MODULE_5__.ref,
       watch: vue__WEBPACK_IMPORTED_MODULE_5__.watch,
       onMounted: vue__WEBPACK_IMPORTED_MODULE_5__.onMounted,
+      provide: vue__WEBPACK_IMPORTED_MODULE_5__.provide,
       get storeToRefs() {
         return pinia__WEBPACK_IMPORTED_MODULE_6__.storeToRefs;
       }
@@ -748,11 +745,11 @@ var _hoisted_4 = {
 var _hoisted_5 = {
   "class": "font-semibold text-gray-900 dark:text-white"
 };
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_6 = {
   "class": "font-semibold text-gray-900 dark:text-white"
-}, "100", -1 /* HOISTED */);
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("nav", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Showing "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.pagination.from), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" to "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.pagination.to), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" of "), _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Entries ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DropDownComponent"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("nav", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Showing "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.pagination.from), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" to "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.pagination.to), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" of "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.pagination.total), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Entries ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DropDownComponent"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "inline-flex mt-2 xs:mt-0 w-[30%]"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: $setup.prevPage,
@@ -1022,16 +1019,13 @@ var _hoisted_9 = {
 var _hoisted_10 = {
   "class": "w-full text-sm text-left text-gray-500 dark:text-gray-400"
 };
-var _hoisted_11 = {
-  "class": "text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
-};
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
   scope: "col",
   "class": "px-4 py-3"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "sr-only"
 }, "Actions")], -1 /* HOISTED */);
-var _hoisted_13 = {
+var _hoisted_12 = {
   "class": "flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-10",
   "aria-label": "Table navigation"
 };
@@ -1050,13 +1044,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Add " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.tableName), 1 /* TEXT */)];
     }),
     _: 1 /* STABLE */
-  }, 8 /* PROPS */, ["to"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_8])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.header, function (item, index) {
+  }, 8 /* PROPS */, ["to"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_8])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-xs text-white uppercase dark:text-gray-400", $setup.header ? 'bg-green-700 dark:bg-gray-700' : ''])
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.header, function (item, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("th", {
       scope: "col",
       "class": "px-4 py-3",
       key: index
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item), 1 /* TEXT */);
-  }), 128 /* KEYED_FRAGMENT */)), _hoisted_12])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "body")])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["PaginationComponent"], {
+  }), 128 /* KEYED_FRAGMENT */)), _hoisted_11])], 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "body")])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["PaginationComponent"], {
     pagination: $setup.pagination
   }, null, 8 /* PROPS */, ["pagination"])])])])]);
 }
@@ -1124,15 +1120,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     key: 0,
     header: $setup.header,
     tableName: "Room",
+    pagination: $setup.pagination,
     addData: true,
-    route: "add-room"
+    route: "add-room",
+    onHandleSearch: $setup.searchData
   }, {
     body: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.room, function (item, index) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
-          "class": "border-b dark:border-gray-700",
+          "class": "odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600",
           key: index
-        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.room_name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.kategori), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.fasilitas), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.harga), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.status), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.room_name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.kategori), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.fasilitas), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_4, "Rp " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.harga), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.status), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
           "class": "font-medium text-green-500 dark:text-green-500 hover:underline cursor-pointer mr-4",
           onClick: function onClick($event) {
             return $setup.getSingleData(item.id);
@@ -1148,14 +1146,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }), 128 /* KEYED_FRAGMENT */))];
     }),
     _: 1 /* STABLE */
-  }, 8 /* PROPS */, ["header"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["TableComponent"], {
-    key: 1
+  }, 8 /* PROPS */, ["header", "pagination"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["TableComponent"], {
+    key: 1,
+    pagination: $setup.pagination,
+    addData: true,
+    route: "add-room",
+    onHandleSearch: $setup.searchData
   }, {
     body: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [_hoisted_8];
     }),
     _: 1 /* STABLE */
-  })), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["ModalComponent"], {
+  }, 8 /* PROPS */, ["pagination"])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["ModalComponent"], {
     id_modal: "form-room"
   }, {
     header: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -12548,6 +12550,7 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
   var detailBooking = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)();
   var singleData = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
   var pagination = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({
+    total: 0,
     currentPage: 0,
     from: 0,
     to: 0,
@@ -12601,31 +12604,35 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
             res = _context2.sent;
             console.log(url);
             _context2.t0 = url;
-            _context2.next = _context2.t0 === "tamu" ? 8 : _context2.t0 === "staff" ? 10 : _context2.t0 === "shift" ? 12 : _context2.t0 === "divisi" ? 14 : _context2.t0 === "room" ? 16 : _context2.t0 === "booking" ? 18 : _context2.t0 === "detail-booking" ? 20 : 22;
+            _context2.next = _context2.t0 === "tamu" ? 8 : _context2.t0 === "staff" ? 10 : _context2.t0 === "shift" ? 12 : _context2.t0 === "divisi" ? 14 : _context2.t0 === "kamar" ? 16 : _context2.t0 === "booking" ? 18 : _context2.t0 === "detail-booking" ? 20 : _context2.t0 === "kategori" ? 22 : 24;
             break;
           case 8:
             guest.value = res.data.data;
-            return _context2.abrupt("break", 22);
+            return _context2.abrupt("break", 24);
           case 10:
             staff.value = res.data.data;
-            return _context2.abrupt("break", 22);
+            return _context2.abrupt("break", 24);
           case 12:
             shift.value = res.data.data;
-            return _context2.abrupt("break", 22);
+            return _context2.abrupt("break", 24);
           case 14:
             divisi.value = res.data.data;
-            return _context2.abrupt("break", 22);
+            return _context2.abrupt("break", 24);
           case 16:
             room.value = res.data.data;
-            return _context2.abrupt("break", 22);
+            return _context2.abrupt("break", 24);
           case 18:
             booking.value = res.data.data;
-            return _context2.abrupt("break", 22);
+            return _context2.abrupt("break", 24);
           case 20:
             detailBooking.value = res.data.data;
-            return _context2.abrupt("break", 22);
+            return _context2.abrupt("break", 24);
           case 22:
+            category.value = res.data.data;
+            return _context2.abrupt("break", 24);
+          case 24:
             pagination.value = {
+              total: res.data.total,
               currentPage: res.data.current_page,
               from: res.data.from,
               to: res.data.to,
@@ -12633,17 +12640,17 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
               prevPage: res.data.prev_page_url,
               perPage: res.data.per_page
             };
-            _context2.next = 28;
+            _context2.next = 30;
             break;
-          case 25:
-            _context2.prev = 25;
+          case 27:
+            _context2.prev = 27;
             _context2.t1 = _context2["catch"](0);
             console.log(_context2.t1);
-          case 28:
+          case 30:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[0, 25]]);
+      }, _callee2, null, [[0, 27]]);
     }));
     return function getPagination(_x3, _x4) {
       return _ref2.apply(this, arguments);
@@ -12661,31 +12668,35 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
           case 3:
             res = _context3.sent;
             _context3.t0 = name;
-            _context3.next = _context3.t0 === "tamu" ? 7 : _context3.t0 === "staff" ? 9 : _context3.t0 === "shift" ? 11 : _context3.t0 === "divisi" ? 13 : _context3.t0 === "room" ? 15 : _context3.t0 === "booking" ? 17 : _context3.t0 === "detail-booking" ? 19 : 21;
+            _context3.next = _context3.t0 === "tamu" ? 7 : _context3.t0 === "staff" ? 9 : _context3.t0 === "shift" ? 11 : _context3.t0 === "divisi" ? 13 : _context3.t0 === "kamar" ? 15 : _context3.t0 === "booking" ? 17 : _context3.t0 === "detail-booking" ? 19 : _context3.t0 === "kategori" ? 21 : 23;
             break;
           case 7:
             guest.value = res.data.data;
-            return _context3.abrupt("break", 21);
+            return _context3.abrupt("break", 23);
           case 9:
             staff.value = res.data.data;
-            return _context3.abrupt("break", 21);
+            return _context3.abrupt("break", 23);
           case 11:
             shift.value = res.data.data;
-            return _context3.abrupt("break", 21);
+            return _context3.abrupt("break", 23);
           case 13:
             divisi.value = res.data.data;
-            return _context3.abrupt("break", 21);
+            return _context3.abrupt("break", 23);
           case 15:
             room.value = res.data.data;
-            return _context3.abrupt("break", 21);
+            return _context3.abrupt("break", 23);
           case 17:
             booking.value = res.data.data;
-            return _context3.abrupt("break", 21);
+            return _context3.abrupt("break", 23);
           case 19:
             detailBooking.value = res.data.data;
-            return _context3.abrupt("break", 21);
+            return _context3.abrupt("break", 23);
           case 21:
+            category.value = res.data.data;
+            return _context3.abrupt("break", 23);
+          case 23:
             pagination.value = {
+              total: res.data.total,
               currentPage: res.data.current_page,
               from: res.data.from,
               to: res.data.to,
@@ -12693,17 +12704,17 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
               prevPage: res.data.prev_page_url,
               perPage: res.data.per_page
             };
-            _context3.next = 27;
+            _context3.next = 29;
             break;
-          case 24:
-            _context3.prev = 24;
+          case 26:
+            _context3.prev = 26;
             _context3.t1 = _context3["catch"](0);
             console.log(_context3.t1);
-          case 27:
+          case 29:
           case "end":
             return _context3.stop();
         }
-      }, _callee3, null, [[0, 24]]);
+      }, _callee3, null, [[0, 26]]);
     }));
     return function nextOrPrev(_x5, _x6) {
       return _ref3.apply(this, arguments);
@@ -12722,6 +12733,7 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
             res = _context4.sent;
             staff.value = res.data.data;
             pagination.value = {
+              total: res.data.total,
               currentPage: res.data.current_page,
               from: res.data.from,
               to: res.data.to,
@@ -12759,6 +12771,7 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
             console.log("".concat(GUEST_URL, "/").concat(index));
             guest.value = res.data.data;
             pagination.value = {
+              total: res.data.total,
               currentPage: res.data.current_page,
               from: res.data.from,
               to: res.data.to,
@@ -12796,6 +12809,7 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
             res = _context6.sent;
             shift.value = res.data.data;
             pagination.value = {
+              total: res.data.total,
               currentPage: res.data.current_page,
               from: res.data.from,
               to: res.data.to,
@@ -12832,6 +12846,7 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
             res = _context7.sent;
             divisi.value = res.data.data;
             pagination.value = {
+              total: res.data.total,
               currentPage: res.data.current_page,
               from: res.data.from,
               to: res.data.to,
@@ -12868,6 +12883,7 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
             res = _context8.sent;
             booking.value = res.data.data;
             pagination.value = {
+              total: res.data.total,
               currentPage: res.data.current_page,
               from: res.data.from,
               to: res.data.to,
@@ -12905,6 +12921,7 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
             room.value = res.data.data;
             console.log(res.data.data);
             pagination.value = {
+              total: res.data.total,
               currentPage: res.data.current_page,
               from: res.data.from,
               to: res.data.to,
@@ -12941,6 +12958,7 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
             res = _context10.sent;
             category.value = res.data.data;
             pagination.value = {
+              total: res.data.total,
               currentPage: res.data.current_page,
               from: res.data.from,
               to: res.data.to,
@@ -13045,22 +13063,23 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_3__.defineStore)("room", fu
             return axios__WEBPACK_IMPORTED_MODULE_4__["default"].get("http://127.0.0.1:8000/api/kamar/search?query=".concat(search));
           case 3:
             res = _context.sent;
+            console.log("response : ", res.data);
             room.value = res.data;
-            _context.next = 10;
+            _context.next = 11;
             break;
-          case 7:
-            _context.prev = 7;
+          case 8:
+            _context.prev = 8;
             _context.t0 = _context["catch"](0);
             sweetalert2__WEBPACK_IMPORTED_MODULE_2__.fire({
               icon: "error",
               title: "Oops...",
               text: "Something went wrong!"
             });
-          case 10:
+          case 11:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[0, 7]]);
+      }, _callee, null, [[0, 8]]);
     }));
     return function searchData(_x) {
       return _ref.apply(this, arguments);
@@ -13206,8 +13225,8 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_3__.defineStore)("room", fu
               title: "Update successfully"
             });
             room.value.push(res.data.data);
-            status.value(res.data.status);
-            _context5.next = 14;
+            status.value = res.data.success;
+            _context5.next = 15;
             break;
           case 11:
             _context5.prev = 11;
@@ -13217,14 +13236,15 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_3__.defineStore)("room", fu
               title: "Oops...",
               text: "Something went wrong!"
             });
-          case 14:
-            _context5.prev = 14;
+            console.log(_context5.t0);
+          case 15:
+            _context5.prev = 15;
             return _context5.abrupt("return", status.value);
-          case 17:
+          case 18:
           case "end":
             return _context5.stop();
         }
-      }, _callee5, null, [[1, 11, 14, 17]]);
+      }, _callee5, null, [[1, 11, 15, 18]]);
     }));
     return function addData(_x5) {
       return _ref5.apply(this, arguments);

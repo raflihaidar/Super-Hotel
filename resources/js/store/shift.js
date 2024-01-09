@@ -109,8 +109,7 @@ export const useShiftStore = defineStore(
                     title: "Update successfully",
                 });
                 shift.value.push(res.data.data);
-                console.log(shift.value);
-                status.value = true;
+                status.value = res.data.success;
             } catch (error) {
                 Swal.fire({
                     icon: "error",

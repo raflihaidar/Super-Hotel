@@ -21,6 +21,7 @@ export const useStaffStore = defineStore(
                     `http://127.0.0.1:8000/api/staff/search?query=${search}`
                 );
                 staff.value = res.data;
+                console.log(res.data);
             } catch {
                 console.log(err);
             }
@@ -33,6 +34,7 @@ export const useStaffStore = defineStore(
                     payload
                 );
                 singleData.value = [];
+                console.log("payload from store" + payload.nama);
                 const Toast = Swal.mixin({
                     toast: true,
                     position: "top-end",
@@ -48,7 +50,8 @@ export const useStaffStore = defineStore(
                     icon: "success",
                     title: "Update successfully",
                 });
-            } catch {
+            } catch (err) {
+                console.log("payload from store " + payload);
                 console.log(err);
             }
         };
@@ -115,7 +118,6 @@ export const useStaffStore = defineStore(
                 });
                 staff.value.push(res.data.data);
                 status.value = res.data.success;
-                console.log(res.data.success);
             } catch (error) {
                 Swal.fire({
                     icon: "error",

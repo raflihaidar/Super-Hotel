@@ -11,7 +11,7 @@ class TamuController extends Controller
     public function index($index)
     {
         $page = $index;
-        $tamu = Tamu::simplePaginate($page);
+        $tamu = Tamu::paginate($page);
         return response()->json($tamu);
     }
     public function store(Request $request)

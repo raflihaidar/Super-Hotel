@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 
 class KategoriKamar extends Model
 {
-    use HasFactory;
+    use HasFactory, Searchable;
 
     protected $connection = 'mysql';
 
@@ -22,4 +23,14 @@ class KategoriKamar extends Model
         'harga',
         'jumlah_kamar'
     ];
+
+    public function toSearchableArray()
+    {
+        $array = [
+            'kategori' => $this->kategori,
+            'fasilitas' => $this->fasilitas,
+        ];
+
+        return $array;
+    }
 }

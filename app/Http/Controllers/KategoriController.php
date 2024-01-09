@@ -10,7 +10,7 @@ class KategoriController extends Controller
     public function index($index)
     {
         $page = $index;
-        $kategori = KategoriKamar::simplePaginate($page);
+        $kategori = KategoriKamar::paginate($page);
         return response()->json($kategori);
     }
     public function store(Request $request)
