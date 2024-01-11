@@ -2,16 +2,6 @@
     <form class="p-10" @submit.prevent="updateData(singleData)">
         <div v-if="singleData.length != 0" class="grid gap-6 mb-6 md:grid-cols-2 items-center">
             <div>
-                <img :src="'/storage/' + singleData.foto_kamar" alt="Image Room">
-            </div>
-            <div>
-                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="image">Upload
-                    file</label>
-                <input @change="onChange" name="image"
-                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                    id="image" type="file">
-            </div>
-            <div>
                 <label for="room-name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Room Number
                 </label>
                 <input type="text" id="room-name" v-model="singleData.room_name"

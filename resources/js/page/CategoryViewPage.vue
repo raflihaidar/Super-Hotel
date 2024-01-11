@@ -1,7 +1,7 @@
 <template>
     <div class="w-full py-5 px-5">
         <TableComponent :header="header" route="add-category" tableName="Category" @handleSearch="searchData"
-            :pagination="pagination" :addData="true" v-if="category.length != 0">
+            :pagination="pagination" :addData="true" v-if="category">
             <template #body>
                 <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
                     v-for="(item, index) in category" :key="index">
@@ -9,7 +9,7 @@
                         {{ item.kategori }}</th>
                     <td class="px-4 py-3">{{ item.fasilitas }}</td>
                     <td class="px-4 py-3">{{ item.deskripsi }}</td>
-                    <td class="px-4 py-3">{{ item.harga }}</td>
+                    <td class="px-4 py-3">Rp {{ item.harga }}</td>
                     <td>
                         <a class="font-medium text-green-500 dark:text-green-500 hover:underline cursor-pointer mr-4"
                             @click="getSingleData(item.id)" data-modal-target="form-category"
@@ -47,7 +47,7 @@
                 </div>
             </template>
             <template #body>
-                <!-- <inputFormGuest @closeModal="isOpen = false" /> -->
+                <DetailCategoryComponent />
             </template>
         </ModalComponent>
     </div>
@@ -56,6 +56,7 @@
 <script setup>
 import ModalComponent from '../components/ModalComponent.vue';
 import TableComponent from '../components/TableComponent.vue';
+import DetailCategoryComponent from '../components/DetailCategoryComponent.vue';
 import { useGlobalStore } from '../store/global';
 import { ref, watch, onMounted, provide } from 'vue';
 import { storeToRefs } from 'pinia';

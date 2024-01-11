@@ -11851,6 +11851,7 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
             return axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("".concat(BOOKING_URL, "/").concat(index));
           case 3:
             res = _context8.sent;
+            console.log(res.data.data);
             booking.value = res.data.data;
             pagination.value = {
               total: res.data.total,
@@ -11861,17 +11862,17 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
               prevPage: res.data.prev_page_url,
               perPage: res.data.per_page
             };
-            _context8.next = 11;
+            _context8.next = 12;
             break;
-          case 8:
-            _context8.prev = 8;
+          case 9:
+            _context8.prev = 9;
             _context8.t0 = _context8["catch"](0);
             console.log(_context8.t0);
-          case 11:
+          case 12:
           case "end":
             return _context8.stop();
         }
-      }, _callee8, null, [[0, 8]]);
+      }, _callee8, null, [[0, 9]]);
     }));
     return function setBooking(_x11) {
       return _ref8.apply(this, arguments);

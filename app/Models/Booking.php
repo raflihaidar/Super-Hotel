@@ -14,12 +14,12 @@ class Booking extends Model
 
     protected $table = "booking";
 
+    public $timestamps = false;
+
     protected $fillable = [
         'id_status',
-        'id_jenis_pembayaran',
         'check_in',
         'check_out',
-        'jumlah_kamar',
         'tanggal_booking',
         'total',
     ];

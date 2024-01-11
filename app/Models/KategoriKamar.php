@@ -21,7 +21,8 @@ class KategoriKamar extends Model
         'fasilitas',
         'deskripsi',
         'harga',
-        'jumlah_kamar'
+        'jumlah_kamar',
+        'foto'
     ];
 
     public function toSearchableArray()

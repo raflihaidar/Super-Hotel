@@ -59,7 +59,7 @@
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                                         role="menuitem">Earnings</a>
                                 </li>
-                                <li>
+                                <li @click="handleSignOut">
                                     <a href="#"
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                                         role="menuitem">Sign out</a>
@@ -125,6 +125,7 @@
 import { ref } from "vue";
 import router from '../routes'
 import DashboardIconVue from "../icons/DashboardIcon.vue"
+import Swal from "sweetalert2";
 
 const handleClick = (item) => {
     router.push({ name: item.route })
@@ -146,6 +147,21 @@ const handleSubmenuClick = (menu, submenu) => {
     })
 }
 
+const handleSignOut = () => {
+    Swal.fire({
+        title: "Are you sure to Sign Out ?",
+        icon: "question",
+        showConfirmButton: true,
+        showCancelButton: true,
+        cancelButtonText: "Cancel",
+        confirmButtonText: "Sign Out",
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            router.push({ name: 'home' })
+        }
+    });
+}
+
 const sidebar = ref([
     {
         name: 'Dashboard',
@@ -165,20 +181,21 @@ const sidebar = ref([
                 name: 'Room',
                 route: 'room',
                 status: false,
-                icon: () => import('../icons/RoomIcon.vue')
+                icon: ""
             },
             {
                 name: 'Category',
                 route: 'category',
                 status: false,
-                icon: () => import('../icons/CategoryIcon.vue')
+                icon: ""
             },
             {
                 name: 'Booking',
+                route: 'booking',
                 status: false,
             },
         ],
-        icon: () => import('../icons/RoomMasterIcon.vue')
+        icon: ""
     },
     {
         name: 'Staff Management',
@@ -190,22 +207,22 @@ const sidebar = ref([
                 name: 'Staff',
                 route: 'staff',
                 status: false,
-                icon: () => import('../icons/StaffIcon.vue')
+                icon: ""
             },
             {
                 name: 'Shift',
                 route: 'shift',
                 status: false,
-                icon: () => import('../icons/ShiftIcon.vue')
+                icon: ""
             },
             {
                 name: 'Divisi',
                 route: 'divisi',
                 status: false,
-                icon: () => import('../icons/ShiftIcon.vue')
+                icon: ""
             }
         ],
-        icon: () => import('../icons/StaffManagementIcon.vue')
+        icon: ""
     },
     {
         name: 'Guest',
@@ -213,6 +230,6 @@ const sidebar = ref([
         status: false,
         hasSubmenu: false,
         submenu: [],
-        icon: () => import('../icons/GuestIcon.vue')
+        icon: ""
     }])
 </script>

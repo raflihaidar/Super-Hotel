@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\KategoriKamar;
+use App\Http\Requests\ImageStoreRequest;
+use File;
 
 class KategoriController extends Controller
 {
@@ -13,14 +15,17 @@ class KategoriController extends Controller
         $kategori = KategoriKamar::paginate($page);
         return response()->json($kategori);
     }
-    public function store(Request $request)
+    public function store(ImageStoreRequest $request)
     {
+        $validatedData = $request->validated();
+        $validatedData['image'] = $request->file('image')->store('kategori/image', 'public');
         $kategori = new KategoriKamar([
             'kategori' => $request->input('kategori'),
             'fasilitas' => $request->input('fasilitas'),
             'deskripsi' => $request->input('deskripsi'),
             'harga' => $request->input('harga'),
             'jumlah_kamar' => $request->input('jumlah_kamar'),
+            'foto' => $validatedData['image']
         ]);
         $kategori->save();
         return response()->json([
@@ -43,6 +48,10 @@ class KategoriController extends Controller
     public function destroy($id)
     {
         $kategori = KategoriKamar::find($id);
+        $imagepath = \public_path('/storage/'.$kategori->foto);
+         if(File::exists($imagepath)){
+             File::delete($imagepath);
+         }
         $kategori->delete();
         return response()->json('Category deleted!');
     }

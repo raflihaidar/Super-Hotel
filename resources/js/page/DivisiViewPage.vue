@@ -1,7 +1,7 @@
 <template>
     <div class="w-full">
-        <TableComponent :header="header" :addData="true" tableName="Divisi" @handleSearch="searchData"
-            v-if="divisi.length != 0" :pagination="pagination" route="add-divisi">
+        <TableComponent :header="header" :addData="true" tableName="Divisi" @handleSearch="searchData" v-if="divisi"
+            :pagination="pagination" route="add-divisi">
             <template #body>
                 <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
                     v-for="(item, index) in divisi" :key="index">

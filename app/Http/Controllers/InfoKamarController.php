@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\ImageStoreRequest;
 use App\Models\InformasiKamar;
-use File;
 
 class InfoKamarController extends Controller
 {
@@ -25,15 +24,12 @@ class InfoKamarController extends Controller
         ->paginate($page);
         return response()->json($kamar);
     }
-    public function store(ImageStoreRequest $request)
+    public function store(Request $request)
     {
-        $validatedData = $request->validated();
-        $validatedData['image'] = $request->file('image')->store('image', 'public');
         $kamar = new InformasiKamar([
             'room_name' => $request->input('room_name'),
             'id_kategori' => $request->input('id_kategori'),
             'id_status_kamar' => $request->input('id_status_kamar'),
-            'foto_kamar' => $validatedData['image']
         ]);
         $kamar->save();
         return response()->json([
@@ -69,10 +65,6 @@ class InfoKamarController extends Controller
     public function destroy($id)
     {
          $kamar  =InformasiKamar::find($id);
-         $imagepath = \public_path('/storage/'.$kamar->foto_kamar);
-         if(File::exists($imagepath)){
-             File::delete($imagepath);
-         }
          $kamar ->delete();
         return response()->json('Shift deleted!');
     }
@@ -95,5 +87,49 @@ class InfoKamarController extends Controller
             ->get();
 
         return response()->json(data: $kamar, status: 200);
+    }
+
+    public function checkAvailability(Request $request)
+    {
+        $checkIn = $request->input('checkin');
+        $checkOut = $request->input('checkout');
+
+        $distinctCategories = \DB::table('informasi_kamar')
+        ->join('kategori_kamar', 'kategori_kamar.id', '=', 'informasi_kamar.id_kategori')
+        ->where('informasi_kamar.id_status_kamar', 1)
+        ->whereNotIn('informasi_kamar.id', function ($query) use ($checkIn, $checkOut) {
+            $query->select('id_kamar')
+                ->from('detail_booking')
+                ->join('booking', 'booking.id', '=', 'detail_booking.id_booking')
+                ->where(function ($query) use ($checkIn, $checkOut) {
+                    $query->whereBetween('booking.check_in', [$checkIn, $checkOut])
+                        ->orWhereBetween('booking.check_out', [$checkIn, $checkOut]);
+                });
+        })
+        ->select('kategori_kamar.*')
+        ->distinct()
+        ->get();
+
+        return response()->json(['categories' => $distinctCategories], 200);
+    }
+    public function getRoomId(Request $request)
+    {
+        $idKategori = $request->input('id_kategori');
+
+        $idKamar = \DB::table('informasi_kamar')
+            ->select('id')
+            ->where('id_status_kamar', 1)
+            ->where('id_kategori', $idKategori)
+            ->orderBy('id', 'asc')
+            ->limit(1)
+            ->value('id');
+
+        if ($idKamar) {
+            \DB::table('informasi_kamar')
+                ->where('id', $idKamar)
+                ->update(['id_status_kamar' => 2]);
+        }
+
+        return response()->json(['id_kamar' => $idKamar]);
     }
 }

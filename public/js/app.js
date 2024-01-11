@@ -25132,7 +25132,31 @@ var routes = [{
   path: "/",
   name: "home",
   component: function component() {
-    return __webpack_require__.e(/*! import() */ "resources_js_page_ExampleComponent_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./page/ExampleComponent.vue */ "./resources/js/page/ExampleComponent.vue"));
+    return __webpack_require__.e(/*! import() */ "resources_js_page_HomePage_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./page/HomePage.vue */ "./resources/js/page/HomePage.vue"));
+  }
+}, {
+  path: "/result",
+  name: "result",
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_page_ResultPage_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./page/ResultPage.vue */ "./resources/js/page/ResultPage.vue"));
+  }
+}, {
+  path: "/bookings/:id",
+  name: "bookings",
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_page_HistoryBookingPage_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./page/HistoryBookingPage.vue */ "./resources/js/page/HistoryBookingPage.vue"));
+  }
+}, {
+  path: "/sign-up",
+  name: "sign-up",
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_page_SignUpPage_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./page/SignUpPage.vue */ "./resources/js/page/SignUpPage.vue"));
+  }
+}, {
+  path: "/sign-in",
+  name: "sign-in",
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_page_SignInPage_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./page/SignInPage.vue */ "./resources/js/page/SignInPage.vue"));
   }
 }, {
   path: "/admin",
@@ -31392,33 +31416,15 @@ function useRoute() {
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/create fake namespace object */
+/******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		var getProto = Object.getPrototypeOf ? (obj) => (Object.getPrototypeOf(obj)) : (obj) => (obj.__proto__);
-/******/ 		var leafPrototypes;
-/******/ 		// create a fake namespace object
-/******/ 		// mode & 1: value is a module id, require it
-/******/ 		// mode & 2: merge all properties of value into the ns
-/******/ 		// mode & 4: return value when already ns object
-/******/ 		// mode & 16: return value when it's Promise-like
-/******/ 		// mode & 8|1: behave like require
-/******/ 		__webpack_require__.t = function(value, mode) {
-/******/ 			if(mode & 1) value = this(value);
-/******/ 			if(mode & 8) return value;
-/******/ 			if(typeof value === 'object' && value) {
-/******/ 				if((mode & 4) && value.__esModule) return value;
-/******/ 				if((mode & 16) && typeof value.then === 'function') return value;
-/******/ 			}
-/******/ 			var ns = Object.create(null);
-/******/ 			__webpack_require__.r(ns);
-/******/ 			var def = {};
-/******/ 			leafPrototypes = leafPrototypes || [null, getProto({}), getProto([]), getProto(getProto)];
-/******/ 			for(var current = mode & 2 && value; typeof current == 'object' && !~leafPrototypes.indexOf(current); current = getProto(current)) {
-/******/ 				Object.getOwnPropertyNames(current).forEach((key) => (def[key] = () => (value[key])));
-/******/ 			}
-/******/ 			def['default'] = () => (value);
-/******/ 			__webpack_require__.d(ns, def);
-/******/ 			return ns;
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
 /******/ 		};
 /******/ 	})();
 /******/ 	
@@ -31452,7 +31458,7 @@ function useRoute() {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_page_ExampleComponent_vue":1,"resources_js_page_AdminPage_vue":1,"resources_js_page_DashboardPage_vue":1,"resources_js_page_RoomPage_vue":1,"resources_js_page_RoomViewPage_vue":1,"resources_js_page_FormRoomPage_vue":1,"resources_js_page_CategoryPage_vue":1,"resources_js_page_CategoryViewPage_vue":1,"resources_js_page_FormCategoryPage_vue":1,"resources_js_page_BookingPage_vue":1,"resources_js_page_DetailBookingPage_vue":1,"resources_js_page_StaffPage_vue":1,"resources_js_page_StaffViewPage_vue":1,"resources_js_page_FormStaffPage_vue":1,"resources_js_page_GuestPage_vue":1,"resources_js_page_ShiftPage_vue":1,"resources_js_page_ShiftViewPage_vue":1,"resources_js_page_FormShiftPage_vue":1,"resources_js_page_DivisionPage_vue":1,"resources_js_page_DivisiViewPage_vue":1,"resources_js_page_FormDivisiPage_vue":1,"resources_js_icons_RoomIcon_vue":1,"resources_js_icons_CategoryIcon_vue":1,"resources_js_icons_RoomMasterIcon_vue":1,"resources_js_icons_StaffIcon_vue":1,"resources_js_icons_ShiftIcon_vue":1,"resources_js_icons_StaffManagementIcon_vue":1,"resources_js_icons_GuestIcon_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_page_HomePage_vue":1,"resources_js_page_ResultPage_vue":1,"resources_js_page_HistoryBookingPage_vue":1,"resources_js_page_SignUpPage_vue":1,"resources_js_page_SignInPage_vue":1,"resources_js_page_AdminPage_vue":1,"resources_js_page_DashboardPage_vue":1,"resources_js_page_RoomPage_vue":1,"resources_js_page_RoomViewPage_vue":1,"resources_js_page_FormRoomPage_vue":1,"resources_js_page_CategoryPage_vue":1,"resources_js_page_CategoryViewPage_vue":1,"resources_js_page_FormCategoryPage_vue":1,"resources_js_page_BookingPage_vue":1,"resources_js_page_DetailBookingPage_vue":1,"resources_js_page_StaffPage_vue":1,"resources_js_page_StaffViewPage_vue":1,"resources_js_page_FormStaffPage_vue":1,"resources_js_page_GuestPage_vue":1,"resources_js_page_ShiftPage_vue":1,"resources_js_page_ShiftViewPage_vue":1,"resources_js_page_FormShiftPage_vue":1,"resources_js_page_DivisionPage_vue":1,"resources_js_page_DivisiViewPage_vue":1,"resources_js_page_FormDivisiPage_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

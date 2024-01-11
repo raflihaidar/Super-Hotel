@@ -1,7 +1,6 @@
 <template>
     <div class="w-full py-5 px-5">
-        <TableComponent :header="header" @handleSearch="searchData" :pagination="pagination" tableName="Tamu"
-            v-if="guest.length != 0">
+        <TableComponent :header="header" @handleSearch="searchData" :pagination="pagination" tableName="Tamu" v-if="guest">
             <template #body>
                 <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
                     v-for="(item, index) in guest" :key="index">

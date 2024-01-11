@@ -211,6 +211,7 @@ export const useGlobalStore = defineStore(
         const setBooking = async (index) => {
             try {
                 const res = await axios.get(`${BOOKING_URL}/${index}`);
+                console.log(res.data.data);
                 booking.value = res.data.data;
                 pagination.value = {
                     total: res.data.total,

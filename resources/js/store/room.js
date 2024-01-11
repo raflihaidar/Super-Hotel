@@ -3,12 +3,40 @@ import { defineStore, storeToRefs } from "pinia";
 import { useGlobalStore } from "./global.js";
 import Swal from "sweetalert2";
 import axios from "axios";
+import router from "../routes.js";
 
 export const useRoomStore = defineStore(
     "room",
     () => {
         const store = useGlobalStore();
-        const { room, singleData, pagination } = storeToRefs(store);
+        const searchField = ref(null);
+        const quantity = ref({
+            roomQuantity: 1,
+            personQuantity: 1,
+        });
+        const { room, category, singleData, pagination } = storeToRefs(store);
+
+        const incQuantity = (value) => {
+            if (value === "room" && quantity.value.roomQuantity < 5) {
+                quantity.value.roomQuantity += 1;
+            } else if (
+                value === "person" &&
+                quantity.value.personQuantity < 5
+            ) {
+                quantity.value.personQuantity += 1;
+            }
+        };
+
+        const decQuantity = (value) => {
+            if (value === "room" && quantity.value.roomQuantity > 1) {
+                quantity.value.roomQuantity -= 1;
+            } else if (
+                value === "person" &&
+                quantity.value.personQuantity > 1
+            ) {
+                quantity.value.personQuantity -= 1;
+            }
+        };
 
         const getSingleData = (id) => {
             try {
@@ -106,12 +134,7 @@ export const useRoomStore = defineStore(
             try {
                 const res = await axios.post(
                     "http://127.0.0.1:8000/api/kamar",
-                    payload,
-                    {
-                        headers: {
-                            "Content-Type": "multipart/form-data",
-                        },
-                    }
+                    payload
                 );
                 const Toast = Swal.mixin({
                     toast: true,
@@ -136,24 +159,72 @@ export const useRoomStore = defineStore(
                     title: "Oops...",
                     text: "Something went wrong!",
                 });
-                console.log(error);
             } finally {
                 return status.value;
             }
         };
 
+        const checkAvailability = async (payload) => {
+            try {
+                if (payload.check_in && payload.check_out) {
+                    const res = await axios.get(
+                        "http://127.0.0.1:8000/api/kamar/check",
+                        {
+                            checkin: payload.check_in,
+                            checkout: payload.check_out,
+                        }
+                    );
+                    searchField.value = payload;
+                    category.value = res.data.categories;
+                    router.push({ name: "result" });
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Something went wrong!",
+                    });
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        const getRoomId = async (id_kategori) => {
+            try {
+                const res = await axios.get(
+                    "http://127.0.0.1:8000/api/kamar/get-room-id",
+                    {
+                        params: {
+                            id_kategori,
+                        },
+                    }
+                );
+                return res.data.id_kamar;
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
         return {
             room,
+            category,
+            quantity,
             singleData,
+            searchField,
             pagination,
+            incQuantity,
+            decQuantity,
             getSingleData,
+            getRoomId,
             searchData,
             updateData,
             deleteData,
             addData,
+            checkAvailability,
         };
     },
     {
         persist: true,
+        paths: ["room", "category", "singleData", "pagination"],
     }
 );

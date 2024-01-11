@@ -20,7 +20,6 @@ class InformasiKamar extends Model
         'room_name',
         'id_kategori',
         'id_status_kamar',
-        'foto_kamar',
         'rating'
     ];
 

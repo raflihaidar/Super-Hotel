@@ -33,18 +33,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       fasilitas: "",
       deskripsi: "",
       harga: null,
-      jumlah_kamar: null
+      jumlah_kamar: null,
+      image: null
     });
+    var onChange = function onChange(e) {
+      payload.value.image = e.target.files[0];
+    };
     var addData = /*#__PURE__*/function () {
       var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var form;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
+              form = new FormData();
+              form.append('kategori', payload.value.kategori);
+              form.append('fasilitas', payload.value.fasilitas);
+              form.append('deskripsi', payload.value.deskripsi);
+              form.append('harga', payload.value.harga);
+              form.append('jumlah_kamar', payload.value.jumlah_kamar);
+              form.append('image', payload.value.image);
+              _context.next = 9;
               return categoryStore.addData(payload.value);
-            case 2:
+            case 9:
               statusInput.value = _context.sent;
-            case 3:
+            case 10:
             case "end":
               return _context.stop();
           }
@@ -58,6 +70,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       statusInput: statusInput,
       categoryStore: categoryStore,
       payload: payload,
+      onChange: onChange,
       addData: addData,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
       get useCategoryStore() {
@@ -158,7 +171,11 @@ var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   "for": "message",
   "class": "block mb-2 text-sm font-medium text-gray-900 dark:text-white"
 }, "Category Description", -1 /* HOISTED */);
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "block mb-2 text-sm font-medium text-gray-900 dark:text-white",
+  "for": "file_input"
+}, "Upload file", -1 /* HOISTED */);
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "flex justify-end mt-10"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "button",
@@ -169,7 +186,6 @@ var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, "Save")], -1 /* HOISTED */);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [$setup.statusInput ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["AlertSuccesComponent"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-    action: "",
     "class": "grid grid-cols-1 gap-y-3",
     onSubmit: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($setup.addData, ["prevent"]),
     enctype: "multipart/form-data"
@@ -212,7 +228,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     "class": "block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500",
     placeholder: "Add Description here"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.payload.deskripsi]])]), _hoisted_14], 32 /* NEED_HYDRATION */)]);
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.payload.deskripsi]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    onChange: $setup.onChange,
+    "class": "block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400",
+    id: "file_input",
+    type: "file"
+  }, null, 32 /* NEED_HYDRATION */)]), _hoisted_15], 32 /* NEED_HYDRATION */)]);
 }
 
 /***/ }),
@@ -11363,7 +11384,11 @@ var useCategoryStore = (0,pinia__WEBPACK_IMPORTED_MODULE_3__.defineStore)("categ
             status = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
             _context5.prev = 1;
             _context5.next = 4;
-            return axios__WEBPACK_IMPORTED_MODULE_4__["default"].post("http://127.0.0.1:8000/api/kategori", payload);
+            return axios__WEBPACK_IMPORTED_MODULE_4__["default"].post("http://127.0.0.1:8000/api/kategori", payload, {
+              headers: {
+                "Content-Type": "multipart/form-data"
+              }
+            });
           case 4:
             res = _context5.sent;
             Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_1__.mixin({
@@ -11794,6 +11819,7 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
             return axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("".concat(BOOKING_URL, "/").concat(index));
           case 3:
             res = _context8.sent;
+            console.log(res.data.data);
             booking.value = res.data.data;
             pagination.value = {
               total: res.data.total,
@@ -11804,17 +11830,17 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
               prevPage: res.data.prev_page_url,
               perPage: res.data.per_page
             };
-            _context8.next = 11;
+            _context8.next = 12;
             break;
-          case 8:
-            _context8.prev = 8;
+          case 9:
+            _context8.prev = 9;
             _context8.t0 = _context8["catch"](0);
             console.log(_context8.t0);
-          case 11:
+          case 12:
           case "end":
             return _context8.stop();
         }
-      }, _callee8, null, [[0, 8]]);
+      }, _callee8, null, [[0, 9]]);
     }));
     return function setBooking(_x11) {
       return _ref8.apply(this, arguments);

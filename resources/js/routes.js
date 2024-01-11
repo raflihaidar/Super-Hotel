@@ -4,7 +4,27 @@ const routes = [
     {
         path: "/",
         name: "home",
-        component: () => import("./page/ExampleComponent.vue"),
+        component: () => import("./page/HomePage.vue"),
+    },
+    {
+        path: "/result",
+        name: "result",
+        component: () => import("./page/ResultPage.vue"),
+    },
+    {
+        path: "/bookings/:id",
+        name: "bookings",
+        component: () => import("./page/HistoryBookingPage.vue"),
+    },
+    {
+        path: "/sign-up",
+        name: "sign-up",
+        component: () => import("./page/SignUpPage.vue"),
+    },
+    {
+        path: "/sign-in",
+        name: "sign-in",
+        component: () => import("./page/SignInPage.vue"),
     },
     {
         path: "/admin",

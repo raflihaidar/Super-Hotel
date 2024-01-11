@@ -25,14 +25,6 @@
                     </template>
                 </DropSearchComponent>
 
-                <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload
-                        file</label>
-                    <input @change="onChange"
-                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                        id="file_input" type="file">
-                </div>
-
                 <div class="flex justify-end mt-10">
                     <button type="button"
                         class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Cancel</button>
@@ -66,27 +58,22 @@ const loadCategory = () => {
 }
 
 const payload = ref({
-    room_name: null,
-    category: 0,
-    image: null
+    room_name: '',
+    id_kategori: 0,
+    id_status_kamar: 1,
 })
 
 const addCategoryId = (item) => {
     dataCategory.value = item.kategori
     payload.value.category = item.id
-    console.log(item.id)
 }
 
-const onChange = (e) => {
-    payload.value.image = e.target.files[0]
-}
 
 const submit = async () => {
     const form = new FormData()
     form.append('room_name', payload.value.room_name)
     form.append('id_kategori', payload.value.category)
     form.append('id_status_kamar', 1)
-    form.append('image', payload.value.image)
     statusInput.value = await roomStore.addData(form)
 }
 

@@ -1,7 +1,7 @@
 <template>
     <div class="w-full">
         <TableComponent :header="header" tableName="Shift" route="add-shift" @handleSearch="searchData"
-            :pagination="pagination" :addData="true" v-if="shift.length != 0">
+            :pagination="pagination" :addData="true" v-if="shift">
             <template #body>
                 <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
                     v-for="(item, index) in shift" :key="index">

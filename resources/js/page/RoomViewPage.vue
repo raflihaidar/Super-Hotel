@@ -1,6 +1,6 @@
 <template>
     <TableComponent :header="header" tableName="Room" :pagination="pagination" :addData="true" route="add-room"
-        @handleSearch="searchData" v-if="room.length != 0">
+        @handleSearch="searchData" v-if="room">
         <template #body>
             <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
                 v-for="(item, index) in room" :key="index">

@@ -20,10 +20,20 @@ use App\Http\Controllers\DivisiController;
 use App\Http\Controllers\InfoKamarController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\DetailBookingController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FakturController;
 
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::middleware('auth:sanctum')->get('/tamu', function (Request $request) {
     return $request->user();
+});
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
 });
 
 Route::get('tamu/search', [TamuController::class, 'search']);
@@ -43,7 +53,9 @@ Route::get('divisi/page/{page}', [DivisiController::class, 'index']);
 Route::resource('divisi', DivisiController::class)->except('index');
 
 Route::get('kamar/search', [InfoKamarController::class, 'search']);
+Route::get('kamar/check', [InfoKamarController::class, 'checkAvailability']);
 Route::get('kamar/page/{page}', [InfoKamarController::class, 'index']);
+Route::get('kamar/get-room-id', [InfoKamarController::class, 'getRoomId']);
 Route::resource('kamar', InfoKamarController::class)->except('index');
 
 Route::get('kategori/search', [KategoriController::class, 'search']);
@@ -53,4 +65,12 @@ Route::resource('kategori', KategoriController::class)->except('index');
 Route::get('booking/search', [BookingController::class, 'search']);
 Route::get('booking/page/{page}', [BookingController::class, 'index']);
 Route::resource('booking', BookingController::class)->except('index');
+
+Route::post('/detail-booking/update-total', [DetailBookingController::class, 'updateTotal']);
+Route::get('detail-booking/{id_tamu}', [DetailBookingController::class, 'getBookingHistory']);
+Route::resource('detail-booking', DetailBookingController::class);
+
+Route::resource('faktur', FakturController::class);
+
+
 

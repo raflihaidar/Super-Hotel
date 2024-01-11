@@ -1,5 +1,5 @@
 <template>
-    <nav class="flex items-center absolute right-2 px-7 my-5">
+    <nav class="flex items-center absolute right-2 px-7 my-5" v-if="pagination">
         <div class="flex flex-col items-center">
             <span class="text-xs text-gray-700 dark:text-gray-400">
                 Showing <span class="font-semibold text-gray-900 dark:text-white">{{ pagination.from }}</span> to <span
