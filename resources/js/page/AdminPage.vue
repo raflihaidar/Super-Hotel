@@ -80,18 +80,18 @@
                 <router-link :to="{ name: item.route }" v-if="!item.hasSubmenu" @click="handleClick(item)"
                     :class="item.status ? 'bg-green-700 text-white hover:bg-green-900' : ''"
                     class="flex items-center p-2  text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <component :is="item.icon"
+                    <!-- <component :is="item.icon"
                         class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                        aria-hidden="true" />
+                        aria-hidden="true" /> -->
                     <span class="ms-3">{{ item.name }}</span>
                 </router-link>
                 <li v-else>
                     <button type="button"
                         class="flex items-center  w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                         :aria-controls="'dropdown ' + item.name" :data-collapse-toggle="'dropdown ' + item.name">
-                        <component :is="item.icon"
+                        <!-- <component :is="item.icon"
                             class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                            aria-hidden="true" />
+                            aria-hidden="true" /> -->
                         <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">{{ item.name }}</span>
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 10 6">
@@ -169,7 +169,6 @@ const sidebar = ref([
         status: true,
         hasSubmenu: false,
         submenu: [],
-        icon: DashboardIconVue
     },
     {
         name: 'Master Room',
@@ -181,13 +180,13 @@ const sidebar = ref([
                 name: 'Room',
                 route: 'room',
                 status: false,
-                icon: ""
+
             },
             {
                 name: 'Category',
                 route: 'category',
                 status: false,
-                icon: ""
+
             },
             {
                 name: 'Booking',
@@ -195,7 +194,6 @@ const sidebar = ref([
                 status: false,
             },
         ],
-        icon: ""
     },
     {
         name: 'Staff Management',
@@ -207,22 +205,21 @@ const sidebar = ref([
                 name: 'Staff',
                 route: 'staff',
                 status: false,
-                icon: ""
+
             },
             {
                 name: 'Shift',
                 route: 'shift',
                 status: false,
-                icon: ""
+
             },
             {
                 name: 'Divisi',
                 route: 'divisi',
                 status: false,
-                icon: ""
+
             }
         ],
-        icon: ""
     },
     {
         name: 'Guest',
@@ -230,6 +227,5 @@ const sidebar = ref([
         status: false,
         hasSubmenu: false,
         submenu: [],
-        icon: ""
     }])
 </script>

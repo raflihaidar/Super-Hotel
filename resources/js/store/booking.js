@@ -9,6 +9,7 @@ export const useBookingStore = defineStore(
     "booking",
     () => {
         const URL_DETAIL_BOOKING = "http://127.0.0.1:8000/api/detail-booking";
+        const BASE_URL = "http://127.0.0.1:8000/api/booking";
         const store = useGlobalStore();
         const roomStore = useRoomStore();
         const { searchField } = storeToRefs(roomStore);
@@ -16,13 +17,13 @@ export const useBookingStore = defineStore(
         const detailBooking = ref([]);
 
         const getSingleData = (id) => {
-            store.getSingleData("http://127.0.0.1:8000/api/booking", id);
+            store.getSingleData(BASE_URL, id);
         };
 
         const searchData = async (search) => {
             try {
                 const res = await axios.get(
-                    `http://127.0.0.1:8000/api/booking/search?query=${search}`
+                    `${BASE_URL}/search?query=${search}`
                 );
                 booking.value = res.data;
             } catch {
@@ -32,10 +33,7 @@ export const useBookingStore = defineStore(
 
         const updateData = async (payload) => {
             try {
-                await axios.patch(
-                    `http://127.0.0.1:8000/api/booking/${payload.id}`,
-                    payload
-                );
+                await axios.patch(`${BASE_URL}/${payload.id}`, payload);
                 singleData.value = [];
                 const Toast = Swal.mixin({
                     toast: true,
@@ -72,9 +70,7 @@ export const useBookingStore = defineStore(
                             (item) => item.id === id
                         );
                         if (deletedItem) {
-                            await axios.delete(
-                                `http://127.0.0.1:8000/api/booking/${id}`
-                            );
+                            await axios.delete(`${BASE_URL}/${id}`);
                             const index = booking.value.indexOf(deletedItem);
                             booking.value.splice(index, 1);
                         }
@@ -91,10 +87,7 @@ export const useBookingStore = defineStore(
 
         const addData = async (payload_booking) => {
             try {
-                const res = await axios.post(
-                    "http://127.0.0.1:8000/api/booking",
-                    payload_booking
-                );
+                const res = await axios.post(BASE_URL, payload_booking);
                 const Toast = Swal.mixin({
                     toast: true,
                     position: "top-end",
@@ -171,6 +164,23 @@ export const useBookingStore = defineStore(
             }
         };
 
+        const getCount = async (typeOfCount) => {
+            try {
+                const countUrls = {
+                    count: "/count",
+                    "check-in": "/checkin-count",
+                    "check-out": "/checkout-count",
+                    stay: "/stay-count",
+                };
+
+                const res = await axios.get(
+                    `${BASE_URL}${countUrls[typeOfCount]}`
+                );
+                return res.data;
+            } catch (error) {
+                console.log("dari sini", error);
+            }
+        };
         return {
             booking,
             detailBooking,
@@ -183,6 +193,7 @@ export const useBookingStore = defineStore(
             addData,
             addDetailBooking,
             viewHistoryBooking,
+            getCount,
         };
     },
     {

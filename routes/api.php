@@ -52,6 +52,9 @@ Route::get('divisi/search', [DivisiController::class, 'search']);
 Route::get('divisi/page/{page}', [DivisiController::class, 'index']);
 Route::resource('divisi', DivisiController::class)->except('index');
 
+Route::get('kamar/count', [InfoKamarController::class, 'getCount']);
+Route::get('kamar/available-count', [InfoKamarController::class, 'getAvailableCount']);
+Route::get('kamar/unavailable-count', [InfoKamarController::class, 'getUnavailableCount']);
 Route::get('kamar/search', [InfoKamarController::class, 'search']);
 Route::get('kamar/check', [InfoKamarController::class, 'checkAvailability']);
 Route::get('kamar/page/{page}', [InfoKamarController::class, 'index']);
@@ -62,6 +65,10 @@ Route::get('kategori/search', [KategoriController::class, 'search']);
 Route::get('kategori/page/{page}', [KategoriController::class, 'index']);
 Route::resource('kategori', KategoriController::class)->except('index');
 
+Route::get('booking/count', [BookingController::class, 'getCount']);
+Route::get('booking/checkin-count', [BookingController::class, 'getCheckInCount']);
+Route::get('booking/checkout-count', [BookingController::class, 'getCheckOutCount']);
+Route::get('booking/stay-count', [BookingController::class, 'getStayCount']);
 Route::get('booking/search', [BookingController::class, 'search']);
 Route::get('booking/page/{page}', [BookingController::class, 'index']);
 Route::resource('booking', BookingController::class)->except('index');

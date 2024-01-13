@@ -8,6 +8,7 @@ import router from "../routes.js";
 export const useRoomStore = defineStore(
     "room",
     () => {
+        const BASE_URL = "http://127.0.0.1:8000/api/kamar";
         const store = useGlobalStore();
         const searchField = ref(null);
         const quantity = ref({
@@ -40,7 +41,7 @@ export const useRoomStore = defineStore(
 
         const getSingleData = (id) => {
             try {
-                store.getSingleData("http://127.0.0.1:8000/api/kamar", id);
+                store.getSingleData(BASE_URL, id);
             } catch (err) {
                 Swal.fire({
                     icon: "error",
@@ -53,7 +54,7 @@ export const useRoomStore = defineStore(
         const searchData = async (search) => {
             try {
                 const res = await axios.get(
-                    `http://127.0.0.1:8000/api/kamar/search?query=${search}`
+                    `${BASE_URL}/search?query=${search}`
                 );
                 console.log("response : ", res.data);
                 room.value = res.data;
@@ -68,10 +69,7 @@ export const useRoomStore = defineStore(
 
         const updateData = async (payload) => {
             try {
-                await axios.patch(
-                    `http://127.0.0.1:8000/api/kamar/${payload.id}`,
-                    payload
-                );
+                await axios.patch(`${BASE_URL}/${payload.id}`, payload);
                 singleData.value = [];
                 const Toast = Swal.mixin({
                     toast: true,
@@ -112,9 +110,7 @@ export const useRoomStore = defineStore(
                             (item) => item.id === id
                         );
                         if (deletedItem) {
-                            await axios.delete(
-                                `http://127.0.0.1:8000/api/kamar/${id}`
-                            );
+                            await axios.delete(`${BASE_URL}/${id}`);
                             const index = room.value.indexOf(deletedItem);
                             room.value.splice(index, 1);
                         }
@@ -132,10 +128,7 @@ export const useRoomStore = defineStore(
         const addData = async (payload) => {
             const status = ref(false);
             try {
-                const res = await axios.post(
-                    "http://127.0.0.1:8000/api/kamar",
-                    payload
-                );
+                const res = await axios.post(BASE_URL, payload);
                 const Toast = Swal.mixin({
                     toast: true,
                     position: "top-end",
@@ -167,13 +160,10 @@ export const useRoomStore = defineStore(
         const checkAvailability = async (payload) => {
             try {
                 if (payload.check_in && payload.check_out) {
-                    const res = await axios.get(
-                        "http://127.0.0.1:8000/api/kamar/check",
-                        {
-                            checkin: payload.check_in,
-                            checkout: payload.check_out,
-                        }
-                    );
+                    const res = await axios.get(`${BASE_URL}/check`, {
+                        checkin: payload.check_in,
+                        checkout: payload.check_out,
+                    });
                     searchField.value = payload;
                     category.value = res.data.categories;
                     router.push({ name: "result" });
@@ -191,15 +181,29 @@ export const useRoomStore = defineStore(
 
         const getRoomId = async (id_kategori) => {
             try {
-                const res = await axios.get(
-                    "http://127.0.0.1:8000/api/kamar/get-room-id",
-                    {
-                        params: {
-                            id_kategori,
-                        },
-                    }
-                );
+                const res = await axios.get(`${BASE_URL}/get-room-id`, {
+                    params: {
+                        id_kategori,
+                    },
+                });
                 return res.data.id_kamar;
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        const getCount = async (typeOfCount) => {
+            try {
+                let res = "";
+                if (typeOfCount === "count") {
+                    res = await axios.get(`${BASE_URL}/count`);
+                } else if (typeOfCount === "available") {
+                    res = await axios.get(`${BASE_URL}/available-count`);
+                    console.log("dari store kamar ", res.data);
+                } else {
+                    res = await axios.get(`${BASE_URL}/unavailable-count`);
+                }
+                return res.data;
             } catch (error) {
                 console.log(error);
             }
@@ -221,6 +225,7 @@ export const useRoomStore = defineStore(
             deleteData,
             addData,
             checkAvailability,
+            getCount,
         };
     },
     {

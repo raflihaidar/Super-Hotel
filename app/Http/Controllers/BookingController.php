@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Booking;
-
+use Illuminate\Support\Carbon;
 class BookingController extends Controller
 {
     public function index($index)
@@ -40,5 +40,32 @@ class BookingController extends Controller
         $booking = Booking::find($id);
         $booking->delete();
         return response()->json('Booking deleted!');
+    }
+    public function getCount()
+    {
+        $booking = Booking::count();
+        return response()->json($booking);
+    }
+    public function getCheckInCount()
+    {
+        $now = Carbon::now('Asia/Jakarta')->format('Y-m-d');
+        $booking = \DB::table('booking')->where('check_in', '=', $now)->count();
+        return response()->json($booking);
+    }
+    public function getCheckOutCount()
+    {
+        $now = Carbon::now('Asia/Jakarta')->format('Y-m-d');
+        $booking = \DB::table('booking')->where('check_out', '=', $now)->count();
+        return response()->json($booking);
+    }
+    public function getStayCount()
+    {
+        $now = Carbon::now('Asia/Jakarta')->format('Y-m-d');
+        $booking = \DB::table('booking')
+            ->where('check_in', '<=', $now)
+            ->where('check_out', '>=', $now)
+            ->count();
+
+        return response()->json($booking);
     }
 }

@@ -26,6 +26,8 @@
         "vue-loader": "^16.2.0"
     },
     "dependencies": {
+        "apexcharts": "^3.45.1",
+        "chart.js": "^4.4.1",
         "flowbite": "^2.2.1",
         "pinia": "^2.1.7",
         "pinia-plugin-persistedstate": "^3.2.1",

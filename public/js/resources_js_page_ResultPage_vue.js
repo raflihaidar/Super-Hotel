@@ -11612,6 +11612,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var useBookingStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("booking", function () {
   var URL_DETAIL_BOOKING = "http://127.0.0.1:8000/api/detail-booking";
+  var BASE_URL = "http://127.0.0.1:8000/api/booking";
   var store = (0,_global_js__WEBPACK_IMPORTED_MODULE_1__.useGlobalStore)();
   var roomStore = (0,_room_js__WEBPACK_IMPORTED_MODULE_2__.useRoomStore)();
   var _storeToRefs = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.storeToRefs)(roomStore),
@@ -11622,7 +11623,7 @@ var useBookingStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("bookin
     pagination = _storeToRefs2.pagination;
   var detailBooking = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
   var getSingleData = function getSingleData(id) {
-    store.getSingleData("http://127.0.0.1:8000/api/booking", id);
+    store.getSingleData(BASE_URL, id);
   };
   var searchData = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(search) {
@@ -11632,7 +11633,7 @@ var useBookingStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("bookin
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("http://127.0.0.1:8000/api/booking/search?query=".concat(search));
+            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("".concat(BASE_URL, "/search?query=").concat(search));
           case 3:
             res = _context.sent;
             booking.value = res.data;
@@ -11660,7 +11661,7 @@ var useBookingStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("bookin
           case 0:
             _context2.prev = 0;
             _context2.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].patch("http://127.0.0.1:8000/api/booking/".concat(payload.id), payload);
+            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].patch("".concat(BASE_URL, "/").concat(payload.id), payload);
           case 3:
             singleData.value = [];
             Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_3__.mixin({
@@ -11725,7 +11726,7 @@ var useBookingStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("bookin
                           break;
                         }
                         _context3.next = 5;
-                        return axios__WEBPACK_IMPORTED_MODULE_5__["default"]["delete"]("http://127.0.0.1:8000/api/booking/".concat(id));
+                        return axios__WEBPACK_IMPORTED_MODULE_5__["default"]["delete"]("".concat(BASE_URL, "/").concat(id));
                       case 5:
                         index = booking.value.indexOf(deletedItem);
                         booking.value.splice(index, 1);
@@ -11764,7 +11765,7 @@ var useBookingStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("bookin
           case 0:
             _context5.prev = 0;
             _context5.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].post("http://127.0.0.1:8000/api/booking", payload_booking);
+            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].post(BASE_URL, payload_booking);
           case 3:
             res = _context5.sent;
             Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_3__.mixin({
@@ -11903,6 +11904,38 @@ var useBookingStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("bookin
       return _ref8.apply(this, arguments);
     };
   }();
+  var getCount = /*#__PURE__*/function () {
+    var _ref9 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9(typeOfCount) {
+      var countUrls, res;
+      return _regeneratorRuntime().wrap(function _callee9$(_context9) {
+        while (1) switch (_context9.prev = _context9.next) {
+          case 0:
+            _context9.prev = 0;
+            countUrls = {
+              count: "/count",
+              "check-in": "/checkin-count",
+              "check-out": "/checkout-count",
+              stay: "/stay-count"
+            };
+            _context9.next = 4;
+            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("".concat(BASE_URL).concat(countUrls[typeOfCount]));
+          case 4:
+            res = _context9.sent;
+            return _context9.abrupt("return", res.data);
+          case 8:
+            _context9.prev = 8;
+            _context9.t0 = _context9["catch"](0);
+            console.log("dari sini", _context9.t0);
+          case 11:
+          case "end":
+            return _context9.stop();
+        }
+      }, _callee9, null, [[0, 8]]);
+    }));
+    return function getCount(_x11) {
+      return _ref9.apply(this, arguments);
+    };
+  }();
   return {
     booking: booking,
     detailBooking: detailBooking,
@@ -11914,7 +11947,8 @@ var useBookingStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("bookin
     deleteData: deleteData,
     addData: addData,
     addDetailBooking: addDetailBooking,
-    viewHistoryBooking: viewHistoryBooking
+    viewHistoryBooking: viewHistoryBooking,
+    getCount: getCount
   };
 }, {
   persist: true
@@ -12882,6 +12916,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", function () {
+  var BASE_URL = "http://127.0.0.1:8000/api/kamar";
   var store = (0,_global_js__WEBPACK_IMPORTED_MODULE_1__.useGlobalStore)();
   var searchField = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
   var quantity = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({
@@ -12909,7 +12944,7 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
   };
   var getSingleData = function getSingleData(id) {
     try {
-      store.getSingleData("http://127.0.0.1:8000/api/kamar", id);
+      store.getSingleData(BASE_URL, id);
     } catch (err) {
       sweetalert2__WEBPACK_IMPORTED_MODULE_2__.fire({
         icon: "error",
@@ -12926,7 +12961,7 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("http://127.0.0.1:8000/api/kamar/search?query=".concat(search));
+            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("".concat(BASE_URL, "/search?query=").concat(search));
           case 3:
             res = _context.sent;
             console.log("response : ", res.data);
@@ -12959,7 +12994,7 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
           case 0:
             _context2.prev = 0;
             _context2.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].patch("http://127.0.0.1:8000/api/kamar/".concat(payload.id), payload);
+            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].patch("".concat(BASE_URL, "/").concat(payload.id), payload);
           case 3:
             singleData.value = [];
             Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_2__.mixin({
@@ -13028,7 +13063,7 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
                           break;
                         }
                         _context3.next = 5;
-                        return axios__WEBPACK_IMPORTED_MODULE_5__["default"]["delete"]("http://127.0.0.1:8000/api/kamar/".concat(id));
+                        return axios__WEBPACK_IMPORTED_MODULE_5__["default"]["delete"]("".concat(BASE_URL, "/").concat(id));
                       case 5:
                         index = room.value.indexOf(deletedItem);
                         room.value.splice(index, 1);
@@ -13068,7 +13103,7 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
             status = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
             _context5.prev = 1;
             _context5.next = 4;
-            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].post("http://127.0.0.1:8000/api/kamar", payload);
+            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].post(BASE_URL, payload);
           case 4:
             res = _context5.sent;
             Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_2__.mixin({
@@ -13123,7 +13158,7 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
               break;
             }
             _context6.next = 4;
-            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("http://127.0.0.1:8000/api/kamar/check", {
+            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("".concat(BASE_URL, "/check"), {
               checkin: payload.check_in,
               checkout: payload.check_out
             });
@@ -13167,7 +13202,7 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
           case 0:
             _context7.prev = 0;
             _context7.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("http://127.0.0.1:8000/api/kamar/get-room-id", {
+            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("".concat(BASE_URL, "/get-room-id"), {
               params: {
                 id_kategori: id_kategori
               }
@@ -13189,6 +13224,57 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
       return _ref7.apply(this, arguments);
     };
   }();
+  var getCount = /*#__PURE__*/function () {
+    var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(typeOfCount) {
+      var res;
+      return _regeneratorRuntime().wrap(function _callee8$(_context8) {
+        while (1) switch (_context8.prev = _context8.next) {
+          case 0:
+            _context8.prev = 0;
+            res = "";
+            if (!(typeOfCount === "count")) {
+              _context8.next = 8;
+              break;
+            }
+            _context8.next = 5;
+            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("".concat(BASE_URL, "/count"));
+          case 5:
+            res = _context8.sent;
+            _context8.next = 18;
+            break;
+          case 8:
+            if (!(typeOfCount === "available")) {
+              _context8.next = 15;
+              break;
+            }
+            _context8.next = 11;
+            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("".concat(BASE_URL, "/available-count"));
+          case 11:
+            res = _context8.sent;
+            console.log("dari store kamar ", res.data);
+            _context8.next = 18;
+            break;
+          case 15:
+            _context8.next = 17;
+            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("".concat(BASE_URL, "/unavailable-count"));
+          case 17:
+            res = _context8.sent;
+          case 18:
+            return _context8.abrupt("return", res.data);
+          case 21:
+            _context8.prev = 21;
+            _context8.t0 = _context8["catch"](0);
+            console.log(_context8.t0);
+          case 24:
+          case "end":
+            return _context8.stop();
+        }
+      }, _callee8, null, [[0, 21]]);
+    }));
+    return function getCount(_x8) {
+      return _ref8.apply(this, arguments);
+    };
+  }();
   return {
     room: room,
     category: category,
@@ -13204,7 +13290,8 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
     updateData: updateData,
     deleteData: deleteData,
     addData: addData,
-    checkAvailability: checkAvailability
+    checkAvailability: checkAvailability,
+    getCount: getCount
   };
 }, {
   persist: true,

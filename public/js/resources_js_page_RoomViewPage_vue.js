@@ -455,7 +455,6 @@ __webpack_require__.r(__webpack_exports__);
     };
     var searchData = function searchData(search) {
       roomStore.searchData(search);
-      console.log("hello");
     };
     (0,vue__WEBPACK_IMPORTED_MODULE_5__.onMounted)(function () {
       fetchData();
@@ -1059,12 +1058,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-var _hoisted_1 = {
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<nav class=\"flex flex-col-reverse gap-y-2\"><section class=\"text-3xl font-bold\">Room</section><section class=\"flex\" aria-label=\"Breadcrumb\"><ol class=\"inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse\"><li class=\"inline-flex items-center\"><a href=\"#\" class=\"inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white\"><svg class=\"w-3 h-3 me-2.5\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" viewBox=\"0 0 20 20\"><path d=\"m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z\"></path></svg> Admin </a></li><li aria-current=\"page\"><div class=\"flex items-center\"><svg class=\"rtl:rotate-180 w-3 h-3 text-gray-400 mx-1\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 6 10\"><path stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m1 9 4-4-4-4\"></path></svg><a href=\"#\" class=\"ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white\">Room</a></div></li></ol></section></nav>", 1);
+var _hoisted_2 = {
   scope: "row",
   "class": "px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-};
-var _hoisted_2 = {
-  "class": "px-4 py-3"
 };
 var _hoisted_3 = {
   "class": "px-4 py-3"
@@ -1075,17 +1072,20 @@ var _hoisted_4 = {
 var _hoisted_5 = {
   "class": "px-4 py-3"
 };
-var _hoisted_6 = ["onClick"];
+var _hoisted_6 = {
+  "class": "px-4 py-3"
+};
 var _hoisted_7 = ["onClick"];
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", {
+var _hoisted_8 = ["onClick"];
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", {
   "class": "odd:bg-white even:bg-green-100"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
   "class": "w-full p-4 text-center text-red-500 font-bold text-2xl"
 }, " Tidak Ada Data ")], -1 /* HOISTED */);
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
   "class": "text-xl font-semibold text-gray-900 dark:text-white"
 }, " Room Form ", -1 /* HOISTED */);
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   "class": "w-3 h-3",
   "aria-hidden": "true",
   xmlns: "http://www.w3.org/2000/svg",
@@ -1098,12 +1098,12 @@ var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   "stroke-width": "2",
   d: "m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
 })], -1 /* HOISTED */);
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "sr-only"
 }, "Close modal", -1 /* HOISTED */);
-var _hoisted_12 = [_hoisted_10, _hoisted_11];
+var _hoisted_13 = [_hoisted_11, _hoisted_12];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [$setup.room ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["TableComponent"], {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [_hoisted_1, $setup.room ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["TableComponent"], {
     key: 0,
     header: $setup.header,
     tableName: "Room",
@@ -1117,19 +1117,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
           "class": "odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600",
           key: index
-        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.room_name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.kategori), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.fasilitas), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_4, "Rp " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.harga), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.status), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.room_name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.kategori), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.fasilitas), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_5, "Rp " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.harga), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.status), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
           "class": "font-medium text-green-500 dark:text-green-500 hover:underline cursor-pointer mr-4",
           onClick: function onClick($event) {
             return $setup.getSingleData(item.id);
           },
           "data-modal-target": "form-room",
           "data-modal-toggle": "form-room"
-        }, "Edit", 8 /* PROPS */, _hoisted_6), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+        }, "Edit", 8 /* PROPS */, _hoisted_7), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
           "class": "font-medium text-red-600 dark:text-green-500 hover:underline cursor-pointer",
           onClick: function onClick($event) {
             return $setup.deleteData(item.id);
           }
-        }, "delete", 8 /* PROPS */, _hoisted_7)])]);
+        }, "delete", 8 /* PROPS */, _hoisted_8)])]);
       }), 128 /* KEYED_FRAGMENT */))];
     }),
     _: 1 /* STABLE */
@@ -1141,7 +1141,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onHandleSearch: $setup.searchData
   }, {
     body: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_8];
+      return [_hoisted_9];
     }),
     _: 1 /* STABLE */
   }, 8 /* PROPS */, ["pagination"])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["ModalComponent"], {
@@ -1150,12 +1150,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     header: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
         "class": "flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600"
-      }, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+      }, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
         type: "button",
         onClick: $setup.resetSingleData,
         "data-modal-hide": "form-room",
         "class": "text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-      }, [].concat(_hoisted_12))])];
+      }, [].concat(_hoisted_13))])];
     }),
     body: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DetailRoomCompoonent"])];
@@ -13026,6 +13026,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", function () {
+  var BASE_URL = "http://127.0.0.1:8000/api/kamar";
   var store = (0,_global_js__WEBPACK_IMPORTED_MODULE_1__.useGlobalStore)();
   var searchField = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
   var quantity = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({
@@ -13053,7 +13054,7 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
   };
   var getSingleData = function getSingleData(id) {
     try {
-      store.getSingleData("http://127.0.0.1:8000/api/kamar", id);
+      store.getSingleData(BASE_URL, id);
     } catch (err) {
       sweetalert2__WEBPACK_IMPORTED_MODULE_2__.fire({
         icon: "error",
@@ -13070,7 +13071,7 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("http://127.0.0.1:8000/api/kamar/search?query=".concat(search));
+            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("".concat(BASE_URL, "/search?query=").concat(search));
           case 3:
             res = _context.sent;
             console.log("response : ", res.data);
@@ -13103,7 +13104,7 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
           case 0:
             _context2.prev = 0;
             _context2.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].patch("http://127.0.0.1:8000/api/kamar/".concat(payload.id), payload);
+            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].patch("".concat(BASE_URL, "/").concat(payload.id), payload);
           case 3:
             singleData.value = [];
             Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_2__.mixin({
@@ -13172,7 +13173,7 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
                           break;
                         }
                         _context3.next = 5;
-                        return axios__WEBPACK_IMPORTED_MODULE_5__["default"]["delete"]("http://127.0.0.1:8000/api/kamar/".concat(id));
+                        return axios__WEBPACK_IMPORTED_MODULE_5__["default"]["delete"]("".concat(BASE_URL, "/").concat(id));
                       case 5:
                         index = room.value.indexOf(deletedItem);
                         room.value.splice(index, 1);
@@ -13212,7 +13213,7 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
             status = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
             _context5.prev = 1;
             _context5.next = 4;
-            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].post("http://127.0.0.1:8000/api/kamar", payload);
+            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].post(BASE_URL, payload);
           case 4:
             res = _context5.sent;
             Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_2__.mixin({
@@ -13267,7 +13268,7 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
               break;
             }
             _context6.next = 4;
-            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("http://127.0.0.1:8000/api/kamar/check", {
+            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("".concat(BASE_URL, "/check"), {
               checkin: payload.check_in,
               checkout: payload.check_out
             });
@@ -13311,7 +13312,7 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
           case 0:
             _context7.prev = 0;
             _context7.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("http://127.0.0.1:8000/api/kamar/get-room-id", {
+            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("".concat(BASE_URL, "/get-room-id"), {
               params: {
                 id_kategori: id_kategori
               }
@@ -13333,6 +13334,57 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
       return _ref7.apply(this, arguments);
     };
   }();
+  var getCount = /*#__PURE__*/function () {
+    var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(typeOfCount) {
+      var res;
+      return _regeneratorRuntime().wrap(function _callee8$(_context8) {
+        while (1) switch (_context8.prev = _context8.next) {
+          case 0:
+            _context8.prev = 0;
+            res = "";
+            if (!(typeOfCount === "count")) {
+              _context8.next = 8;
+              break;
+            }
+            _context8.next = 5;
+            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("".concat(BASE_URL, "/count"));
+          case 5:
+            res = _context8.sent;
+            _context8.next = 18;
+            break;
+          case 8:
+            if (!(typeOfCount === "available")) {
+              _context8.next = 15;
+              break;
+            }
+            _context8.next = 11;
+            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("".concat(BASE_URL, "/available-count"));
+          case 11:
+            res = _context8.sent;
+            console.log("dari store kamar ", res.data);
+            _context8.next = 18;
+            break;
+          case 15:
+            _context8.next = 17;
+            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("".concat(BASE_URL, "/unavailable-count"));
+          case 17:
+            res = _context8.sent;
+          case 18:
+            return _context8.abrupt("return", res.data);
+          case 21:
+            _context8.prev = 21;
+            _context8.t0 = _context8["catch"](0);
+            console.log(_context8.t0);
+          case 24:
+          case "end":
+            return _context8.stop();
+        }
+      }, _callee8, null, [[0, 21]]);
+    }));
+    return function getCount(_x8) {
+      return _ref8.apply(this, arguments);
+    };
+  }();
   return {
     room: room,
     category: category,
@@ -13348,7 +13400,8 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
     updateData: updateData,
     deleteData: deleteData,
     addData: addData,
-    checkAvailability: checkAvailability
+    checkAvailability: checkAvailability,
+    getCount: getCount
   };
 }, {
   persist: true,

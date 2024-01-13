@@ -60,15 +60,12 @@ class InfoKamarController extends Controller
         $kamar ->update($request->all());
         return response()->json('Room updated!');
     }
-
-
     public function destroy($id)
     {
          $kamar  =InformasiKamar::find($id);
          $kamar ->delete();
         return response()->json('Shift deleted!');
     }
-
     public function search(Request $request)
     {
         $kamar = InformasiKamar::search(trim($request->get('query')) ?? '')
@@ -85,7 +82,6 @@ class InfoKamarController extends Controller
                     ->orderBy('informasi_kamar.id', 'DESC');
             })
             ->get();
-
         return response()->json(data: $kamar, status: 200);
     }
 
@@ -131,5 +127,24 @@ class InfoKamarController extends Controller
         }
 
         return response()->json(['id_kamar' => $idKamar]);
+    }
+    public function getCount()
+    {
+        $kamar = InformasiKamar::count();
+        return response()->json($kamar);
+    }
+    public function getAvailableCount()
+    {
+        $kamar = \DB::table('informasi_kamar')
+                ->where('id_status_kamar', '=', 1)
+                ->count();
+        return response()->json($kamar);
+    }
+    public function getUnavailableCount()
+    {
+        $kamar = \DB::table('informasi_kamar')
+                ->where('id_status_kamar', '=', 2)
+                ->count();
+        return response()->json($kamar);
     }
 }

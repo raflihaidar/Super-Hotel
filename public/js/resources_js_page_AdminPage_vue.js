@@ -85,8 +85,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       route: 'dashboard',
       status: true,
       hasSubmenu: false,
-      submenu: [],
-      icon: _icons_DashboardIcon_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+      submenu: []
     }, {
       name: 'Master Room',
       route: '',
@@ -95,19 +94,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       submenu: [{
         name: 'Room',
         route: 'room',
-        status: false,
-        icon: ""
+        status: false
       }, {
         name: 'Category',
         route: 'category',
-        status: false,
-        icon: ""
+        status: false
       }, {
         name: 'Booking',
         route: 'booking',
         status: false
-      }],
-      icon: ""
+      }]
     }, {
       name: 'Staff Management',
       route: '',
@@ -116,27 +112,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       submenu: [{
         name: 'Staff',
         route: 'staff',
-        status: false,
-        icon: ""
+        status: false
       }, {
         name: 'Shift',
         route: 'shift',
-        status: false,
-        icon: ""
+        status: false
       }, {
         name: 'Divisi',
         route: 'divisi',
-        status: false,
-        icon: ""
-      }],
-      icon: ""
+        status: false
+      }]
     }, {
       name: 'Guest',
       route: 'guest',
       status: false,
       hasSubmenu: false,
-      submenu: [],
-      icon: ""
+      submenu: []
     }]);
     var __returned__ = {
       handleClick: handleClick,
@@ -329,10 +320,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([item.status ? 'bg-green-700 text-white hover:bg-green-900' : '', "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"])
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)((0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDynamicComponent)(item.icon), {
-          "class": "w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white",
-          "aria-hidden": "true"
-        })), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.name), 1 /* TEXT */)];
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <component :is=\"item.icon\"\n                        class=\"w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white\"\n                        aria-hidden=\"true\" /> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.name), 1 /* TEXT */)];
       }),
       _: 2 /* DYNAMIC */
     }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["to", "onClick", "class"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
@@ -340,10 +328,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": "flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700",
       "aria-controls": 'dropdown ' + item.name,
       "data-collapse-toggle": 'dropdown ' + item.name
-    }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)((0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDynamicComponent)(item.icon), {
-      "class": "w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white",
-      "aria-hidden": "true"
-    })), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.name), 1 /* TEXT */), _hoisted_15], 8 /* PROPS */, _hoisted_13), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <component :is=\"item.icon\"\n                            class=\"w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white\"\n                            aria-hidden=\"true\" /> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.name), 1 /* TEXT */), _hoisted_15], 8 /* PROPS */, _hoisted_13), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", {
       id: 'dropdown ' + item.name,
       "class": "hidden py-2 space-y-2"
     }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(item.submenu, function (value, submenuIndex) {
