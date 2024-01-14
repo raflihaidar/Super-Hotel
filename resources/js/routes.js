@@ -4,137 +4,149 @@ const routes = [
     {
         path: "/",
         name: "home",
-        component: () => import("./page/HomePage.vue"),
+        component: () => import("./pages/admin/booking/create.vue"),
     },
     {
         path: "/result",
         name: "result",
-        component: () => import("./page/ResultPage.vue"),
+        component: () => import("./pages/admin/booking/ResultPage.vue"),
     },
     {
         path: "/bookings/:id",
         name: "bookings",
-        component: () => import("./page/HistoryBookingPage.vue"),
+        component: () => import("./pages/admin/booking/HistoryBookingPage.vue"),
     },
     {
         path: "/sign-up",
         name: "sign-up",
-        component: () => import("./page/SignUpPage.vue"),
+        component: () => import("./pages/authentification/SignUpPage.vue"),
     },
     {
         path: "/sign-in",
         name: "sign-in",
-        component: () => import("./page/SignInPage.vue"),
+        component: () => import("./pages/authentification/SignInPage.vue"),
     },
     {
         path: "/admin",
         name: "admin",
-        component: () => import("./page/AdminPage.vue"),
+        component: () => import("./pages/admin/AdminPage.vue"),
         children: [
             {
                 path: "",
                 name: "dashboard",
-                component: () => import("./page/DashboardPage.vue"),
+                component: () => import("./pages/admin/dashboard/index.vue"),
             },
             {
                 path: "room",
                 name: "room-parent",
-                component: () => import("./page/RoomPage.vue"),
+                component: () => import("./pages/admin/room/RoomPage.vue"),
                 children: [
                     {
                         path: "",
                         name: "room",
-                        component: () => import("./page/RoomViewPage.vue"),
+                        component: () => import("./pages/admin/room/index.vue"),
                     },
                     {
                         path: "add-room",
                         name: "add-room",
-                        component: () => import("./page/FormRoomPage.vue"),
+                        component: () =>
+                            import("./pages/admin/room/partials/RoomForm.vue"),
                     },
                 ],
             },
             {
                 path: "category",
                 name: "category-parent",
-                component: () => import("./page/CategoryPage.vue"),
+                component: () =>
+                    import("./pages/admin/category/CategoryPage.vue"),
                 children: [
                     {
                         path: "",
                         name: "category",
-                        component: () => import("./page/CategoryViewPage.vue"),
+                        component: () =>
+                            import("./pages/admin/category/index.vue"),
                     },
                     {
                         path: "add-category",
                         name: "add-category",
-                        component: () => import("./page/FormCategoryPage.vue"),
+                        component: () =>
+                            import(
+                                "./pages/admin/category/partials/CategoryForm.vue"
+                            ),
                     },
                 ],
             },
             {
                 path: "booking",
                 name: "booking",
-                component: () => import("./page/BookingPage.vue"),
-                children: [
-                    {
-                        path: "detail-booking",
-                        name: "detail-booking",
-                        component: () => import("./page/DetailBookingPage.vue"),
-                    },
-                ],
+                component: () => import("./pages/admin/booking/index.vue"),
             },
             {
                 path: "staff",
                 name: "staff-parent",
-                component: () => import("./page/StaffPage.vue"),
+                component: () => import("./pages/admin/staff/StaffPage.vue"),
                 children: [
                     {
                         path: "",
                         name: "staff",
-                        component: () => import("./page/StaffViewPage.vue"),
+                        component: () =>
+                            import("./pages/admin/staff/index.vue"),
                     },
                     {
                         path: "add-staff",
                         name: "add-staff",
-                        component: () => import("./page/FormStaffPage.vue"),
+                        component: () =>
+                            import(
+                                "./pages/admin/staff/partials/StaffForm.vue"
+                            ),
                     },
                 ],
             },
             {
                 path: "guest",
                 name: "guest",
-                component: () => import("./page/GuestPage.vue"),
+                component: () => import("./pages/admin/guest/index.vue"),
             },
             {
                 path: "shift",
                 name: "shift-parent",
-                component: () => import("./page/ShiftPage.vue"),
+                component: () => import("./pages/admin/shift/ShiftPage.vue"),
                 children: [
                     {
                         path: "",
                         name: "shift",
-                        component: () => import("./page/ShiftViewPage.vue"),
+                        component: () =>
+                            import("./pages/admin/shift/index.vue"),
                     },
                     {
                         path: "add-shift",
                         name: "add-shift",
-                        component: () => import("./page/FormShiftPage.vue"),
+                        component: () =>
+                            import(
+                                "./pages/admin/shift/partials/ShiftForm.vue"
+                            ),
                     },
                 ],
             },
             {
                 path: "divisi",
                 name: "divisi-parent",
-                component: () => import("./page/DivisionPage.vue"),
+                component: () =>
+                    import("./pages/admin/division/DivisionPage.vue"),
                 children: [
                     {
                         path: "",
                         name: "divisi",
-                        component: () => import("./page/DivisiViewPage.vue"),
+                        component: () =>
+                            import("./pages/admin/division/index.vue"),
                     },
                     {
                         path: "add-divisi",
                         name: "add-divisi",
-                        component: () => import("./page/FormDivisiPage.vue"),
+                        component: () =>
+                            import(
+                                "./pages/admin/division/partials/DivisiForm.vue"
+                            ),
                     },
                 ],
             },

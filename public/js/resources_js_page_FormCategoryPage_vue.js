@@ -12,8 +12,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var _store_category__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/category */ "./resources/js/store/category.js");
-/* harmony import */ var _components_AlertSuccesComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/AlertSuccesComponent.vue */ "./resources/js/components/AlertSuccesComponent.vue");
+/* harmony import */ var _store_global__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/global */ "./resources/js/store/global.js");
+/* harmony import */ var _components_BaseAlertSucces_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/BaseAlertSucces.vue */ "./resources/js/components/BaseAlertSucces.vue");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw new Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw new Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -27,7 +27,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var __expose = _ref.expose;
     __expose();
     var statusInput = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
-    var categoryStore = (0,_store_category__WEBPACK_IMPORTED_MODULE_1__.useCategoryStore)();
+    var store = (0,_store_global__WEBPACK_IMPORTED_MODULE_1__.useGlobalStore)();
     var payload = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({
       kategori: "",
       fasilitas: "",
@@ -53,7 +53,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               form.append('jumlah_kamar', payload.value.jumlah_kamar);
               form.append('image', payload.value.image);
               _context.next = 9;
-              return categoryStore.addData(payload.value);
+              return store.addData(5, payload.value);
             case 9:
               statusInput.value = _context.sent;
             case 10:
@@ -68,15 +68,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }();
     var __returned__ = {
       statusInput: statusInput,
-      categoryStore: categoryStore,
+      store: store,
       payload: payload,
       onChange: onChange,
       addData: addData,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
-      get useCategoryStore() {
-        return _store_category__WEBPACK_IMPORTED_MODULE_1__.useCategoryStore;
+      get useGlobalStore() {
+        return _store_global__WEBPACK_IMPORTED_MODULE_1__.useGlobalStore;
       },
-      AlertSuccesComponent: _components_AlertSuccesComponent_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+      AlertSuccesComponent: _components_BaseAlertSucces_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -88,10 +88,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/AlertSuccesComponent.vue?vue&type=template&id=57ef07dc":
-/*!******************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/AlertSuccesComponent.vue?vue&type=template&id=57ef07dc ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/BaseAlertSucces.vue?vue&type=template&id=f6e34b80":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/BaseAlertSucces.vue?vue&type=template&id=f6e34b80 ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -6974,10 +6974,10 @@ if (typeof this !== 'undefined' && this.Sweetalert2){this.swal = this.sweetAlert
 
 /***/ }),
 
-/***/ "./resources/js/components/AlertSuccesComponent.vue":
-/*!**********************************************************!*\
-  !*** ./resources/js/components/AlertSuccesComponent.vue ***!
-  \**********************************************************/
+/***/ "./resources/js/components/BaseAlertSucces.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/BaseAlertSucces.vue ***!
+  \*****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -6985,13 +6985,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _AlertSuccesComponent_vue_vue_type_template_id_57ef07dc__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AlertSuccesComponent.vue?vue&type=template&id=57ef07dc */ "./resources/js/components/AlertSuccesComponent.vue?vue&type=template&id=57ef07dc");
+/* harmony import */ var _BaseAlertSucces_vue_vue_type_template_id_f6e34b80__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BaseAlertSucces.vue?vue&type=template&id=f6e34b80 */ "./resources/js/components/BaseAlertSucces.vue?vue&type=template&id=f6e34b80");
 /* harmony import */ var D_xampp_htdocs_super_hotel_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 const script = {}
 
 ;
-const __exports__ = /*#__PURE__*/(0,D_xampp_htdocs_super_hotel_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_1__["default"])(script, [['render',_AlertSuccesComponent_vue_vue_type_template_id_57ef07dc__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/AlertSuccesComponent.vue"]])
+const __exports__ = /*#__PURE__*/(0,D_xampp_htdocs_super_hotel_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_1__["default"])(script, [['render',_BaseAlertSucces_vue_vue_type_template_id_f6e34b80__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/BaseAlertSucces.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -7044,18 +7044,18 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/AlertSuccesComponent.vue?vue&type=template&id=57ef07dc":
-/*!****************************************************************************************!*\
-  !*** ./resources/js/components/AlertSuccesComponent.vue?vue&type=template&id=57ef07dc ***!
-  \****************************************************************************************/
+/***/ "./resources/js/components/BaseAlertSucces.vue?vue&type=template&id=f6e34b80":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/BaseAlertSucces.vue?vue&type=template&id=f6e34b80 ***!
+  \***********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AlertSuccesComponent_vue_vue_type_template_id_57ef07dc__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BaseAlertSucces_vue_vue_type_template_id_f6e34b80__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AlertSuccesComponent_vue_vue_type_template_id_57ef07dc__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./AlertSuccesComponent.vue?vue&type=template&id=57ef07dc */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/AlertSuccesComponent.vue?vue&type=template&id=57ef07dc");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BaseAlertSucces_vue_vue_type_template_id_f6e34b80__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./BaseAlertSucces.vue?vue&type=template&id=f6e34b80 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/BaseAlertSucces.vue?vue&type=template&id=f6e34b80");
 
 
 /***/ }),
@@ -11209,245 +11209,6 @@ const isThenable = (thing) =>
 
 /***/ }),
 
-/***/ "./resources/js/store/category.js":
-/*!****************************************!*\
-  !*** ./resources/js/store/category.js ***!
-  \****************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   useCategoryStore: () => (/* binding */ useCategoryStore)
-/* harmony export */ });
-/* harmony import */ var pinia__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! pinia */ "./node_modules/pinia/dist/pinia.mjs");
-/* harmony import */ var _global_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./global.js */ "./resources/js/store/global.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw new Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw new Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-
-
-
-
-var useCategoryStore = (0,pinia__WEBPACK_IMPORTED_MODULE_3__.defineStore)("category", function () {
-  var store = (0,_global_js__WEBPACK_IMPORTED_MODULE_0__.useGlobalStore)();
-  var _storeToRefs = (0,pinia__WEBPACK_IMPORTED_MODULE_3__.storeToRefs)(store),
-    category = _storeToRefs.category,
-    singleData = _storeToRefs.singleData,
-    pagination = _storeToRefs.pagination;
-  var getSingleData = function getSingleData(id) {
-    store.getSingleData("http://127.0.0.1:8000/api/kategori", id);
-  };
-  var searchData = /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(search) {
-      var res;
-      return _regeneratorRuntime().wrap(function _callee$(_context) {
-        while (1) switch (_context.prev = _context.next) {
-          case 0:
-            _context.prev = 0;
-            _context.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_4__["default"].get("http://127.0.0.1:8000/api/kategori/search?query=".concat(search));
-          case 3:
-            res = _context.sent;
-            category.value = res.data;
-            _context.next = 10;
-            break;
-          case 7:
-            _context.prev = 7;
-            _context.t0 = _context["catch"](0);
-            console.log(_context.t0);
-          case 10:
-          case "end":
-            return _context.stop();
-        }
-      }, _callee, null, [[0, 7]]);
-    }));
-    return function searchData(_x) {
-      return _ref.apply(this, arguments);
-    };
-  }();
-  var updateData = /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(payload) {
-      var Toast;
-      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-        while (1) switch (_context2.prev = _context2.next) {
-          case 0:
-            _context2.prev = 0;
-            _context2.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_4__["default"].patch("http://127.0.0.1:8000/api/kategori/".concat(payload.id), payload);
-          case 3:
-            singleData.value = [];
-            Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_1__.mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 1000,
-              timerProgressBar: true,
-              didOpen: function didOpen(toast) {
-                toast.onmouseenter = sweetalert2__WEBPACK_IMPORTED_MODULE_1__.stopTimer;
-                toast.onmouseleave = sweetalert2__WEBPACK_IMPORTED_MODULE_1__.resumeTimer;
-              }
-            });
-            Toast.fire({
-              icon: "success",
-              title: "Update successfully"
-            });
-            _context2.next = 11;
-            break;
-          case 8:
-            _context2.prev = 8;
-            _context2.t0 = _context2["catch"](0);
-            console.log(_context2.t0);
-          case 11:
-          case "end":
-            return _context2.stop();
-        }
-      }, _callee2, null, [[0, 8]]);
-    }));
-    return function updateData(_x2) {
-      return _ref2.apply(this, arguments);
-    };
-  }();
-  var deleteData = /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(id) {
-      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
-        while (1) switch (_context4.prev = _context4.next) {
-          case 0:
-            try {
-              sweetalert2__WEBPACK_IMPORTED_MODULE_1__.fire({
-                title: "Are you sure to delete this data ?",
-                icon: "question",
-                showConfirmButton: true,
-                showCancelButton: true,
-                cancelButtonText: "cancel",
-                confirmButtonText: "delete"
-              }).then( /*#__PURE__*/function () {
-                var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(result) {
-                  var deletedItem, index;
-                  return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-                    while (1) switch (_context3.prev = _context3.next) {
-                      case 0:
-                        if (!result.isConfirmed) {
-                          _context3.next = 7;
-                          break;
-                        }
-                        deletedItem = category.value.find(function (item) {
-                          return item.id === id;
-                        });
-                        if (!deletedItem) {
-                          _context3.next = 7;
-                          break;
-                        }
-                        _context3.next = 5;
-                        return axios__WEBPACK_IMPORTED_MODULE_4__["default"]["delete"]("http://127.0.0.1:8000/api/kategori/".concat(id));
-                      case 5:
-                        index = category.value.indexOf(deletedItem);
-                        category.value.splice(index, 1);
-                      case 7:
-                      case "end":
-                        return _context3.stop();
-                    }
-                  }, _callee3);
-                }));
-                return function (_x4) {
-                  return _ref4.apply(this, arguments);
-                };
-              }());
-            } catch (_unused) {
-              sweetalert2__WEBPACK_IMPORTED_MODULE_1__.fire({
-                title: "Delete Error!",
-                icon: "Error",
-                confirmButtonText: "Ok"
-              });
-            }
-          case 1:
-          case "end":
-            return _context4.stop();
-        }
-      }, _callee4);
-    }));
-    return function deleteData(_x3) {
-      return _ref3.apply(this, arguments);
-    };
-  }();
-  var addData = /*#__PURE__*/function () {
-    var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(payload) {
-      var status, res, Toast;
-      return _regeneratorRuntime().wrap(function _callee5$(_context5) {
-        while (1) switch (_context5.prev = _context5.next) {
-          case 0:
-            status = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
-            _context5.prev = 1;
-            _context5.next = 4;
-            return axios__WEBPACK_IMPORTED_MODULE_4__["default"].post("http://127.0.0.1:8000/api/kategori", payload, {
-              headers: {
-                "Content-Type": "multipart/form-data"
-              }
-            });
-          case 4:
-            res = _context5.sent;
-            Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_1__.mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 1000,
-              timerProgressBar: true,
-              didOpen: function didOpen(toast) {
-                toast.onmouseenter = sweetalert2__WEBPACK_IMPORTED_MODULE_1__.stopTimer;
-                toast.onmouseleave = sweetalert2__WEBPACK_IMPORTED_MODULE_1__.resumeTimer;
-              }
-            });
-            Toast.fire({
-              icon: "success",
-              title: "Update successfully"
-            });
-            status.value = res.data.success;
-            category.value.push(res.data.data);
-            _context5.next = 15;
-            break;
-          case 11:
-            _context5.prev = 11;
-            _context5.t0 = _context5["catch"](1);
-            sweetalert2__WEBPACK_IMPORTED_MODULE_1__.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "Something went wrong!"
-            });
-            console.log(_context5.t0);
-          case 15:
-            _context5.prev = 15;
-            return _context5.abrupt("return", status.value);
-          case 18:
-          case "end":
-            return _context5.stop();
-        }
-      }, _callee5, null, [[1, 11, 15, 18]]);
-    }));
-    return function addData(_x5) {
-      return _ref5.apply(this, arguments);
-    };
-  }();
-  return {
-    category: category,
-    singleData: singleData,
-    pagination: pagination,
-    getSingleData: getSingleData,
-    searchData: searchData,
-    updateData: updateData,
-    deleteData: deleteData,
-    addData: addData
-  };
-}, {
-  persist: true
-});
-
-/***/ }),
-
 /***/ "./resources/js/store/global.js":
 /*!**************************************!*\
   !*** ./resources/js/store/global.js ***!
@@ -11460,8 +11221,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   useGlobalStore: () => (/* binding */ useGlobalStore)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var pinia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! pinia */ "./node_modules/pinia/dist/pinia.mjs");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var pinia__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! pinia */ "./node_modules/pinia/dist/pinia.mjs");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw new Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw new Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -11469,15 +11231,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global", function () {
+
+var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_2__.defineStore)("global", function () {
   //state
-  var STAFF_URL = "http://127.0.0.1:8000/api/staff/page";
-  var GUEST_URL = "http://127.0.0.1:8000/api/tamu/page";
-  var DIVISI_URL = "http://127.0.0.1:8000/api/divisi/page";
-  var SHIFT_URL = "http://127.0.0.1:8000/api/shift/page";
-  var ROOM_URL = "http://127.0.0.1:8000/api/kamar/page";
-  var CATEGORY_URL = "http://127.0.0.1:8000/api/kategori/page";
-  var BOOKING_URL = "http://127.0.0.1:8000/api/booking/page";
+  var STAFF_URL = "http://127.0.0.1:8000/api/staff";
+  var GUEST_URL = "http://127.0.0.1:8000/api/tamu";
+  var DIVISI_URL = "http://127.0.0.1:8000/api/divisi";
+  var SHIFT_URL = "http://127.0.0.1:8000/api/shift";
+  var ROOM_URL = "http://127.0.0.1:8000/api/kamar";
+  var CATEGORY_URL = "http://127.0.0.1:8000/api/kategori";
+  var BOOKING_URL = "http://127.0.0.1:8000/api/booking";
   var staff = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
   var guest = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
   var divisi = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
@@ -11485,7 +11248,6 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
   var room = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)();
   var category = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)();
   var booking = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)();
-  var detailBooking = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)();
   var singleData = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
   var pagination = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({
     total: 0,
@@ -11496,20 +11258,22 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
     prevPage: "",
     perPage: 0
   });
+  var URL_LIST = [STAFF_URL, GUEST_URL, DIVISI_URL, SHIFT_URL, ROOM_URL, CATEGORY_URL, BOOKING_URL];
+  var STATE_LIST = (0,vue__WEBPACK_IMPORTED_MODULE_0__.toRefs)([staff, guest, divisi, shift, room, category, booking]);
 
   //action
   var resetSingleData = function resetSingleData() {
     singleData.value = [];
   };
   var getSingleData = /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(url, id) {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(index, id) {
       var res;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("".concat(url, "/").concat(id));
+            return axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("".concat(URL_LIST[index], "/").concat(id));
           case 3:
             res = _context.sent;
             singleData.value = res.data;
@@ -11529,46 +11293,19 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
       return _ref.apply(this, arguments);
     };
   }();
-  var getPagination = /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(url, index) {
+  var getData = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(index, count) {
       var res;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
             _context2.prev = 0;
             _context2.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("http://127.0.0.1:8000/api/".concat(url, "/page/").concat(index));
+            return axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("".concat(URL_LIST[index], "/page/").concat(count));
           case 3:
             res = _context2.sent;
-            console.log(url);
-            _context2.t0 = url;
-            _context2.next = _context2.t0 === "tamu" ? 8 : _context2.t0 === "staff" ? 10 : _context2.t0 === "shift" ? 12 : _context2.t0 === "divisi" ? 14 : _context2.t0 === "kamar" ? 16 : _context2.t0 === "booking" ? 18 : _context2.t0 === "detail-booking" ? 20 : _context2.t0 === "kategori" ? 22 : 24;
-            break;
-          case 8:
-            guest.value = res.data.data;
-            return _context2.abrupt("break", 24);
-          case 10:
-            staff.value = res.data.data;
-            return _context2.abrupt("break", 24);
-          case 12:
-            shift.value = res.data.data;
-            return _context2.abrupt("break", 24);
-          case 14:
-            divisi.value = res.data.data;
-            return _context2.abrupt("break", 24);
-          case 16:
-            room.value = res.data.data;
-            return _context2.abrupt("break", 24);
-          case 18:
-            booking.value = res.data.data;
-            return _context2.abrupt("break", 24);
-          case 20:
-            detailBooking.value = res.data.data;
-            return _context2.abrupt("break", 24);
-          case 22:
-            category.value = res.data.data;
-            return _context2.abrupt("break", 24);
-          case 24:
+            console.log(URL_LIST[index]);
+            STATE_LIST[index].value = res.data.data;
             pagination.value = {
               total: res.data.total,
               currentPage: res.data.current_page,
@@ -11578,107 +11315,79 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
               prevPage: res.data.prev_page_url,
               perPage: res.data.per_page
             };
-            _context2.next = 30;
+            _context2.next = 13;
             break;
-          case 27:
-            _context2.prev = 27;
-            _context2.t1 = _context2["catch"](0);
-            console.log(_context2.t1);
-          case 30:
+          case 9:
+            _context2.prev = 9;
+            _context2.t0 = _context2["catch"](0);
+            console.log(URL_LIST[index]);
+            console.log(_context2.t0);
+          case 13:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[0, 27]]);
+      }, _callee2, null, [[0, 9]]);
     }));
-    return function getPagination(_x3, _x4) {
+    return function getData(_x3, _x4) {
       return _ref2.apply(this, arguments);
     };
   }();
-  var nextOrPrev = /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(name, url) {
+  var searchData = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(index, search) {
       var res;
       return _regeneratorRuntime().wrap(function _callee3$(_context3) {
         while (1) switch (_context3.prev = _context3.next) {
           case 0:
             _context3.prev = 0;
             _context3.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("".concat(url));
+            return axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("".concat(URL_LIST[index], "/search?query=").concat(search));
           case 3:
             res = _context3.sent;
-            _context3.t0 = name;
-            _context3.next = _context3.t0 === "tamu" ? 7 : _context3.t0 === "staff" ? 9 : _context3.t0 === "shift" ? 11 : _context3.t0 === "divisi" ? 13 : _context3.t0 === "kamar" ? 15 : _context3.t0 === "booking" ? 17 : _context3.t0 === "detail-booking" ? 19 : _context3.t0 === "kategori" ? 21 : 23;
+            STATE_LIST[index].value = res.data;
+            console.log("response", res.data);
+            console.log("url", "".concat(URL_LIST[index], "/search?query=").concat(search));
+            _context3.next = 12;
             break;
-          case 7:
-            guest.value = res.data.data;
-            return _context3.abrupt("break", 23);
           case 9:
-            staff.value = res.data.data;
-            return _context3.abrupt("break", 23);
-          case 11:
-            shift.value = res.data.data;
-            return _context3.abrupt("break", 23);
-          case 13:
-            divisi.value = res.data.data;
-            return _context3.abrupt("break", 23);
-          case 15:
-            room.value = res.data.data;
-            return _context3.abrupt("break", 23);
-          case 17:
-            booking.value = res.data.data;
-            return _context3.abrupt("break", 23);
-          case 19:
-            detailBooking.value = res.data.data;
-            return _context3.abrupt("break", 23);
-          case 21:
-            category.value = res.data.data;
-            return _context3.abrupt("break", 23);
-          case 23:
-            pagination.value = {
-              total: res.data.total,
-              currentPage: res.data.current_page,
-              from: res.data.from,
-              to: res.data.to,
-              nextPage: res.data.next_page_url,
-              prevPage: res.data.prev_page_url,
-              perPage: res.data.per_page
-            };
-            _context3.next = 29;
-            break;
-          case 26:
-            _context3.prev = 26;
-            _context3.t1 = _context3["catch"](0);
-            console.log(_context3.t1);
-          case 29:
+            _context3.prev = 9;
+            _context3.t0 = _context3["catch"](0);
+            console.log(_context3.t0);
+          case 12:
           case "end":
             return _context3.stop();
         }
-      }, _callee3, null, [[0, 26]]);
+      }, _callee3, null, [[0, 9]]);
     }));
-    return function nextOrPrev(_x5, _x6) {
+    return function searchData(_x5, _x6) {
       return _ref3.apply(this, arguments);
     };
   }();
-  var setStaff = /*#__PURE__*/function () {
-    var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(index) {
-      var res;
+  var updateData = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(index, payload) {
+      var Toast;
       return _regeneratorRuntime().wrap(function _callee4$(_context4) {
         while (1) switch (_context4.prev = _context4.next) {
           case 0:
             _context4.prev = 0;
             _context4.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("".concat(STAFF_URL, "/").concat(index));
+            return axios__WEBPACK_IMPORTED_MODULE_3__["default"].patch("".concat(URL_LIST[index], "/").concat(payload.id), payload);
           case 3:
-            res = _context4.sent;
-            staff.value = res.data.data;
-            pagination.value = {
-              total: res.data.total,
-              currentPage: res.data.current_page,
-              from: res.data.from,
-              to: res.data.to,
-              nextPage: res.data.next_page_url,
-              prevPage: res.data.prev_page_url,
-              perPage: res.data.per_page
-            };
+            singleData.value = [];
+            Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_1__.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 1000,
+              timerProgressBar: true,
+              didOpen: function didOpen(toast) {
+                toast.onmouseenter = sweetalert2__WEBPACK_IMPORTED_MODULE_1__.stopTimer;
+                toast.onmouseleave = sweetalert2__WEBPACK_IMPORTED_MODULE_1__.resumeTimer;
+              }
+            });
+            Toast.fire({
+              icon: "success",
+              title: "Update successfully"
+            });
             _context4.next = 11;
             break;
           case 8:
@@ -11691,136 +11400,132 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
         }
       }, _callee4, null, [[0, 8]]);
     }));
-    return function setStaff(_x7) {
+    return function updateData(_x7, _x8) {
       return _ref4.apply(this, arguments);
     };
   }();
-  var setGuest = /*#__PURE__*/function () {
-    var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(index) {
-      var res;
-      return _regeneratorRuntime().wrap(function _callee5$(_context5) {
-        while (1) switch (_context5.prev = _context5.next) {
-          case 0:
-            _context5.prev = 0;
-            _context5.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("".concat(GUEST_URL, "/").concat(index));
-          case 3:
-            res = _context5.sent;
-            console.log("".concat(GUEST_URL, "/").concat(index));
-            guest.value = res.data.data;
-            pagination.value = {
-              total: res.data.total,
-              currentPage: res.data.current_page,
-              from: res.data.from,
-              to: res.data.to,
-              nextPage: res.data.next_page_url,
-              prevPage: res.data.prev_page_url,
-              perPage: res.data.per_page
-            };
-            _context5.next = 13;
-            break;
-          case 9:
-            _context5.prev = 9;
-            _context5.t0 = _context5["catch"](0);
-            console.log(_context5.t0);
-            console.log("".concat(GUEST_URL, "/").concat(index));
-          case 13:
-          case "end":
-            return _context5.stop();
-        }
-      }, _callee5, null, [[0, 9]]);
-    }));
-    return function setGuest(_x8) {
-      return _ref5.apply(this, arguments);
-    };
-  }();
-  var setShift = /*#__PURE__*/function () {
-    var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(index) {
-      var res;
+  var deleteData = /*#__PURE__*/function () {
+    var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(index, id) {
       return _regeneratorRuntime().wrap(function _callee6$(_context6) {
         while (1) switch (_context6.prev = _context6.next) {
           case 0:
-            _context6.prev = 0;
-            _context6.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("".concat(SHIFT_URL, "/").concat(index));
-          case 3:
-            res = _context6.sent;
-            shift.value = res.data.data;
-            pagination.value = {
-              total: res.data.total,
-              currentPage: res.data.current_page,
-              from: res.data.from,
-              to: res.data.to,
-              nextPage: res.data.next_page_url,
-              prevPage: res.data.prev_page_url,
-              perPage: res.data.per_page
-            };
-            _context6.next = 11;
-            break;
-          case 8:
-            _context6.prev = 8;
-            _context6.t0 = _context6["catch"](0);
-            console.log(_context6.t0);
-          case 11:
+            try {
+              sweetalert2__WEBPACK_IMPORTED_MODULE_1__.fire({
+                title: "Are you sure to delete this data ?",
+                icon: "question",
+                showConfirmButton: true,
+                showCancelButton: true,
+                cancelButtonText: "cancel",
+                confirmButtonText: "delete"
+              }).then( /*#__PURE__*/function () {
+                var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(result) {
+                  var deletedItem, itemIndex;
+                  return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+                    while (1) switch (_context5.prev = _context5.next) {
+                      case 0:
+                        if (!result.isConfirmed) {
+                          _context5.next = 10;
+                          break;
+                        }
+                        deletedItem = STATE_LIST[index].value.find(function (item) {
+                          return item.id === id;
+                        });
+                        if (!deletedItem) {
+                          _context5.next = 10;
+                          break;
+                        }
+                        _context5.next = 5;
+                        return axios__WEBPACK_IMPORTED_MODULE_3__["default"]["delete"]("".concat(URL_LIST[index], "/").concat(id));
+                      case 5:
+                        console.log("".concat(URL_LIST[index], "/").concat(id));
+                        console.log("".concat(URL_LIST[index]));
+                        console.log("state", STATE_LIST[index].value);
+                        itemIndex = STATE_LIST[index].value.indexOf(deletedItem);
+                        if (itemIndex !== -1) {
+                          STATE_LIST[index].value.splice(itemIndex, 1);
+                        }
+                      case 10:
+                      case "end":
+                        return _context5.stop();
+                    }
+                  }, _callee5);
+                }));
+                return function (_x11) {
+                  return _ref6.apply(this, arguments);
+                };
+              }());
+            } catch (error) {
+              sweetalert2__WEBPACK_IMPORTED_MODULE_1__.fire({
+                title: "Delete Error!",
+                icon: "error",
+                confirmButtonText: "Ok"
+              });
+              console.log(error);
+            }
+          case 1:
           case "end":
             return _context6.stop();
         }
-      }, _callee6, null, [[0, 8]]);
+      }, _callee6);
     }));
-    return function setShift(_x9) {
-      return _ref6.apply(this, arguments);
+    return function deleteData(_x9, _x10) {
+      return _ref5.apply(this, arguments);
     };
   }();
-  var setDivisi = /*#__PURE__*/function () {
-    var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(index) {
-      var res;
+  var addData = /*#__PURE__*/function () {
+    var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(index, payload) {
+      var status, res;
       return _regeneratorRuntime().wrap(function _callee7$(_context7) {
         while (1) switch (_context7.prev = _context7.next) {
           case 0:
-            _context7.prev = 0;
-            _context7.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("".concat(DIVISI_URL, "/").concat(index));
-          case 3:
+            status = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
+            _context7.prev = 1;
+            _context7.next = 4;
+            return axios__WEBPACK_IMPORTED_MODULE_3__["default"].post("".concat(URL_LIST[index]), payload, {
+              headers: {
+                "Content-Type": "multipart/form-data"
+              }
+            });
+          case 4:
             res = _context7.sent;
-            divisi.value = res.data.data;
-            pagination.value = {
-              total: res.data.total,
-              currentPage: res.data.current_page,
-              from: res.data.from,
-              to: res.data.to,
-              nextPage: res.data.next_page_url,
-              prevPage: res.data.prev_page_url,
-              perPage: res.data.per_page
-            };
-            _context7.next = 11;
+            status.value = res.data.success;
+            STATE_LIST[index].value.push(res.data.data);
+            _context7.next = 13;
             break;
-          case 8:
-            _context7.prev = 8;
-            _context7.t0 = _context7["catch"](0);
+          case 9:
+            _context7.prev = 9;
+            _context7.t0 = _context7["catch"](1);
+            sweetalert2__WEBPACK_IMPORTED_MODULE_1__.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Something went wrong!"
+            });
             console.log(_context7.t0);
-          case 11:
+          case 13:
+            _context7.prev = 13;
+            return _context7.abrupt("return", status.value);
+          case 16:
           case "end":
             return _context7.stop();
         }
-      }, _callee7, null, [[0, 8]]);
+      }, _callee7, null, [[1, 9, 13, 16]]);
     }));
-    return function setDivisi(_x10) {
+    return function addData(_x12, _x13) {
       return _ref7.apply(this, arguments);
     };
   }();
-  var setBooking = /*#__PURE__*/function () {
-    var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(index) {
+  var getPagination = /*#__PURE__*/function () {
+    var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(index, count) {
       var res;
       return _regeneratorRuntime().wrap(function _callee8$(_context8) {
         while (1) switch (_context8.prev = _context8.next) {
           case 0:
             _context8.prev = 0;
             _context8.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("".concat(BOOKING_URL, "/").concat(index));
+            return axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("".concat(URL_LIST[index], "/page/").concat(count));
           case 3:
             res = _context8.sent;
-            console.log(res.data.data);
-            booking.value = res.data.data;
+            STATE_LIST[index].value = res.data.data;
             pagination.value = {
               total: res.data.total,
               currentPage: res.data.current_page,
@@ -11830,35 +11535,34 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
               prevPage: res.data.prev_page_url,
               perPage: res.data.per_page
             };
-            _context8.next = 12;
+            _context8.next = 11;
             break;
-          case 9:
-            _context8.prev = 9;
+          case 8:
+            _context8.prev = 8;
             _context8.t0 = _context8["catch"](0);
             console.log(_context8.t0);
-          case 12:
+          case 11:
           case "end":
             return _context8.stop();
         }
-      }, _callee8, null, [[0, 9]]);
+      }, _callee8, null, [[0, 8]]);
     }));
-    return function setBooking(_x11) {
+    return function getPagination(_x14, _x15) {
       return _ref8.apply(this, arguments);
     };
   }();
-  var setRoom = /*#__PURE__*/function () {
-    var _ref9 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9(index) {
+  var nextOrPrev = /*#__PURE__*/function () {
+    var _ref9 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9(index, url) {
       var res;
       return _regeneratorRuntime().wrap(function _callee9$(_context9) {
         while (1) switch (_context9.prev = _context9.next) {
           case 0:
             _context9.prev = 0;
             _context9.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("".concat(ROOM_URL, "/").concat(index));
+            return axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("".concat(url));
           case 3:
             res = _context9.sent;
-            room.value = res.data.data;
-            console.log(res.data.data);
+            STATE_LIST[index].value = res.data.data;
             pagination.value = {
               total: res.data.total,
               currentPage: res.data.current_page,
@@ -11868,57 +11572,20 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
               prevPage: res.data.prev_page_url,
               perPage: res.data.per_page
             };
-            _context9.next = 12;
+            _context9.next = 11;
             break;
-          case 9:
-            _context9.prev = 9;
+          case 8:
+            _context9.prev = 8;
             _context9.t0 = _context9["catch"](0);
-            console.log("error", _context9.t0);
-          case 12:
+            console.log(_context9.t0);
+          case 11:
           case "end":
             return _context9.stop();
         }
-      }, _callee9, null, [[0, 9]]);
+      }, _callee9, null, [[0, 8]]);
     }));
-    return function setRoom(_x12) {
+    return function nextOrPrev(_x16, _x17) {
       return _ref9.apply(this, arguments);
-    };
-  }();
-  var setCategory = /*#__PURE__*/function () {
-    var _ref10 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10(index) {
-      var res;
-      return _regeneratorRuntime().wrap(function _callee10$(_context10) {
-        while (1) switch (_context10.prev = _context10.next) {
-          case 0:
-            _context10.prev = 0;
-            _context10.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("".concat(CATEGORY_URL, "/").concat(index));
-          case 3:
-            res = _context10.sent;
-            category.value = res.data.data;
-            pagination.value = {
-              total: res.data.total,
-              currentPage: res.data.current_page,
-              from: res.data.from,
-              to: res.data.to,
-              nextPage: res.data.next_page_url,
-              prevPage: res.data.prev_page_url,
-              perPage: res.data.per_page
-            };
-            _context10.next = 11;
-            break;
-          case 8:
-            _context10.prev = 8;
-            _context10.t0 = _context10["catch"](0);
-            console.log(_context10.t0);
-          case 11:
-          case "end":
-            return _context10.stop();
-        }
-      }, _callee10, null, [[0, 8]]);
-    }));
-    return function setCategory(_x13) {
-      return _ref10.apply(this, arguments);
     };
   }();
   return {
@@ -11934,17 +11601,13 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_1__.defineStore)("global"
     nextOrPrev: nextOrPrev,
     resetSingleData: resetSingleData,
     getSingleData: getSingleData,
-    setGuest: setGuest,
-    setStaff: setStaff,
-    setShift: setShift,
-    setDivisi: setDivisi,
-    setBooking: setBooking,
-    setRoom: setRoom,
-    setCategory: setCategory,
-    getPagination: getPagination
+    getPagination: getPagination,
+    getData: getData,
+    searchData: searchData,
+    deleteData: deleteData,
+    updateData: updateData,
+    addData: addData
   };
-}, {
-  persist: true
 });
 
 /***/ })

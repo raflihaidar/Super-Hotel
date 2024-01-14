@@ -13,9 +13,9 @@ class StaffController extends Controller
     {
         $page = $index;
         $staff = \DB::table("staff")
-        ->join('divisi', 'staff.id_divisi', '=', 'divisi.id')
-        ->join('shift', 'staff.id_shift', '=', 'shift.id')
-        ->join('status_staff', 'staff.id_status', '=', 'status_staff.id')
+        ->leftJoin('divisi', 'staff.id_divisi', '=', 'divisi.id')
+        ->leftJoin('shift', 'staff.id_shift', '=', 'shift.id')
+        ->leftJoin('status_staff', 'staff.id_status', '=', 'status_staff.id')
         ->select(
             'staff.*',
             'divisi.nama as nama_divisi',
@@ -48,9 +48,9 @@ class StaffController extends Controller
     public function show($id)
     {
         $staff = \DB::table("staff")
-        ->join('divisi', 'staff.id_divisi', '=', 'divisi.id')
-        ->join('shift', 'staff.id_shift', '=', 'shift.id')
-        ->join('status_staff', 'staff.id_status', '=', 'status_staff.id')
+        ->leftJoin('divisi', 'staff.id_divisi', '=', 'divisi.id')
+        ->leftJoin('shift', 'staff.id_shift', '=', 'shift.id')
+        ->leftJoin('status_staff', 'staff.id_status', '=', 'status_staff.id')
         ->select(
             'staff.*',
             'divisi.nama as nama_divisi',
@@ -81,9 +81,9 @@ class StaffController extends Controller
     {
         $staff = Staff::search(trim($request->get('query')) ?? '')
             ->query(function ($query) {
-                $query->join('divisi', 'staff.id_divisi', 'divisi.id')
-                    ->join('shift', 'staff.id_shift', 'shift.id')
-                    ->join('status_staff', 'staff.id_status', 'status_staff.id')
+                $query->leftJoin('divisi', 'staff.id_divisi', 'divisi.id')
+                    ->leftJoin('shift', 'staff.id_shift', 'shift.id')
+                    ->leftJoin('status_staff', 'staff.id_status', 'status_staff.id')
                     ->select(
                         'staff.*',
                         'divisi.nama as nama_divisi',

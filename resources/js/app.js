@@ -3,7 +3,6 @@ import { createPinia } from "pinia";
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 import App from "./App.vue";
 import routes from "./routes.js";
-import "flowbite";
 
 const pinia = createPinia();
 pinia.use(piniaPluginPersistedstate);

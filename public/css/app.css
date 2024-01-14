@@ -1333,9 +1333,6 @@ input:checked + .toggle-bg {
 .me-2 {
   margin-inline-end: 0.5rem;
 }
-.me-2\.5 {
-  margin-inline-end: 0.625rem;
-}
 .me-3 {
   margin-inline-end: 0.75rem;
 }
@@ -2548,10 +2545,6 @@ input:checked + .toggle-bg {
 
   .md\:me-24 {
     margin-inline-end: 6rem;
-  }
-
-  .md\:ms-2 {
-    margin-inline-start: 0.5rem;
   }
 
   .md\:h-auto {

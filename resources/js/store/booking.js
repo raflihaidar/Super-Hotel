@@ -10,78 +10,26 @@ export const useBookingStore = defineStore(
     () => {
         const URL_DETAIL_BOOKING = "http://127.0.0.1:8000/api/detail-booking";
         const BASE_URL = "http://127.0.0.1:8000/api/booking";
-        const store = useGlobalStore();
         const roomStore = useRoomStore();
         const { searchField } = storeToRefs(roomStore);
-        const { booking, singleData, pagination } = storeToRefs(store);
         const detailBooking = ref([]);
 
-        const getSingleData = (id) => {
-            store.getSingleData(BASE_URL, id);
-        };
-
-        const searchData = async (search) => {
+        const updateTotalBooking = async (idBooking) => {
             try {
-                const res = await axios.get(
-                    `${BASE_URL}/search?query=${search}`
-                );
-                booking.value = res.data;
-            } catch {
-                console.log(err);
-            }
-        };
-
-        const updateData = async (payload) => {
-            try {
-                await axios.patch(`${BASE_URL}/${payload.id}`, payload);
-                singleData.value = [];
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 1000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
-                    },
-                });
-                Toast.fire({
-                    icon: "success",
-                    title: "Update successfully",
-                });
-            } catch (err) {
-                console.log(err);
-            }
-        };
-
-        const deleteData = async (id) => {
-            try {
-                Swal.fire({
-                    title: "Are you sure to delete this data ?",
-                    icon: "question",
-                    showConfirmButton: true,
-                    showCancelButton: true,
-                    cancelButtonText: "cancel",
-                    confirmButtonText: "delete",
-                }).then(async (result) => {
-                    if (result.isConfirmed) {
-                        let deletedItem = booking.value.find(
-                            (item) => item.id === id
-                        );
-                        if (deletedItem) {
-                            await axios.delete(`${BASE_URL}/${id}`);
-                            const index = booking.value.indexOf(deletedItem);
-                            booking.value.splice(index, 1);
-                        }
+                const response = await axios.post(
+                    `${URL_DETAIL_BOOKING}/update-total`,
+                    {
+                        id_booking: idBooking,
                     }
-                });
-            } catch {
-                Swal.fire({
-                    title: "Delete Error!",
-                    icon: "Error",
-                    confirmButtonText: "Ok",
-                });
+                );
+
+                if (response.data.success) {
+                    console.log("Total updated successfully");
+                } else {
+                    console.error("Failed to update total");
+                }
+            } catch (error) {
+                console.error("Error:", error);
             }
         };
 
@@ -115,25 +63,6 @@ export const useBookingStore = defineStore(
             }
         };
 
-        const updateTotalBooking = async (idBooking) => {
-            try {
-                const response = await axios.post(
-                    `${URL_DETAIL_BOOKING}/update-total`,
-                    {
-                        id_booking: idBooking,
-                    }
-                );
-
-                if (response.data.success) {
-                    console.log("Total updated successfully");
-                } else {
-                    console.error("Failed to update total");
-                }
-            } catch (error) {
-                console.error("Error:", error);
-            }
-        };
-
         const addDetailBooking = async (payload, id_booking, id_kamar) => {
             try {
                 const res = await axios.post(URL_DETAIL_BOOKING, {
@@ -157,8 +86,6 @@ export const useBookingStore = defineStore(
             try {
                 const res = await axios.get(`${URL_DETAIL_BOOKING}/${id_tamu}`);
                 detailBooking.value = res.data.booking_details;
-                console.log(res.data.booking_details);
-                console.log(id_tamu);
             } catch (error) {
                 console.log(error);
             }
@@ -182,14 +109,7 @@ export const useBookingStore = defineStore(
             }
         };
         return {
-            booking,
             detailBooking,
-            singleData,
-            pagination,
-            getSingleData,
-            searchData,
-            updateData,
-            deleteData,
             addData,
             addDetailBooking,
             viewHistoryBooking,

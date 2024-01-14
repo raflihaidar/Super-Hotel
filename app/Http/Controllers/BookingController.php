@@ -62,8 +62,8 @@ class BookingController extends Controller
     {
         $now = Carbon::now('Asia/Jakarta')->format('Y-m-d');
         $booking = \DB::table('booking')
-            ->where('check_in', '<=', $now)
-            ->where('check_out', '>=', $now)
+            ->where('check_in', '<', $now)
+            ->where('check_out', '>', $now)
             ->count();
 
         return response()->json($booking);
