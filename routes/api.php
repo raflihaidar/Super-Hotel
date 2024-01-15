@@ -36,22 +36,27 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
 });
 
+Route::delete('tamu/delete-all', [TamuController::class, 'destroyAllData']);
 Route::get('tamu/search', [TamuController::class, 'search']);
 Route::get('tamu/page/{page}', [TamuController::class, 'index']);
 Route::resource('tamu', TamuController::class)->except('index');
 
+Route::delete('staff/delete-all', [StaffController::class, 'destroyAllData']);
 Route::get('staff/search', [StaffController::class, 'search']);
 Route::get('staff/page/{page}', [StaffController::class, 'index']);
 Route::resource('staff', StaffController::class)->except('index');
 
+Route::delete('shift/delete-all', [ShiftController::class, 'destroyAllData']);
 Route::get('shift/search', [ShiftController::class, 'search']);
 Route::get('shift/page/{page}', [ShiftController::class, 'index']);
 Route::resource('shift', ShiftController::class)->except('index');
 
+Route::delete('divisi/delete-all', [DivisiController::class, 'destroyAllData']);
 Route::get('divisi/search', [DivisiController::class, 'search']);
 Route::get('divisi/page/{page}', [DivisiController::class, 'index']);
 Route::resource('divisi', DivisiController::class)->except('index');
 
+Route::delete('kamar/delete-all', [InfoKamarController::class, 'destroyAllData']);
 Route::get('kamar/count', [InfoKamarController::class, 'getCount']);
 Route::get('kamar/available-count', [InfoKamarController::class, 'getAvailableCount']);
 Route::get('kamar/unavailable-count', [InfoKamarController::class, 'getUnavailableCount']);
@@ -61,10 +66,12 @@ Route::get('kamar/page/{page}', [InfoKamarController::class, 'index']);
 Route::get('kamar/get-room-id', [InfoKamarController::class, 'getRoomId']);
 Route::resource('kamar', InfoKamarController::class)->except('index');
 
+Route::delete('kategori/delete-all', [KategoriController::class, 'destroyAllData']);
 Route::get('kategori/search', [KategoriController::class, 'search']);
 Route::get('kategori/page/{page}', [KategoriController::class, 'index']);
 Route::resource('kategori', KategoriController::class)->except('index');
 
+Route::delete('booking/delete-all', [BookingController::class, 'destroyAllData']);
 Route::get('booking/count', [BookingController::class, 'getCount']);
 Route::get('booking/checkin-count', [BookingController::class, 'getCheckInCount']);
 Route::get('booking/checkout-count', [BookingController::class, 'getCheckOutCount']);

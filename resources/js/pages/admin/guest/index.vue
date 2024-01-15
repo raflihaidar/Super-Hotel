@@ -9,10 +9,8 @@ import { storeToRefs } from 'pinia';
 
 const TableComponent = defineAsyncComponent({
     loader: () => import('../../../components/BaseTable.vue'),
-    delay: 1000,
     suspensible: true
 })
-
 
 provide('path', 'tamu')
 const store = useGlobalStore()
@@ -22,6 +20,7 @@ const { guest, singleData, pagination } = storeToRefs(store)
 const searchData = (search) => {
     store.searchData(1, search)
 }
+
 
 onMounted(() => {
     store.getData(1, "25");
@@ -39,7 +38,8 @@ watch(() => store.$state.singleData, () => {
         <BreadCrumbComponent :page="['Admin', 'Guest']" />
         <Suspense v-if="guest">
             <template #default>
-                <TableComponent :header="header" @handleSearch="searchData" :pagination="pagination" tableName="Tamu">
+                <TableComponent :header="header" @handleSearch="searchData" :pagination="pagination" tableName="Tamu"
+                    @deleteAllData="store.deleteAllData(1)" v-if="guest.length != 0">
                     <template #body>
                         <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
                             v-for="(item, index) in guest" :key="index">
@@ -55,6 +55,14 @@ watch(() => store.$state.singleData, () => {
                                 <a class="font-medium text-red-600 dark:text-green-500 hover:underline cursor-pointer"
                                     @click="store.deleteData(1, item.id);">delete</a>
                             </td>
+                        </tr>
+                    </template>
+                </TableComponent>
+                <TableComponent tableName="Tamu" @handleSearch="searchData" v-else>
+                    <template #body>
+                        <tr
+                            class="odd:bg-white text-red-600 font-bold text-lg text-center odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800  hover:bg-gray-100 dark:hover:bg-gray-600">
+                            <p>Tidak Ada Data</p>
                         </tr>
                     </template>
                 </TableComponent>

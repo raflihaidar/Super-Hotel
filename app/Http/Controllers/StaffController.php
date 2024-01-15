@@ -77,6 +77,14 @@ class StaffController extends Controller
          $staff ->delete();
         return response()->json('Staff deleted!');
     }
+    public function destroyAllData(){
+        \DB::table('staff')->delete();
+        $imagepath = \public_path('/storage/staff');
+        if(File::exists($imagepath)){
+            File::delete($imagepath);
+        }
+        return response()->json('All Staff deleted!');
+    }
     public function search(Request $request)
     {
         $staff = Staff::search(trim($request->get('query')) ?? '')

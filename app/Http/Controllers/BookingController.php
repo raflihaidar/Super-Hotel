@@ -41,6 +41,10 @@ class BookingController extends Controller
         $booking->delete();
         return response()->json('Booking deleted!');
     }
+    public function destroyAllData(){
+        \DB::table('booking')->delete();
+        return response()->json('All Booking deleted!');
+    }
     public function getCount()
     {
         $booking = Booking::count();

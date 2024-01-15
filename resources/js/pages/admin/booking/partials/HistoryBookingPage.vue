@@ -28,8 +28,8 @@
 import { initFlowbite } from 'flowbite';
 import { storeToRefs } from 'pinia';
 import { onMounted } from 'vue';
-import NavigationComponent from '../components/TheNavbar.vue'
-import { useBookingStore } from '../store/booking';
+import NavigationComponent from '../../../../components/TheNavbar.vue'
+import { useBookingStore } from '../../../../store/booking';
 
 const bookingStore = useBookingStore()
 const { detailBooking } = storeToRefs(bookingStore)

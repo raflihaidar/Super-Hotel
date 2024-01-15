@@ -9,12 +9,14 @@ const routes = [
     {
         path: "/result",
         name: "result",
-        component: () => import("./pages/admin/booking/ResultPage.vue"),
+        component: () =>
+            import("./pages/admin/booking/partials/ResultPage.vue"),
     },
     {
         path: "/bookings/:id",
         name: "bookings",
-        component: () => import("./pages/admin/booking/HistoryBookingPage.vue"),
+        component: () =>
+            import("./pages/admin/booking/partials/HistoryBookingPage.vue"),
     },
     {
         path: "/sign-up",

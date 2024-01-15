@@ -226,13 +226,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     addData: Boolean,
     route: String
   },
-  emits: ['handleSearch', 'handleFilter', 'handleDelete', 'hanldeShow', 'hanldeAdd'],
+  emits: ['handleSearch', 'handleFilter', 'handleDelete', 'hanldeShow', 'hanldeAdd', 'deleteAllData'],
   setup: function setup(__props, _ref) {
-    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
       var _withAsyncContext2, _withAsyncContext3;
-      var __expose, __emit, __temp, __restore, props, _toRefs, header, pagination, emits, handleSearch, handleFilter, handleDelete, hanldeShow, hanldeAdd, __returned__;
-      return _regeneratorRuntime().wrap(function _callee$(_context) {
-        while (1) switch (_context.prev = _context.next) {
+      var __expose, __emit, __temp, __restore, props, _toRefs, header, pagination, emits, handleSearch, handleFilter, handleDelete, handleAllDelete, hanldeShow, hanldeAdd, __returned__;
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
           case 0:
             __expose = _ref.expose, __emit = _ref.emit;
             __expose();
@@ -241,7 +241,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return setTimeout(res, 1000);
               });
             }), _withAsyncContext3 = _slicedToArray(_withAsyncContext2, 2), __temp = _withAsyncContext3[0], __restore = _withAsyncContext3[1];
-            _context.next = 5;
+            _context2.next = 5;
             return __temp;
           case 5:
             __restore();
@@ -257,42 +257,55 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             handleDelete = function handleDelete() {
               emits('handleDelete');
             };
+            handleAllDelete = function handleAllDelete() {
+              emits('deleteAllData');
+            };
             hanldeShow = function hanldeShow() {
               emits('hanldeShow');
             };
             hanldeAdd = function hanldeAdd() {
               emits('handleAdd');
             };
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
-              (0,flowbite__WEBPACK_IMPORTED_MODULE_3__.initFlowbite)();
-            });
-            _context.t0 = props;
-            _context.t1 = header;
-            _context.t2 = pagination;
-            _context.t3 = emits;
-            _context.t4 = handleSearch;
-            _context.t5 = handleFilter;
-            _context.t6 = handleDelete;
-            _context.t7 = hanldeShow;
-            _context.t8 = hanldeAdd;
-            _context.t9 = vue__WEBPACK_IMPORTED_MODULE_0__.toRefs;
-            _context.t10 = vue__WEBPACK_IMPORTED_MODULE_0__.onMounted;
-            _context.t11 = _BaseSearchInput_vue__WEBPACK_IMPORTED_MODULE_1__["default"];
-            _context.t12 = _BasePagination_vue__WEBPACK_IMPORTED_MODULE_2__["default"];
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+              return _regeneratorRuntime().wrap(function _callee$(_context) {
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    (0,flowbite__WEBPACK_IMPORTED_MODULE_3__.initFlowbite)();
+                  case 1:
+                  case "end":
+                    return _context.stop();
+                }
+              }, _callee);
+            })));
+            _context2.t0 = props;
+            _context2.t1 = header;
+            _context2.t2 = pagination;
+            _context2.t3 = emits;
+            _context2.t4 = handleSearch;
+            _context2.t5 = handleFilter;
+            _context2.t6 = handleDelete;
+            _context2.t7 = handleAllDelete;
+            _context2.t8 = hanldeShow;
+            _context2.t9 = hanldeAdd;
+            _context2.t10 = vue__WEBPACK_IMPORTED_MODULE_0__.toRefs;
+            _context2.t11 = vue__WEBPACK_IMPORTED_MODULE_0__.onMounted;
+            _context2.t12 = _BaseSearchInput_vue__WEBPACK_IMPORTED_MODULE_1__["default"];
+            _context2.t13 = _BasePagination_vue__WEBPACK_IMPORTED_MODULE_2__["default"];
             __returned__ = {
-              props: _context.t0,
-              header: _context.t1,
-              pagination: _context.t2,
-              emits: _context.t3,
-              handleSearch: _context.t4,
-              handleFilter: _context.t5,
-              handleDelete: _context.t6,
-              hanldeShow: _context.t7,
-              hanldeAdd: _context.t8,
-              toRefs: _context.t9,
-              onMounted: _context.t10,
-              SearchInputComponent: _context.t11,
-              PaginationComponent: _context.t12,
+              props: _context2.t0,
+              header: _context2.t1,
+              pagination: _context2.t2,
+              emits: _context2.t3,
+              handleSearch: _context2.t4,
+              handleFilter: _context2.t5,
+              handleDelete: _context2.t6,
+              handleAllDelete: _context2.t7,
+              hanldeShow: _context2.t8,
+              hanldeAdd: _context2.t9,
+              toRefs: _context2.t10,
+              onMounted: _context2.t11,
+              SearchInputComponent: _context2.t12,
+              PaginationComponent: _context2.t13,
               get initFlowbite() {
                 return flowbite__WEBPACK_IMPORTED_MODULE_3__.initFlowbite;
               }
@@ -301,12 +314,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               enumerable: false,
               value: true
             });
-            return _context.abrupt("return", __returned__);
-          case 31:
+            return _context2.abrupt("return", __returned__);
+          case 33:
           case "end":
-            return _context.stop();
+            return _context2.stop();
         }
-      }, _callee);
+      }, _callee2);
     }))();
   }
 });
@@ -511,9 +524,7 @@ var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   "fill-rule": "evenodd",
   d: "M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
 })], -1 /* HOISTED */);
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "flex items-center space-x-3 w-full md:w-auto"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   id: "actionsDropdownButton",
   "data-dropdown-toggle": "actionsDropdown",
   "class": "w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700",
@@ -528,21 +539,20 @@ var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   "clip-rule": "evenodd",
   "fill-rule": "evenodd",
   d: "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-})]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Actions ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  id: "actionsDropdown",
-  "class": "hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", {
+})]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Actions ")], -1 /* HOISTED */);
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", {
   "class": "py-1 text-sm text-gray-700 dark:text-gray-200",
   "aria-labelledby": "actionsDropdownButton"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   href: "#",
   "class": "block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-}, "Mass Edit")])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "py-1"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+}, "Mass Edit")])], -1 /* HOISTED */);
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   href: "#",
   "class": "block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-}, "Delete all")])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+}, "Delete all", -1 /* HOISTED */);
+var _hoisted_11 = [_hoisted_10];
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   id: "filterDropdownButton",
   "data-dropdown-toggle": "filterDropdown",
   "class": "w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700",
@@ -567,78 +577,21 @@ var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   "clip-rule": "evenodd",
   "fill-rule": "evenodd",
   d: "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-})])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  id: "filterDropdown",
-  "class": "z-10 hidden w-48 p-3 bg-white rounded-lg shadow dark:bg-gray-700"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", {
-  "class": "mb-3 text-sm font-medium text-gray-900 dark:text-white"
-}, "Choose brand"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", {
-  "class": "space-y-2 text-sm",
-  "aria-labelledby": "filterDropdownButton"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
-  "class": "flex items-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  id: "apple",
-  type: "checkbox",
-  value: "",
-  "class": "w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "apple",
-  "class": "ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
-}, "Apple (56)")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
-  "class": "flex items-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  id: "fitbit",
-  type: "checkbox",
-  value: "",
-  "class": "w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "fitbit",
-  "class": "ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
-}, "Microsoft (16)")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
-  "class": "flex items-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  id: "razor",
-  type: "checkbox",
-  value: "",
-  "class": "w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "razor",
-  "class": "ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
-}, "Razor (49)")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
-  "class": "flex items-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  id: "nikon",
-  type: "checkbox",
-  value: "",
-  "class": "w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "nikon",
-  "class": "ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
-}, "Nikon (12)")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
-  "class": "flex items-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  id: "benq",
-  type: "checkbox",
-  value: "",
-  "class": "w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "benq",
-  "class": "ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
-}, "BenQ (74)")])])])], -1 /* HOISTED */);
-var _hoisted_9 = {
+})])], -1 /* HOISTED */);
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div id=\"filterDropdown\" class=\"z-10 hidden w-48 p-3 bg-white rounded-lg shadow dark:bg-gray-700\"><h6 class=\"mb-3 text-sm font-medium text-gray-900 dark:text-white\">Choose brand</h6><ul class=\"space-y-2 text-sm\" aria-labelledby=\"filterDropdownButton\"><li class=\"flex items-center\"><input id=\"apple\" type=\"checkbox\" value=\"\" class=\"w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500\"><label for=\"apple\" class=\"ml-2 text-sm font-medium text-gray-900 dark:text-gray-100\">Apple (56)</label></li><li class=\"flex items-center\"><input id=\"fitbit\" type=\"checkbox\" value=\"\" class=\"w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500\"><label for=\"fitbit\" class=\"ml-2 text-sm font-medium text-gray-900 dark:text-gray-100\">Microsoft (16)</label></li><li class=\"flex items-center\"><input id=\"razor\" type=\"checkbox\" value=\"\" class=\"w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500\"><label for=\"razor\" class=\"ml-2 text-sm font-medium text-gray-900 dark:text-gray-100\">Razor (49)</label></li><li class=\"flex items-center\"><input id=\"nikon\" type=\"checkbox\" value=\"\" class=\"w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500\"><label for=\"nikon\" class=\"ml-2 text-sm font-medium text-gray-900 dark:text-gray-100\">Nikon (12)</label></li><li class=\"flex items-center\"><input id=\"benq\" type=\"checkbox\" value=\"\" class=\"w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500\"><label for=\"benq\" class=\"ml-2 text-sm font-medium text-gray-900 dark:text-gray-100\">BenQ (74)</label></li></ul></div>", 1);
+var _hoisted_14 = {
   "class": "overflow-x-auto"
 };
-var _hoisted_10 = {
+var _hoisted_15 = {
   "class": "w-full text-sm text-left text-gray-500 dark:text-gray-400"
 };
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
   scope: "col",
   "class": "px-4 py-3"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "sr-only"
 }, "Actions")], -1 /* HOISTED */);
-var _hoisted_12 = {
+var _hoisted_17 = {
   "class": "flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-10",
   "aria-label": "Table navigation"
 };
@@ -657,7 +610,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Add " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.tableName), 1 /* TEXT */)];
     }),
     _: 1 /* STABLE */
-  }, 8 /* PROPS */, ["to"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_8])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", {
+  }, 8 /* PROPS */, ["to"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "flex items-center space-x-3 w-full md:w-auto"
+  }, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    id: "actionsDropdown",
+    "class": "hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+  }, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "py-1",
+    onClick: $setup.handleAllDelete
+  }, [].concat(_hoisted_11))]), _hoisted_12, _hoisted_13])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-xs text-white uppercase dark:text-gray-400", $setup.header ? 'bg-green-700 dark:bg-gray-700' : ''])
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.header, function (item, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("th", {
@@ -665,7 +626,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": "px-4 py-3",
       key: index
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item), 1 /* TEXT */);
-  }), 128 /* KEYED_FRAGMENT */)), _hoisted_11])], 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "body")])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["PaginationComponent"], {
+  }), 128 /* KEYED_FRAGMENT */)), _hoisted_16])], 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "body")])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["PaginationComponent"], {
     pagination: $setup.pagination
   }, null, 8 /* PROPS */, ["pagination"])])])])]);
 }

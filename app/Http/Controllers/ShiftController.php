@@ -44,6 +44,10 @@ class ShiftController extends Controller
          $shift ->delete();
         return response()->json('Shift deleted!');
     }
+    public function destroyAllData(){
+        \DB::table('shift')->delete();
+        return response()->json('All Shift deleted!');
+    }
     public function search(Request $request){
         $search_query = Shift::query();
         $search_param = $request->query('query');

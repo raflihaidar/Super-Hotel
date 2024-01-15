@@ -11409,59 +11409,78 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_2__.defineStore)("global"
       return _regeneratorRuntime().wrap(function _callee6$(_context6) {
         while (1) switch (_context6.prev = _context6.next) {
           case 0:
-            try {
-              sweetalert2__WEBPACK_IMPORTED_MODULE_1__.fire({
-                title: "Are you sure to delete this data ?",
-                icon: "question",
-                showConfirmButton: true,
-                showCancelButton: true,
-                cancelButtonText: "cancel",
-                confirmButtonText: "delete"
-              }).then( /*#__PURE__*/function () {
-                var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(result) {
-                  var deletedItem, itemIndex;
-                  return _regeneratorRuntime().wrap(function _callee5$(_context5) {
-                    while (1) switch (_context5.prev = _context5.next) {
-                      case 0:
-                        if (!result.isConfirmed) {
-                          _context5.next = 10;
-                          break;
+            sweetalert2__WEBPACK_IMPORTED_MODULE_1__.fire({
+              title: "Are you sure to delete this data ?",
+              icon: "question",
+              showConfirmButton: true,
+              showCancelButton: true,
+              cancelButtonText: "cancel",
+              confirmButtonText: "delete"
+            }).then( /*#__PURE__*/function () {
+              var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(result) {
+                var deletedItem, Toast, itemIndex;
+                return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+                  while (1) switch (_context5.prev = _context5.next) {
+                    case 0:
+                      _context5.prev = 0;
+                      if (!result.isConfirmed) {
+                        _context5.next = 13;
+                        break;
+                      }
+                      deletedItem = STATE_LIST[index].value.find(function (item) {
+                        return item.id === id;
+                      });
+                      if (!deletedItem) {
+                        _context5.next = 13;
+                        break;
+                      }
+                      Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_1__.mixin({
+                        toast: true,
+                        position: "top-end",
+                        showConfirmButton: false,
+                        timer: 1000,
+                        timerProgressBar: true,
+                        didOpen: function didOpen(toast) {
+                          toast.onmouseenter = sweetalert2__WEBPACK_IMPORTED_MODULE_1__.stopTimer;
+                          toast.onmouseleave = sweetalert2__WEBPACK_IMPORTED_MODULE_1__.resumeTimer;
                         }
-                        deletedItem = STATE_LIST[index].value.find(function (item) {
-                          return item.id === id;
-                        });
-                        if (!deletedItem) {
-                          _context5.next = 10;
-                          break;
-                        }
-                        _context5.next = 5;
-                        return axios__WEBPACK_IMPORTED_MODULE_3__["default"]["delete"]("".concat(URL_LIST[index], "/").concat(id));
-                      case 5:
-                        console.log("".concat(URL_LIST[index], "/").concat(id));
-                        console.log("".concat(URL_LIST[index]));
-                        console.log("state", STATE_LIST[index].value);
-                        itemIndex = STATE_LIST[index].value.indexOf(deletedItem);
-                        if (itemIndex !== -1) {
-                          STATE_LIST[index].value.splice(itemIndex, 1);
-                        }
-                      case 10:
-                      case "end":
-                        return _context5.stop();
-                    }
-                  }, _callee5);
-                }));
-                return function (_x11) {
-                  return _ref6.apply(this, arguments);
-                };
-              }());
-            } catch (error) {
-              sweetalert2__WEBPACK_IMPORTED_MODULE_1__.fire({
-                title: "Delete Error!",
-                icon: "error",
-                confirmButtonText: "Ok"
-              });
-              console.log(error);
-            }
+                      });
+                      Toast.fire({
+                        icon: "success",
+                        title: "Update successfully"
+                      });
+                      _context5.next = 8;
+                      return axios__WEBPACK_IMPORTED_MODULE_3__["default"]["delete"]("".concat(URL_LIST[index], "/").concat(id));
+                    case 8:
+                      console.log("".concat(URL_LIST[index], "/").concat(id));
+                      console.log("".concat(URL_LIST[index]));
+                      console.log("state", STATE_LIST[index].value);
+                      itemIndex = STATE_LIST[index].value.indexOf(deletedItem);
+                      if (itemIndex !== -1) {
+                        STATE_LIST[index].value.splice(itemIndex, 1);
+                      }
+                    case 13:
+                      _context5.next = 19;
+                      break;
+                    case 15:
+                      _context5.prev = 15;
+                      _context5.t0 = _context5["catch"](0);
+                      sweetalert2__WEBPACK_IMPORTED_MODULE_1__.fire({
+                        title: "Delete Error!",
+                        icon: "error",
+                        confirmButtonText: "Ok"
+                      });
+                      console.log(_context5.t0);
+                    case 19:
+                    case "end":
+                      return _context5.stop();
+                  }
+                }, _callee5, null, [[0, 15]]);
+              }));
+              return function (_x11) {
+                return _ref6.apply(this, arguments);
+              };
+            }());
           case 1:
           case "end":
             return _context6.stop();
@@ -11472,94 +11491,118 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_2__.defineStore)("global"
       return _ref5.apply(this, arguments);
     };
   }();
+  var deleteAllData = function deleteAllData(index) {
+    sweetalert2__WEBPACK_IMPORTED_MODULE_1__.fire({
+      title: "Are you sure to delete this data ?",
+      icon: "question",
+      showConfirmButton: true,
+      showCancelButton: true,
+      cancelButtonText: "cancel",
+      confirmButtonText: "delete"
+    }).then( /*#__PURE__*/function () {
+      var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(result) {
+        var Toast;
+        return _regeneratorRuntime().wrap(function _callee7$(_context7) {
+          while (1) switch (_context7.prev = _context7.next) {
+            case 0:
+              if (!result.isConfirmed) {
+                _context7.next = 14;
+                break;
+              }
+              _context7.prev = 1;
+              _context7.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_3__["default"]["delete"]("".concat(URL_LIST[index], "/delete-all"));
+            case 4:
+              console.log("url delete", "".concat(URL_LIST[index], "/delete-all"));
+              STATE_LIST[index].value = [];
+              Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_1__.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 1000,
+                timerProgressBar: true,
+                didOpen: function didOpen(toast) {
+                  toast.onmouseenter = sweetalert2__WEBPACK_IMPORTED_MODULE_1__.stopTimer;
+                  toast.onmouseleave = sweetalert2__WEBPACK_IMPORTED_MODULE_1__.resumeTimer;
+                }
+              });
+              Toast.fire({
+                icon: "success",
+                title: "Update successfully"
+              });
+              _context7.next = 14;
+              break;
+            case 10:
+              _context7.prev = 10;
+              _context7.t0 = _context7["catch"](1);
+              sweetalert2__WEBPACK_IMPORTED_MODULE_1__.fire({
+                title: "Delete Error!",
+                icon: "error",
+                confirmButtonText: "Ok"
+              });
+              console.log(_context7.t0);
+            case 14:
+            case "end":
+              return _context7.stop();
+          }
+        }, _callee7, null, [[1, 10]]);
+      }));
+      return function (_x12) {
+        return _ref7.apply(this, arguments);
+      };
+    }());
+  };
   var addData = /*#__PURE__*/function () {
-    var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(index, payload) {
+    var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(index, payload) {
       var status, res;
-      return _regeneratorRuntime().wrap(function _callee7$(_context7) {
-        while (1) switch (_context7.prev = _context7.next) {
+      return _regeneratorRuntime().wrap(function _callee8$(_context8) {
+        while (1) switch (_context8.prev = _context8.next) {
           case 0:
             status = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
-            _context7.prev = 1;
-            _context7.next = 4;
+            _context8.prev = 1;
+            _context8.next = 4;
             return axios__WEBPACK_IMPORTED_MODULE_3__["default"].post("".concat(URL_LIST[index]), payload, {
               headers: {
                 "Content-Type": "multipart/form-data"
               }
             });
           case 4:
-            res = _context7.sent;
+            res = _context8.sent;
             status.value = res.data.success;
             STATE_LIST[index].value.push(res.data.data);
-            _context7.next = 13;
+            _context8.next = 13;
             break;
           case 9:
-            _context7.prev = 9;
-            _context7.t0 = _context7["catch"](1);
+            _context8.prev = 9;
+            _context8.t0 = _context8["catch"](1);
             sweetalert2__WEBPACK_IMPORTED_MODULE_1__.fire({
               icon: "error",
               title: "Oops...",
               text: "Something went wrong!"
             });
-            console.log(_context7.t0);
-          case 13:
-            _context7.prev = 13;
-            return _context7.abrupt("return", status.value);
-          case 16:
-          case "end":
-            return _context7.stop();
-        }
-      }, _callee7, null, [[1, 9, 13, 16]]);
-    }));
-    return function addData(_x12, _x13) {
-      return _ref7.apply(this, arguments);
-    };
-  }();
-  var getPagination = /*#__PURE__*/function () {
-    var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(index, count) {
-      var res;
-      return _regeneratorRuntime().wrap(function _callee8$(_context8) {
-        while (1) switch (_context8.prev = _context8.next) {
-          case 0:
-            _context8.prev = 0;
-            _context8.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("".concat(URL_LIST[index], "/page/").concat(count));
-          case 3:
-            res = _context8.sent;
-            STATE_LIST[index].value = res.data.data;
-            pagination.value = {
-              total: res.data.total,
-              currentPage: res.data.current_page,
-              from: res.data.from,
-              to: res.data.to,
-              nextPage: res.data.next_page_url,
-              prevPage: res.data.prev_page_url,
-              perPage: res.data.per_page
-            };
-            _context8.next = 11;
-            break;
-          case 8:
-            _context8.prev = 8;
-            _context8.t0 = _context8["catch"](0);
             console.log(_context8.t0);
-          case 11:
+          case 13:
+            _context8.prev = 13;
+            return _context8.abrupt("return", status.value);
+          case 16:
           case "end":
             return _context8.stop();
         }
-      }, _callee8, null, [[0, 8]]);
+      }, _callee8, null, [[1, 9, 13, 16]]);
     }));
-    return function getPagination(_x14, _x15) {
+    return function addData(_x13, _x14) {
       return _ref8.apply(this, arguments);
     };
   }();
-  var nextOrPrev = /*#__PURE__*/function () {
-    var _ref9 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9(index, url) {
+  var getPagination = /*#__PURE__*/function () {
+    var _ref9 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9(index, count) {
       var res;
       return _regeneratorRuntime().wrap(function _callee9$(_context9) {
         while (1) switch (_context9.prev = _context9.next) {
           case 0:
             _context9.prev = 0;
             _context9.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("".concat(url));
+            return axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("".concat(URL_LIST[index], "/page/").concat(count));
           case 3:
             res = _context9.sent;
             STATE_LIST[index].value = res.data.data;
@@ -11584,8 +11627,45 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_2__.defineStore)("global"
         }
       }, _callee9, null, [[0, 8]]);
     }));
-    return function nextOrPrev(_x16, _x17) {
+    return function getPagination(_x15, _x16) {
       return _ref9.apply(this, arguments);
+    };
+  }();
+  var nextOrPrev = /*#__PURE__*/function () {
+    var _ref10 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10(index, url) {
+      var res;
+      return _regeneratorRuntime().wrap(function _callee10$(_context10) {
+        while (1) switch (_context10.prev = _context10.next) {
+          case 0:
+            _context10.prev = 0;
+            _context10.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("".concat(url));
+          case 3:
+            res = _context10.sent;
+            STATE_LIST[index].value = res.data.data;
+            pagination.value = {
+              total: res.data.total,
+              currentPage: res.data.current_page,
+              from: res.data.from,
+              to: res.data.to,
+              nextPage: res.data.next_page_url,
+              prevPage: res.data.prev_page_url,
+              perPage: res.data.per_page
+            };
+            _context10.next = 11;
+            break;
+          case 8:
+            _context10.prev = 8;
+            _context10.t0 = _context10["catch"](0);
+            console.log(_context10.t0);
+          case 11:
+          case "end":
+            return _context10.stop();
+        }
+      }, _callee10, null, [[0, 8]]);
+    }));
+    return function nextOrPrev(_x17, _x18) {
+      return _ref10.apply(this, arguments);
     };
   }();
   return {
@@ -11605,9 +11685,12 @@ var useGlobalStore = (0,pinia__WEBPACK_IMPORTED_MODULE_2__.defineStore)("global"
     getData: getData,
     searchData: searchData,
     deleteData: deleteData,
+    deleteAllData: deleteAllData,
     updateData: updateData,
     addData: addData
   };
+}, {
+  persist: true
 });
 
 /***/ })

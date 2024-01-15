@@ -27,7 +27,7 @@ class InformasiKamar extends Model
     {
         $array = [
             'room_name' => '',
-            'kategori_kamar.kategori' => '',
+            'kategori_kamar.nama' => '',
             'status_kamar.nama' => '',
         ];
 

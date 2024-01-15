@@ -1,33 +1,26 @@
 <script setup>
 import { storeToRefs } from 'pinia';
-import { onMounted } from 'vue';
 import SpinnerComponent from './BaseSpinner.vue';
+import BaseDropSearch from './BaseDropSearch.vue';
 import { useGlobalStore } from '../store/global';
-import { initFlowbite } from 'flowbite';
-import { useRoomStore } from '../store/room';
 
-const globalStore = useGlobalStore()
-const roomStore = useRoomStore()
+const store = useGlobalStore()
 const emits = defineEmits(['closeModal'])
-const { singleData } = storeToRefs(globalStore)
+const { singleData, category } = storeToRefs(store)
 
 const onChange = (e) => {
     singleData.value.foto_kamar = e.target.files[0]
 }
 
-const updateData = (payload) => {
-    roomStore.updateData(payload)
+const changeCategory = (item) => {
+    singleData.value.kategori = item.nama
+    singleData.value.id_kategori = item.id
 }
-
-onMounted(() => {
-    initFlowbite()
-})
-
 </script>
 
 
 <template>
-    <form class="p-10" @submit.prevent="updateData(singleData)">
+    <form class="p-10" @submit.prevent=" store.updateData(4, singleData)">
         <div v-if="singleData.length != 0" class="grid gap-6 mb-6 md:grid-cols-2 items-center">
             <div>
                 <label for="room-name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Room Number
@@ -37,13 +30,11 @@ onMounted(() => {
                     required>
             </div>
             <div>
-                <label for="id_kategori"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
-                <input type="text" id="id_kategori" v-model="singleData.kategori"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
-                    required disabled>
+                <label for="input-divisi"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Divisi</label>
+                <BaseDropSearch id="dropDownCategoryMenu" label="category" :data="category"
+                    :singleData="singleData.kategori" @addItem="changeCategory" />
             </div>
-
             <div>
                 <label for="fasilitas" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fasility</label>
                 <div class="flex justify-between">

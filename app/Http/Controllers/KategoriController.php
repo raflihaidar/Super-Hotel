@@ -20,7 +20,7 @@ class KategoriController extends Controller
         $validatedData = $request->validated();
         $validatedData['image'] = $request->file('image')->store('kategori/image', 'public');
         $kategori = new KategoriKamar([
-            'kategori' => $request->input('kategori'),
+            'nama' => $request->input('nama'),
             'fasilitas' => $request->input('fasilitas'),
             'deskripsi' => $request->input('deskripsi'),
             'harga' => $request->input('harga'),
@@ -55,7 +55,14 @@ class KategoriController extends Controller
         $kategori->delete();
         return response()->json('Category deleted!');
     }
-
+    public function destroyAllData(){
+        $imagepath = \public_path('/storage/');
+        if(File::exists($imagepath)){
+            File::delete($imagepath);
+        }
+        \DB::table('kategori_kamar')->delete();
+        return response()->json('All Category deleted!');
+    }
     public function search(Request $request){
         $search_query = KategoriKamar::query();
         $search_param = $request->query('query');

@@ -9,7 +9,6 @@ import BaseSpinnerVue from '../../../components/BaseSpinner.vue';
 
 const TableComponent = defineAsyncComponent({
     loader: () => import('../../../components/BaseTable.vue'),
-    delay: 1000,
     suspensible: true
 })
 
@@ -42,7 +41,8 @@ watch(() => store.$state.singleData, () => {
         <Suspense v-if="staff">
             <template #default>
                 <TableComponent :header="header" tableName="Staff" :addData="true" route="add-staff"
-                    @handleSearch="searchData" :pagination="pagination">
+                    @handleSearch="searchData" @deleteAllData="store.deleteAllData(0)" :pagination="pagination"
+                    v-if="staff.length != 0">
                     <template #body>
                         <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
                             v-for="(item, index) in staff" :key="index">
@@ -66,6 +66,14 @@ watch(() => store.$state.singleData, () => {
                                 <a class="font-medium text-red-600 dark:text-green-500 hover:underline cursor-pointer"
                                     @click="store.deleteData(0, item.id);">delete</a>
                             </td>
+                        </tr>
+                    </template>
+                </TableComponent>
+                <TableComponent tableName="Staff" @handleSearch="searchData" :addData="true" route="add-staff" v-else>
+                    <template #body>
+                        <tr
+                            class="odd:bg-white text-red-600 font-bold text-lg text-center odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800  hover:bg-gray-100 dark:hover:bg-gray-600">
+                            <p>Tidak Ada Data</p>
                         </tr>
                     </template>
                 </TableComponent>

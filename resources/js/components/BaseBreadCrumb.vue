@@ -1,8 +1,14 @@
 
 <script setup>
+import { initFlowbite } from "flowbite"
+import { onMounted } from "vue"
 const props = defineProps({
     page: Array,
     require: true
+})
+
+onMounted(() => {
+    initFlowbite()
 })
 </script>
 

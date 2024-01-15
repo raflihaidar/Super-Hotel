@@ -110,20 +110,20 @@
 
 <script setup>
 import { storeToRefs } from 'pinia';
-import { useRoomStore } from '../store/room';
-import { useGuestStore } from '../store/guest';
-import NavbarComponnet from '../components/TheNavbar.vue';
-import RatingComponent from '../components/BaseRating.vue'
+import { useRoomStore } from '../../../../store/room';
+import { useGuestStore } from '../../../../store/guest';
+import NavbarComponnet from '../../../../components/TheNavbar.vue';
+import RatingComponent from '../../../../components/BaseRating.vue'
 import { initFlowbite } from 'flowbite';
-import { useBookingStore } from '../store/booking';
+import { useBookingStore } from '../../../../store/booking';
 import { onMounted, ref } from 'vue';
+import router from '../../../../routes'
 
 const roomStore = useRoomStore()
 const guestStore = useGuestStore()
 const bookingStore = useBookingStore()
 const { category, searchField, quantity } = storeToRefs(roomStore)
 const { guestAuth } = storeToRefs(guestStore)
-import router from '../routes.js'
 
 const payload = ref({
     id_tamu: guestAuth.value.id,

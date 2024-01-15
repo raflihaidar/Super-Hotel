@@ -1,3 +1,18 @@
+<script setup>
+import { ref } from 'vue';
+import { useGlobalStore } from '../../../../store/global';
+import AlertSuccesComponent from '../../../../components/BaseAlertSucces.vue';
+
+const store = useGlobalStore()
+const payload = ref({
+    nama: "",
+})
+const statusInput = ref(null)
+const addData = async () => {
+    statusInput.value = await store.addData(2, payload.value)
+}
+</script>
+
 <template>
     <div class="w-[80%] mx-auto">
         <div v-if="statusInput">
@@ -20,20 +35,3 @@
         </form>
     </div>
 </template>
-
-<script setup>
-import { ref } from 'vue';
-import { useGlobalStore } from '../../../../store/global';
-import AlertSuccesComponent from '../../../../components/BaseAlertSucces.vue';
-
-const store = useGlobalStore()
-const payload = ref({
-    nama: "",
-})
-const statusInput = ref(null)
-const addData = async () => {
-    statusInput.value = await store.addData(payload.value)
-}
-
-</script>
-

@@ -18846,13 +18846,13 @@ var routes = [{
   path: "/result",
   name: "result",
   component: function component() {
-    return Promise.resolve().then(function webpackMissingModule() { var e = new Error("Cannot find module './pages/admin/booking/ResultPage.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; });
+    return __webpack_require__.e(/*! import() */ "resources_js_pages_admin_booking_partials_ResultPage_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/admin/booking/partials/ResultPage.vue */ "./resources/js/pages/admin/booking/partials/ResultPage.vue"));
   }
 }, {
   path: "/bookings/:id",
   name: "bookings",
   component: function component() {
-    return Promise.resolve().then(function webpackMissingModule() { var e = new Error("Cannot find module './pages/admin/booking/HistoryBookingPage.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; });
+    return __webpack_require__.e(/*! import() */ "resources_js_pages_admin_booking_partials_HistoryBookingPage_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/admin/booking/partials/HistoryBookingPage.vue */ "./resources/js/pages/admin/booking/partials/HistoryBookingPage.vue"));
   }
 }, {
   path: "/sign-up",
@@ -25159,7 +25159,7 @@ function useRoute() {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_pages_admin_booking_create_vue":1,"resources_js_pages_authentification_SignUpPage_vue":1,"resources_js_pages_authentification_SignInPage_vue":1,"resources_js_pages_admin_AdminPage_vue":1,"resources_js_pages_admin_dashboard_index_vue":1,"resources_js_pages_admin_room_RoomPage_vue":1,"resources_js_pages_admin_room_index_vue":1,"resources_js_pages_admin_room_partials_RoomForm_vue":1,"resources_js_pages_admin_category_CategoryPage_vue":1,"resources_js_pages_admin_category_index_vue":1,"resources_js_pages_admin_category_partials_CategoryForm_vue":1,"resources_js_pages_admin_booking_index_vue":1,"resources_js_pages_admin_staff_StaffPage_vue":1,"resources_js_pages_admin_staff_index_vue":1,"resources_js_pages_admin_staff_partials_StaffForm_vue":1,"resources_js_pages_admin_guest_index_vue":1,"resources_js_pages_admin_shift_ShiftPage_vue":1,"resources_js_pages_admin_shift_index_vue":1,"resources_js_pages_admin_shift_partials_ShiftForm_vue":1,"resources_js_pages_admin_division_DivisionPage_vue":1,"resources_js_pages_admin_division_index_vue":1,"resources_js_pages_admin_division_partials_DivisiForm_vue":1,"resources_js_components_BaseCard_vue":1,"resources_js_components_BaseTable_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_pages_admin_booking_create_vue":1,"resources_js_pages_admin_booking_partials_ResultPage_vue":1,"resources_js_pages_admin_booking_partials_HistoryBookingPage_vue":1,"resources_js_pages_authentification_SignUpPage_vue":1,"resources_js_pages_authentification_SignInPage_vue":1,"resources_js_pages_admin_AdminPage_vue":1,"resources_js_pages_admin_dashboard_index_vue":1,"resources_js_pages_admin_room_RoomPage_vue":1,"resources_js_pages_admin_room_index_vue":1,"resources_js_pages_admin_room_partials_RoomForm_vue":1,"resources_js_pages_admin_category_CategoryPage_vue":1,"resources_js_pages_admin_category_index_vue":1,"resources_js_pages_admin_category_partials_CategoryForm_vue":1,"resources_js_pages_admin_booking_index_vue":1,"resources_js_pages_admin_staff_StaffPage_vue":1,"resources_js_pages_admin_staff_index_vue":1,"resources_js_pages_admin_staff_partials_StaffForm_vue":1,"resources_js_pages_admin_guest_index_vue":1,"resources_js_pages_admin_shift_ShiftPage_vue":1,"resources_js_pages_admin_shift_index_vue":1,"resources_js_pages_admin_shift_partials_ShiftForm_vue":1,"resources_js_pages_admin_division_DivisionPage_vue":1,"resources_js_pages_admin_division_index_vue":1,"resources_js_pages_admin_division_partials_DivisiForm_vue":1,"resources_js_components_BaseCard_vue":1,"resources_js_components_BaseTable_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

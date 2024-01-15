@@ -1,3 +1,37 @@
+<script setup>
+import { initFlowbite } from "flowbite";
+import BaseDropSearch from "../../../../components/BaseDropSearch.vue";
+import AlertSuccesComponent from '../../../../components/BaseAlertSucces.vue';
+import { useGlobalStore } from "../../../../store/global";
+import { onMounted, ref } from "vue";
+import { storeToRefs } from "pinia";
+
+const store = useGlobalStore()
+const { category } = storeToRefs(store)
+const statusInput = ref(null);
+const dataCategory = ref(null)
+
+const payload = ref({
+    room_name: '',
+    id_kategori: 0,
+    id_status_kamar: 1,
+})
+
+const addCategoryId = (item) => {
+    dataCategory.value = item.nama
+    payload.value.category = item.id
+}
+
+const submit = async () => {
+    const form = new FormData()
+    form.append('room_name', payload.value.room_name)
+    form.append('id_kategori', payload.value.category)
+    form.append('id_status_kamar', 1)
+    statusInput.value = await store.addData(4, form)
+}
+
+</script>
+
 <template>
     <div class="w-[80%] mx-auto">
         <div v-if="statusInput">
@@ -13,17 +47,10 @@
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
 
-                <DropSearchComponent id="categories" label="category" @addCategoryId="addCategoryId" :value="dataCategory">
-                    <template #data>
-                        <span v-for="(item, index) in category" :key="index" @click="addCategoryId(item)">
-                            <div class="flex items-center ps-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                <label for="checkbox-item-11"
-                                    class="w-full py-2 ms-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">
-                                    {{ item.kategori }}</label>
-                            </div>
-                        </span>
-                    </template>
-                </DropSearchComponent>
+                <div>
+                    <BaseDropSearch id="dropDownCategoryMenu" label="category" :data="category" :singleData="dataCategory"
+                        @addItem="addCategoryId" />
+                </div>
 
                 <div class="flex justify-end mt-10">
                     <button type="button"
@@ -35,46 +62,3 @@
         </form>
     </div>
 </template>
-
-<script setup>
-import { initFlowbite } from "flowbite";
-import DropSearchComponent from "../../../../components/BaseDropSearch.vue";
-import AlertSuccesComponent from '../../../../components/BaseAlertSucces.vue';
-import { useGlobalStore } from "../../../../store/global";
-import { onMounted, ref } from "vue";
-import { storeToRefs } from "pinia";
-import { useRoomStore } from "../../../../store/room";
-
-const store = useGlobalStore()
-const { category } = storeToRefs(store)
-const statusInput = ref(null);
-const dataCategory = ref(null)
-
-const loadCategory = () => {
-    store.getData(5, "25")
-}
-
-const payload = ref({
-    room_name: '',
-    id_kategori: 0,
-    id_status_kamar: 1,
-})
-
-const addCategoryId = (item) => {
-    dataCategory.value = item.kategori
-    payload.value.category = item.id
-}
-
-const submit = async () => {
-    const form = new FormData()
-    form.append('room_name', payload.value.room_name)
-    form.append('id_kategori', payload.value.category)
-    form.append('id_status_kamar', 1)
-    statusInput.value = await store.addData(4, form)
-}
-
-onMounted(() => {
-    loadCategory()
-    initFlowbite()
-})
-</script>

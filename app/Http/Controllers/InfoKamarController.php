@@ -15,7 +15,7 @@ class InfoKamarController extends Controller
         ->join('kategori_kamar', 'informasi_kamar.id_kategori', 'kategori_kamar.id')
         ->join('status_kamar', 'informasi_kamar.id_status_kamar', 'status_kamar.id')
         ->select('informasi_kamar.*',
-                'kategori_kamar.kategori as kategori',
+                'kategori_kamar.nama as kategori',
                 'kategori_kamar.harga as harga',
                 'kategori_kamar.fasilitas as fasilitas',
                 'kategori_kamar.deskripsi as deskripsi',
@@ -44,7 +44,7 @@ class InfoKamarController extends Controller
         ->join('kategori_kamar', 'informasi_kamar.id_kategori', 'kategori_kamar.id')
         ->join('status_kamar', 'informasi_kamar.id_status_kamar', 'status_kamar.id')
         ->select('informasi_kamar.*',
-                'kategori_kamar.kategori as kategori',
+                'kategori_kamar.nama as kategori',
                 'kategori_kamar.harga as harga',
                 'kategori_kamar.fasilitas as fasilitas',
                 'kategori_kamar.deskripsi as deskripsi',
@@ -66,6 +66,10 @@ class InfoKamarController extends Controller
          $kamar ->delete();
         return response()->json('Shift deleted!');
     }
+    public function destroyAllData(){
+        \DB::table('informasi_kamar')->delete();
+        return response()->json('All Room deleted!');
+    }
     public function search(Request $request)
     {
         $kamar = InformasiKamar::search(trim($request->get('query')) ?? '')
@@ -73,7 +77,7 @@ class InfoKamarController extends Controller
                 $query->join('kategori_kamar', 'informasi_kamar.id_kategori', 'kategori_kamar.id')
                     ->join('status_kamar', 'informasi_kamar.id_status_kamar', 'status_kamar.id')
                     ->select('informasi_kamar.*',
-                            'kategori_kamar.kategori as kategori',
+                            'kategori_kamar.nama as kategori',
                             'kategori_kamar.harga as harga',
                             'kategori_kamar.fasilitas as fasilitas',
                             'kategori_kamar.deskripsi as deskripsi',

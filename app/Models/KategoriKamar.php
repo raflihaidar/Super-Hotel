@@ -17,7 +17,7 @@ class KategoriKamar extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'kategori',
+        'nama',
         'fasilitas',
         'deskripsi',
         'harga',
@@ -28,7 +28,7 @@ class KategoriKamar extends Model
     public function toSearchableArray()
     {
         $array = [
-            'kategori' => $this->kategori,
+            'nama' => $this->kategori,
             'fasilitas' => $this->fasilitas,
         ];
 

@@ -36,7 +36,8 @@ watch(() => store.$state.singleData, () => {
     <BreadCrumbComponent :page="['Admin', 'Booking']" />
     <Suspense v-if="booking">
         <template #default>
-            <TableComponent :header="header" tableName="Room" :pagination="pagination" @handleSearch="searchData">
+            <TableComponent :header="header" tableName="Room" :pagination="pagination" @handleSearch="searchData"
+                v-if="booking.length != 0">
                 <template #body>
                     <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
                         v-for="(item, index) in booking" :key="index">
@@ -53,6 +54,14 @@ watch(() => store.$state.singleData, () => {
                             <a class="font-medium text-red-600 dark:text-green-500 hover:underline cursor-pointer"
                                 @click="store.deleteData(6, item.id);">delete</a>
                         </td>
+                    </tr>
+                </template>
+            </TableComponent>
+            <TableComponent tableName="Room" @handleSearch="searchData" v-else>
+                <template #body>
+                    <tr
+                        class="odd:bg-white text-red-600 font-bold text-lg text-center odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800  hover:bg-gray-100 dark:hover:bg-gray-600">
+                        <p>Tidak Ada Data</p>
                     </tr>
                 </template>
             </TableComponent>

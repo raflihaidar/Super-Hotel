@@ -5,6 +5,7 @@ import PaginationComponent from "./BasePagination.vue";
 import { initFlowbite } from "flowbite";
 
 await new Promise((res) => setTimeout(res, 1000))
+
 const props = defineProps({
     tableName: String,
     header: Array,
@@ -14,7 +15,7 @@ const props = defineProps({
 })
 const { header, pagination } = toRefs(props)
 
-const emits = defineEmits(['handleSearch', 'handleFilter', 'handleDelete', 'hanldeShow', 'hanldeAdd'])
+const emits = defineEmits(['handleSearch', 'handleFilter', 'handleDelete', 'hanldeShow', 'hanldeAdd', 'deleteAllData'])
 
 const handleSearch = (search) => {
     emits('handleSearch', search)
@@ -25,6 +26,11 @@ const handleFilter = () => {
 const handleDelete = () => {
     emits('handleDelete')
 }
+
+const handleAllDelete = () => {
+    emits('deleteAllData')
+}
+
 const hanldeShow = () => {
     emits('hanldeShow')
 }
@@ -33,7 +39,7 @@ const hanldeAdd = () => {
     emits('handleAdd')
 }
 
-onMounted(() => {
+onMounted(async () => {
     initFlowbite()
 })
 </script>
@@ -78,7 +84,7 @@ onMounted(() => {
                                             Edit</a>
                                     </li>
                                 </ul>
-                                <div class="py-1">
+                                <div class="py-1" @click="handleAllDelete">
                                     <a href="#"
                                         class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete
                                         all</a>

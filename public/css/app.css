@@ -1199,17 +1199,11 @@ input:checked + .toggle-bg {
 .left-1\/2 {
   left: 50%;
 }
-.left-6 {
-  left: 1.5rem;
-}
 .right-0 {
   right: 0px;
 }
 .right-2 {
   right: 0.5rem;
-}
-.right-8 {
-  right: 2rem;
 }
 .start-0 {
   inset-inline-start: 0px;
@@ -1426,9 +1420,6 @@ input:checked + .toggle-bg {
 .h-4 {
   height: 1rem;
 }
-.h-48 {
-  height: 12rem;
-}
 .h-5 {
   height: 1.25rem;
 }
@@ -1449,6 +1440,9 @@ input:checked + .toggle-bg {
 }
 .h-\[calc\(100\%-1rem\)\] {
   height: calc(100% - 1rem);
+}
+.h-auto {
+  height: auto;
 }
 .h-full {
   height: 100%;
@@ -2323,10 +2317,6 @@ input:checked + .toggle-bg {
 .even\:bg-gray-50:nth-child(even) {
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
-}
-.even\:bg-green-100:nth-child(even) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(222 247 236 / var(--tw-bg-opacity));
 }
 .hover\:border-gray-300:hover {
   --tw-border-opacity: 1;

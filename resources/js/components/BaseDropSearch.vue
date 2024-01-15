@@ -2,13 +2,37 @@
 import { initFlowbite } from "flowbite";
 import { onMounted, ref, toRefs } from "vue";
 
+const emits = defineEmits(['addItem'])
+const isOpen = ref(false)
 const props = defineProps({
-    label: String,
-    id: String,
-    value: String
+    label: {
+        type: String,
+        required: true
+    },
+    id: {
+        type: String,
+        required: true
+    },
+    data: {
+        type: Array,
+        required: true,
+    },
+    singleData: {
+        type: String,
+        required: true
+    },
 })
-const emits = defineEmits(['addCategoryId'])
-const { id, label, value } = toRefs(props)
+const { data, singleData } = toRefs(props)
+
+const modalEvent = () => {
+    isOpen.value = !isOpen.value
+    console.log("Connect")
+}
+
+const addItem = (item) => {
+    emits('addItem', item)
+    console.log(singleData.value)
+}
 
 onMounted(() => {
     initFlowbite()
@@ -17,21 +41,23 @@ onMounted(() => {
 
 
 <template>
-    <div class="mb-6">
-        <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ label }}</label>
-        <div id="id" :data-dropdown-toggle="id" data-dropdown-placement="bottom"
-            class="flex items-center justify-between bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            <input type=" text" class="w-full outline-none border-none" :value="value">
-            <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                viewBox="0 0 10 6">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="m1 1 4 4 4-4" />
+    <div class="flex justify-between relative">
+        <input type="text" :value="singleData" :id="'input-' + label"
+            class="relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+            required disabled>
+        <button :id="id" @click="modalEvent"
+            class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            type="button">
+            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                viewBox="0 0 4 15">
+                <path
+                    d="M3.5 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 6.041a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 5.959a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" />
             </svg>
-        </div>
+        </button>
     </div>
 
     <!-- Dropdown menu -->
-    <div :id="id" class="z-10 hidden bg-white rounded-lg shadow w-60 dark:bg-gray-700">
+    <div :id="id" class="z-10 absolute  bg-white rounded-lg shadow w-60 dark:bg-gray-700" v-if="isOpen">
         <div class="p-3">
             <label for="input-group-search" class="sr-only">Search</label>
             <div class="relative">
@@ -47,9 +73,15 @@ onMounted(() => {
                     placeholder="Search user">
             </div>
         </div>
-        <ul class="h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200"
-            aria-labelledby="dropdownSearchButton">
-            <slot name="data"></slot>
+        <ul class="h-auto px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200" aria-labelledby="idComponent">
+            <li>
+                <div class="flex items-center ps-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600"
+                    v-for="(item, index) in data" :key="index" @click="addItem(item)">
+                    <p class="w-full py-2 ms-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">
+                        {{ item.nama }}
+                    </p>
+                </div>
+            </li>
         </ul>
         <router-link :to="{ name: label }"
             class="flex items-center p-3 text-sm font-medium text-blue-600 border-t border-gray-200 rounded-b-lg bg-gray-50 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-red-500 hover:underline">

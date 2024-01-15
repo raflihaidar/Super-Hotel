@@ -40,7 +40,7 @@ watch(() => store.$state.singleData, () => {
         <Suspense v-if="divisi">
             <template #default>
                 <TableComponent :header="header" :addData="true" tableName="Divisi" @handleSearch="searchData"
-                    :pagination="pagination" route="add-divisi">
+                    :pagination="pagination" route="add-divisi" v-if="divisi.length != 0">
                     <template #body>
                         <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
                             v-for="(item, index) in divisi" :key="index">
@@ -54,6 +54,14 @@ watch(() => store.$state.singleData, () => {
                                 <a class="font-medium text-red-600 dark:text-green-500 hover:underline cursor-pointer"
                                     @click="store.deleteData(2, item.id);">delete</a>
                             </td>
+                        </tr>
+                    </template>
+                </TableComponent>
+                <TableComponent tableName="Divisi" @handleSearch="searchData" v-else>
+                    <template #body>
+                        <tr
+                            class="odd:bg-white text-red-600 font-bold text-lg text-center odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800  hover:bg-gray-100 dark:hover:bg-gray-600">
+                            <p>Tidak Ada Data</p>
                         </tr>
                     </template>
                 </TableComponent>

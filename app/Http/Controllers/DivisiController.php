@@ -42,6 +42,10 @@ class DivisiController extends Controller
          $divisi ->delete();
         return response()->json('Divisi deleted!');
     }
+    public function destroyAllData(){
+        \DB::table('divisi')->delete();
+        return response()->json('All Booking deleted!');
+    }
     public function search(Request $request){
         $search_query = Divisi::query();
         $search_param = $request->query('query');

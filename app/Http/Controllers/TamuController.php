@@ -45,6 +45,10 @@ class TamuController extends Controller
         $tamu->delete();
         return response()->json('Guest deleted!');
     }
+    public function destroyAllData(){
+        \DB::table('tamu')->delete();
+        return response()->json('All Guest deleted!');
+    }
     public function search(Request $request){
         $search_query = Tamu::query();
         $search_param = $request->query('query');

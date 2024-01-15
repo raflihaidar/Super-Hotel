@@ -37,12 +37,12 @@ watch(() => store.$state.singleData, () => {
         <Suspense v-if="category">
             <template #default>
                 <TableComponent :header="header" route="add-category" tableName="Category" @handleSearch="searchData"
-                    :pagination="pagination" :addData="true">
+                    :pagination="pagination" :addData="true" v-if="category.length != 0">
                     <template #body>
                         <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
                             v-for="(item, index) in category" :key="index">
                             <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ item.kategori }}</th>
+                                {{ item.nama }}</th>
                             <td class="px-4 py-3">{{ item.fasilitas }}</td>
                             <td class="px-4 py-3">{{ item.deskripsi }}</td>
                             <td class="px-4 py-3">Rp {{ item.harga }}</td>
@@ -53,6 +53,14 @@ watch(() => store.$state.singleData, () => {
                                 <a class="font-medium text-red-600 dark:text-green-500 hover:underline cursor-pointer"
                                     @click="store.deleteData(5, item.id);">delete</a>
                             </td>
+                        </tr>
+                    </template>
+                </TableComponent>
+                <TableComponent tableName="Category" @handleSearch="searchData" v-else>
+                    <template #body>
+                        <tr
+                            class="odd:bg-white text-red-600 font-bold text-lg text-center odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800  hover:bg-gray-100 dark:hover:bg-gray-600">
+                            <p>Tidak Ada Data</p>
                         </tr>
                     </template>
                 </TableComponent>

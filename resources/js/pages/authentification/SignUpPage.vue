@@ -5,7 +5,7 @@
             <div class="flex  max-w-md mx-auto justify-evenly">
                 <button type="button"
                     class="text-gray-900 gap-x-2 bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-800 dark:bg-white dark:border-gray-700 dark:text-gray-900 dark:hover:bg-gray-200 me-2 mb-2">
-                    <img src="../../assets/google 24.png" alt="google icon">
+                    <img src="../../../assets/google 24.png" alt="google icon">
                     sign with google
                 </button>
                 <button type="button"
@@ -91,9 +91,8 @@
 
 
 <script setup>
-import EyeIcon from '../icons/EyeIcon.vue';
-import EyeHideIcon from '../icons/EyeHideIcon.vue';
-import { useGuestStore } from '../store/guest'
+import EyeIcon from '../../../assets/icons/EyeIcon.vue'
+import { useGuestStore } from '../../store/guest'
 import { ref, watch } from 'vue';
 const guestStore = useGuestStore()
 const firstName = ref(null)
