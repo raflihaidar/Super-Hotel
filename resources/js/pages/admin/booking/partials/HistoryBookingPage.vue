@@ -1,7 +1,7 @@
 <template>
     <div>
         <NavigationComponent />
-        <div class="my-20 w-[80%] absolute top-[60%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <div class="my-20 w-[80%] absolute top-[35%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <a href="#" v-for="(item, index) in  detailBooking " :key="index"
                 class="flex flex-col justify-between w-[100%] p-5 relative items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl lg:max-w-full hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                 <div class="flex justify-center">

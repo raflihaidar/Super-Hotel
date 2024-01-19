@@ -9,7 +9,7 @@ import { watch, onMounted, provide, ref, defineAsyncComponent } from 'vue';
 
 const TableComponent = defineAsyncComponent({
     loader: () => import('../../../components/BaseTable.vue'),
-    suspensible: true
+    delay: 500
 })
 
 provide('path', 3)
@@ -36,41 +36,31 @@ watch(() => store.$state.singleData, () => {
             <BreadCrumbComponent :page="['Admin', 'Shift']" />
             <section class="text-3xl font-bold">Shift</section>
         </nav>
-
-        <Suspense v-if="shift">
-            <template #default>
-                <TableComponent :header="header" tableName="Shift" route="add-shift" @handleSearch="searchData"
-                    :pagination="pagination" :addData="true" v-if="shift.length != 0">
-                    <template #body>
-                        <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
-                            v-for="(item, index) in shift" :key="index">
-                            <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{
-                                item.nama }}</th>
-                            <td class="px-4 py-3">{{ item.jam_masuk }}</td>
-                            <td class="px-4 py-3">{{ item.jam_keluar }}</td>
-                            <td>
-                                <a class="font-medium text-green-500 dark:text-green-500 hover:underline cursor-pointer mr-4"
-                                    @click="store.getSingleData(3, item.id);" data-modal-target="form-shift"
-                                    data-modal-toggle="form-shift">Edit</a>
-                                <a class="font-medium text-red-600 dark:text-green-500 hover:underline cursor-pointer"
-                                    @click="store.deleteData(3, item.id);">delete</a>
-                            </td>
-                        </tr>
-                    </template>
-                </TableComponent>
-                <TableComponent tableName="Shift" @handleSearch="searchData" v-else>
-                    <template #body>
-                        <tr
-                            class="odd:bg-white text-red-600 font-bold text-lg text-center odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800  hover:bg-gray-100 dark:hover:bg-gray-600">
-                            <p>Tidak Ada Data</p>
-                        </tr>
-                    </template>
-                </TableComponent>
+        <TableComponent :header="shift.length != 0 ? header : null" tableName="Shift" route="add-shift"
+            @handleSearch="searchData" :pagination="pagination" :addData="true">
+            <template #body v-if="shift.length != 0">
+                <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
+                    v-for="(item, index) in shift" :key="index">
+                    <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{
+                        item.nama }}</th>
+                    <td class="px-4 py-3">{{ item.jam_masuk }}</td>
+                    <td class="px-4 py-3">{{ item.jam_keluar }}</td>
+                    <td>
+                        <a class="font-medium text-green-500 dark:text-green-500 hover:underline cursor-pointer mr-4"
+                            @click="store.getSingleData(3, item.id);" data-modal-target="form-shift"
+                            data-modal-toggle="form-shift">Edit</a>
+                        <a class="font-medium text-red-600 dark:text-green-500 hover:underline cursor-pointer"
+                            @click="store.deleteData(3, item.id);">delete</a>
+                    </td>
+                </tr>
             </template>
-            <template #fallback>
-                <BaseSpinner />
+            <template #body v-else>
+                <tr
+                    class="odd:bg-white text-red-600 font-bold text-lg text-center odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800  hover:bg-gray-100 dark:hover:bg-gray-600">
+                    <p>Tidak Ada Data</p>
+                </tr>
             </template>
-        </Suspense>
+        </TableComponent>
         <ModalComponent id_modal="form-shift">
             <template #header>
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">

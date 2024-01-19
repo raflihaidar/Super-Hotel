@@ -2,11 +2,12 @@
 import { ref } from 'vue';
 import { useGlobalStore } from '../../../../store/global';
 import AlertSuccesComponent from '../../../../components/BaseAlertSucces.vue';
+import router from '../../../../routes';
 
 const statusInput = ref(null)
 const store = useGlobalStore()
 const payload = ref({
-    kategori: "",
+    nama: "",
     fasilitas: "",
     deskripsi: "",
     harga: null,
@@ -14,14 +15,13 @@ const payload = ref({
     image: null
 })
 
-
 const onChange = (e) => {
     payload.value.image = e.target.files[0]
 }
 
 const addData = async () => {
     const form = new FormData()
-    form.append('kategori', payload.value.kategori)
+    form.append('nama', payload.value.nama)
     form.append('fasilitas', payload.value.fasilitas)
     form.append('deskripsi', payload.value.deskripsi)
     form.append('harga', payload.value.harga)
@@ -41,7 +41,7 @@ const addData = async () => {
             <div class="mb-5">
                 <label for="input-nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category
                     Name</label>
-                <input type="text" id="input-nama" v-model="payload.kategori"
+                <input type="text" id="input-nama" v-model="payload.nama"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
             </div>
             <div class="mb-5">
@@ -82,7 +82,8 @@ const addData = async () => {
 
             <div class="flex justify-end mt-10">
                 <button type="button"
-                    class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Cancel</button>
+                    class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                    @click="router.back()">Cancel</button>
                 <button type="submit"
                     class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Save</button>
             </div>

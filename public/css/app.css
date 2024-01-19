@@ -1220,6 +1220,12 @@ input:checked + .toggle-bg {
 .top-\[60\%\] {
   top: 60%;
 }
+.top-\[40\%\] {
+  top: 40%;
+}
+.top-\[35\%\] {
+  top: 35%;
+}
 .-z-10 {
   z-index: -10;
 }

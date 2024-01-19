@@ -23,6 +23,8 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DetailBookingController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FakturController;
+use App\Http\Controllers\StatusKamarController;
+
 
 
 Route::post('/register', [AuthController::class, 'register']);
@@ -61,10 +63,13 @@ Route::get('kamar/count', [InfoKamarController::class, 'getCount']);
 Route::get('kamar/available-count', [InfoKamarController::class, 'getAvailableCount']);
 Route::get('kamar/unavailable-count', [InfoKamarController::class, 'getUnavailableCount']);
 Route::get('kamar/search', [InfoKamarController::class, 'search']);
+Route::post('kamar/filter-status', [InfoKamarController::class, 'filteredByStatus']);
 Route::get('kamar/check', [InfoKamarController::class, 'checkAvailability']);
 Route::get('kamar/page/{page}', [InfoKamarController::class, 'index']);
 Route::get('kamar/get-room-id', [InfoKamarController::class, 'getRoomId']);
 Route::resource('kamar', InfoKamarController::class)->except('index');
+
+Route::get('status-kamar', [StatusKamarController::class, 'index']);
 
 Route::delete('kategori/delete-all', [KategoriController::class, 'destroyAllData']);
 Route::get('kategori/search', [KategoriController::class, 'search']);

@@ -9,7 +9,7 @@ import { storeToRefs } from 'pinia';
 
 const TableComponent = defineAsyncComponent({
     loader: () => import('../../../components/BaseTable.vue'),
-    suspensible: true
+    delat: 500,
 })
 
 provide('path', 5)
@@ -34,41 +34,32 @@ watch(() => store.$state.singleData, () => {
     <div class="w-full py-5 px-5">
         <section class="text-3xl font-bold mb-2">Category</section>
         <BreadCrumbComponent :page="['Admin', 'Category']" />
-        <Suspense v-if="category">
-            <template #default>
-                <TableComponent :header="header" route="add-category" tableName="Category" @handleSearch="searchData"
-                    :pagination="pagination" :addData="true" v-if="category.length != 0">
-                    <template #body>
-                        <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
-                            v-for="(item, index) in category" :key="index">
-                            <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ item.nama }}</th>
-                            <td class="px-4 py-3">{{ item.fasilitas }}</td>
-                            <td class="px-4 py-3">{{ item.deskripsi }}</td>
-                            <td class="px-4 py-3">Rp {{ item.harga }}</td>
-                            <td>
-                                <a class="font-medium text-green-500 dark:text-green-500 hover:underline cursor-pointer mr-4"
-                                    @click="store.getSingleData(5, item.id);" data-modal-target="form-category"
-                                    data-modal-toggle="form-category">Edit</a>
-                                <a class="font-medium text-red-600 dark:text-green-500 hover:underline cursor-pointer"
-                                    @click="store.deleteData(5, item.id);">delete</a>
-                            </td>
-                        </tr>
-                    </template>
-                </TableComponent>
-                <TableComponent tableName="Category" @handleSearch="searchData" v-else>
-                    <template #body>
-                        <tr
-                            class="odd:bg-white text-red-600 font-bold text-lg text-center odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800  hover:bg-gray-100 dark:hover:bg-gray-600">
-                            <p>Tidak Ada Data</p>
-                        </tr>
-                    </template>
-                </TableComponent>
+        <TableComponent :header="category.length != 0 ? header : null" route="add-category" tableName="Category"
+            @handleSearch="searchData" :pagination="pagination" :addData="true" @deleteAllData="store.deleteAllData(5)">
+            <template #body v-if="category.length != 0">
+                <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
+                    v-for="(item, index) in category" :key="index">
+                    <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {{ item.nama }}</th>
+                    <td class="px-4 py-3">{{ item.fasilitas }}</td>
+                    <td class="px-4 py-3">{{ item.deskripsi }}</td>
+                    <td class="px-4 py-3">Rp {{ item.harga }}</td>
+                    <td>
+                        <a class="font-medium text-green-500 dark:text-green-500 hover:underline cursor-pointer mr-4"
+                            @click="store.getSingleData(5, item.id);" data-modal-target="form-category"
+                            data-modal-toggle="form-category">Edit</a>
+                        <a class="font-medium text-red-600 dark:text-green-500 hover:underline cursor-pointer"
+                            @click="store.deleteData(5, item.id);">delete</a>
+                    </td>
+                </tr>
             </template>
-            <template #fallback>
-                <BaseSpinner />
+            <template #body v-else>
+                <tr
+                    class="odd:bg-white text-red-600 font-bold text-lg text-center odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800  hover:bg-gray-100 dark:hover:bg-gray-600">
+                    <p>Tidak Ada Data</p>
+                </tr>
             </template>
-        </Suspense>
+        </TableComponent>
         <ModalComponent id_modal="form-category">
             <template #header>
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">

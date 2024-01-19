@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Booking;
+use App\Models\DetailBooking;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 class BookingController extends Controller
 {
     public function index($index)
@@ -37,9 +39,24 @@ class BookingController extends Controller
     }
     public function destroy($id)
     {
-        $booking = Booking::find($id);
-        $booking->delete();
-        return response()->json('Booking deleted!');
+        try {
+            DB::beginTransaction();
+
+            $booking = Booking::find($id);
+            $booking->delete();
+
+            // DetailBooking::where('id_booking', $id)
+            // ->join('informasi_kamar', 'detail_booking.id_kamar', '=', 'informasi_kamar.id')
+            // ->update(['informasi_kamar.status_kamar' => 1]);
+
+            DB::commit();
+
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return response()->json(['error' => $e->getMessage()]);
+        }
     }
     public function destroyAllData(){
         \DB::table('booking')->delete();

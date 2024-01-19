@@ -56,12 +56,15 @@ class KategoriController extends Controller
         return response()->json('Category deleted!');
     }
     public function destroyAllData(){
-        $imagepath = \public_path('/storage/');
+
+        $imagepath = \public_path('/storage/kategori');
         if(File::exists($imagepath)){
-            File::delete($imagepath);
+            File::deleteDirectory($imagepath);
+            \DB::table('kategori_kamar')->delete();
+            return response()->json('All Category deleted!');
+        }else{
+            return response()->json('Delete Error');
         }
-        \DB::table('kategori_kamar')->delete();
-        return response()->json('All Category deleted!');
     }
     public function search(Request $request){
         $search_query = KategoriKamar::query();

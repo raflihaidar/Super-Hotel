@@ -15,12 +15,6 @@ class Faktur extends Model
     protected $table = "faktur";
 
     protected $fillable = [
-        'id_staff',
-        'id_booking',
-        'jumlah_bayar',
-        'kembali',
-        'ppn',
-        'tanggal_transaksi',
-        'diskon'
+        'id_booking'
     ];
 }

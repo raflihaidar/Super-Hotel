@@ -7,13 +7,38 @@ import router from "../routes.js";
 
 export const useRoomStore = defineStore("room", () => {
     const BASE_URL = "http://127.0.0.1:8000/api/kamar";
+    const STATUS_ROOM_URL = "http://127.0.0.1:8000/api/status-kamar";
     const store = useGlobalStore();
     const searchField = ref(null);
+    const status = ref([]);
     const quantity = ref({
         roomQuantity: 1,
         personQuantity: 1,
     });
     const { room, category, singleData, pagination } = storeToRefs(store);
+
+    const getRoomStatus = async () => {
+        try {
+            const res = await axios.get(STATUS_ROOM_URL);
+            status.value = res.data;
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    // const filteredData = async (payload) => {
+    //     try {
+    //         const res = await axios.post(`${BASE_URL}/filter-status`, {
+    //             available: payload[0],
+    //             unavaialable: payload[1],
+    //         });
+    //         room.value = res.data;
+    //         console.log(room.value);
+    //         console.log("response", res.data);
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // };
 
     const incQuantity = (value) => {
         if (value === "room" && quantity.value.roomQuantity < 5) {
@@ -85,15 +110,18 @@ export const useRoomStore = defineStore("room", () => {
 
     return {
         room,
+        status,
         category,
         quantity,
         singleData,
         searchField,
         pagination,
+        // filteredData,
         incQuantity,
         decQuantity,
         getRoomId,
         checkAvailability,
         getCount,
+        getRoomStatus,
     };
 });

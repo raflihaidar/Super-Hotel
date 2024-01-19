@@ -4,25 +4,29 @@ import BreadCrumbComponent from '../../../components/BaseBreadCrumb.vue';
 import BaseSpinner from '../../../components/BaseSpinner.vue';
 import DetailRoomCompoonent from '../../../components/RoomForm.vue'
 import { useGlobalStore } from '../../../store/global';
+import { useRoomStore } from '../../../store/room';
 import { ref, watch, onMounted, provide, defineAsyncComponent } from 'vue';
 import { storeToRefs } from 'pinia';
 
 const TableComponent = defineAsyncComponent({
     loader: () => import('../../../components/BaseTable.vue'),
-    suspensible: true
+    delay: 500
 })
 
 provide('path', 4)
 const store = useGlobalStore()
+const roomStore = useRoomStore()
 const header = ref(['NOMOR KAMAR', 'KATEGORI', 'FASILITAS', 'HARGA', 'STATUS'])
 const { room, singleData, pagination } = storeToRefs(store)
+const { status } = storeToRefs(roomStore)
 
 const searchData = (search) => {
     store.searchData(4, search)
 }
 
 onMounted(() => {
-    store.getData(4, "25");
+    roomStore.getRoomStatus()
+    store.getData(4, "25")
 });
 
 
@@ -37,43 +41,33 @@ watch(() => store.$state.singleData, () => {
         <BreadCrumbComponent :page="['Admin', 'Room']" />
         <section class="text-3xl font-bold">Room</section>
     </nav>
-
-    <Suspense v-if="room">
-        <template #default>
-            <TableComponent :header="header" tableName="Room" :pagination="pagination" :addData="true" route="add-room"
-                @handleSearch="searchData" v-if="room.length != 0">
-                <template #body>
-                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
-                        v-for="(item, index) in room" :key="index">
-                        <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{
-                            item.room_name }}</th>
-                        <td class="px-4 py-3">{{ item.kategori }}</td>
-                        <td class="px-4 py-3">{{ item.fasilitas }}</td>
-                        <td class="px-4 py-3">Rp {{ item.harga }}</td>
-                        <td class="px-4 py-3">{{ item.status }}</td>
-                        <td>
-                            <a class="font-medium text-green-500 dark:text-green-500 hover:underline cursor-pointer mr-4"
-                                @click="store.getSingleData(4, item.id)" data-modal-target="form-room"
-                                data-modal-toggle="form-room">Edit</a>
-                            <a class="font-medium text-red-600 dark:text-green-500 hover:underline cursor-pointer"
-                                @click="store.deleteData(4, item.id)">delete</a>
-                        </td>
-                    </tr>
-                </template>
-            </TableComponent>
-            <TableComponent tableName="Room" @handleSearch="searchData" v-else>
-                <template #body>
-                    <tr
-                        class="odd:bg-white text-red-600 font-bold text-lg text-center odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800  hover:bg-gray-100 dark:hover:bg-gray-600">
-                        <p>Tidak Ada Data</p>
-                    </tr>
-                </template>
-            </TableComponent>
+    <TableComponent :header="room.length != 0 ? header : null" tableName="Room" :pagination="pagination" :addData="true"
+        route="add-room" @handleSearch="searchData" @deleteAllData="store.deleteAllData(4)" :filterData="status">
+        <template #body v-if="room.length != 0">
+            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
+                v-for="(item, index) in room" :key="index">
+                <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{
+                    item.room_name }}</th>
+                <td class="px-4 py-3">{{ item.kategori }}</td>
+                <td class="px-4 py-3">{{ item.fasilitas }}</td>
+                <td class="px-4 py-3">Rp {{ item.harga }}</td>
+                <td class="px-4 py-3">{{ item.status }}</td>
+                <td>
+                    <a class="font-medium text-green-500 dark:text-green-500 hover:underline cursor-pointer mr-4"
+                        @click="store.getSingleData(4, item.id)" data-modal-target="form-room"
+                        data-modal-toggle="form-room">Edit</a>
+                    <a class="font-medium text-red-600 dark:text-green-500 hover:underline cursor-pointer"
+                        @click="store.deleteData(4, item.id)">delete</a>
+                </td>
+            </tr>
         </template>
-        <template #fallback>
-            <BaseSpinner />
+        <template #body v-else>
+            <tr
+                class="odd:bg-white text-red-600 font-bold text-lg text-center odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800  hover:bg-gray-100 dark:hover:bg-gray-600">
+                <p>Tidak Ada Data</p>
+            </tr>
         </template>
-    </Suspense>
+    </TableComponent>
 
 
     <ModalComponent id_modal="form-room">

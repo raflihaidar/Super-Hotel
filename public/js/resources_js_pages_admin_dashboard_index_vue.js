@@ -19068,8 +19068,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", function () {
   var BASE_URL = "http://127.0.0.1:8000/api/kamar";
+  var STATUS_ROOM_URL = "http://127.0.0.1:8000/api/status-kamar";
   var store = (0,_global_js__WEBPACK_IMPORTED_MODULE_1__.useGlobalStore)();
   var searchField = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
+  var status = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
   var quantity = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({
     roomQuantity: 1,
     personQuantity: 1
@@ -19079,6 +19081,49 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
     category = _storeToRefs.category,
     singleData = _storeToRefs.singleData,
     pagination = _storeToRefs.pagination;
+  var getRoomStatus = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+      var res;
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get(STATUS_ROOM_URL);
+          case 3:
+            res = _context.sent;
+            status.value = res.data;
+            _context.next = 10;
+            break;
+          case 7:
+            _context.prev = 7;
+            _context.t0 = _context["catch"](0);
+            console.log(_context.t0);
+          case 10:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee, null, [[0, 7]]);
+    }));
+    return function getRoomStatus() {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  // const filteredData = async (payload) => {
+  //     try {
+  //         const res = await axios.post(`${BASE_URL}/filter-status`, {
+  //             available: payload[0],
+  //             unavaialable: payload[1],
+  //         });
+  //         room.value = res.data;
+  //         console.log(room.value);
+  //         console.log("response", res.data);
+  //     } catch (error) {
+  //         console.log(error);
+  //     }
+  // };
+
   var incQuantity = function incQuantity(value) {
     if (value === "room" && quantity.value.roomQuantity < 5) {
       quantity.value.roomQuantity += 1;
@@ -19094,29 +19139,29 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
     }
   };
   var checkAvailability = /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(payload) {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(payload) {
       var res;
-      return _regeneratorRuntime().wrap(function _callee$(_context) {
-        while (1) switch (_context.prev = _context.next) {
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
           case 0:
-            _context.prev = 0;
+            _context2.prev = 0;
             if (!(payload.check_in && payload.check_out)) {
-              _context.next = 10;
+              _context2.next = 10;
               break;
             }
-            _context.next = 4;
+            _context2.next = 4;
             return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("".concat(BASE_URL, "/check"), {
               checkin: payload.check_in,
               checkout: payload.check_out
             });
           case 4:
-            res = _context.sent;
+            res = _context2.sent;
             searchField.value = payload;
             category.value = res.data.categories;
             _routes_js__WEBPACK_IMPORTED_MODULE_3__["default"].push({
               name: "result"
             });
-            _context.next = 11;
+            _context2.next = 11;
             break;
           case 10:
             sweetalert2__WEBPACK_IMPORTED_MODULE_2__.fire({
@@ -19125,115 +19170,118 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
               text: "Something went wrong!"
             });
           case 11:
-            _context.next = 16;
+            _context2.next = 16;
             break;
           case 13:
-            _context.prev = 13;
-            _context.t0 = _context["catch"](0);
-            console.log(_context.t0);
+            _context2.prev = 13;
+            _context2.t0 = _context2["catch"](0);
+            console.log(_context2.t0);
           case 16:
           case "end":
-            return _context.stop();
+            return _context2.stop();
         }
-      }, _callee, null, [[0, 13]]);
+      }, _callee2, null, [[0, 13]]);
     }));
     return function checkAvailability(_x) {
-      return _ref.apply(this, arguments);
+      return _ref2.apply(this, arguments);
     };
   }();
   var getRoomId = /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(id_kategori) {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(id_kategori) {
       var res;
-      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-        while (1) switch (_context2.prev = _context2.next) {
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+        while (1) switch (_context3.prev = _context3.next) {
           case 0:
-            _context2.prev = 0;
-            _context2.next = 3;
+            _context3.prev = 0;
+            _context3.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("".concat(BASE_URL, "/get-room-id"), {
               params: {
                 id_kategori: id_kategori
               }
             });
           case 3:
-            res = _context2.sent;
-            return _context2.abrupt("return", res.data.id_kamar);
+            res = _context3.sent;
+            return _context3.abrupt("return", res.data.id_kamar);
           case 7:
-            _context2.prev = 7;
-            _context2.t0 = _context2["catch"](0);
-            console.log(_context2.t0);
-          case 10:
-          case "end":
-            return _context2.stop();
-        }
-      }, _callee2, null, [[0, 7]]);
-    }));
-    return function getRoomId(_x2) {
-      return _ref2.apply(this, arguments);
-    };
-  }();
-  var getCount = /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(typeOfCount) {
-      var res;
-      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-        while (1) switch (_context3.prev = _context3.next) {
-          case 0:
-            _context3.prev = 0;
-            res = "";
-            if (!(typeOfCount === "count")) {
-              _context3.next = 8;
-              break;
-            }
-            _context3.next = 5;
-            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("".concat(BASE_URL, "/count"));
-          case 5:
-            res = _context3.sent;
-            _context3.next = 18;
-            break;
-          case 8:
-            if (!(typeOfCount === "available")) {
-              _context3.next = 15;
-              break;
-            }
-            _context3.next = 11;
-            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("".concat(BASE_URL, "/available-count"));
-          case 11:
-            res = _context3.sent;
-            console.log("dari store kamar ", res.data);
-            _context3.next = 18;
-            break;
-          case 15:
-            _context3.next = 17;
-            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("".concat(BASE_URL, "/unavailable-count"));
-          case 17:
-            res = _context3.sent;
-          case 18:
-            return _context3.abrupt("return", res.data);
-          case 21:
-            _context3.prev = 21;
+            _context3.prev = 7;
             _context3.t0 = _context3["catch"](0);
             console.log(_context3.t0);
-          case 24:
+          case 10:
           case "end":
             return _context3.stop();
         }
-      }, _callee3, null, [[0, 21]]);
+      }, _callee3, null, [[0, 7]]);
+    }));
+    return function getRoomId(_x2) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+  var getCount = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(typeOfCount) {
+      var res;
+      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+        while (1) switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.prev = 0;
+            res = "";
+            if (!(typeOfCount === "count")) {
+              _context4.next = 8;
+              break;
+            }
+            _context4.next = 5;
+            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("".concat(BASE_URL, "/count"));
+          case 5:
+            res = _context4.sent;
+            _context4.next = 18;
+            break;
+          case 8:
+            if (!(typeOfCount === "available")) {
+              _context4.next = 15;
+              break;
+            }
+            _context4.next = 11;
+            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("".concat(BASE_URL, "/available-count"));
+          case 11:
+            res = _context4.sent;
+            console.log("dari store kamar ", res.data);
+            _context4.next = 18;
+            break;
+          case 15:
+            _context4.next = 17;
+            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("".concat(BASE_URL, "/unavailable-count"));
+          case 17:
+            res = _context4.sent;
+          case 18:
+            return _context4.abrupt("return", res.data);
+          case 21:
+            _context4.prev = 21;
+            _context4.t0 = _context4["catch"](0);
+            console.log(_context4.t0);
+          case 24:
+          case "end":
+            return _context4.stop();
+        }
+      }, _callee4, null, [[0, 21]]);
     }));
     return function getCount(_x3) {
-      return _ref3.apply(this, arguments);
+      return _ref4.apply(this, arguments);
     };
   }();
   return {
     room: room,
+    status: status,
     category: category,
     quantity: quantity,
     singleData: singleData,
     searchField: searchField,
     pagination: pagination,
+    // filteredData,
     incQuantity: incQuantity,
     decQuantity: decQuantity,
     getRoomId: getRoomId,
     checkAvailability: checkAvailability,
-    getCount: getCount
+    getCount: getCount,
+    getRoomStatus: getRoomStatus
   };
 });
 

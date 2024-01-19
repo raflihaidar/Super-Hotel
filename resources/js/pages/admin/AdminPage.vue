@@ -1,109 +1,10 @@
 <script setup>
-import { ref } from "vue";
-import router from '../../routes'
-import Swal from "sweetalert2";
+import { storeToRefs } from 'pinia'
+import { useSidebarStore } from '../../store/navigation'
 
-const handleClick = (item) => {
-    router.push({ name: item.route })
-    sidebar.value.forEach((data) => {
-        data.status = data === item
-        data.submenu.forEach((value) => {
-            value.status = false
-        })
-    })
-}
+const store = useSidebarStore()
+const { sidebar } = storeToRefs(store)
 
-const handleSubmenuClick = (menu, submenu) => {
-    router.push({ name: submenu.route })
-    sidebar.value.forEach((data) => {
-        data.status = data === menu
-        data.submenu.forEach((value) => {
-            value.status = value === submenu
-        })
-    })
-}
-
-const handleSignOut = () => {
-    Swal.fire({
-        title: "Are you sure to Sign Out ?",
-        icon: "question",
-        showConfirmButton: true,
-        showCancelButton: true,
-        cancelButtonText: "Cancel",
-        confirmButtonText: "Sign Out",
-    }).then(async (result) => {
-        if (result.isConfirmed) {
-            router.push({ name: 'home' })
-        }
-    });
-}
-
-const sidebar = ref([
-    {
-        name: 'Dashboard',
-        route: 'dashboard',
-        status: true,
-        hasSubmenu: false,
-        submenu: [],
-    },
-    {
-        name: 'Master Room',
-        route: '',
-        status: true,
-        hasSubmenu: true,
-        submenu: [
-            {
-                name: 'Room',
-                route: 'room',
-                status: false,
-
-            },
-            {
-                name: 'Category',
-                route: 'category',
-                status: false,
-
-            },
-            {
-                name: 'Booking',
-                route: 'booking',
-                status: false,
-            },
-        ],
-    },
-    {
-        name: 'Staff Management',
-        route: '',
-        status: true,
-        hasSubmenu: true,
-        submenu: [
-            {
-                name: 'Staff',
-                route: 'staff',
-                status: false,
-
-            },
-            {
-                name: 'Shift',
-                route: 'shift',
-                status: false,
-
-            },
-            {
-                name: 'Divisi',
-                route: 'divisi',
-                status: false,
-
-            }
-        ],
-    },
-    {
-        name: 'Guest',
-        route: 'guest',
-        status: false,
-        hasSubmenu: false,
-        submenu: [],
-    }])
 </script>
 <template>
     <nav
@@ -184,7 +85,7 @@ const sidebar = ref([
         aria-label="Sidebar">
         <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
             <ul class="space-y-2 font-medium" v-for="(item, index) in sidebar" :key="index">
-                <router-link :to="{ name: item.route }" v-if="!item.hasSubmenu" @click="handleClick(item)"
+                <router-link :to="{ name: item.route }" v-if="!item.hasSubmenu" @click="store.handleClick(item)"
                     :class="item.status ? 'bg-green-700 text-white hover:bg-green-900' : ''"
                     class="flex items-center p-2  text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <!-- <component :is="item.icon"
@@ -208,7 +109,7 @@ const sidebar = ref([
                     </button>
                     <ul :id="'dropdown ' + item.name" class="hidden py-2 space-y-2">
                         <li v-for="(value, submenuIndex) in item.submenu" :key="submenuIndex"
-                            @click="handleSubmenuClick(item, value)">
+                            @click="store.handleSubmenuClick(item, value)">
                             <router-link :to="{ name: value.route }"
                                 :class="value.status ? 'bg-green-700 text-white hover:bg-green-900' : ''"
                                 class="flex items-center  w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">{{

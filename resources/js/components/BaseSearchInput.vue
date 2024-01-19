@@ -1,18 +1,17 @@
 <script setup>
 import { initFlowbite } from "flowbite";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 
 const valueSearchInput = ref('')
 const emits = defineEmits(['handleSearch'])
 
-const handleSearch = (search) => {
-    emits('handleSearch', search)
-    console.log(search)
-}
-
 const deleteValue = () => {
     valueSearchInput.value = ''
 }
+
+watch(valueSearchInput, () => {
+    emits('handleSearch', valueSearchInput.value)
+})
 
 onMounted(() => {
     initFlowbite()
@@ -24,7 +23,7 @@ onMounted(() => {
     <form class="flex items-center">
         <label for="simple-search" class="sr-only">Search</label>
         <div class="relative w-full">
-            <div class="absolute inset-y-0 left-0 flex items-center pl-3" @click="handleSearch(valueSearchInput)">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3">
                 <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor"
                     viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd"
@@ -33,7 +32,8 @@ onMounted(() => {
                 </svg>
             </div>
             <input type="text" id="simple-search" v-model="valueSearchInput"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                @keyup.enter="emits('handleSearch', valueSearchInput)"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
                 placeholder="Search">
         </div>
     </form>

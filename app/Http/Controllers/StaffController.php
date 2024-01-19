@@ -78,12 +78,14 @@ class StaffController extends Controller
         return response()->json('Staff deleted!');
     }
     public function destroyAllData(){
-        \DB::table('staff')->delete();
         $imagepath = \public_path('/storage/staff');
         if(File::exists($imagepath)){
-            File::delete($imagepath);
+            File::deleteDirectory($imagepath);
+            \DB::table('staff')->delete();
+            return response()->json('All Staff deleted!');
+        }else{
+            return response()->json("delete error");
         }
-        return response()->json('All Staff deleted!');
     }
     public function search(Request $request)
     {

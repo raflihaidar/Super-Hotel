@@ -8,7 +8,7 @@ import { storeToRefs } from 'pinia';
 
 const TableComponent = defineAsyncComponent({
     loader: () => import('../../../components/BaseTable.vue'),
-    suspensible: true
+    delay: 500
 })
 
 provide('path', 6)
@@ -34,42 +34,33 @@ watch(() => store.$state.singleData, () => {
 <template>
     <section class="text-3xl font-bold mb-2">Booking</section>
     <BreadCrumbComponent :page="['Admin', 'Booking']" />
-    <Suspense v-if="booking">
-        <template #default>
-            <TableComponent :header="header" tableName="Room" :pagination="pagination" @handleSearch="searchData"
-                v-if="booking.length != 0">
-                <template #body>
-                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
-                        v-for="(item, index) in booking" :key="index">
-                        <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{
-                            item.id }}</th>
-                        <td class="px-4 py-3">{{ item.check_in }}</td>
-                        <td class="px-4 py-3">{{ item.check_out }}</td>
-                        <td class="px-4 py-3">{{ item.tanggal_booking }}</td>
-                        <td class="px-4 py-3">Rp {{ item.total }}</td>
-                        <td>
-                            <a class="font-medium text-green-500 dark:text-green-500 hover:underline cursor-pointer mr-4"
-                                @click="store.getSingleData(6, item.id);" data-modal-target="form-booking"
-                                data-modal-toggle="form-booking">Edit</a>
-                            <a class="font-medium text-red-600 dark:text-green-500 hover:underline cursor-pointer"
-                                @click="store.deleteData(6, item.id);">delete</a>
-                        </td>
-                    </tr>
-                </template>
-            </TableComponent>
-            <TableComponent tableName="Room" @handleSearch="searchData" v-else>
-                <template #body>
-                    <tr
-                        class="odd:bg-white text-red-600 font-bold text-lg text-center odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800  hover:bg-gray-100 dark:hover:bg-gray-600">
-                        <p>Tidak Ada Data</p>
-                    </tr>
-                </template>
-            </TableComponent>
+    <TableComponent :header="booking.length != 0 ? header : null" tableName="Room" :pagination="pagination"
+        @handleSearch="searchData">
+        <template #body v-if="booking.length != 0">
+            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
+                v-for="(item, index) in booking" :key="index">
+                <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{
+                    item.id }}</th>
+                <td class="px-4 py-3">{{ item.check_in }}</td>
+                <td class="px-4 py-3">{{ item.check_out }}</td>
+                <td class="px-4 py-3">{{ item.tanggal_booking }}</td>
+                <td class="px-4 py-3">Rp {{ item.total }}</td>
+                <td>
+                    <a class="font-medium text-green-500 dark:text-green-500 hover:underline cursor-pointer mr-4"
+                        @click="store.getSingleData(6, item.id);" data-modal-target="form-booking"
+                        data-modal-toggle="form-booking">Edit</a>
+                    <a class="font-medium text-red-600 dark:text-green-500 hover:underline cursor-pointer"
+                        @click="store.deleteData(6, item.id);">delete</a>
+                </td>
+            </tr>
         </template>
-        <template #fallback>
-            <BaseSpinner />
+        <template #body v-else>
+            <tr
+                class="odd:bg-white text-red-600 font-bold text-lg text-center odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800  hover:bg-gray-100 dark:hover:bg-gray-600">
+                <p>Tidak Ada Data</p>
+            </tr>
         </template>
-    </Suspense>
+    </TableComponent>
     <ModalComponent id_modal="form-booking">
         <template #header>
             <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">

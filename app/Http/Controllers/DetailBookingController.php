@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Faktur;
 use Illuminate\Http\Request;
 use App\Models\DetailBooking;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class DetailBookingController extends Controller
@@ -46,7 +48,6 @@ class DetailBookingController extends Controller
 
         try {
             DB::beginTransaction();
-
             // Hitung total dari subtotal di tabel detail_booking
             $subtotal = \DB::table('detail_booking')
                 ->where('id_booking', $idBooking)
@@ -80,7 +81,7 @@ class DetailBookingController extends Controller
         ->leftJoin('status_pembayaran as s', 's.id', '=', 'b.id_status')
         ->leftJoin('tamu as t', 't.id', '=', 'detail_booking.id_tamu')
         ->select(
-            'k.kategori as kategori',
+            'k.nama as kategori',
             'k.fasilitas as fasilitas',
             'k.harga as harga',
             'k.foto as foto',
