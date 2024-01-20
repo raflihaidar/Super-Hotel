@@ -10,7 +10,7 @@
                 </button>
                 <button type="button"
                     class="text-gray-900 gap-x-2 bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-800 dark:bg-white dark:border-gray-700 dark:text-gray-900 dark:hover:bg-gray-200 me-2 mb-2">
-                    <!-- <img src="../../assets/facebook-icon.png" alt="facebook icon"> -->
+                    <img src="../../../assets/facebook.png" class="w-8" alt="facebook icon">
                     sign with facebook
                 </button>
             </div>
@@ -22,7 +22,7 @@
             <form class="max-w-md mx-auto flex flex-col" @submit.prevent="handleRegister">
                 <div class="grid md:grid-cols-2 md:gap-6">
                     <div class="relative z-0 w-full mb-5 group">
-                        <input type="text" name="nama" id="nama" v-model="firstName"
+                        <input type="text" name="nama" id="nama" v-model="firstName" autocomplete="off"
                             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
                             placeholder=" " required />
                         <label for="floating_first_name"
@@ -31,6 +31,7 @@
                     </div>
                     <div class="relative z-0 w-full mb-5 group">
                         <input type="text" name="floating_last_name" id="floating_last_name" v-model="lastName"
+                            autocomplete="off"
                             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
                             placeholder=" " required />
                         <label for="floating_last_name"
@@ -39,14 +40,14 @@
                     </div>
                 </div>
                 <div class="relative z-0 w-full mb-5 group">
-                    <input name="username" id="floating_username" v-model="payload.username"
+                    <input name="username" id="floating_username" v-model="payload.username" autocomplete="off"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
                         placeholder=" " required />
                     <label for="username"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-green-600 peer-focus:dark:text-green-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Username</label>
                 </div>
                 <div class="relative z-0 w-full mb-5 group">
-                    <input type="text" name="email" id="floating_email" v-model="payload.email"
+                    <input type="text" name="email" id="floating_email" v-model="payload.email" autocomplete="off"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
                         placeholder=" " required />
                     <label for="email"
@@ -55,6 +56,7 @@
                 </div>
                 <div class="relative z-0 w-full mb-5 group">
                     <input type="text" name="telephone" id="floating_telephone" v-model="payload.telephone"
+                        autocomplete="off"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
                         placeholder=" " required />
                     <label for="telephone"
@@ -62,13 +64,14 @@
                 </div>
                 <div class="relative z-0 w-full mb-5 group">
                     <input type="password" name="password" id="floating_password" v-model="payload.password"
+                        autocomplete="off"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
                         placeholder=" " required />
                     <label for="password"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-green-600 peer-focus:dark:text-green-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
                 </div>
                 <div class="relative z-0 w-full mb-5 group">
-                    <input type="password" name="repeat_password" id="floating_repeat_password"
+                    <input type="password" name="repeat_password" id="floating_repeat_password" autocomplete="off"
                         v-model="payload.passwordConfim"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
                         placeholder=" " required />
@@ -83,8 +86,7 @@
                     class="hover:underline underline-offset-2 transition">Login</router-link></p>
 
         </section>
-        <div class="w-[50%] bg-[#0E2D10] order-1">
-            <p>p balap</p>
+        <div class="w-[50%] bg-gray-50 signup-background ">
         </div>
     </div>
 </template>
@@ -121,3 +123,10 @@ const handleRegister = () => {
 }
 
 </script>
+
+<style>
+.signup-background {
+    background-image: url('../../../assets/sign-up-image.jpg');
+    background-size: cover;
+}
+</style>

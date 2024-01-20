@@ -1,11 +1,12 @@
 <script setup>
 import { initFlowbite } from 'flowbite';
-import { onMounted, ref } from 'vue';
+import { onMounted } from 'vue';
 
-const props = defineProps(['inputName'])
+const props = defineProps({
+    inputName: String,
+})
 
 const emits = defineEmits(['increment', 'decrement'])
-const quantity = ref(1)
 
 const increment = () => {
     emits('increment', props.inputName);
@@ -34,7 +35,7 @@ onMounted(() => {
             <input type="text" :id="props.inputName" data-input-counter data-input-counter-min="1"
                 data-input-counter-max="5" aria-describedby="helper-text-explanation"
                 class="bg-gray-50 border-x-0 border-gray-300 h-11 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="" :value="quantity" required>
+                placeholder="" :value="1" required>
             <div
                 class="absolute bottom-1 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
                 <span>{{ props.inputName }}</span>

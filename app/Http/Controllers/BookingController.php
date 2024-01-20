@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Booking;
+use App\Models\Faktur;
 use App\Models\DetailBooking;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -17,15 +18,52 @@ class BookingController extends Controller
     }
     public function store(Request $request)
     {
-        $booking = new Booking([
-            'id_status' => $request->input('id_status'),
-            'check_in' => $request->input('check_in'),
-            'check_out' => $request->input('check_out'),
-            'total' => $request->input('total')
-        ]);
-        $booking->save();
-        return response()->json(['id' => $booking->id, 'message' => 'Booking created!']);
+        DB::beginTransaction();
+        try {
+
+            $booking = new Booking([
+                'id_status' => $request->input('id_status'),
+                'check_in' => $request->input('check_in'),
+                'check_out' => $request->input('check_out'),
+                'total' => $request->input('total')
+            ]);
+            $booking->save();
+
+            $faktur = new Faktur([
+                'id_booking' => $booking->id
+            ]);
+            $faktur->save();
+
+            $detalBooking = new DetailBooking([
+                'id_booking' =>  $booking->id,
+                'id_tamu' => $request->input('id_tamu'),
+                'id_kamar' => $request->input('id_kamar'),
+                'jumlah_kamar' => $request->input('jumlah_kamar'),
+                'jumlah_tamu' => $request->input('jumlah_tamu'),
+                'catatan' => $request->input('tanggal_booking'),
+                'subtotal' => $request->input('subtotal'),
+            ]);
+            $detalBooking->save();
+
+            $subtotal = \DB::table('detail_booking')
+                ->where('id_booking', $booking->id)
+                ->sum('subtotal');
+
+            // Update total di tabel booking
+            \DB::table('booking')
+                ->where('id', $booking->id)
+                ->update(['total' => $subtotal]);
+
+            DB::commit();
+
+            return response()->json(['message' => 'Booking created!']);
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return response()->json(['error' => $e->getMessage()]);
+        }
     }
+
     public function show($id)
     {
         $booking = Booking::where('id', $id)->first();
@@ -39,15 +77,19 @@ class BookingController extends Controller
     }
     public function destroy($id)
     {
+        DB::beginTransaction();
         try {
-            DB::beginTransaction();
+
+            DB::table('informasi_kamar')
+            ->whereIn('id', function ($query) use ($id) {
+                $query->select('id_kamar')
+                      ->from('detail_booking')
+                      ->where('id_booking', $id);
+            })
+            ->update(['id_status_kamar' => 1]);
 
             $booking = Booking::find($id);
             $booking->delete();
-
-            // DetailBooking::where('id_booking', $id)
-            // ->join('informasi_kamar', 'detail_booking.id_kamar', '=', 'informasi_kamar.id')
-            // ->update(['informasi_kamar.status_kamar' => 1]);
 
             DB::commit();
 

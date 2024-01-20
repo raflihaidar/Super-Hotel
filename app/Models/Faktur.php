@@ -12,7 +12,11 @@ class Faktur extends Model
 
     protected $connection = 'mysql';
 
+    protected $primaryKey = 'kode';
+
     protected $table = "faktur";
+
+    public $timestamps = false;
 
     protected $fillable = [
         'id_booking'

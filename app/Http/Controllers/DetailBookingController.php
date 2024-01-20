@@ -46,8 +46,8 @@ class DetailBookingController extends Controller
     {
         $idBooking = $request->input('id_booking');
 
+        DB::beginTransaction();
         try {
-            DB::beginTransaction();
             // Hitung total dari subtotal di tabel detail_booking
             $subtotal = \DB::table('detail_booking')
                 ->where('id_booking', $idBooking)

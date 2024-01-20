@@ -18408,25 +18408,29 @@ var useBookingStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("bookin
             return axios__WEBPACK_IMPORTED_MODULE_5__["default"].post(BASE_URL, payload_booking);
           case 3:
             res = _context2.sent;
-            Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_3__.mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 1000,
-              timerProgressBar: true,
-              didOpen: function didOpen(toast) {
-                toast.onmouseenter = sweetalert2__WEBPACK_IMPORTED_MODULE_3__.stopTimer;
-                toast.onmouseleave = sweetalert2__WEBPACK_IMPORTED_MODULE_3__.resumeTimer;
-              }
-            });
-            Toast.fire({
-              icon: "success",
-              title: "Booking successfully"
-            });
-            searchField.value = [];
-            return _context2.abrupt("return", res.data.id);
-          case 10:
-            _context2.prev = 10;
+            console.log(res.data);
+            if (detailBooking) {
+              Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_3__.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 1000,
+                timerProgressBar: true,
+                didOpen: function didOpen(toast) {
+                  toast.onmouseenter = sweetalert2__WEBPACK_IMPORTED_MODULE_3__.stopTimer;
+                  toast.onmouseleave = sweetalert2__WEBPACK_IMPORTED_MODULE_3__.resumeTimer;
+                }
+              });
+              Toast.fire({
+                icon: "success",
+                title: "Booking successfully"
+              });
+              searchField.value = [];
+            }
+            _context2.next = 12;
+            break;
+          case 8:
+            _context2.prev = 8;
             _context2.t0 = _context2["catch"](0);
             sweetalert2__WEBPACK_IMPORTED_MODULE_3__.fire({
               icon: "error",
@@ -18434,116 +18438,100 @@ var useBookingStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("bookin
               text: "Something went wrong!"
             });
             console.log(_context2.t0);
-          case 14:
+          case 12:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[0, 10]]);
+      }, _callee2, null, [[0, 8]]);
     }));
     return function addData(_x2) {
       return _ref2.apply(this, arguments);
     };
   }();
-  var addDetailBooking = /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(payload, id_booking, id_kamar) {
+
+  // const addDetailBooking = async (payload, id_booking, id_kamar) => {
+  //     try {
+  //         const res = await axios.post(URL_DETAIL_BOOKING, {
+  //             id_booking: id_booking,
+  //             id_tamu: payload.id_tamu,
+  //             id_kamar: id_kamar,
+  //             jumlah_tamu: payload.jumlah_tamu,
+  //             jumlah_kamar: payload.jumlah_kamar,
+  //             catatan: payload.catatan,
+  //             subtotal: payload.subtotal,
+  //         });
+  //         detailBooking.value = res.data;
+  //         updateTotalBooking(id_booking);
+  //         return res.data;
+  //     } catch (error) {
+  //         console.log("dari detail", error);
+  //     }
+  // };
+
+  var viewHistoryBooking = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(id_tamu) {
       var res;
       return _regeneratorRuntime().wrap(function _callee3$(_context3) {
         while (1) switch (_context3.prev = _context3.next) {
           case 0:
             _context3.prev = 0;
             _context3.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].post(URL_DETAIL_BOOKING, {
-              id_booking: id_booking,
-              id_tamu: payload.id_tamu,
-              id_kamar: id_kamar,
-              jumlah_tamu: payload.jumlah_tamu,
-              jumlah_kamar: payload.jumlah_kamar,
-              catatan: payload.catatan,
-              subtotal: payload.subtotal
-            });
+            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("".concat(URL_DETAIL_BOOKING, "/").concat(id_tamu));
           case 3:
             res = _context3.sent;
-            detailBooking.value = res.data;
-            updateTotalBooking(id_booking);
-            return _context3.abrupt("return", res.data);
-          case 9:
-            _context3.prev = 9;
+            detailBooking.value = res.data.booking_details;
+            _context3.next = 10;
+            break;
+          case 7:
+            _context3.prev = 7;
             _context3.t0 = _context3["catch"](0);
-            console.log("dari detail", _context3.t0);
-          case 12:
+            console.log(_context3.t0);
+          case 10:
           case "end":
             return _context3.stop();
         }
-      }, _callee3, null, [[0, 9]]);
+      }, _callee3, null, [[0, 7]]);
     }));
-    return function addDetailBooking(_x3, _x4, _x5) {
+    return function viewHistoryBooking(_x3) {
       return _ref3.apply(this, arguments);
     };
   }();
-  var viewHistoryBooking = /*#__PURE__*/function () {
-    var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(id_tamu) {
-      var res;
+  var getCount = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(typeOfCount) {
+      var countUrls, res;
       return _regeneratorRuntime().wrap(function _callee4$(_context4) {
         while (1) switch (_context4.prev = _context4.next) {
           case 0:
             _context4.prev = 0;
-            _context4.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("".concat(URL_DETAIL_BOOKING, "/").concat(id_tamu));
-          case 3:
-            res = _context4.sent;
-            detailBooking.value = res.data.booking_details;
-            _context4.next = 10;
-            break;
-          case 7:
-            _context4.prev = 7;
-            _context4.t0 = _context4["catch"](0);
-            console.log(_context4.t0);
-          case 10:
-          case "end":
-            return _context4.stop();
-        }
-      }, _callee4, null, [[0, 7]]);
-    }));
-    return function viewHistoryBooking(_x6) {
-      return _ref4.apply(this, arguments);
-    };
-  }();
-  var getCount = /*#__PURE__*/function () {
-    var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(typeOfCount) {
-      var countUrls, res;
-      return _regeneratorRuntime().wrap(function _callee5$(_context5) {
-        while (1) switch (_context5.prev = _context5.next) {
-          case 0:
-            _context5.prev = 0;
             countUrls = {
               count: "/count",
               "check-in": "/checkin-count",
               "check-out": "/checkout-count",
               stay: "/stay-count"
             };
-            _context5.next = 4;
+            _context4.next = 4;
             return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("".concat(BASE_URL).concat(countUrls[typeOfCount]));
           case 4:
-            res = _context5.sent;
-            return _context5.abrupt("return", res.data);
+            res = _context4.sent;
+            return _context4.abrupt("return", res.data);
           case 8:
-            _context5.prev = 8;
-            _context5.t0 = _context5["catch"](0);
-            console.log("dari sini", _context5.t0);
+            _context4.prev = 8;
+            _context4.t0 = _context4["catch"](0);
+            console.log("dari sini", _context4.t0);
           case 11:
           case "end":
-            return _context5.stop();
+            return _context4.stop();
         }
-      }, _callee5, null, [[0, 8]]);
+      }, _callee4, null, [[0, 8]]);
     }));
-    return function getCount(_x7) {
-      return _ref5.apply(this, arguments);
+    return function getCount(_x4) {
+      return _ref4.apply(this, arguments);
     };
   }();
   return {
     detailBooking: detailBooking,
     addData: addData,
-    addDetailBooking: addDetailBooking,
+    // addDetailBooking,
     viewHistoryBooking: viewHistoryBooking,
     getCount: getCount
   };
@@ -19076,6 +19064,12 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
     roomQuantity: 1,
     personQuantity: 1
   });
+  var roomQuantity = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+    return quantity.value.roomQuantity;
+  });
+  var personQuantity = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+    return quantity.value.personQuantity;
+  });
   var _storeToRefs = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.storeToRefs)(store),
     room = _storeToRefs.room,
     category = _storeToRefs.category,
@@ -19129,6 +19123,7 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
       quantity.value.roomQuantity += 1;
     } else if (value === "person" && quantity.value.personQuantity < 5) {
       quantity.value.personQuantity += 1;
+      console.log("quantity", quantity.value.personQuantity);
     }
   };
   var decQuantity = function decQuantity(value) {
@@ -19146,7 +19141,7 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
           case 0:
             _context2.prev = 0;
             if (!(payload.check_in && payload.check_out)) {
-              _context2.next = 10;
+              _context2.next = 11;
               break;
             }
             _context2.next = 4;
@@ -19156,31 +19151,32 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
             });
           case 4:
             res = _context2.sent;
+            console.log("payload", payload);
             searchField.value = payload;
             category.value = res.data.categories;
             _routes_js__WEBPACK_IMPORTED_MODULE_3__["default"].push({
               name: "result"
             });
-            _context2.next = 11;
+            _context2.next = 12;
             break;
-          case 10:
+          case 11:
             sweetalert2__WEBPACK_IMPORTED_MODULE_2__.fire({
               icon: "error",
               title: "Oops...",
               text: "Something went wrong!"
             });
-          case 11:
-            _context2.next = 16;
+          case 12:
+            _context2.next = 17;
             break;
-          case 13:
-            _context2.prev = 13;
+          case 14:
+            _context2.prev = 14;
             _context2.t0 = _context2["catch"](0);
             console.log(_context2.t0);
-          case 16:
+          case 17:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[0, 13]]);
+      }, _callee2, null, [[0, 14]]);
     }));
     return function checkAvailability(_x) {
       return _ref2.apply(this, arguments);
@@ -19272,6 +19268,8 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
     status: status,
     category: category,
     quantity: quantity,
+    roomQuantity: roomQuantity,
+    personQuantity: personQuantity,
     singleData: singleData,
     searchField: searchField,
     pagination: pagination,

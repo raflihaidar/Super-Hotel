@@ -36,23 +36,25 @@ export const useBookingStore = defineStore(
         const addData = async (payload_booking) => {
             try {
                 const res = await axios.post(BASE_URL, payload_booking);
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 1000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
-                    },
-                });
-                Toast.fire({
-                    icon: "success",
-                    title: "Booking successfully",
-                });
-                searchField.value = [];
-                return res.data.id;
+                console.log(res.data);
+                if (detailBooking) {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: "top-end",
+                        showConfirmButton: false,
+                        timer: 1000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.onmouseenter = Swal.stopTimer;
+                            toast.onmouseleave = Swal.resumeTimer;
+                        },
+                    });
+                    Toast.fire({
+                        icon: "success",
+                        title: "Booking successfully",
+                    });
+                    searchField.value = [];
+                }
             } catch (error) {
                 Swal.fire({
                     icon: "error",
@@ -63,24 +65,24 @@ export const useBookingStore = defineStore(
             }
         };
 
-        const addDetailBooking = async (payload, id_booking, id_kamar) => {
-            try {
-                const res = await axios.post(URL_DETAIL_BOOKING, {
-                    id_booking: id_booking,
-                    id_tamu: payload.id_tamu,
-                    id_kamar: id_kamar,
-                    jumlah_tamu: payload.jumlah_tamu,
-                    jumlah_kamar: payload.jumlah_kamar,
-                    catatan: payload.catatan,
-                    subtotal: payload.subtotal,
-                });
-                detailBooking.value = res.data;
-                updateTotalBooking(id_booking);
-                return res.data;
-            } catch (error) {
-                console.log("dari detail", error);
-            }
-        };
+        // const addDetailBooking = async (payload, id_booking, id_kamar) => {
+        //     try {
+        //         const res = await axios.post(URL_DETAIL_BOOKING, {
+        //             id_booking: id_booking,
+        //             id_tamu: payload.id_tamu,
+        //             id_kamar: id_kamar,
+        //             jumlah_tamu: payload.jumlah_tamu,
+        //             jumlah_kamar: payload.jumlah_kamar,
+        //             catatan: payload.catatan,
+        //             subtotal: payload.subtotal,
+        //         });
+        //         detailBooking.value = res.data;
+        //         updateTotalBooking(id_booking);
+        //         return res.data;
+        //     } catch (error) {
+        //         console.log("dari detail", error);
+        //     }
+        // };
 
         const viewHistoryBooking = async (id_tamu) => {
             try {
@@ -111,7 +113,7 @@ export const useBookingStore = defineStore(
         return {
             detailBooking,
             addData,
-            addDetailBooking,
+            // addDetailBooking,
             viewHistoryBooking,
             getCount,
         };

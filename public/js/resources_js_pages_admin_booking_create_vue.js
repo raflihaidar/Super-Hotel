@@ -2962,7 +2962,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   __name: 'BaseNumberInput',
-  props: ['inputName'],
+  props: {
+    inputName: String
+  },
   emits: ['increment', 'decrement'],
   setup: function setup(__props, _ref) {
     var __expose = _ref.expose,
@@ -2970,7 +2972,6 @@ __webpack_require__.r(__webpack_exports__);
     __expose();
     var props = __props;
     var emits = __emit;
-    var quantity = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(1);
     var increment = function increment() {
       emits('increment', props.inputName);
     };
@@ -2983,14 +2984,12 @@ __webpack_require__.r(__webpack_exports__);
     var __returned__ = {
       props: props,
       emits: emits,
-      quantity: quantity,
       increment: increment,
       decrement: decrement,
       get initFlowbite() {
         return flowbite__WEBPACK_IMPORTED_MODULE_0__.initFlowbite;
       },
-      onMounted: vue__WEBPACK_IMPORTED_MODULE_1__.onMounted,
-      ref: vue__WEBPACK_IMPORTED_MODULE_1__.ref
+      onMounted: vue__WEBPACK_IMPORTED_MODULE_1__.onMounted
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -3119,19 +3118,32 @@ __webpack_require__.r(__webpack_exports__);
     var roomStore = (0,_store_room__WEBPACK_IMPORTED_MODULE_3__.useRoomStore)();
     var _storeToRefs = (0,pinia__WEBPACK_IMPORTED_MODULE_6__.storeToRefs)(roomStore),
       quantity = _storeToRefs.quantity;
+    var _storeToRefs2 = (0,pinia__WEBPACK_IMPORTED_MODULE_6__.storeToRefs)(guestStore),
+      guestAuth = _storeToRefs2.guestAuth;
     var payload = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)({
       id_status: 1,
-      check_in: '',
-      check_out: '',
-      total: 0
+      check_in: null,
+      check_out: null,
+      total: 0,
+      id_tamu: guestAuth.value.id,
+      id_kamar: null,
+      jumlah_kamar: 0,
+      jumlah_tamu: 0,
+      tanggal_booking: null,
+      subtotal: 0,
+      catatan: null
     });
     var checkAvailability = function checkAvailability() {
+      payload.value.jumlah_kamar = quantity.value.roomQuantity;
+      payload.value.jumlah_tamu = quantity.value.personQuantity;
       roomStore.checkAvailability(payload.value);
+      console.log(payload.value);
     };
     var __returned__ = {
       guestStore: guestStore,
       roomStore: roomStore,
       quantity: quantity,
+      guestAuth: guestAuth,
       payload: payload,
       checkAvailability: checkAvailability,
       NavbarComponent: _components_TheNavbar_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -3223,7 +3235,7 @@ var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   d: "M1 1h16"
 })], -1 /* HOISTED */);
 var _hoisted_5 = [_hoisted_4];
-var _hoisted_6 = ["id", "value"];
+var _hoisted_6 = ["id"];
 var _hoisted_7 = {
   "class": "absolute bottom-1 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse"
 };
@@ -3258,7 +3270,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "aria-describedby": "helper-text-explanation",
     "class": "bg-gray-50 border-x-0 border-gray-300 h-11 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
     placeholder: "",
-    value: $setup.quantity,
+    value: 1,
     required: ""
   }, null, 8 /* PROPS */, _hoisted_6), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.props.inputName), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "button",
@@ -3295,7 +3307,7 @@ var _hoisted_2 = {
 var _hoisted_3 = {
   "class": "flex items-center justify-between"
 };
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<button type=\"button\" class=\"inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600\"><span class=\"sr-only\">Open sidebar</span><svg class=\"w-6 h-6\" aria-hidden=\"true\" fill=\"currentColor\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"><path clip-rule=\"evenodd\" fill-rule=\"evenodd\" d=\"M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z\"></path></svg></button><p class=\"flex ms-2 md:me-24\"><img src=\"" + _assets_logo_png__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" class=\"w-10 h-10 text-center\" alt=\"Super Hotel Logo\"><span class=\"self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white\">Super Hotel</span></p>", 2);
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<button type=\"button\" class=\"inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600\"><span class=\"sr-only\">Open sidebar</span><svg class=\"w-6 h-6\" aria-hidden=\"true\" fill=\"currentColor\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"><path clip-rule=\"evenodd\" fill-rule=\"evenodd\" d=\"M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z\"></path></svg></button><p class=\"flex items-center ms-2 md:me-24\"><img src=\"" + _assets_logo_png__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" class=\"w-10 h-10 text-center\" alt=\"Super Hotel Logo\"><span class=\"self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white\">Super Hotel</span></p>", 2);
 var _hoisted_6 = [_hoisted_4];
 var _hoisted_7 = {
   "class": "flex items-center"
@@ -3393,14 +3405,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "bg-white dark:bg-gray-900 bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')] dark:bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern-dark.svg')]"
+  "class": "flex justify-between mt-0"
 };
-var _hoisted_2 = {
-  "class": "py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 z-10 relative"
-};
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  "class": "mb-4 my-20 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white"
-}, " Find Your Perfect Place to Stay", -1 /* HOISTED */);
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"bg-green-900 w-[50%]\"><div class=\"w-[80%] mx-auto text-white flex flex-col gap-y-10\"><h1 class=\"mt-40 text-3xl font-extrabold tracking-tight leading-none md:text-5xl lg:text-6xl dark:text-white\"> Find Your Perfect Place to Stay</h1><p> Raih pengalaman menginap tak terlupakan di Super Hotel - simbol keindahan dan kemewahan di setiap sudutnya. </p><span class=\"flex gap-x-2 items-center\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"currentColor\" class=\"w-10 h-10\"><path fill-rule=\"evenodd\" d=\"M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm14.024-.983a1.125 1.125 0 0 1 0 1.966l-5.603 3.113A1.125 1.125 0 0 1 9 15.113V8.887c0-.857.921-1.4 1.671-.983l5.603 3.113Z\" clip-rule=\"evenodd\"></path></svg><p>Watch Video</p></span></div></div><div class=\"py-8 px-4 home-background h-screen text-center lg:py-16 z-10 w-[50%]\"></div>", 2);
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "default-email",
   "class": "mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -3409,11 +3416,11 @@ var _hoisted_5 = {
   "class": "relative bg-white flex justify-between py-8 px-5 rounded-full"
 };
 var _hoisted_6 = {
-  "class": "flex justify-between items-center w-[80%] text-lime-700 gap-x-1"
+  "class": "flex justify-around items-center w-[80%] text-lime-700"
 };
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<li class=\"flex justify-between items-top cursor-pointer\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"currentColor\" class=\"w-6 h-6\"><path fill-rule=\"evenodd\" d=\"m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z\" clip-rule=\"evenodd\"></path></svg><span class=\"flex flex-col\"><p class=\"text-md font-semibold\"> Location</p><p class=\"text-xs\">Indonesia</p></span><span class=\"border-l border-gray-400 h-10 mx-4\"></span></li>", 1);
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<li class=\"flex justify-between items-center cursor-pointer gap-x-2\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"currentColor\" class=\"w-6 h-6\"><path fill-rule=\"evenodd\" d=\"m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z\" clip-rule=\"evenodd\"></path></svg><span class=\"flex flex-col\"><p class=\"text-md font-semibold\"> Location</p><p class=\"text-xs\">Indonesia</p></span><span class=\"border-l border-gray-400 h-20 mx-16\"></span></li>", 1);
 var _hoisted_8 = {
-  "class": "flex justify-between items-top cursor-pointer"
+  "class": "flex justify-center items-center cursor-pointer"
 };
 var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   xmlns: "http://www.w3.org/2000/svg",
@@ -3428,17 +3435,16 @@ var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   "clip-rule": "evenodd"
 })], -1 /* HOISTED */);
 var _hoisted_10 = {
-  "class": "flex flex-col items-start",
-  "data-dropdown-ignore-click-outside-class": "datepicker"
+  "class": "flex flex-col items-center"
 };
 var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "text-md font-semibold"
-}, " Check In", -1 /* HOISTED */);
+  "class": "text-md font-semibold justify-center"
+}, "Check In", -1 /* HOISTED */);
 var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-  "class": "border-l border-gray-400 h-10 mx-4"
+  "class": "border-l border-gray-400 h-20 mx-16"
 }, null, -1 /* HOISTED */);
 var _hoisted_13 = {
-  "class": "flex justify-between items-top cursor-pointer"
+  "class": "flex justify-between items-center cursor-pointer"
 };
 var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   xmlns: "http://www.w3.org/2000/svg",
@@ -3453,16 +3459,16 @@ var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   "clip-rule": "evenodd"
 })], -1 /* HOISTED */);
 var _hoisted_15 = {
-  "class": "flex flex-col item-start"
+  "class": "flex flex-col items-center"
 };
 var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "text-md font-semibold"
 }, " Check Out", -1 /* HOISTED */);
 var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-  "class": "border-l border-gray-400 h-10 mx-4"
+  "class": "border-l border-gray-400 h-20 mx-16"
 }, null, -1 /* HOISTED */);
 var _hoisted_18 = {
-  "class": "flex justify-between items-top cursor-pointer"
+  "class": "flex justify-between items-center cursor-pointer gap-x-2"
 };
 var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   xmlns: "http://www.w3.org/2000/svg",
@@ -3489,7 +3495,7 @@ var _hoisted_23 = {
 };
 var _hoisted_24 = {
   id: "dropdown",
-  "class": "z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-56 dark:bg-gray-700"
+  "class": "z-10 hidden bg-white divide-y divide-gray-100 px-5 rounded-lg shadow w-56 dark:bg-gray-700"
 };
 var _hoisted_25 = {
   "class": "py-2 text-sm text-gray-700 dark:text-gray-200",
@@ -3500,44 +3506,38 @@ var _hoisted_26 = {
 };
 var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-}, " Person", -1 /* HOISTED */);
+}, " Room", -1 /* HOISTED */);
 var _hoisted_28 = {
   "class": "flex mt-5"
 };
 var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-}, " Room", -1 /* HOISTED */);
-var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-  "class": "border-l border-gray-400 h-10 mx-4"
-}, null, -1 /* HOISTED */);
-var _hoisted_31 = {
+}, " Person", -1 /* HOISTED */);
+var _hoisted_30 = {
   type: "submit",
   "class": "text-white w-[15%] h-full absolute right-0 top-0 bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium text-sm py-8 px-5 flex items-center justify-center gap-x-2 rounded-full dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
 };
-var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "bg-gradient-to-b from-green-50 to-transparent dark:from-green-900 w-full h-full absolute top-0 left-0 z-0"
-}, null, -1 /* HOISTED */);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["NavbarComponent"], {
     onLogout: $setup.guestStore.logout
-  }, null, 8 /* PROPS */, ["onLogout"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-    "class": "w-full",
+  }, null, 8 /* PROPS */, ["onLogout"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+    "class": "w-[85%] mx-auto absolute top-[85%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20",
     onSubmit: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($setup.checkAvailability, ["prevent"])
   }, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    name: "start",
+    name: "check-in",
     type: "date",
-    "class": "",
+    "class": "border-none outline-none text-center",
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $setup.payload.check_in = $event;
     })
   }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.payload.check_in]])]), _hoisted_12]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    name: "start",
+    name: "check-out",
     type: "date",
-    "class": "",
+    "class": "border-none outline-none text-center",
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $setup.payload.check_out = $event;
     })
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.payload.check_out]])]), _hoisted_17]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_20, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.quantity.personQuantity) + " person", 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.quantity.roomQuantity) + " room", 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Dropdown menu "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_26, [_hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["NumberInputComponent"], {
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.payload.check_out]])]), _hoisted_17]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_20, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.quantity.roomQuantity) + " room", 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.quantity.personQuantity) + " person", 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Dropdown menu "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_26, [_hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["NumberInputComponent"], {
     inputName: "person",
     onIncrement: _cache[2] || (_cache[2] = function ($event) {
       return $setup.roomStore.incQuantity('room');
@@ -3553,7 +3553,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onDecrement: _cache[5] || (_cache[5] = function ($event) {
       return $setup.roomStore.decQuantity('person');
     })
-  })])])]), _hoisted_30])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["SearchIcon"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Search")])])], 32 /* NEED_HYDRATION */)]), _hoisted_32])], 64 /* STABLE_FRAGMENT */);
+  })])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["SearchIcon"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Search")])])], 32 /* NEED_HYDRATION */)])], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -5516,6 +5516,171 @@ function isnan (val) {
   return val !== val // eslint-disable-line no-self-compare
 }
 
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/admin/booking/create.vue?vue&type=style&index=0&id=70d273ca&lang=css":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/admin/booking/create.vue?vue&type=style&index=0&id=70d273ca&lang=css ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/getUrl.js */ "./node_modules/css-loader/dist/runtime/getUrl.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _assets_image_home_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../assets/image-home.png */ "./resources/assets/image-home.png");
+// Imports
+
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_assets_image_home_png__WEBPACK_IMPORTED_MODULE_2__["default"]);
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.home-background {\n    background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n    background-size: cover;\n    background-repeat: no-repeat;\n    background-position: top center;\n}\n\n/* input[type='date']::-webkit-calendar-picker-indicator {\n    background: transparent;\n    bottom: 0;\n    outline: none;\n    color: transparent;\n    cursor: pointer;\n    height: auto;\n    left: 0;\n    position: absolute;\n    right: 0;\n    top: 0;\n    width: auto;\n} */\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/api.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
+  \*****************************************************/
+/***/ ((module) => {
+
+"use strict";
+
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+// eslint-disable-next-line func-names
+module.exports = function (cssWithMappingToString) {
+  var list = []; // return the list of modules as css string
+
+  list.toString = function toString() {
+    return this.map(function (item) {
+      var content = cssWithMappingToString(item);
+
+      if (item[2]) {
+        return "@media ".concat(item[2], " {").concat(content, "}");
+      }
+
+      return content;
+    }).join("");
+  }; // import a list of modules into the list
+  // eslint-disable-next-line func-names
+
+
+  list.i = function (modules, mediaQuery, dedupe) {
+    if (typeof modules === "string") {
+      // eslint-disable-next-line no-param-reassign
+      modules = [[null, modules, ""]];
+    }
+
+    var alreadyImportedModules = {};
+
+    if (dedupe) {
+      for (var i = 0; i < this.length; i++) {
+        // eslint-disable-next-line prefer-destructuring
+        var id = this[i][0];
+
+        if (id != null) {
+          alreadyImportedModules[id] = true;
+        }
+      }
+    }
+
+    for (var _i = 0; _i < modules.length; _i++) {
+      var item = [].concat(modules[_i]);
+
+      if (dedupe && alreadyImportedModules[item[0]]) {
+        // eslint-disable-next-line no-continue
+        continue;
+      }
+
+      if (mediaQuery) {
+        if (!item[2]) {
+          item[2] = mediaQuery;
+        } else {
+          item[2] = "".concat(mediaQuery, " and ").concat(item[2]);
+        }
+      }
+
+      list.push(item);
+    }
+  };
+
+  return list;
+};
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/getUrl.js":
+/*!********************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/getUrl.js ***!
+  \********************************************************/
+/***/ ((module) => {
+
+"use strict";
+
+
+module.exports = function (url, options) {
+  if (!options) {
+    // eslint-disable-next-line no-param-reassign
+    options = {};
+  } // eslint-disable-next-line no-underscore-dangle, no-param-reassign
+
+
+  url = url && url.__esModule ? url.default : url;
+
+  if (typeof url !== "string") {
+    return url;
+  } // If url is already wrapped in quotes, remove them
+
+
+  if (/^['"].*['"]$/.test(url)) {
+    // eslint-disable-next-line no-param-reassign
+    url = url.slice(1, -1);
+  }
+
+  if (options.hash) {
+    // eslint-disable-next-line no-param-reassign
+    url += options.hash;
+  } // Should url be wrapped?
+  // See https://drafts.csswg.org/css-values-3/#urls
+
+
+  if (/["'() \t\n]/.test(url) || options.needQuotes) {
+    return "\"".concat(url.replace(/"/g, '\\"').replace(/\n/g, "\\n"), "\"");
+  }
+
+  return url;
+};
+
+/***/ }),
+
+/***/ "./resources/assets/image-home.png":
+/*!*****************************************!*\
+  !*** ./resources/assets/image-home.png ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/image-home.png?d502bbec42ca7991882332154b096110");
 
 /***/ }),
 
@@ -9083,6 +9248,315 @@ module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
 };
 
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/admin/booking/create.vue?vue&type=style&index=0&id=70d273ca&lang=css":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/admin/booking/create.vue?vue&type=style&index=0&id=70d273ca&lang=css ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_create_vue_vue_type_style_index_0_id_70d273ca_lang_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./create.vue?vue&type=style&index=0&id=70d273ca&lang=css */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/admin/booking/create.vue?vue&type=style&index=0&id=70d273ca&lang=css");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_create_vue_vue_type_style_index_0_id_70d273ca_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_create_vue_vue_type_style_index_0_id_70d273ca_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
+  \****************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+var isOldIE = function isOldIE() {
+  var memo;
+  return function memorize() {
+    if (typeof memo === 'undefined') {
+      // Test for IE <= 9 as proposed by Browserhacks
+      // @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+      // Tests for existence of standard globals is to allow style-loader
+      // to operate correctly into non-standard environments
+      // @see https://github.com/webpack-contrib/style-loader/issues/177
+      memo = Boolean(window && document && document.all && !window.atob);
+    }
+
+    return memo;
+  };
+}();
+
+var getTarget = function getTarget() {
+  var memo = {};
+  return function memorize(target) {
+    if (typeof memo[target] === 'undefined') {
+      var styleTarget = document.querySelector(target); // Special case to return head of iframe instead of iframe itself
+
+      if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+        try {
+          // This will throw an exception if access to iframe is blocked
+          // due to cross-origin restrictions
+          styleTarget = styleTarget.contentDocument.head;
+        } catch (e) {
+          // istanbul ignore next
+          styleTarget = null;
+        }
+      }
+
+      memo[target] = styleTarget;
+    }
+
+    return memo[target];
+  };
+}();
+
+var stylesInDom = [];
+
+function getIndexByIdentifier(identifier) {
+  var result = -1;
+
+  for (var i = 0; i < stylesInDom.length; i++) {
+    if (stylesInDom[i].identifier === identifier) {
+      result = i;
+      break;
+    }
+  }
+
+  return result;
+}
+
+function modulesToDom(list, options) {
+  var idCountMap = {};
+  var identifiers = [];
+
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i];
+    var id = options.base ? item[0] + options.base : item[0];
+    var count = idCountMap[id] || 0;
+    var identifier = "".concat(id, " ").concat(count);
+    idCountMap[id] = count + 1;
+    var index = getIndexByIdentifier(identifier);
+    var obj = {
+      css: item[1],
+      media: item[2],
+      sourceMap: item[3]
+    };
+
+    if (index !== -1) {
+      stylesInDom[index].references++;
+      stylesInDom[index].updater(obj);
+    } else {
+      stylesInDom.push({
+        identifier: identifier,
+        updater: addStyle(obj, options),
+        references: 1
+      });
+    }
+
+    identifiers.push(identifier);
+  }
+
+  return identifiers;
+}
+
+function insertStyleElement(options) {
+  var style = document.createElement('style');
+  var attributes = options.attributes || {};
+
+  if (typeof attributes.nonce === 'undefined') {
+    var nonce =  true ? __webpack_require__.nc : 0;
+
+    if (nonce) {
+      attributes.nonce = nonce;
+    }
+  }
+
+  Object.keys(attributes).forEach(function (key) {
+    style.setAttribute(key, attributes[key]);
+  });
+
+  if (typeof options.insert === 'function') {
+    options.insert(style);
+  } else {
+    var target = getTarget(options.insert || 'head');
+
+    if (!target) {
+      throw new Error("Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.");
+    }
+
+    target.appendChild(style);
+  }
+
+  return style;
+}
+
+function removeStyleElement(style) {
+  // istanbul ignore if
+  if (style.parentNode === null) {
+    return false;
+  }
+
+  style.parentNode.removeChild(style);
+}
+/* istanbul ignore next  */
+
+
+var replaceText = function replaceText() {
+  var textStore = [];
+  return function replace(index, replacement) {
+    textStore[index] = replacement;
+    return textStore.filter(Boolean).join('\n');
+  };
+}();
+
+function applyToSingletonTag(style, index, remove, obj) {
+  var css = remove ? '' : obj.media ? "@media ".concat(obj.media, " {").concat(obj.css, "}") : obj.css; // For old IE
+
+  /* istanbul ignore if  */
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = replaceText(index, css);
+  } else {
+    var cssNode = document.createTextNode(css);
+    var childNodes = style.childNodes;
+
+    if (childNodes[index]) {
+      style.removeChild(childNodes[index]);
+    }
+
+    if (childNodes.length) {
+      style.insertBefore(cssNode, childNodes[index]);
+    } else {
+      style.appendChild(cssNode);
+    }
+  }
+}
+
+function applyToTag(style, options, obj) {
+  var css = obj.css;
+  var media = obj.media;
+  var sourceMap = obj.sourceMap;
+
+  if (media) {
+    style.setAttribute('media', media);
+  } else {
+    style.removeAttribute('media');
+  }
+
+  if (sourceMap && typeof btoa !== 'undefined') {
+    css += "\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))), " */");
+  } // For old IE
+
+  /* istanbul ignore if  */
+
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    while (style.firstChild) {
+      style.removeChild(style.firstChild);
+    }
+
+    style.appendChild(document.createTextNode(css));
+  }
+}
+
+var singleton = null;
+var singletonCounter = 0;
+
+function addStyle(obj, options) {
+  var style;
+  var update;
+  var remove;
+
+  if (options.singleton) {
+    var styleIndex = singletonCounter++;
+    style = singleton || (singleton = insertStyleElement(options));
+    update = applyToSingletonTag.bind(null, style, styleIndex, false);
+    remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+  } else {
+    style = insertStyleElement(options);
+    update = applyToTag.bind(null, style, options);
+
+    remove = function remove() {
+      removeStyleElement(style);
+    };
+  }
+
+  update(obj);
+  return function updateStyle(newObj) {
+    if (newObj) {
+      if (newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap) {
+        return;
+      }
+
+      update(obj = newObj);
+    } else {
+      remove();
+    }
+  };
+}
+
+module.exports = function (list, options) {
+  options = options || {}; // Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+  // tags it will allow on a page
+
+  if (!options.singleton && typeof options.singleton !== 'boolean') {
+    options.singleton = isOldIE();
+  }
+
+  list = list || [];
+  var lastIdentifiers = modulesToDom(list, options);
+  return function update(newList) {
+    newList = newList || [];
+
+    if (Object.prototype.toString.call(newList) !== '[object Array]') {
+      return;
+    }
+
+    for (var i = 0; i < lastIdentifiers.length; i++) {
+      var identifier = lastIdentifiers[i];
+      var index = getIndexByIdentifier(identifier);
+      stylesInDom[index].references--;
+    }
+
+    var newLastIdentifiers = modulesToDom(newList, options);
+
+    for (var _i = 0; _i < lastIdentifiers.length; _i++) {
+      var _identifier = lastIdentifiers[_i];
+
+      var _index = getIndexByIdentifier(_identifier);
+
+      if (stylesInDom[_index].references === 0) {
+        stylesInDom[_index].updater();
+
+        stylesInDom.splice(_index, 1);
+      }
+    }
+
+    lastIdentifiers = newLastIdentifiers;
+  };
+};
 
 /***/ }),
 
@@ -13846,13 +14320,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _create_vue_vue_type_template_id_70d273ca__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./create.vue?vue&type=template&id=70d273ca */ "./resources/js/pages/admin/booking/create.vue?vue&type=template&id=70d273ca");
 /* harmony import */ var _create_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./create.vue?vue&type=script&setup=true&lang=js */ "./resources/js/pages/admin/booking/create.vue?vue&type=script&setup=true&lang=js");
-/* harmony import */ var D_xampp_htdocs_super_hotel_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var _create_vue_vue_type_style_index_0_id_70d273ca_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./create.vue?vue&type=style&index=0&id=70d273ca&lang=css */ "./resources/js/pages/admin/booking/create.vue?vue&type=style&index=0&id=70d273ca&lang=css");
+/* harmony import */ var D_xampp_htdocs_super_hotel_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,D_xampp_htdocs_super_hotel_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_create_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_create_vue_vue_type_template_id_70d273ca__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/pages/admin/booking/create.vue"]])
+
+
+const __exports__ = /*#__PURE__*/(0,D_xampp_htdocs_super_hotel_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_create_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_create_vue_vue_type_template_id_70d273ca__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/pages/admin/booking/create.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -13969,6 +14446,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_create_vue_vue_type_template_id_70d273ca__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_create_vue_vue_type_template_id_70d273ca__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./create.vue?vue&type=template&id=70d273ca */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/admin/booking/create.vue?vue&type=template&id=70d273ca");
+
+
+/***/ }),
+
+/***/ "./resources/js/pages/admin/booking/create.vue?vue&type=style&index=0&id=70d273ca&lang=css":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/pages/admin/booking/create.vue?vue&type=style&index=0&id=70d273ca&lang=css ***!
+  \*************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_create_vue_vue_type_style_index_0_id_70d273ca_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader/dist/cjs.js!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./create.vue?vue&type=style&index=0&id=70d273ca&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/admin/booking/create.vue?vue&type=style&index=0&id=70d273ca&lang=css");
 
 
 /***/ }),
@@ -18185,25 +18675,29 @@ var useBookingStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("bookin
             return axios__WEBPACK_IMPORTED_MODULE_5__["default"].post(BASE_URL, payload_booking);
           case 3:
             res = _context2.sent;
-            Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_3__.mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 1000,
-              timerProgressBar: true,
-              didOpen: function didOpen(toast) {
-                toast.onmouseenter = sweetalert2__WEBPACK_IMPORTED_MODULE_3__.stopTimer;
-                toast.onmouseleave = sweetalert2__WEBPACK_IMPORTED_MODULE_3__.resumeTimer;
-              }
-            });
-            Toast.fire({
-              icon: "success",
-              title: "Booking successfully"
-            });
-            searchField.value = [];
-            return _context2.abrupt("return", res.data.id);
-          case 10:
-            _context2.prev = 10;
+            console.log(res.data);
+            if (detailBooking) {
+              Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_3__.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 1000,
+                timerProgressBar: true,
+                didOpen: function didOpen(toast) {
+                  toast.onmouseenter = sweetalert2__WEBPACK_IMPORTED_MODULE_3__.stopTimer;
+                  toast.onmouseleave = sweetalert2__WEBPACK_IMPORTED_MODULE_3__.resumeTimer;
+                }
+              });
+              Toast.fire({
+                icon: "success",
+                title: "Booking successfully"
+              });
+              searchField.value = [];
+            }
+            _context2.next = 12;
+            break;
+          case 8:
+            _context2.prev = 8;
             _context2.t0 = _context2["catch"](0);
             sweetalert2__WEBPACK_IMPORTED_MODULE_3__.fire({
               icon: "error",
@@ -18211,116 +18705,100 @@ var useBookingStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("bookin
               text: "Something went wrong!"
             });
             console.log(_context2.t0);
-          case 14:
+          case 12:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[0, 10]]);
+      }, _callee2, null, [[0, 8]]);
     }));
     return function addData(_x2) {
       return _ref2.apply(this, arguments);
     };
   }();
-  var addDetailBooking = /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(payload, id_booking, id_kamar) {
+
+  // const addDetailBooking = async (payload, id_booking, id_kamar) => {
+  //     try {
+  //         const res = await axios.post(URL_DETAIL_BOOKING, {
+  //             id_booking: id_booking,
+  //             id_tamu: payload.id_tamu,
+  //             id_kamar: id_kamar,
+  //             jumlah_tamu: payload.jumlah_tamu,
+  //             jumlah_kamar: payload.jumlah_kamar,
+  //             catatan: payload.catatan,
+  //             subtotal: payload.subtotal,
+  //         });
+  //         detailBooking.value = res.data;
+  //         updateTotalBooking(id_booking);
+  //         return res.data;
+  //     } catch (error) {
+  //         console.log("dari detail", error);
+  //     }
+  // };
+
+  var viewHistoryBooking = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(id_tamu) {
       var res;
       return _regeneratorRuntime().wrap(function _callee3$(_context3) {
         while (1) switch (_context3.prev = _context3.next) {
           case 0:
             _context3.prev = 0;
             _context3.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].post(URL_DETAIL_BOOKING, {
-              id_booking: id_booking,
-              id_tamu: payload.id_tamu,
-              id_kamar: id_kamar,
-              jumlah_tamu: payload.jumlah_tamu,
-              jumlah_kamar: payload.jumlah_kamar,
-              catatan: payload.catatan,
-              subtotal: payload.subtotal
-            });
+            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("".concat(URL_DETAIL_BOOKING, "/").concat(id_tamu));
           case 3:
             res = _context3.sent;
-            detailBooking.value = res.data;
-            updateTotalBooking(id_booking);
-            return _context3.abrupt("return", res.data);
-          case 9:
-            _context3.prev = 9;
+            detailBooking.value = res.data.booking_details;
+            _context3.next = 10;
+            break;
+          case 7:
+            _context3.prev = 7;
             _context3.t0 = _context3["catch"](0);
-            console.log("dari detail", _context3.t0);
-          case 12:
+            console.log(_context3.t0);
+          case 10:
           case "end":
             return _context3.stop();
         }
-      }, _callee3, null, [[0, 9]]);
+      }, _callee3, null, [[0, 7]]);
     }));
-    return function addDetailBooking(_x3, _x4, _x5) {
+    return function viewHistoryBooking(_x3) {
       return _ref3.apply(this, arguments);
     };
   }();
-  var viewHistoryBooking = /*#__PURE__*/function () {
-    var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(id_tamu) {
-      var res;
+  var getCount = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(typeOfCount) {
+      var countUrls, res;
       return _regeneratorRuntime().wrap(function _callee4$(_context4) {
         while (1) switch (_context4.prev = _context4.next) {
           case 0:
             _context4.prev = 0;
-            _context4.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("".concat(URL_DETAIL_BOOKING, "/").concat(id_tamu));
-          case 3:
-            res = _context4.sent;
-            detailBooking.value = res.data.booking_details;
-            _context4.next = 10;
-            break;
-          case 7:
-            _context4.prev = 7;
-            _context4.t0 = _context4["catch"](0);
-            console.log(_context4.t0);
-          case 10:
-          case "end":
-            return _context4.stop();
-        }
-      }, _callee4, null, [[0, 7]]);
-    }));
-    return function viewHistoryBooking(_x6) {
-      return _ref4.apply(this, arguments);
-    };
-  }();
-  var getCount = /*#__PURE__*/function () {
-    var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(typeOfCount) {
-      var countUrls, res;
-      return _regeneratorRuntime().wrap(function _callee5$(_context5) {
-        while (1) switch (_context5.prev = _context5.next) {
-          case 0:
-            _context5.prev = 0;
             countUrls = {
               count: "/count",
               "check-in": "/checkin-count",
               "check-out": "/checkout-count",
               stay: "/stay-count"
             };
-            _context5.next = 4;
+            _context4.next = 4;
             return axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("".concat(BASE_URL).concat(countUrls[typeOfCount]));
           case 4:
-            res = _context5.sent;
-            return _context5.abrupt("return", res.data);
+            res = _context4.sent;
+            return _context4.abrupt("return", res.data);
           case 8:
-            _context5.prev = 8;
-            _context5.t0 = _context5["catch"](0);
-            console.log("dari sini", _context5.t0);
+            _context4.prev = 8;
+            _context4.t0 = _context4["catch"](0);
+            console.log("dari sini", _context4.t0);
           case 11:
           case "end":
-            return _context5.stop();
+            return _context4.stop();
         }
-      }, _callee5, null, [[0, 8]]);
+      }, _callee4, null, [[0, 8]]);
     }));
-    return function getCount(_x7) {
-      return _ref5.apply(this, arguments);
+    return function getCount(_x4) {
+      return _ref4.apply(this, arguments);
     };
   }();
   return {
     detailBooking: detailBooking,
     addData: addData,
-    addDetailBooking: addDetailBooking,
+    // addDetailBooking,
     viewHistoryBooking: viewHistoryBooking,
     getCount: getCount
   };
@@ -18950,8 +19428,8 @@ var useGuestStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("guest", 
                           }
                         });
                       case 3:
-                        token.value = null;
-                        guestAuth.value = null;
+                        token.value = "";
+                        guestAuth.value = "";
                         Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_3__.mixin({
                           toast: true,
                           position: "top-end",
@@ -19145,6 +19623,12 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
     roomQuantity: 1,
     personQuantity: 1
   });
+  var roomQuantity = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+    return quantity.value.roomQuantity;
+  });
+  var personQuantity = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+    return quantity.value.personQuantity;
+  });
   var _storeToRefs = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.storeToRefs)(store),
     room = _storeToRefs.room,
     category = _storeToRefs.category,
@@ -19198,6 +19682,7 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
       quantity.value.roomQuantity += 1;
     } else if (value === "person" && quantity.value.personQuantity < 5) {
       quantity.value.personQuantity += 1;
+      console.log("quantity", quantity.value.personQuantity);
     }
   };
   var decQuantity = function decQuantity(value) {
@@ -19215,7 +19700,7 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
           case 0:
             _context2.prev = 0;
             if (!(payload.check_in && payload.check_out)) {
-              _context2.next = 10;
+              _context2.next = 11;
               break;
             }
             _context2.next = 4;
@@ -19225,31 +19710,32 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
             });
           case 4:
             res = _context2.sent;
+            console.log("payload", payload);
             searchField.value = payload;
             category.value = res.data.categories;
             _routes_js__WEBPACK_IMPORTED_MODULE_3__["default"].push({
               name: "result"
             });
-            _context2.next = 11;
+            _context2.next = 12;
             break;
-          case 10:
+          case 11:
             sweetalert2__WEBPACK_IMPORTED_MODULE_2__.fire({
               icon: "error",
               title: "Oops...",
               text: "Something went wrong!"
             });
-          case 11:
-            _context2.next = 16;
+          case 12:
+            _context2.next = 17;
             break;
-          case 13:
-            _context2.prev = 13;
+          case 14:
+            _context2.prev = 14;
             _context2.t0 = _context2["catch"](0);
             console.log(_context2.t0);
-          case 16:
+          case 17:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[0, 13]]);
+      }, _callee2, null, [[0, 14]]);
     }));
     return function checkAvailability(_x) {
       return _ref2.apply(this, arguments);
@@ -19341,6 +19827,8 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
     status: status,
     category: category,
     quantity: quantity,
+    roomQuantity: roomQuantity,
+    personQuantity: personQuantity,
     singleData: singleData,
     searchField: searchField,
     pagination: pagination,

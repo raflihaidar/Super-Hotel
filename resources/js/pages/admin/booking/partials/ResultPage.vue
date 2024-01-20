@@ -1,3 +1,41 @@
+<script setup>
+import { storeToRefs } from 'pinia';
+import { useRoomStore } from '../../../../store/room';
+import { useGuestStore } from '../../../../store/guest';
+import NavbarComponnet from '../../../../components/TheNavbar.vue';
+import RatingComponent from '../../../../components/BaseRating.vue'
+import { initFlowbite } from 'flowbite';
+import { useBookingStore } from '../../../../store/booking';
+import { onMounted, ref } from 'vue';
+import router from '../../../../routes'
+
+const roomStore = useRoomStore()
+const guestStore = useGuestStore()
+const bookingStore = useBookingStore()
+const { category, searchField, quantity } = storeToRefs(roomStore)
+const { guestAuth } = storeToRefs(guestStore)
+
+const id_kategori = ref(null)
+
+const handleClick = (item) => {
+    id_kategori.value = item.id
+    searchField.value.subtotal = item.harga
+}
+
+const createBooking = async () => {
+    const id_kamar = await roomStore.getRoomId(id_kategori.value)
+    searchField.value.id_kategori = id_kategori.value
+    searchField.value.id_kamar = id_kamar
+    console.log(searchField.value)
+    await bookingStore.addData(searchField.value)
+}
+
+onMounted(() => {
+    initFlowbite()
+})
+
+</script>
+
 <template>
     <div>
         <NavbarComponnet />
@@ -86,7 +124,7 @@
                             <div>
                                 <label for="message"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Note</label>
-                                <textarea id="message" rows="4" v-model="payload.catatan"
+                                <textarea id="message" rows="4" v-model="searchField.catatan"
                                     class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="Write your thoughts here..."></textarea>
                             </div>
@@ -107,49 +145,3 @@
         </div>
     </div>
 </template>
-
-<script setup>
-import { storeToRefs } from 'pinia';
-import { useRoomStore } from '../../../../store/room';
-import { useGuestStore } from '../../../../store/guest';
-import NavbarComponnet from '../../../../components/TheNavbar.vue';
-import RatingComponent from '../../../../components/BaseRating.vue'
-import { initFlowbite } from 'flowbite';
-import { useBookingStore } from '../../../../store/booking';
-import { onMounted, ref } from 'vue';
-import router from '../../../../routes'
-
-const roomStore = useRoomStore()
-const guestStore = useGuestStore()
-const bookingStore = useBookingStore()
-const { category, searchField, quantity } = storeToRefs(roomStore)
-const { guestAuth } = storeToRefs(guestStore)
-
-const payload = ref({
-    id_tamu: guestAuth.value.id,
-    id_kategori: '',
-    jumlah_tamu: quantity.value.personQuantity,
-    jumlah_kamar: quantity.value.roomQuantity,
-    catatan: '',
-    subtotal: 0,
-})
-
-const handleClick = (item) => {
-    payload.value.id_kategori = item.id
-    payload.value.subtotal = item.harga
-}
-
-const createBooking = async () => {
-    const id_booking = await bookingStore.addData(searchField.value)
-    const id_kamar = await roomStore.getRoomId(payload.value.id_kategori)
-    const status = bookingStore.addDetailBooking(payload.value, id_booking, id_kamar)
-    if (status) {
-        router.push({ name: 'home' })
-    }
-}
-
-onMounted(() => {
-    initFlowbite()
-})
-
-</script>

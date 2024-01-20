@@ -45,7 +45,7 @@ onMounted(() =>
                             </path>
                         </svg>
                     </button>
-                    <p class="flex ms-2 md:me-24">
+                    <p class="flex items-center ms-2 md:me-24">
                         <img src="../../assets/logo.png" class="w-10 h-10 text-center" alt="Super Hotel Logo" />
                         <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Super
                             Hotel</span>

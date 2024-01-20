@@ -18900,6 +18900,12 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
     roomQuantity: 1,
     personQuantity: 1
   });
+  var roomQuantity = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+    return quantity.value.roomQuantity;
+  });
+  var personQuantity = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+    return quantity.value.personQuantity;
+  });
   var _storeToRefs = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.storeToRefs)(store),
     room = _storeToRefs.room,
     category = _storeToRefs.category,
@@ -18953,6 +18959,7 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
       quantity.value.roomQuantity += 1;
     } else if (value === "person" && quantity.value.personQuantity < 5) {
       quantity.value.personQuantity += 1;
+      console.log("quantity", quantity.value.personQuantity);
     }
   };
   var decQuantity = function decQuantity(value) {
@@ -18970,7 +18977,7 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
           case 0:
             _context2.prev = 0;
             if (!(payload.check_in && payload.check_out)) {
-              _context2.next = 10;
+              _context2.next = 11;
               break;
             }
             _context2.next = 4;
@@ -18980,31 +18987,32 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
             });
           case 4:
             res = _context2.sent;
+            console.log("payload", payload);
             searchField.value = payload;
             category.value = res.data.categories;
             _routes_js__WEBPACK_IMPORTED_MODULE_3__["default"].push({
               name: "result"
             });
-            _context2.next = 11;
+            _context2.next = 12;
             break;
-          case 10:
+          case 11:
             sweetalert2__WEBPACK_IMPORTED_MODULE_2__.fire({
               icon: "error",
               title: "Oops...",
               text: "Something went wrong!"
             });
-          case 11:
-            _context2.next = 16;
+          case 12:
+            _context2.next = 17;
             break;
-          case 13:
-            _context2.prev = 13;
+          case 14:
+            _context2.prev = 14;
             _context2.t0 = _context2["catch"](0);
             console.log(_context2.t0);
-          case 16:
+          case 17:
           case "end":
             return _context2.stop();
         }
-      }, _callee2, null, [[0, 13]]);
+      }, _callee2, null, [[0, 14]]);
     }));
     return function checkAvailability(_x) {
       return _ref2.apply(this, arguments);
@@ -19096,6 +19104,8 @@ var useRoomStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("room", fu
     status: status,
     category: category,
     quantity: quantity,
+    roomQuantity: roomQuantity,
+    personQuantity: personQuantity,
     singleData: singleData,
     searchField: searchField,
     pagination: pagination,

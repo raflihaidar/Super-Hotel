@@ -1,4 +1,4 @@
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { defineStore, storeToRefs } from "pinia";
 import { useGlobalStore } from "./global.js";
 import Swal from "sweetalert2";
@@ -15,6 +15,8 @@ export const useRoomStore = defineStore("room", () => {
         roomQuantity: 1,
         personQuantity: 1,
     });
+    const roomQuantity = computed(() => quantity.value.roomQuantity);
+    const personQuantity = computed(() => quantity.value.personQuantity);
     const { room, category, singleData, pagination } = storeToRefs(store);
 
     const getRoomStatus = async () => {
@@ -45,6 +47,7 @@ export const useRoomStore = defineStore("room", () => {
             quantity.value.roomQuantity += 1;
         } else if (value === "person" && quantity.value.personQuantity < 5) {
             quantity.value.personQuantity += 1;
+            console.log("quantity", quantity.value.personQuantity);
         }
     };
 
@@ -63,6 +66,7 @@ export const useRoomStore = defineStore("room", () => {
                     checkin: payload.check_in,
                     checkout: payload.check_out,
                 });
+                console.log("payload", payload);
                 searchField.value = payload;
                 category.value = res.data.categories;
                 router.push({ name: "result" });
@@ -113,6 +117,8 @@ export const useRoomStore = defineStore("room", () => {
         status,
         category,
         quantity,
+        roomQuantity,
+        personQuantity,
         singleData,
         searchField,
         pagination,
