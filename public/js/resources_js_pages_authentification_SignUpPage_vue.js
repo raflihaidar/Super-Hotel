@@ -12390,8 +12390,8 @@ var useGuestStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("guest", 
                           }
                         });
                       case 3:
-                        token.value = "";
-                        guestAuth.value = "";
+                        token.value = null;
+                        guestAuth.value = null;
                         Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_3__.mixin({
                           toast: true,
                           position: "top-end",

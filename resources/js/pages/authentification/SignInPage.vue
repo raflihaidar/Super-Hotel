@@ -18,6 +18,7 @@
                     <div
                         class="flex border border-gray-300 dark:bg-gray-700 dark:border-gray-600 text-gray-900 text-sm rounded-lg dark:placeholder-gray-400">
                         <input type="password" id="password" v-model="payload.password" ref="passwordInput"
+                            placeholder="password"
                             class="text-gray-900 text-sm block w-full p-2.5 dark:text-white border-none outline-none  focus:ring-green-500  focus:border-green-500  dark:focus:ring-green-500 dark:focus:border-green-500"
                             required>
                         <span class="inline-flex items-center px-3 text-xs cursor-pointer" @click="showPassword">

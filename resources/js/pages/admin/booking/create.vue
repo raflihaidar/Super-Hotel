@@ -1,6 +1,7 @@
 <script setup>
 import NavbarComponent from '../../../components/TheNavbar.vue'
 import NumberInputComponent from '../../../components/BaseNumberInput.vue'
+import Index from '../../home/index.vue';
 import { useGuestStore } from '../../../store/guest';
 import { useRoomStore } from '../../../store/room';
 import { ref } from 'vue'
@@ -12,12 +13,13 @@ const roomStore = useRoomStore()
 const { quantity } = storeToRefs(roomStore)
 const { guestAuth } = storeToRefs(guestStore)
 
+
 const payload = ref({
     id_status: 1,
     check_in: null,
     check_out: null,
     total: 0,
-    id_tamu: guestAuth.value.id,
+    id_tamu: null,
     id_kamar: null,
     jumlah_kamar: 0,
     jumlah_tamu: 0,
@@ -29,8 +31,8 @@ const payload = ref({
 const checkAvailability = () => {
     payload.value.jumlah_kamar = quantity.value.roomQuantity
     payload.value.jumlah_tamu = quantity.value.personQuantity
+    payload.value.id_tamu = guestAuth.value.id
     roomStore.checkAvailability(payload.value)
-    console.log(payload.value)
 }
 </script>
 
@@ -54,7 +56,6 @@ const checkAvailability = () => {
                     </svg>
                     <p>Watch Video</p>
                 </span>
-
             </div>
         </div>
         <div class="py-8 px-4 home-background h-screen text-center lg:py-16 z-10 w-[50%]">
@@ -148,6 +149,9 @@ const checkAvailability = () => {
             </div>
         </form>
     </section>
+    <section>
+        <Index />
+    </section>
 </template>
 
 
@@ -158,18 +162,4 @@ const checkAvailability = () => {
     background-repeat: no-repeat;
     background-position: top center;
 }
-
-/* input[type='date']::-webkit-calendar-picker-indicator {
-    background: transparent;
-    bottom: 0;
-    outline: none;
-    color: transparent;
-    cursor: pointer;
-    height: auto;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: auto;
-} */
 </style>

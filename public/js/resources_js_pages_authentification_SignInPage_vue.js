@@ -215,6 +215,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $setup.payload.password = $event;
     }),
     ref: "passwordInput",
+    placeholder: "password",
     "class": "text-gray-900 text-sm block w-full p-2.5 dark:text-white border-none outline-none focus:ring-green-500 focus:border-green-500 dark:focus:ring-green-500 dark:focus:border-green-500",
     required: ""
   }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.payload.password]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
@@ -12382,8 +12383,8 @@ var useGuestStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("guest", 
                           }
                         });
                       case 3:
-                        token.value = "";
-                        guestAuth.value = "";
+                        token.value = null;
+                        guestAuth.value = null;
                         Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_3__.mixin({
                           toast: true,
                           position: "top-end",

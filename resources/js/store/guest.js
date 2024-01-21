@@ -71,8 +71,8 @@ export const useGuestStore = defineStore(
                                 Authorization: `Bearer ${token.value}`,
                             },
                         });
-                        token.value = "";
-                        guestAuth.value = "";
+                        token.value = null;
+                        guestAuth.value = null;
                         const Toast = Swal.mixin({
                             toast: true,
                             position: "top-end",

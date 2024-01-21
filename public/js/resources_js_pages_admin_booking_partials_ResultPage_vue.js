@@ -2957,12 +2957,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var flowbite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flowbite */ "./node_modules/flowbite/lib/esm/index.js");
-/* harmony import */ var _store_guest__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/guest */ "./resources/js/store/guest.js");
-/* harmony import */ var pinia__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! pinia */ "./node_modules/pinia/dist/pinia.mjs");
-/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../routes */ "./resources/js/routes.js");
-/* harmony import */ var _store_booking__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/booking */ "./resources/js/store/booking.js");
-
+/* harmony import */ var _store_guest__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/guest */ "./resources/js/store/guest.js");
+/* harmony import */ var pinia__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! pinia */ "./node_modules/pinia/dist/pinia.mjs");
+/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../routes */ "./resources/js/routes.js");
+/* harmony import */ var _store_booking__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/booking */ "./resources/js/store/booking.js");
 
 
 
@@ -2975,47 +2973,61 @@ __webpack_require__.r(__webpack_exports__);
     var __expose = _ref.expose,
       __emit = _ref.emit;
     __expose();
-    var guestStore = (0,_store_guest__WEBPACK_IMPORTED_MODULE_2__.useGuestStore)();
-    var bookingStore = (0,_store_booking__WEBPACK_IMPORTED_MODULE_4__.useBookingStore)();
-    var _storeToRefs = (0,pinia__WEBPACK_IMPORTED_MODULE_5__.storeToRefs)(guestStore),
+    var imageProfile = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
+    var guestStore = (0,_store_guest__WEBPACK_IMPORTED_MODULE_1__.useGuestStore)();
+    var bookingStore = (0,_store_booking__WEBPACK_IMPORTED_MODULE_3__.useBookingStore)();
+    var _storeToRefs = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.storeToRefs)(guestStore),
       guestAuth = _storeToRefs.guestAuth;
+    var openDropDown = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
     var emits = __emit;
     var handleLogout = function handleLogout() {
       emits('logout');
     };
     var handleBack = function handleBack() {
-      _routes__WEBPACK_IMPORTED_MODULE_3__["default"].go(-1);
+      _routes__WEBPACK_IMPORTED_MODULE_2__["default"].go(-1);
       console.log("connect");
     };
     var viewBookingHistory = function viewBookingHistory() {
       bookingStore.viewHistoryBooking(guestAuth.value.id);
     };
+    var handleOpenDropDown = function handleOpenDropDown() {
+      window.addEventListener('click', function (event) {
+        console.log(imageProfile.value);
+        if (event.target === imageProfile.value) {
+          openDropDown.value = !openDropDown.value;
+        } else {
+          openDropDown.value = false;
+        }
+        console.log("status", openDropDown.value);
+      });
+    };
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
-      return (0,flowbite__WEBPACK_IMPORTED_MODULE_1__.initFlowbite)();
+      handleOpenDropDown();
     });
     var __returned__ = {
+      imageProfile: imageProfile,
       guestStore: guestStore,
       bookingStore: bookingStore,
       guestAuth: guestAuth,
+      openDropDown: openDropDown,
       emits: emits,
       handleLogout: handleLogout,
       handleBack: handleBack,
       viewBookingHistory: viewBookingHistory,
+      handleOpenDropDown: handleOpenDropDown,
       onMounted: vue__WEBPACK_IMPORTED_MODULE_0__.onMounted,
-      get initFlowbite() {
-        return flowbite__WEBPACK_IMPORTED_MODULE_1__.initFlowbite;
-      },
+      ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
       get useGuestStore() {
-        return _store_guest__WEBPACK_IMPORTED_MODULE_2__.useGuestStore;
+        return _store_guest__WEBPACK_IMPORTED_MODULE_1__.useGuestStore;
       },
       get storeToRefs() {
-        return pinia__WEBPACK_IMPORTED_MODULE_5__.storeToRefs;
+        return pinia__WEBPACK_IMPORTED_MODULE_4__.storeToRefs;
       },
       get router() {
-        return _routes__WEBPACK_IMPORTED_MODULE_3__["default"];
+        return _routes__WEBPACK_IMPORTED_MODULE_2__["default"];
       },
       get useBookingStore() {
-        return _store_booking__WEBPACK_IMPORTED_MODULE_4__.useBookingStore;
+        return _store_booking__WEBPACK_IMPORTED_MODULE_3__.useBookingStore;
       }
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
@@ -3203,9 +3215,10 @@ var _hoisted_3 = {
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<button type=\"button\" class=\"inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600\"><span class=\"sr-only\">Open sidebar</span><svg class=\"w-6 h-6\" aria-hidden=\"true\" fill=\"currentColor\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"><path clip-rule=\"evenodd\" fill-rule=\"evenodd\" d=\"M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z\"></path></svg></button><p class=\"flex items-center ms-2 md:me-24\"><img src=\"" + _assets_logo_png__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" class=\"w-10 h-10 text-center\" alt=\"Super Hotel Logo\"><span class=\"self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white\">Super Hotel</span></p>", 2);
 var _hoisted_6 = [_hoisted_4];
 var _hoisted_7 = {
-  "class": "flex items-center"
+  "class": "flex items-center relative"
 };
 var _hoisted_8 = {
+  key: 0,
   "class": "flex items-center ms-3"
 };
 var _hoisted_9 = {
@@ -3214,54 +3227,61 @@ var _hoisted_9 = {
 var _hoisted_10 = {
   "class": "text-semibold"
 };
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+var _hoisted_11 = {
   type: "button",
   "class": "flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600",
-  "aria-expanded": "false",
-  "data-dropdown-toggle": "dropdown-user"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "aria-expanded": "false"
+};
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "sr-only"
-}, "Open user menu"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+}, "Open user menu", -1 /* HOISTED */);
+var _hoisted_13 = {
   "class": "w-8 h-8 rounded-full",
+  ref: "imageProfile",
   src: "https://flowbite.com/docs/images/people/profile-picture-5.jpg",
   alt: "user photo"
-})], -1 /* HOISTED */);
-var _hoisted_12 = {
-  "class": "z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600",
-  id: "dropdown-user"
 };
-var _hoisted_13 = {
+var _hoisted_14 = {
+  key: 0,
+  "class": "z-50 my-4 absolute top-7 -right-1 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
+};
+var _hoisted_15 = {
   "class": "px-4 py-3",
   role: "none"
 };
-var _hoisted_14 = {
+var _hoisted_16 = {
   "class": "text-sm text-gray-900 dark:text-white",
   role: "none"
 };
-var _hoisted_15 = {
+var _hoisted_17 = {
   "class": "text-sm font-medium text-gray-900 truncate dark:text-gray-300",
   role: "none"
 };
-var _hoisted_16 = {
+var _hoisted_18 = {
   "class": "py-1",
   role: "none"
 };
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   href: "#",
   "class": "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white",
   role: "menuitem"
 }, "Settings")], -1 /* HOISTED */);
-var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   href: "#",
   "class": "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white",
   role: "menuitem"
 }, "Bookings", -1 /* HOISTED */);
+var _hoisted_21 = {
+  key: 1,
+  "class": "flex items-center gap-x-2 cursor-pointer font-semibold"
+};
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "/", -1 /* HOISTED */);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("nav", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "flex items-center justify-start rtl:justify-end cursor-pointer",
     onClick: $setup.handleBack
-  }, [].concat(_hoisted_6)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.guestAuth.username), 1 /* TEXT */), _hoisted_11]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.guestAuth.nama), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.guestAuth.email), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  }, [].concat(_hoisted_6)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [$setup.guestAuth ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.guestAuth.username), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", _hoisted_13, null, 512 /* NEED_PATCH */)])]), $setup.openDropDown ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.guestAuth.nama), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.guestAuth.email), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
       name: 'bookings',
       params: {
@@ -3271,7 +3291,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: $setup.viewBookingHistory
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_18];
+      return [_hoisted_20];
     }),
     _: 1 /* STABLE */
   }, 8 /* PROPS */, ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
@@ -3279,7 +3299,27 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: $setup.handleLogout,
     "class": "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white",
     role: "menuitem"
-  }, "Sign out")])])])])])])])]);
+  }, "Sign out")])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: {
+      name: 'sign-in'
+    },
+    "class": "hover:underline"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Login")];
+    }),
+    _: 1 /* STABLE */
+  }), _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: {
+      name: 'sign-up'
+    },
+    "class": "hover:underline"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Daftar")];
+    }),
+    _: 1 /* STABLE */
+  })]))])])])]);
 }
 
 /***/ }),
@@ -18790,8 +18830,8 @@ var useGuestStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("guest", 
                           }
                         });
                       case 3:
-                        token.value = "";
-                        guestAuth.value = "";
+                        token.value = null;
+                        guestAuth.value = null;
                         Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_3__.mixin({
                           toast: true,
                           position: "top-end",
