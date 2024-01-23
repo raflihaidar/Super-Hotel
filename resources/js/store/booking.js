@@ -2,6 +2,7 @@ import { ref } from "vue";
 import { defineStore, storeToRefs } from "pinia";
 import { useGlobalStore } from "./global.js";
 import { useRoomStore } from "./room.js";
+import router from "../routes.js";
 import Swal from "sweetalert2";
 import axios from "axios";
 
@@ -9,10 +10,12 @@ export const useBookingStore = defineStore(
     "booking",
     () => {
         const URL_DETAIL_BOOKING = "http://127.0.0.1:8000/api/detail-booking";
+        const URL_FAKTUR = "http://127.0.0.1:8000/api/faktur";
         const BASE_URL = "http://127.0.0.1:8000/api/booking";
         const roomStore = useRoomStore();
         const { searchField } = storeToRefs(roomStore);
         const detailBooking = ref([]);
+        const faktur = ref(null);
 
         const updateTotalBooking = async (idBooking) => {
             try {
@@ -65,24 +68,23 @@ export const useBookingStore = defineStore(
             }
         };
 
-        // const addDetailBooking = async (payload, id_booking, id_kamar) => {
-        //     try {
-        //         const res = await axios.post(URL_DETAIL_BOOKING, {
-        //             id_booking: id_booking,
-        //             id_tamu: payload.id_tamu,
-        //             id_kamar: id_kamar,
-        //             jumlah_tamu: payload.jumlah_tamu,
-        //             jumlah_kamar: payload.jumlah_kamar,
-        //             catatan: payload.catatan,
-        //             subtotal: payload.subtotal,
-        //         });
-        //         detailBooking.value = res.data;
-        //         updateTotalBooking(id_booking);
-        //         return res.data;
-        //     } catch (error) {
-        //         console.log("dari detail", error);
-        //     }
-        // };
+        const viewInvoice = async (kodeFaktur) => {
+            try {
+                const res = await axios.get(`${URL_FAKTUR}/${kodeFaktur}`);
+                faktur.value = res.data;
+
+                // Mendapatkan URL tujuan
+                const { href } = router.resolve({
+                    name: "invoice",
+                    params: { kode: res.data.kode },
+                });
+
+                // Membuka tab baru dengan menggunakan window.open
+                window.open(href, "_blank");
+            } catch (error) {
+                console.log(error);
+            }
+        };
 
         const viewHistoryBooking = async (id_tamu) => {
             try {
@@ -112,8 +114,10 @@ export const useBookingStore = defineStore(
         };
         return {
             detailBooking,
+            faktur,
             addData,
             // addDetailBooking,
+            viewInvoice,
             viewHistoryBooking,
             getCount,
         };

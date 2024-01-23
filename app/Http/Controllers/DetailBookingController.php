@@ -85,6 +85,7 @@ class DetailBookingController extends Controller
             'k.fasilitas as fasilitas',
             'k.harga as harga',
             'k.foto as foto',
+            'b.id as id_booking',
             'b.check_in',
             'b.check_out',
             'b.tanggal_booking',

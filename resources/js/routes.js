@@ -1,4 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { useGuestStore } from "./store/guest.js";
+import { storeToRefs } from "pinia";
+import Swal from "sweetalert2";
 
 const routes = [
     {
@@ -17,6 +20,11 @@ const routes = [
         name: "bookings",
         component: () =>
             import("./pages/admin/booking/partials/HistoryBookingPage.vue"),
+    },
+    {
+        path: "/invoice/:id",
+        name: "invoice",
+        component: () => import("./pages/invoice/index.vue"),
     },
     {
         path: "/sign-up",
@@ -159,6 +167,14 @@ const routes = [
 const router = createRouter({
     history: createWebHistory(),
     routes,
+});
+
+router.beforeEach((to, from, next) => {
+    const guestStore = useGuestStore();
+    const { guestAuth } = storeToRefs(guestStore);
+    if (to.name === "sign-in" && guestAuth.value) next({ name: "home" });
+    else if (to.name === "sign-up" && guestAuth.value) next({ name: "home" });
+    else next();
 });
 
 export default router;

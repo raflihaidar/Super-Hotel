@@ -8,6 +8,7 @@ use App\Models\Faktur;
 use App\Models\DetailBooking;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
 class BookingController extends Controller
 {
     public function index($index)

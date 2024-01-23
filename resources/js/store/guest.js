@@ -22,7 +22,7 @@ export const useGuestStore = defineStore(
             try {
                 if (payload.email === "admin@gmail.com") {
                     router.push({ name: "admin" });
-                } else {
+                } else if (!guestAuth.value) {
                     const res = await axios.post(URL_LOGIN, {
                         email: payload.email,
                         password: payload.password,
@@ -30,22 +30,28 @@ export const useGuestStore = defineStore(
                     token.value = res.data.access_token;
                     fetchGuestData(res.data.access_token);
                     router.push({ name: "home" });
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: "top-end",
+                        showConfirmButton: false,
+                        timer: 1000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.onmouseenter = Swal.stopTimer;
+                            toast.onmouseleave = Swal.resumeTimer;
+                        },
+                    });
+                    Toast.fire({
+                        icon: "success",
+                        title: "Login successfully",
+                    });
+                } else {
+                    Swal.fire({
+                        title: "Anda Sudah Login!",
+                        icon: "Error",
+                        confirmButtonText: "Ok",
+                    });
                 }
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 1000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
-                    },
-                });
-                Toast.fire({
-                    icon: "success",
-                    title: "Login successfully",
-                });
             } catch (error) {
                 Swal.fire({
                     title: "Login Error!",

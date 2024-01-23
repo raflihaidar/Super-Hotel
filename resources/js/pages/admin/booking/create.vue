@@ -31,7 +31,7 @@ const payload = ref({
 const checkAvailability = () => {
     payload.value.jumlah_kamar = quantity.value.roomQuantity
     payload.value.jumlah_tamu = quantity.value.personQuantity
-    payload.value.id_tamu = guestAuth.value.id
+    payload.value.id_tamu = guestAuth.value ? guestAuth.value.id : 0
     roomStore.checkAvailability(payload.value)
 }
 </script>
