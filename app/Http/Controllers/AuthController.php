@@ -55,7 +55,7 @@ class AuthController extends Controller
         $token = $tamu->createToken('auth_token')->plainTextToken;
 
         return response()->json([
-            'message' => 'Login success',
+            'status' => 'Login success',
             'access_token' => $token,
             'token_type' => 'Bearer'
         ]);

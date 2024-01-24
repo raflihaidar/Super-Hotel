@@ -16,6 +16,7 @@ export const useGuestStore = defineStore(
         const store = useGlobalStore();
         const { guest, singleData, pagination } = storeToRefs(store);
         const guestAuth = ref(null);
+        const status = ref(false);
         const token = ref(null);
 
         const login = async (payload) => {
@@ -27,6 +28,7 @@ export const useGuestStore = defineStore(
                         email: payload.email,
                         password: payload.password,
                     });
+                    status.value = true;
                     token.value = res.data.access_token;
                     fetchGuestData(res.data.access_token);
                     router.push({ name: "home" });
@@ -51,14 +53,18 @@ export const useGuestStore = defineStore(
                         icon: "Error",
                         confirmButtonText: "Ok",
                     });
+                    status.value = false;
                 }
             } catch (error) {
                 Swal.fire({
                     title: "Login Error!",
-                    icon: "Error",
+                    icon: "error",
                     confirmButtonText: "Ok",
                 });
+                status.value = false;
             }
+
+            return status.value;
         };
 
         const logout = async () => {
@@ -112,7 +118,7 @@ export const useGuestStore = defineStore(
                         telephone: payload.telephone,
                         password: payload.password,
                     });
-                    console.log(res.data);
+                    status.value = true;
                     const Toast = Swal.mixin({
                         toast: true,
                         position: "top-end",
@@ -130,15 +136,19 @@ export const useGuestStore = defineStore(
                     });
                     router.push({ name: "sign-in" });
                 } else {
+                    status.value = false;
                     Swal.fire({
                         title: "Register Error!",
-                        icon: "Error",
+                        icon: "error",
                         confirmButtonText: "Ok",
                     });
                 }
             } catch (error) {
                 console.log(error);
+                status.value = false;
             }
+
+            return status.value;
         };
 
         const fetchGuestData = async (token) => {

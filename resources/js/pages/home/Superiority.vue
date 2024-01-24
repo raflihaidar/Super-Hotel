@@ -43,7 +43,7 @@ const Superiority = [
 
 <template>
     <main class="bg-amber-100 w-full">
-        <ul class="w-[85%] mx-auto py-20 grid grid-cols-3 gap-5 text-center">
+        <ul class="w-[85%] mx-auto py-20 grid grid-cols-3 gap-5 text-center" v-motion-slide-visible-once-bottom>
             <li class="bg-white rounded-3xl py-8 px-3 group hover:bg-green-950 transition-colors"
                 v-for="(item, index) in Superiority" :key="index">
                 <component :is="item.icon" class="text-lime-600 mx-auto mb-5" />

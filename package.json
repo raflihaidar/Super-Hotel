@@ -23,6 +23,7 @@
         "vue-loader": "^16.2.0"
     },
     "dependencies": {
+        "@vueuse/motion": "^2.0.0",
         "apexcharts": "^3.45.1",
         "chart.js": "^4.4.1",
         "flowbite": "^2.2.1",

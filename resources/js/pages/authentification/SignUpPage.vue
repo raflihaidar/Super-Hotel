@@ -1,3 +1,42 @@
+<script setup>
+import ButtonSpinner from '../../components/ButtonSpinner.vue';
+import { useGuestStore } from '../../store/guest'
+import { ref, watch } from 'vue';
+const isLoading = ref(false)
+const guestStore = useGuestStore()
+const firstName = ref(null)
+const lastName = ref(null)
+const payload = ref({
+    nama: '',
+    username: '',
+    email: '',
+    telephone: '',
+    password: '',
+    passwordConfim: ''
+})
+
+watch(firstName, () => {
+    payload.value.nama = firstName.value + ' ' + lastName.value
+})
+
+watch(lastName, () => {
+    payload.value.nama = firstName.value + ' ' + lastName.value
+})
+
+const handleRegister = async () => {
+    isLoading.value = true
+    const response = await guestStore.register(payload.value)
+    if (!response) isLoading.value = false
+}
+</script>
+
+<style>
+.signup-background {
+    background-image: url('../../../assets/sign-up-image.jpg');
+    background-size: cover;
+}
+</style>
+
 <template>
     <div class="flex justify-between w-screen h-screen">
         <section class="w-[50%] my-auto order-2">
@@ -79,54 +118,14 @@
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-green-600 peer-focus:dark:text-green-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Confirm
                         password</label>
                 </div>
-                <button type="submit"
+                <button type="submit" v-if="!isLoading"
                     class="text-white bg-[#0E2D10] hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Submit</button>
+                <ButtonSpinner v-else />
             </form>
             <p class="max-w-md mx-auto text-sm mt-5">Already have an account? <router-link :to="{ name: 'sign-in' }"
                     class="hover:underline underline-offset-2 transition">Login</router-link></p>
-
         </section>
         <div class="w-[50%] bg-gray-50 signup-background ">
         </div>
     </div>
 </template>
-
-
-<script setup>
-import EyeIcon from '../../../assets/icons/EyeIcon.vue'
-import { useGuestStore } from '../../store/guest'
-import { ref, watch } from 'vue';
-const guestStore = useGuestStore()
-const firstName = ref(null)
-const lastName = ref(null)
-const payload = ref({
-    nama: '',
-    username: '',
-    email: '',
-    telephone: '',
-    password: '',
-    passwordConfim: ''
-})
-
-watch(firstName, () => {
-    payload.value.nama = firstName.value + ' ' + lastName.value
-    console.log(payload.value.nama)
-})
-
-watch(lastName, () => {
-    payload.value.nama = firstName.value + ' ' + lastName.value
-    console.log(payload.value.nama)
-})
-
-const handleRegister = () => {
-    guestStore.register(payload.value)
-}
-
-</script>
-
-<style>
-.signup-background {
-    background-image: url('../../../assets/sign-up-image.jpg');
-    background-size: cover;
-}
-</style>

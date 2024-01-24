@@ -1,6 +1,7 @@
 <script setup>
 import NavbarComponent from '../../../components/TheNavbar.vue'
 import NumberInputComponent from '../../../components/BaseNumberInput.vue'
+import BaseButtonToTop from '../../../components/BaseButtonToTop.vue';
 import Index from '../../home/index.vue';
 import { useGuestStore } from '../../../store/guest';
 import { useRoomStore } from '../../../store/room';
@@ -148,6 +149,7 @@ const checkAvailability = () => {
                     </span>Search</button>
             </div>
         </form>
+        <BaseButtonToTop />
     </section>
     <section>
         <Index />

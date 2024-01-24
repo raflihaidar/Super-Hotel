@@ -1,6 +1,6 @@
 <template>
     <main class="bg-amber-100 w-full">
-        <div class="w-[85%] mx-auto py-20 flex flex-col gap-y-10">
+        <div class="w-[85%] mx-auto py-20 flex flex-col gap-y-10" v-motion-slide-visible-once-bottom>
             <p class="text-lime-600 font-semibold text-lg uppercase tracking-widest">Layanan Kami</p>
             <section class="flex justify-between items-center">
                 <h1 class="font-bold text-4xl w-[40%]">Hotel impian dan ruangan yang modern.</h1>

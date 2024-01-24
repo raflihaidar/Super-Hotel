@@ -1,3 +1,46 @@
+<script setup>
+import EyeIcon from '../../../assets/icons/EyeIcon.vue';
+import EyeHideIcon from '../../../assets/icons/EyeHideIcon.vue';
+import ButtonSpinner from '../../components/ButtonSpinner.vue'
+import { useGuestStore } from '../../store/guest'
+import { ref } from 'vue';
+import { storeToRefs } from 'pinia';
+
+const isLoading = ref(false)
+const passwordInput = ref(null)
+const showIcon = ref(true)
+const guestStore = useGuestStore()
+
+const payload = ref({
+    email: '',
+    password: '',
+})
+
+const showPassword = () => {
+    if (passwordInput.value.type === "password") {
+        showIcon.value = false
+        passwordInput.value.type = "text"
+    }
+    else {
+        showIcon.value = true
+        passwordInput.value.type = "password"
+    }
+}
+
+const handleLogin = async () => {
+    isLoading.value = true;
+    const response = await guestStore.login(payload.value)
+    if (!response) isLoading.value = false
+};
+</script>
+
+<style>
+.custom-background {
+    background-image: url('../../../../public/images/sign-in-image.jpg');
+    background-size: cover;
+}
+</style>
+
 <template>
     <div class="flex justify-between w-screen h-screen">
         <section class="w-[50%] my-auto">
@@ -34,10 +77,11 @@
                             Password</label>
                     </span>
                 </div>
-                <button type="submit"
+                <button type="submit" v-if="!isLoading"
                     class="text-white bg-[#0E2D10] w-[100%] hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                     Sign in
                 </button>
+                <ButtonSpinner v-else />
                 <div class="flex items-center justify-center my-5">
                     <span class="border border-gray-400 w-1/4 mx-4"></span>
                     <span>or</span>
@@ -62,44 +106,3 @@
 
     </div>
 </template>
-
-
-<script setup>
-import EyeIcon from '../../../assets/icons/EyeIcon.vue';
-import EyeHideIcon from '../../../assets/icons/EyeHideIcon.vue';
-import { useGuestStore } from '../../store/guest'
-import { ref } from 'vue';
-
-const passwordInput = ref(null)
-const showIcon = ref(true)
-
-const payload = ref({
-    email: '',
-    password: '',
-})
-
-const showPassword = () => {
-    if (passwordInput.value.type === "password") {
-        showIcon.value = false
-        passwordInput.value.type = "text"
-    }
-    else {
-        showIcon.value = true
-        passwordInput.value.type = "password"
-    }
-
-    console.log(passwordInput.value.type)
-}
-
-const guestStore = useGuestStore()
-const handleLogin = () => {
-    guestStore.login(payload.value)
-}
-</script>
-
-<style>
-.custom-background {
-    background-image: url('../../../../public/images/sign-in-image.jpg');
-    background-size: cover;
-}
-</style>
