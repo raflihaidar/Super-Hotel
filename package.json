@@ -29,7 +29,6 @@
         "pinia": "^2.1.7",
         "pinia-plugin-persistedstate": "^3.2.1",
         "sweetalert2": "^11.10.2",
-        "vite-plugin-remove-console": "^2.2.0",
         "vue-router": "^4.2.5"
     }
 }
