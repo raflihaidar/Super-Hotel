@@ -1250,6 +1250,15 @@ input:checked + .toggle-bg {
 .top-\[85\%\] {
   top: 85%;
 }
+.right-40 {
+  right: 10rem;
+}
+.right-28 {
+  right: 7rem;
+}
+.right-16 {
+  right: 4rem;
+}
 .-z-10 {
   z-index: -10;
 }
@@ -2203,6 +2212,7 @@ input:checked + .toggle-bg {
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
+<<<<<<< HEAD
 .py-10 {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
@@ -2210,6 +2220,15 @@ input:checked + .toggle-bg {
 .py-20 {
   padding-top: 5rem;
   padding-bottom: 5rem;
+=======
+.py-32 {
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+.py-40 {
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+>>>>>>> 2975ffdd8dd091e6190da8226bb52a9a88c18152
 }
 .pb-2 {
   padding-bottom: 0.5rem;
