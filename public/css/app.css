@@ -1250,6 +1250,15 @@ input:checked + .toggle-bg {
 .top-\[85\%\] {
   top: 85%;
 }
+.right-40 {
+  right: 10rem;
+}
+.right-28 {
+  right: 7rem;
+}
+.right-16 {
+  right: 4rem;
+}
 .-z-10 {
   z-index: -10;
 }
@@ -2187,6 +2196,14 @@ input:checked + .toggle-bg {
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+.py-32 {
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+.py-40 {
+  padding-top: 10rem;
+  padding-bottom: 10rem;
 }
 .pb-2 {
   padding-bottom: 0.5rem;

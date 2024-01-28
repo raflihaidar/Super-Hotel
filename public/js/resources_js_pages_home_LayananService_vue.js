@@ -179,7 +179,7 @@ var _hoisted_1 = {
   "class": "w-full bg-green-900"
 };
 var _hoisted_2 = {
-  "class": "w-[85%] mx-auto py-20 flex justify-between items-center"
+  "class": "w-[85%] mx-auto py-32 flex justify-between items-center"
 };
 var _hoisted_3 = {
   "class": "w-[45%]"
@@ -249,14 +249,14 @@ var _hoisted_21 = {
   "class": "text-lime-50 flex gap-x-2 mb-4"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _directive_motion_slide_visible_once_bottom = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDirective)("motion-slide-visible-once-bottom");
+  var _directive_motion_from_right = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDirective)("motion-from-right");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("main", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_3, [_hoisted_4, _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["ShieldIcon"], {
     "class": "text-lime-100"
   }), _hoisted_9]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["ListIcon"], {
     "class": "text-lime-100"
   }), _hoisted_11]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["ChatIcon"], {
     "class": "text-lime-100"
-  }), _hoisted_13])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [_hoisted_16, _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["VerifyIcon"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 24 Hours Consultation ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["VerifyIcon"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Certification Team ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["VerifyIcon"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" More Office Branch ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["VerifyIcon"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Best Work Result ")])])])])])), [[_directive_motion_slide_visible_once_bottom]])]);
+  }), _hoisted_13])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [_hoisted_16, _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["VerifyIcon"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 24 Hours Consultation ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["VerifyIcon"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Certification Team ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["VerifyIcon"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" More Office Branch ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["VerifyIcon"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Best Work Result ")])])])])])), [[_directive_motion_from_right]])]);
 }
 
 /***/ }),

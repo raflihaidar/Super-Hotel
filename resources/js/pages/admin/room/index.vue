@@ -41,9 +41,9 @@ watch(() => store.$state.singleData, () => {
         <BreadCrumbComponent :page="['Admin', 'Room']" />
         <section class="text-3xl font-bold">Room</section>
     </nav>
-    <TableComponent :header="room.length != 0 ? header : null" tableName="Room" :pagination="pagination" :addData="true"
+    <TableComponent :header="room?.length ? header : null" tableName="Room" :pagination="pagination" :addData="true"
         route="add-room" @handleSearch="searchData" @deleteAllData="store.deleteAllData(4)" :filterData="status">
-        <template #body v-if="room.length != 0">
+        <template #body v-if="room?.length">
             <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
                 v-for="(item, index) in room" :key="index">
                 <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{

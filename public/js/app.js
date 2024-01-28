@@ -41482,7 +41482,36 @@ pinia.use(pinia_plugin_persistedstate__WEBPACK_IMPORTED_MODULE_2__["default"]);
 var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_App_vue__WEBPACK_IMPORTED_MODULE_3__["default"]);
 app.use(pinia);
 app.use(_routes_js__WEBPACK_IMPORTED_MODULE_4__["default"]);
-app.use(_vueuse_motion__WEBPACK_IMPORTED_MODULE_1__.MotionPlugin);
+app.use(_vueuse_motion__WEBPACK_IMPORTED_MODULE_1__.MotionPlugin, {
+  directives: {
+    "from-bottom": {
+      initial: {
+        opacity: 0,
+        y: 100
+      },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          delay: 200
+        }
+      }
+    },
+    "from-right": {
+      initial: {
+        opacity: 0,
+        x: 100
+      },
+      visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+          delay: 200
+        }
+      }
+    }
+  }
+});
 app.mount("#app");
 
 /***/ }),

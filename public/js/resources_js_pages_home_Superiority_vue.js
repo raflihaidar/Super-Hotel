@@ -310,7 +310,7 @@ var _hoisted_1 = {
   "class": "bg-amber-100 w-full"
 };
 var _hoisted_2 = {
-  "class": "w-[85%] mx-auto py-20 grid grid-cols-3 gap-5 text-center"
+  "class": "w-[85%] mx-auto py-32 grid grid-cols-3 gap-5 text-center"
 };
 var _hoisted_3 = {
   "class": "font-bold mb-5 text-lg group-hover:text-lime-200"
@@ -322,7 +322,7 @@ var _hoisted_5 = {
   "class": "flex gap-x-2 mx-auto items-center bg-lime-900 text-white rounded-full px-5 py-3 uppercase tracking-widest text-xs"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _directive_motion_slide_visible_once_bottom = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDirective)("motion-slide-visible-once-bottom");
+  var _directive_motion_from_bottom = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDirective)("motion-from-bottom");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("main", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("ul", _hoisted_2, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.Superiority, function (item, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
       "class": "bg-white rounded-3xl py-8 px-3 group hover:bg-green-950 transition-colors",
@@ -330,7 +330,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)((0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDynamicComponent)(item.icon), {
       "class": "text-lime-600 mx-auto mb-5"
     })), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.title), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.description), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Lihat Selengkapnya "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["ArrowIconVue"])])]);
-  }), 64 /* STABLE_FRAGMENT */))])), [[_directive_motion_slide_visible_once_bottom]])]);
+  }), 64 /* STABLE_FRAGMENT */))])), [[_directive_motion_from_bottom]])]);
 }
 
 /***/ }),

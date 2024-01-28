@@ -3589,10 +3589,11 @@ var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, "Close modal", -1 /* HOISTED */);
 var _hoisted_14 = [_hoisted_12, _hoisted_13];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _$setup$room, _$setup$room2;
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreadCrumbComponent"], {
     page: ['Admin', 'Room']
   }), _hoisted_2]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["TableComponent"], {
-    header: $setup.room.length != 0 ? $setup.header : null,
+    header: (_$setup$room = $setup.room) !== null && _$setup$room !== void 0 && _$setup$room.length ? $setup.header : null,
     tableName: "Room",
     pagination: $setup.pagination,
     addData: true,
@@ -3604,7 +3605,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     filterData: $setup.status
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createSlots)({
     _: 2 /* DYNAMIC */
-  }, [$setup.room.length != 0 ? {
+  }, [(_$setup$room2 = $setup.room) !== null && _$setup$room2 !== void 0 && _$setup$room2.length ? {
     name: "body",
     fn: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.room, function (item, index) {

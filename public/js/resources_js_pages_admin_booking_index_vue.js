@@ -3236,16 +3236,17 @@ var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, "Close modal", -1 /* HOISTED */);
 var _hoisted_13 = [_hoisted_11, _hoisted_12];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _$setup$booking, _$setup$booking2;
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreadCrumbComponent"], {
     page: ['Admin', 'Booking']
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["TableComponent"], {
-    header: $setup.booking.length != 0 ? $setup.header : null,
+    header: (_$setup$booking = $setup.booking) !== null && _$setup$booking !== void 0 && _$setup$booking.length ? $setup.header : null,
     tableName: "Room",
     pagination: $setup.pagination,
     onHandleSearch: $setup.searchData
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createSlots)({
     _: 2 /* DYNAMIC */
-  }, [$setup.booking.length != 0 ? {
+  }, [(_$setup$booking2 = $setup.booking) !== null && _$setup$booking2 !== void 0 && _$setup$booking2.length ? {
     name: "body",
     fn: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.booking, function (item, index) {

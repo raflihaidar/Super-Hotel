@@ -41,7 +41,7 @@ const checkAvailability = () => {
     <NavbarComponent @logout="guestStore.logout" />
     <section class="flex justify-between mt-0">
         <div class="bg-green-900 w-[50%]">
-            <div class="w-[80%] mx-auto text-white flex flex-col gap-y-10">
+            <div class="w-[80%] mx-auto text-white flex flex-col gap-y-10" div v-motion-fade>
                 <h1
                     class="mt-40 text-3xl font-extrabold tracking-tight leading-none  md:text-5xl lg:text-6xl dark:text-white">
                     Find Your Perfect Place to Stay</h1>

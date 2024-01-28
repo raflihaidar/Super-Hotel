@@ -2,7 +2,6 @@
 import ModalComponent from '../../../components/BaseModal.vue';
 import BreadCrumbComponent from '../../../components/BaseBreadCrumb.vue';
 import inputFormGuest from '../../../components/GuestForm.vue'
-import BaseSpinner from '../../../components/BaseSpinner.vue';
 import { useGlobalStore } from '../../../store/global';
 import { ref, watch, onMounted, provide, defineAsyncComponent } from 'vue';
 import { storeToRefs } from 'pinia';
@@ -37,9 +36,9 @@ watch(() => store.$state.singleData, () => {
     <div class="w-full py-5 px-5">
         <section class="text-3xl font-bold mb-2">Guest</section>
         <BreadCrumbComponent :page="['Admin', 'Guest']" />
-        <TableComponent :header="guest.length != 0 ? header : null" @handleSearch="searchData" :pagination="pagination"
+        <TableComponent :header="guest.length ? header : null" @handleSearch="searchData" :pagination="pagination"
             tableName="Tamu" @deleteAllData="store.deleteAllData(1)">
-            <template #body v-if="guest.length != 0">
+            <template #body v-if="guest.length">
                 <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
                     v-for="(item, index) in guest" :key="index">
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{
