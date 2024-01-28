@@ -28,10 +28,6 @@ export const useGuestStore = defineStore(
                         email: payload.email,
                         password: payload.password,
                     });
-                    status.value = true;
-                    token.value = res.data.access_token;
-                    fetchGuestData(res.data.access_token);
-                    router.push({ name: "home" });
                     const Toast = Swal.mixin({
                         toast: true,
                         position: "top-end",
@@ -47,6 +43,10 @@ export const useGuestStore = defineStore(
                         icon: "success",
                         title: "Login successfully",
                     });
+                    status.value = true;
+                    token.value = res.data.access_token;
+                    fetchGuestData(res.data.access_token);
+                    router.push({ name: "home" });
                 } else {
                     Swal.fire({
                         title: "Anda Sudah Login!",
@@ -78,13 +78,6 @@ export const useGuestStore = defineStore(
                     confirmButtonText: "logout",
                 }).then(async (result) => {
                     if (result.isConfirmed) {
-                        await axios.post(URL_LOGOUT, null, {
-                            headers: {
-                                Authorization: `Bearer ${token.value}`,
-                            },
-                        });
-                        token.value = null;
-                        guestAuth.value = null;
                         const Toast = Swal.mixin({
                             toast: true,
                             position: "top-end",
@@ -100,6 +93,14 @@ export const useGuestStore = defineStore(
                             icon: "success",
                             title: "Logout successfully",
                         });
+                        await axios.post(URL_LOGOUT, null, {
+                            headers: {
+                                Authorization: `Bearer ${token.value}`,
+                            },
+                        });
+
+                        token.value = null;
+                        guestAuth.value = null;
                         router.push({ name: "sign-in" });
                     }
                 });
@@ -118,7 +119,6 @@ export const useGuestStore = defineStore(
                         telephone: payload.telephone,
                         password: payload.password,
                     });
-                    status.value = true;
                     const Toast = Swal.mixin({
                         toast: true,
                         position: "top-end",
@@ -134,6 +134,7 @@ export const useGuestStore = defineStore(
                         icon: "success",
                         title: "Logout successfully",
                     });
+                    status.value = true;
                     router.push({ name: "sign-in" });
                 } else {
                     status.value = false;

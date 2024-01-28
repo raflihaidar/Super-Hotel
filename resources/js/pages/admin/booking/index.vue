@@ -34,9 +34,9 @@ watch(() => store.$state.singleData, () => {
 <template>
     <section class="text-3xl font-bold mb-2">Booking</section>
     <BreadCrumbComponent :page="['Admin', 'Booking']" />
-    <TableComponent :header="booking.length != 0 ? header : null" tableName="Room" :pagination="pagination"
+    <TableComponent :header="booking?.length ? header : null" tableName="Room" :pagination="pagination"
         @handleSearch="searchData">
-        <template #body v-if="booking.length != 0">
+        <template #body v-if="booking?.length">
             <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
                 v-for="(item, index) in booking" :key="index">
                 <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{

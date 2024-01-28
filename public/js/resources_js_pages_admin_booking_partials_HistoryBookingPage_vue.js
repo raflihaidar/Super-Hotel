@@ -2902,9 +2902,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _store_guest__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/guest */ "./resources/js/store/guest.js");
-/* harmony import */ var pinia__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! pinia */ "./node_modules/pinia/dist/pinia.mjs");
+/* harmony import */ var pinia__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! pinia */ "./node_modules/pinia/dist/pinia.mjs");
 /* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../routes */ "./resources/js/routes.js");
 /* harmony import */ var _store_booking__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/booking */ "./resources/js/store/booking.js");
+/* harmony import */ var _vueuse_motion__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @vueuse/motion */ "./node_modules/@vueuse/motion/dist/index.mjs");
+
 
 
 
@@ -2918,11 +2920,13 @@ __webpack_require__.r(__webpack_exports__);
       __emit = _ref.emit;
     __expose();
     var imageProfile = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
+    var dropDown = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
     var guestStore = (0,_store_guest__WEBPACK_IMPORTED_MODULE_1__.useGuestStore)();
     var bookingStore = (0,_store_booking__WEBPACK_IMPORTED_MODULE_3__.useBookingStore)();
-    var _storeToRefs = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.storeToRefs)(guestStore),
+    var _storeToRefs = (0,pinia__WEBPACK_IMPORTED_MODULE_5__.storeToRefs)(guestStore),
       guestAuth = _storeToRefs.guestAuth;
     var openDropDown = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
+    var motions = (0,_vueuse_motion__WEBPACK_IMPORTED_MODULE_4__.useMotions)();
     var emits = __emit;
     var handleLogout = function handleLogout() {
       emits('logout');
@@ -2945,33 +2949,51 @@ __webpack_require__.r(__webpack_exports__);
         console.log("status", openDropDown.value);
       });
     };
+    var initial = {
+      opacity: 0,
+      y: -100
+    };
+    var enter = {
+      opacity: 1,
+      y: 0
+    };
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
       handleOpenDropDown();
     });
     var __returned__ = {
       imageProfile: imageProfile,
+      dropDown: dropDown,
       guestStore: guestStore,
       bookingStore: bookingStore,
       guestAuth: guestAuth,
       openDropDown: openDropDown,
+      motions: motions,
       emits: emits,
       handleLogout: handleLogout,
       handleBack: handleBack,
       viewBookingHistory: viewBookingHistory,
       handleOpenDropDown: handleOpenDropDown,
+      initial: initial,
+      enter: enter,
       onMounted: vue__WEBPACK_IMPORTED_MODULE_0__.onMounted,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
       get useGuestStore() {
         return _store_guest__WEBPACK_IMPORTED_MODULE_1__.useGuestStore;
       },
       get storeToRefs() {
-        return pinia__WEBPACK_IMPORTED_MODULE_4__.storeToRefs;
+        return pinia__WEBPACK_IMPORTED_MODULE_5__.storeToRefs;
       },
       get router() {
         return _routes__WEBPACK_IMPORTED_MODULE_2__["default"];
       },
       get useBookingStore() {
         return _store_booking__WEBPACK_IMPORTED_MODULE_3__.useBookingStore;
+      },
+      get useMotion() {
+        return _vueuse_motion__WEBPACK_IMPORTED_MODULE_4__.useMotion;
+      },
+      get useMotions() {
+        return _vueuse_motion__WEBPACK_IMPORTED_MODULE_4__.useMotions;
       }
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
@@ -3093,64 +3115,77 @@ var _hoisted_13 = {
   alt: "user photo"
 };
 var _hoisted_14 = {
-  key: 0,
-  "class": "z-50 my-4 absolute top-7 -right-1 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
-};
-var _hoisted_15 = {
   "class": "px-4 py-3",
   role: "none"
 };
-var _hoisted_16 = {
+var _hoisted_15 = {
   "class": "text-sm text-gray-900 dark:text-white",
   role: "none"
 };
-var _hoisted_17 = {
+var _hoisted_16 = {
   "class": "text-sm font-medium text-gray-900 truncate dark:text-gray-300",
   role: "none"
 };
-var _hoisted_18 = {
+var _hoisted_17 = {
   "class": "py-1",
   role: "none"
 };
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   href: "#",
   "class": "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white",
   role: "menuitem"
 }, "Settings")], -1 /* HOISTED */);
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   href: "#",
   "class": "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white",
   role: "menuitem"
 }, "Bookings", -1 /* HOISTED */);
-var _hoisted_21 = {
+var _hoisted_20 = {
   key: 1,
   "class": "flex items-center gap-x-2 cursor-pointer font-semibold"
 };
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "/", -1 /* HOISTED */);
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "/", -1 /* HOISTED */);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
+  var _directive_motion = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDirective)("motion");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("nav", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "flex items-center justify-start rtl:justify-end cursor-pointer",
     onClick: $setup.handleBack
-  }, [].concat(_hoisted_6)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [$setup.guestAuth ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.guestAuth.username), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", _hoisted_13, null, 512 /* NEED_PATCH */)])]), $setup.openDropDown ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.guestAuth.nama), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.guestAuth.email), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: {
-      name: 'bookings',
-      params: {
-        id: $setup.guestAuth.id
-      }
-    },
-    onClick: $setup.viewBookingHistory
+  }, [].concat(_hoisted_6)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [$setup.guestAuth ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.guestAuth.username), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", _hoisted_13, null, 512 /* NEED_PATCH */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
+    onLeave: _cache[0] || (_cache[0] = function (_, done) {
+      return $setup.motions.div.leave(done);
+    })
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_20];
+      return [$setup.openDropDown ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+        key: 0,
+        ref: "dropDown",
+        initial: $setup.initial,
+        enter: $setup.enter,
+        leave: $setup.initial,
+        "class": "z-50 my-4 absolute top-7 -right-1 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.guestAuth.nama), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.guestAuth.email), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+        to: {
+          name: 'bookings',
+          params: {
+            id: $setup.guestAuth.id
+          }
+        },
+        onClick: $setup.viewBookingHistory
+      }, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [_hoisted_19];
+        }),
+        _: 1 /* STABLE */
+      }, 8 /* PROPS */, ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+        href: "#",
+        onClick: $setup.handleLogout,
+        "class": "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white",
+        role: "menuitem"
+      }, "Sign out")])])])), [[_directive_motion, 'div']]) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
     }),
     _: 1 /* STABLE */
-  }, 8 /* PROPS */, ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    href: "#",
-    onClick: $setup.handleLogout,
-    "class": "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white",
-    role: "menuitem"
-  }, "Sign out")])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  })])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
       name: 'sign-in'
     },
@@ -3160,7 +3195,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Login")];
     }),
     _: 1 /* STABLE */
-  }), _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  }), _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
       name: 'sign-up'
     },

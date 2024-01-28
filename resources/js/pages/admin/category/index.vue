@@ -1,7 +1,6 @@
 <script setup>
 import ModalComponent from '../../../components/BaseModal.vue';
 import BreadCrumbComponent from '../../../components/BaseBreadCrumb.vue';
-import BaseSpinner from '../../../components/BaseSpinner.vue';
 import DetailCategoryComponent from '../../..//components/CategoryForm.vue';
 import { useGlobalStore } from '../../../store/global';
 import { ref, watch, onMounted, provide, defineAsyncComponent } from 'vue';
@@ -23,6 +22,7 @@ const searchData = (search) => {
 
 onMounted(() => {
     store.getData(5, "25")
+    console.log("category : ", category)
 });
 
 watch(() => store.$state.singleData, () => {
@@ -34,9 +34,9 @@ watch(() => store.$state.singleData, () => {
     <div class="w-full py-5 px-5">
         <section class="text-3xl font-bold mb-2">Category</section>
         <BreadCrumbComponent :page="['Admin', 'Category']" />
-        <TableComponent :header="category.length != 0 ? header : null" route="add-category" tableName="Category"
+        <TableComponent :header="category?.length ? header : null" route="add-category" tableName="Category"
             @handleSearch="searchData" :pagination="pagination" :addData="true" @deleteAllData="store.deleteAllData(5)">
-            <template #body v-if="category.length != 0">
+            <template #body v-if="category?.length">
                 <tr class="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
                     v-for="(item, index) in category" :key="index">
                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">

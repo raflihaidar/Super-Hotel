@@ -3035,11 +3035,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_BaseModal_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../components/BaseModal.vue */ "./resources/js/components/BaseModal.vue");
 /* harmony import */ var _components_BaseBreadCrumb_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../components/BaseBreadCrumb.vue */ "./resources/js/components/BaseBreadCrumb.vue");
 /* harmony import */ var _components_GuestForm_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../components/GuestForm.vue */ "./resources/js/components/GuestForm.vue");
-/* harmony import */ var _components_BaseSpinner_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../components/BaseSpinner.vue */ "./resources/js/components/BaseSpinner.vue");
-/* harmony import */ var _store_global__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../store/global */ "./resources/js/store/global.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var pinia__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! pinia */ "./node_modules/pinia/dist/pinia.mjs");
-
+/* harmony import */ var _store_global__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../store/global */ "./resources/js/store/global.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var pinia__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! pinia */ "./node_modules/pinia/dist/pinia.mjs");
 
 
 
@@ -3051,26 +3049,26 @@ __webpack_require__.r(__webpack_exports__);
   setup: function setup(__props, _ref) {
     var __expose = _ref.expose;
     __expose();
-    var TableComponent = (0,vue__WEBPACK_IMPORTED_MODULE_5__.defineAsyncComponent)({
+    var TableComponent = (0,vue__WEBPACK_IMPORTED_MODULE_4__.defineAsyncComponent)({
       loader: function loader() {
         return __webpack_require__.e(/*! import() */ "resources_js_components_BaseTable_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../../components/BaseTable.vue */ "./resources/js/components/BaseTable.vue"));
       },
       delay: 500
     });
-    (0,vue__WEBPACK_IMPORTED_MODULE_5__.provide)('path', 'tamu');
-    var store = (0,_store_global__WEBPACK_IMPORTED_MODULE_4__.useGlobalStore)();
-    var header = (0,vue__WEBPACK_IMPORTED_MODULE_5__.ref)(['ID', 'NAMA', 'USERNAME', 'EMAIL']);
-    var _storeToRefs = (0,pinia__WEBPACK_IMPORTED_MODULE_6__.storeToRefs)(store),
+    (0,vue__WEBPACK_IMPORTED_MODULE_4__.provide)('path', 'tamu');
+    var store = (0,_store_global__WEBPACK_IMPORTED_MODULE_3__.useGlobalStore)();
+    var header = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)(['ID', 'NAMA', 'USERNAME', 'EMAIL']);
+    var _storeToRefs = (0,pinia__WEBPACK_IMPORTED_MODULE_5__.storeToRefs)(store),
       guest = _storeToRefs.guest,
       singleData = _storeToRefs.singleData,
       pagination = _storeToRefs.pagination;
     var searchData = function searchData(search) {
       store.searchData(1, search);
     };
-    (0,vue__WEBPACK_IMPORTED_MODULE_5__.onMounted)(function () {
+    (0,vue__WEBPACK_IMPORTED_MODULE_4__.onMounted)(function () {
       store.getData(1, "25");
     });
-    (0,vue__WEBPACK_IMPORTED_MODULE_5__.watch)(function () {
+    (0,vue__WEBPACK_IMPORTED_MODULE_4__.watch)(function () {
       return store.$state.singleData;
     }, function () {
       store.getData(1, "25");
@@ -3086,17 +3084,16 @@ __webpack_require__.r(__webpack_exports__);
       ModalComponent: _components_BaseModal_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
       BreadCrumbComponent: _components_BaseBreadCrumb_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
       inputFormGuest: _components_GuestForm_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-      BaseSpinner: _components_BaseSpinner_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
       get useGlobalStore() {
-        return _store_global__WEBPACK_IMPORTED_MODULE_4__.useGlobalStore;
+        return _store_global__WEBPACK_IMPORTED_MODULE_3__.useGlobalStore;
       },
-      ref: vue__WEBPACK_IMPORTED_MODULE_5__.ref,
-      watch: vue__WEBPACK_IMPORTED_MODULE_5__.watch,
-      onMounted: vue__WEBPACK_IMPORTED_MODULE_5__.onMounted,
-      provide: vue__WEBPACK_IMPORTED_MODULE_5__.provide,
-      defineAsyncComponent: vue__WEBPACK_IMPORTED_MODULE_5__.defineAsyncComponent,
+      ref: vue__WEBPACK_IMPORTED_MODULE_4__.ref,
+      watch: vue__WEBPACK_IMPORTED_MODULE_4__.watch,
+      onMounted: vue__WEBPACK_IMPORTED_MODULE_4__.onMounted,
+      provide: vue__WEBPACK_IMPORTED_MODULE_4__.provide,
+      defineAsyncComponent: vue__WEBPACK_IMPORTED_MODULE_4__.defineAsyncComponent,
       get storeToRefs() {
-        return pinia__WEBPACK_IMPORTED_MODULE_6__.storeToRefs;
+        return pinia__WEBPACK_IMPORTED_MODULE_5__.storeToRefs;
       }
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
@@ -3401,7 +3398,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreadCrumbComponent"], {
     page: ['Admin', 'Guest']
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["TableComponent"], {
-    header: $setup.guest.length != 0 ? $setup.header : null,
+    header: $setup.guest.length ? $setup.header : null,
     onHandleSearch: $setup.searchData,
     pagination: $setup.pagination,
     tableName: "Tamu",
@@ -3410,7 +3407,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createSlots)({
     _: 2 /* DYNAMIC */
-  }, [$setup.guest.length != 0 ? {
+  }, [$setup.guest.length ? {
     name: "body",
     fn: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.guest, function (item, index) {

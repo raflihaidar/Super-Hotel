@@ -1,7 +1,14 @@
+<script setup>
+import { useMotion } from "@vueuse/motion";
+import { ref } from "vue"
+
+</script>
+
+
 <template>
     <main class="bg-amber-100 w-full">
-        <div class="w-[85%] mx-auto py-20 flex flex-col gap-y-10" v-motion-slide-visible-once-bottom>
-            <p class="text-lime-600 font-semibold text-lg uppercase tracking-widest">Layanan Kami</p>
+        <div class="w-[85%] mx-auto py-32 flex flex-col gap-y-10" v-motion-from-bottom>
+            <p class=" text-lime-600 font-semibold text-lg uppercase tracking-widest">Layanan Kami</p>
             <section class="flex justify-between items-center">
                 <h1 class="font-bold text-4xl w-[40%]">Hotel impian dan ruangan yang modern.</h1>
                 <div class="flex gap-x-2 items-center text-lime-600 hover:underline transition cursor-pointer">
@@ -20,7 +27,7 @@
                     </p>
                     <h3 class="text-lime-50 font-bold text-2xl">Rafli Haidar</h3>
                 </span>
-                <span class="grid grid-cols-3 gap-x-8 z-20 absolute right-32">
+                <span class="grid grid-cols-3 gap-x-8 z-20 absolute right-16">
                     <figure class="border-amber-100 border-8 rounded-3xl">
                         <img src="../../../assets/layanan-1.png" class="w-72 h-72 rounded-xl" alt="img-layanan">
                     </figure>

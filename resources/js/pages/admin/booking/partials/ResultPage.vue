@@ -41,25 +41,33 @@ onMounted(() => {
         <NavbarComponnet />
         <section class="my-28 w-[80%] mx-auto">
             <div class="grid grid-cols-1 w-full gap-y-5">
-                <div v-for="(item, index) in category" :key="index"
-                    class="flex justify-between items-center w-full gap-x-5">
-                    <img :src="'/storage/' + item.foto" alt="image-category" class="w-[30%] rounded-lg">
-                    <div class="flex flex-col gap-y-2 w-[35%]">
-                        <p class="text-2xl font-semibold">{{ item.nama }}</p>
-                        <p class="text-xs">{{ item.fasilitas }}</p>
-                        <RatingComponent />
+                <template v-if="category?.length">
+                    <div v-for="(item, index) in category" :key="index"
+                        class="flex justify-between items-center w-full gap-x-5">
+                        <img :src="'/storage/' + item.foto" alt="image-category" class="w-[30%] rounded-lg">
+                        <div class="flex flex-col gap-y-2 w-[35%]">
+                            <p class="text-2xl font-semibold">{{ item.nama }}</p>
+                            <p class="text-xs">{{ item.fasilitas }}</p>
+                            <RatingComponent />
+                        </div>
+                        <div class="flex flex-col items-end gap-y-10 w-[35%]">
+                            <span>
+                                <p class="text-lg">Rp {{ item.harga }}</p>
+                                <p class="text-xs text-right mt-2">Harga/malam</p>
+                            </span>
+                            <button type="button" data-modal-target="crud-modal" data-modal-toggle="crud-modal"
+                                @click="handleClick(item)"
+                                class="text-white items-end bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-xs px-5 py-2.5 text-center me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Tentukan
+                                Tanggal</button>
+                        </div>
                     </div>
-                    <div class="flex flex-col items-end gap-y-10 w-[35%]">
-                        <span>
-                            <p class="text-lg">Rp {{ item.harga }}</p>
-                            <p class="text-xs text-right mt-2">Harga/malam</p>
-                        </span>
-                        <button type="button" data-modal-target="crud-modal" data-modal-toggle="crud-modal"
-                            @click="handleClick(item)"
-                            class="text-white items-end bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-xs px-5 py-2.5 text-center me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Tentukan
-                            Tanggal</button>
+                </template>
+                <template v-else>
+                    <div
+                        class="my-40 text-center text-red-500 text-2xl font-semibold border-green-500 border-2 py-20 rounded-3xl">
+                        <p>Tidak Ada Kamar yang Tersedia</p>
                     </div>
-                </div>
+                </template>
             </div>
         </section>
         <div id="crud-modal" tabindex="-1" aria-hidden="true"

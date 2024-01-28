@@ -41482,7 +41482,36 @@ pinia.use(pinia_plugin_persistedstate__WEBPACK_IMPORTED_MODULE_2__["default"]);
 var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_App_vue__WEBPACK_IMPORTED_MODULE_3__["default"]);
 app.use(pinia);
 app.use(_routes_js__WEBPACK_IMPORTED_MODULE_4__["default"]);
-app.use(_vueuse_motion__WEBPACK_IMPORTED_MODULE_1__.MotionPlugin);
+app.use(_vueuse_motion__WEBPACK_IMPORTED_MODULE_1__.MotionPlugin, {
+  directives: {
+    "from-bottom": {
+      initial: {
+        opacity: 0,
+        y: 100
+      },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          delay: 200
+        }
+      }
+    },
+    "from-right": {
+      initial: {
+        opacity: 0,
+        x: 100
+      },
+      visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+          delay: 200
+        }
+      }
+    }
+  }
+});
 app.mount("#app");
 
 /***/ }),
@@ -42235,12 +42264,6 @@ var useGuestStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("guest", 
             });
           case 8:
             res = _context.sent;
-            status.value = true;
-            token.value = res.data.access_token;
-            fetchGuestData(res.data.access_token);
-            _routes_js__WEBPACK_IMPORTED_MODULE_2__["default"].push({
-              name: "home"
-            });
             Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_3__.mixin({
               toast: true,
               position: "top-end",
@@ -42255,6 +42278,12 @@ var useGuestStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("guest", 
             Toast.fire({
               icon: "success",
               title: "Login successfully"
+            });
+            status.value = true;
+            token.value = res.data.access_token;
+            fetchGuestData(res.data.access_token);
+            _routes_js__WEBPACK_IMPORTED_MODULE_2__["default"].push({
+              name: "home"
             });
             _context.next = 19;
             break;
@@ -42312,15 +42341,6 @@ var useGuestStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("guest", 
                           _context2.next = 8;
                           break;
                         }
-                        _context2.next = 3;
-                        return axios__WEBPACK_IMPORTED_MODULE_5__["default"].post(URL_LOGOUT, null, {
-                          headers: {
-                            Authorization: "Bearer ".concat(token.value)
-                          }
-                        });
-                      case 3:
-                        token.value = null;
-                        guestAuth.value = null;
                         Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_3__.mixin({
                           toast: true,
                           position: "top-end",
@@ -42336,6 +42356,15 @@ var useGuestStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("guest", 
                           icon: "success",
                           title: "Logout successfully"
                         });
+                        _context2.next = 5;
+                        return axios__WEBPACK_IMPORTED_MODULE_5__["default"].post(URL_LOGOUT, null, {
+                          headers: {
+                            Authorization: "Bearer ".concat(token.value)
+                          }
+                        });
+                      case 5:
+                        token.value = null;
+                        guestAuth.value = null;
                         _routes_js__WEBPACK_IMPORTED_MODULE_2__["default"].push({
                           name: "sign-in"
                         });
@@ -42383,7 +42412,6 @@ var useGuestStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("guest", 
             });
           case 4:
             res = _context4.sent;
-            status.value = true;
             Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_3__.mixin({
               toast: true,
               position: "top-end",
@@ -42399,6 +42427,7 @@ var useGuestStore = (0,pinia__WEBPACK_IMPORTED_MODULE_4__.defineStore)("guest", 
               icon: "success",
               title: "Logout successfully"
             });
+            status.value = true;
             _routes_js__WEBPACK_IMPORTED_MODULE_2__["default"].push({
               name: "sign-in"
             });

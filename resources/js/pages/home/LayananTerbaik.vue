@@ -1,6 +1,6 @@
 <template>
     <main class="bg-amber-100 w-full">
-        <div class="w-[85%] mx-auto py-20 flex" v-motion-slide-visible-once-bottom>
+        <div class="w-[85%] mx-auto py-32 flex" v-motion-from-right>
             <section class="w-[40%] relative">
                 <figure>
                     <img src="../../../assets/layanan-4.png" class="w-60 h-80 rounded-xl" alt="img-layanan">

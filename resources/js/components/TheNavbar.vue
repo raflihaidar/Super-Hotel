@@ -4,12 +4,16 @@ import { useGuestStore } from "../store/guest";
 import { storeToRefs } from "pinia";
 import router from "../routes";
 import { useBookingStore } from "../store/booking";
+import { useMotion, useMotions } from "@vueuse/motion";
 
 const imageProfile = ref(null)
+const dropDown = ref(null)
 const guestStore = useGuestStore()
 const bookingStore = useBookingStore()
 const { guestAuth } = storeToRefs(guestStore)
 const openDropDown = ref(false)
+
+const motions = useMotions()
 const emits = defineEmits(['logout'])
 
 const handleLogout = () => {
@@ -35,6 +39,16 @@ const handleOpenDropDown = () => {
         }
         console.log("status", openDropDown.value)
     })
+}
+
+const initial = {
+    opacity: 0,
+    y: -100
+}
+
+const enter = {
+    opacity: 1,
+    y: 0
 }
 
 onMounted(() => {
@@ -76,35 +90,38 @@ onMounted(() => {
                                     src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo">
                             </button>
                         </div>
-                        <div v-if="openDropDown"
-                            class="z-50 my-4 absolute top-7 -right-1 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600">
-                            <div class="px-4 py-3" role="none">
-                                <p class="text-sm text-gray-900 dark:text-white" role="none">
-                                    {{ guestAuth.nama }}
-                                </p>
-                                <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
-                                    {{ guestAuth.email }}
-                                </p>
+                        <Transition @leave="(_, done) => motions.div.leave(done)">
+                            <div v-if="openDropDown" ref="dropDown" v-motion="'div'" :initial="initial" :enter="enter"
+                                :leave="initial"
+                                class="z-50 my-4 absolute top-7 -right-1 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600">
+                                <div class="px-4 py-3" role="none">
+                                    <p class="text-sm text-gray-900 dark:text-white" role="none">
+                                        {{ guestAuth.nama }}
+                                    </p>
+                                    <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
+                                        {{ guestAuth.email }}
+                                    </p>
+                                </div>
+                                <ul class="py-1" role="none">
+                                    <li>
+                                        <a href="#"
+                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                            role="menuitem">Settings</a>
+                                    </li>
+                                    <router-link :to="{ name: 'bookings', params: { id: guestAuth.id } }"
+                                        @click="viewBookingHistory">
+                                        <a href="#"
+                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                            role="menuitem">Bookings</a>
+                                    </router-link>
+                                    <li>
+                                        <a href="#" @click="handleLogout"
+                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                            role="menuitem">Sign out</a>
+                                    </li>
+                                </ul>
                             </div>
-                            <ul class="py-1" role="none">
-                                <li>
-                                    <a href="#"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                        role="menuitem">Settings</a>
-                                </li>
-                                <router-link :to="{ name: 'bookings', params: { id: guestAuth.id } }"
-                                    @click="viewBookingHistory">
-                                    <a href="#"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                        role="menuitem">Bookings</a>
-                                </router-link>
-                                <li>
-                                    <a href="#" @click="handleLogout"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                        role="menuitem">Sign out</a>
-                                </li>
-                            </ul>
-                        </div>
+                        </Transition>
                     </div>
                     <div class="flex items-center gap-x-2 cursor-pointer font-semibold" v-else>
                         <router-link :to="{ name: 'sign-in' }" class="hover:underline">Login</router-link>

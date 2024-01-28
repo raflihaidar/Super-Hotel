@@ -8,7 +8,7 @@ import ChatIcon from "../../../assets/icons/ChatIcon.vue"
 
 <template>
     <main class="w-full bg-green-900">
-        <div class="w-[85%] mx-auto py-20 flex justify-between items-center" v-motion-slide-visible-once-bottom>
+        <div class="w-[85%] mx-auto  py-32  flex justify-between items-center" v-motion-from-right>
             <section class="w-[45%]">
                 <p class="text-lime-600 font-semibold text-sm uppercase tracking-widest mb-8">Kenapa Harus Menggunakan
                     Layanan
